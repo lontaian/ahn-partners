@@ -56,6 +56,30 @@
         .category-badge {
             @apply px-3 py-1 text-xs font-medium rounded-full;
         }
+        /* 접수 중 배지 - 초록 점 glow */
+        @keyframes live-pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+                opacity: 1;
+            }
+            50% {
+                box-shadow: 0 0 8px 4px rgba(16, 185, 129, 0.3);
+                opacity: 0.6;
+            }
+        }
+        .live-dot {
+            animation: live-pulse 1.5s ease-in-out infinite;
+        }
+        /* 히어로 진입 애니메이션 */
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-animate { animation: fade-up 0.6s ease-out both; }
+        .hero-animate-delay-1 { animation: fade-up 0.6s ease-out 0.15s both; }
+        .hero-animate-delay-2 { animation: fade-up 0.6s ease-out 0.3s both; }
+        .hero-animate-delay-3 { animation: fade-up 0.6s ease-out 0.45s both; }
+        .hero-animate-delay-4 { animation: fade-up 0.6s ease-out 0.6s both; }
         /* NEW 배지 애니메이션 */
         @keyframes badge-glow {
             0%, 100% {
@@ -95,31 +119,31 @@
 
         <div class="max-w-7xl mx-auto text-center relative z-10">
             <!-- Badge -->
-            <div class="inline-flex items-center gap-2 bg-dark-card rounded-full px-4 py-2 mb-8">
-                <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+            <div class="inline-flex items-center gap-2 bg-dark-card rounded-full px-4 py-2 mb-8 hero-animate">
+                <span class="w-2.5 h-2.5 bg-secondary rounded-full live-dot"></span>
                 <span class="text-sm text-gray-300">프로젝트 의뢰 접수 중</span>
             </div>
 
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight hero-animate-delay-1">
                 기획부터 납품까지,<br>
                 <span class="text-primary">책임지고 완수합니다.</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4">
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4 hero-animate-delay-2">
                 ERP, 대시보드, 웹앱, 업무자동화 — Next.js · Python · PostgreSQL 기반의 전문 개발팀이 구축합니다.
             </p>
-            <p class="text-md text-gray-400 max-w-2xl mx-auto">
+            <p class="text-md text-gray-400 max-w-2xl mx-auto hero-animate-delay-2">
                 웹앱 · ERP · 대시보드 · 업무자동화 · 데이터 분석
             </p>
 
             <!-- CTA Buttons -->
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <a href="about.html#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-blue-800 rounded-full text-white transition-all duration-300 group">
+            <div class="mt-8 flex flex-wrap justify-center gap-4 hero-animate-delay-3">
+                <a href="about.html#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-blue-800 hover:scale-105 rounded-full text-white transition-all duration-300 group">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                     </svg>
                     <span class="font-medium">프로젝트 문의하기</span>
                 </a>
-                <a href="about.html" class="inline-flex items-center gap-2 px-6 py-3 bg-dark-card border border-primary/50 rounded-full text-primary hover:bg-primary/20 transition-all duration-300 group">
+                <a href="about.html" class="inline-flex items-center gap-2 px-6 py-3 bg-dark-card border border-primary/50 rounded-full text-primary hover:bg-primary/20 hover:scale-105 transition-all duration-300 group">
                     <span class="font-medium">수행 역량 보기</span>
                     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -127,7 +151,7 @@
                 </a>
             </div>
 
-            <div class="mt-6 flex flex-wrap justify-center gap-3">
+            <div class="mt-6 flex flex-wrap justify-center gap-3 hero-animate-delay-4">
                 <span class="px-4 py-2 bg-dark-card border border-primary/30 rounded-full text-sm text-gray-200">납품 10건+</span>
                 <span class="px-4 py-2 bg-dark-card border border-primary/30 rounded-full text-sm text-gray-200">대기업 프로젝트</span>
                 <span class="px-4 py-2 bg-dark-card border border-primary/30 rounded-full text-sm text-gray-200">정부과제 수행</span>
