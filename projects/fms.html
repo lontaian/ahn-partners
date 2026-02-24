@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="apple-touch-icon" href="../favicon.png">
+    <title>전세버스 ERP (FMS) | Portfolio</title>
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
+        .stat-card {
+            @apply bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100;
+        }
+        .stat-icon {
+            @apply text-3xl mb-2;
+        }
+        .stat-value {
+            @apply text-2xl font-bold text-gray-900;
+        }
+        .stat-label {
+            @apply text-sm text-gray-500;
+        }
+        .feature-card {
+            @apply p-4 bg-gray-50 rounded-xl;
+        }
+        .timeline-item {
+            @apply relative pl-8 pb-8 border-l-2 border-purple-200;
+        }
+        .timeline-item:last-child {
+            @apply border-l-0;
+        }
+        .timeline-dot {
+            @apply absolute left-0 top-0 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="../index.html" class="text-xl font-bold text-primary">Portfolio</a>
+                <div class="flex items-center gap-6">
+                    <a href="../index.html" class="text-gray-700 hover:text-primary font-medium">Projects</a>
+                    <a href="../about.html" class="text-gray-700 hover:text-primary font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-16">
+        <div class="max-w-5xl mx-auto px-4">
+
+            <!-- Back Button -->
+            <a href="../index.html" class="inline-flex items-center gap-2 text-gray-600 hover:text-primary mb-6">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Back to Projects
+            </a>
+
+            <!-- Hero Section -->
+            <div class="bg-gradient-to-br from-purple-600 to-indigo-800 rounded-2xl shadow-lg overflow-hidden mb-8">
+                <div class="p-8 md:p-12">
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium">ERP</span>
+                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium">Production</span>
+                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium">4주 개발</span>
+                        <span class="px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse">NEW</span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">전세버스 ERP (FMS)</h1>
+                    <p class="text-xl text-purple-100 mb-6">
+                        원더모빌리티 그룹 3개 법인 통합 차량관리시스템
+                    </p>
+                    <a href="https://fms-readonly-sigma.vercel.app/" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-purple-700 rounded-lg hover:bg-purple-50 transition font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        Live Demo (Readonly)
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Main Content -->
+                <div class="md:col-span-2 space-y-8">
+
+                    <!-- Overview -->
+                    <section class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
+                        <p class="text-gray-600 mb-4">
+                            전세버스 업체는 ERP 도입이 어렵습니다.
+                            업무 프로세스가 체계화되지 않아 "무엇이 필요한지"조차 설명하기 어렵기 때문입니다.
+                        </p>
+                        <p class="text-gray-600 mb-4">
+                            이 프로젝트는 현업 담당자 인터뷰, 회의 녹음 분석, 18개 엑셀 파일 역분석을 통해
+                            요구사항을 직접 도출하고, <strong>4주 만에 프로덕션 수준의 ERP</strong>를 완성했습니다.
+                        </p>
+                        <p class="text-gray-600">
+                            실시간 데이터 입력, 엑셀 임포트/익스포트, 리포트 생성 등
+                            완전한 CRUD 기능이 구현되어 있으며,
+                            포트폴리오용 데모는 데이터 보호를 위해 읽기 전용(Readonly)으로 제공됩니다.
+                        </p>
+                    </section>
+
+                    <!-- Data Scale -->
+                    <section class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">실운영 데이터 규모</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="stat-card">
+                                <div class="stat-icon">🚌</div>
+                                <div class="stat-value">431</div>
+                                <div class="stat-label">차량</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">👤</div>
+                                <div class="stat-value">368</div>
+                                <div class="stat-label">기사</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">🏢</div>
+                                <div class="stat-value">152</div>
+                                <div class="stat-label">거래처</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">🔧</div>
+                                <div class="stat-value">4,724</div>
+                                <div class="stat-label">정비기록</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">📋</div>
+                                <div class="stat-value">2,391</div>
+                                <div class="stat-label">과태료</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">📊</div>
+                                <div class="stat-value">704</div>
+                                <div class="stat-label">배정이력</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Features -->
+                    <section class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">주요 기능</h2>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="feature-card">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">대시보드</h3>
+                                <p class="text-gray-600 text-sm">실시간 통계, 차트, 멀티탭 뷰</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">차량 관리</h3>
+                                <p class="text-gray-600 text-sm">생애주기, 감가상각, 금융정보</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">기사 관리</h3>
+                                <p class="text-gray-600 text-sm">배정이력, 급여, 성과 추적</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">거래처 관리</h3>
+                                <p class="text-gray-600 text-sm">계약정보, 서비스유형, 팀/담당자</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">비용 추적</h3>
+                                <p class="text-gray-600 text-sm">정비비, 과태료, 사고비용, 유류비</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">배차 관리</h3>
+                                <p class="text-gray-600 text-sm">노선별 배차, 일일 운행 현황</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">급여 관리</h3>
+                                <p class="text-gray-600 text-sm">수당/공제 항목, 기사별 급여 계산</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2">GPS 이상감지</h3>
+                                <p class="text-gray-600 text-sm">운행 이상 모니터링, 이벤트 로그</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Development Process -->
+                    <section class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">개발 프로세스 (4주)</h2>
+                        <div class="space-y-0">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="mb-1">
+                                    <span class="text-sm font-bold text-purple-600">Week 1</span>
+                                    <h3 class="font-bold text-gray-900">현업 분석</h3>
+                                </div>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 담당자 인터뷰 및 회의 녹음 분석</li>
+                                    <li>• 18개 엑셀 파일 구조 역분석</li>
+                                    <li>• 요구사항 도출 및 우선순위 설정</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="mb-1">
+                                    <span class="text-sm font-bold text-purple-600">Week 2</span>
+                                    <h3 class="font-bold text-gray-900">설계</h3>
+                                </div>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• DB 스키마 설계 (25+ 테이블, 818 lines)</li>
+                                    <li>• 46개 거래처명 퍼지 매칭 테이블</li>
+                                    <li>• API 엔드포인트 설계 (30+ routes)</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="mb-1">
+                                    <span class="text-sm font-bold text-purple-600">Week 3</span>
+                                    <h3 class="font-bold text-gray-900">핵심 개발</h3>
+                                </div>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Next.js 14 App Router 구조</li>
+                                    <li>• Prisma ORM + PostgreSQL (Supabase)</li>
+                                    <li>• OAuth 2.0 (Google, Kakao) + 승인 워크플로우</li>
+                                    <li>• 다중 엑셀 ETL 파이프라인</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="mb-1">
+                                    <span class="text-sm font-bold text-purple-600">Week 4</span>
+                                    <h3 class="font-bold text-gray-900">완성 및 배포</h3>
+                                </div>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 16+ 페이지 UI 구현</li>
+                                    <li>• E2E 테스트 (Playwright)</li>
+                                    <li>• Vercel 배포 (readonly 모드)</li>
+                                    <li>• 문서화</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Architecture -->
+                    <section class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">기술 아키텍처</h2>
+                        <div class="flex justify-center">
+                            <img src="../images/projects/fms/architecture.jpg"
+                                 alt="FMS 기술 아키텍처 - Frontend, Backend, Database"
+                                 class="rounded-xl max-w-full"
+                                 loading="lazy">
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+
+                    <!-- Project Info -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="font-bold text-gray-900 mb-4">Project Info</h3>
+                        <dl class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <dt class="text-gray-500">Status</dt>
+                                <dd class="font-medium text-green-600">Production</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="text-gray-500">Demo</dt>
+                                <dd class="font-medium text-amber-600">Readonly</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="text-gray-500">Development</dt>
+                                <dd class="font-medium">4 Weeks</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="text-gray-500">Client</dt>
+                                <dd class="font-medium">원더모빌리티 그룹</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="text-gray-500">Scale</dt>
+                                <dd class="font-medium">3개 법인 통합</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="text-gray-500">Data</dt>
+                                <dd class="font-medium">실운영 데이터</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <!-- Tech Stack -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="font-bold text-gray-900 mb-4">Tech Stack</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase mb-2">Frontend</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">Next.js 14</span>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">React 18</span>
+                                    <span class="px-2 py-1 bg-cyan-100 text-cyan-800 rounded text-xs">Tailwind CSS</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase mb-2">Backend</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Prisma ORM</span>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">PostgreSQL</span>
+                                    <span class="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs">Supabase</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase mb-2">Auth & Tools</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">NextAuth.js v5</span>
+                                    <span class="px-2 py-1 bg-indigo-100 text-indigo-800 rounded text-xs">OAuth 2.0</span>
+                                    <span class="px-2 py-1 bg-pink-100 text-pink-800 rounded text-xs">SWR</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase mb-2">Visualization</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs">Recharts</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">TypeScript</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase mb-2">Testing</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Playwright</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Sources -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="font-bold text-gray-900 mb-4">Data Sources</h3>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">📊</span>
+                                18개 엑셀 파일 분석
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-blue-500">🎤</span>
+                                현업 인터뷰 녹음
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-purple-500">📝</span>
+                                회의록 분석
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="font-bold text-gray-900 mb-4">Links</h3>
+                        <div class="space-y-2">
+                            <a href="https://fms-readonly-sigma.vercel.app/" target="_blank" class="flex items-center gap-2 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium justify-center">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                View Live Demo (Readonly)
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Readonly Notice -->
+                    <div class="bg-amber-50 rounded-2xl shadow-lg p-5 border border-amber-200">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-xl">🔒</span>
+                            <h3 class="font-bold text-amber-800 text-sm">Readonly Demo</h3>
+                        </div>
+                        <p class="text-amber-700 text-xs mb-3">
+                            실제 운영 데이터 보호를 위해 읽기 전용으로 제공됩니다.
+                        </p>
+                        <ul class="text-amber-700 text-xs space-y-1">
+                            <li>✅ 실시간 CRUD</li>
+                            <li>✅ 엑셀 임포트/익스포트</li>
+                            <li>✅ 관리자 승인 워크플로우</li>
+                        </ul>
+                        <p class="text-amber-600 text-xs mt-3 italic">
+                            ↑ 실제 시스템에 구현됨
+                        </p>
+                    </div>
+
+                    <!-- Related Projects -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="font-bold text-gray-900 mb-4">Related Projects</h3>
+                        <div class="space-y-3">
+                            <a href="1bus.html" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <p class="font-medium text-gray-900">일버스 (1-bus.com)</p>
+                                <p class="text-sm text-gray-500">전세버스 종합 플랫폼</p>
+                            </a>
+                            <a href="onbus-platform.html" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <p class="font-medium text-gray-900">OnBus 운송 플랫폼</p>
+                                <p class="text-sm text-gray-500">SaaS 연동 운송 플랫폼</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2025 Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

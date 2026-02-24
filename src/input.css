@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@source "../*.html";
+@source "../projects/*.html";
+@source "../demos/**/*.html";
+
+@theme {
+  --color-primary: #7C3AED;
+  --color-secondary: #10B981;
+  --color-accent: #3B82F6;
+  --color-dark: #0c0414;
+  --color-dark-card: #1c1528;
+  --color-dark-hover: #2a1f3d;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+}

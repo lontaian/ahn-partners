@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="apple-touch-icon" href="../favicon.png">
+    <title>통합 노선 시각화 인덱스</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        .stats { 
+            background: #f0f8ff; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin: 20px 0;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .excluded {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .valid {
+            background: #d4edda;
+            color: #155724;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .summary-table th {
+            background: #f0f0f0;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .summary-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        .excluded-row {
+            background: #ffe0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>통합 노선 시각화 인덱스</h1>
+    
+    <div class="stats">
+        <h2>전체 통계</h2>
+        <ul>
+            <li>전체 통합: 8건</li>
+            <li><span class="valid">시간제한 통과</span>: 4건 (50.0%)</li>
+            <li><span class="excluded">시간제한 제외</span>: 4건 (50.0%)</li>
+        </ul>
+    </div>
+
+    <div class="warning">
+        <strong>⚠️ 주의:</strong> 4개 통합이 운행시간 제한을 초과하여 최종 보고에서 제외되었습니다.
+    </div>
+
+    <h2>통합 목록</h2>
+    <table class="summary-table">
+        <tr>
+            <th>FC</th>
+            <th>통합 유형</th>
+            <th>노선</th>
+            <th>상태</th>
+            <th>시간 정보</th>
+            <th>링크</th>
+        </tr>
+
+        <tr class="">
+            <td>DON1</td>
+            <td>CONNECT</td>
+            <td>DON1-Day1-1076 + DON1-Day1-1082</td>
+            <td><span class="valid">통과</span></td>
+            <td>원본 최대: 44.2분 → 통합: 76.0분</td>
+            <td><a href="DON1/CONNECT_DON1-Day1-1076_DON1-Day1-1082.html">보기</a></td>
+        </tr>
+
+        <tr class="">
+            <td>DON1</td>
+            <td>MERGE</td>
+            <td>DON1-Swing1-1076 + DON1-Swing1-268</td>
+            <td><span class="valid">통과</span></td>
+            <td>원본 최대: 44.2분 → 통합: 81.3분</td>
+            <td><a href="DON1/MERGE_DON1-Swing1-1076_DON1-Swing1-268.html">보기</a></td>
+        </tr>
+
+        <tr class="">
+            <td>DON1</td>
+            <td>MERGE</td>
+            <td>DON1-Swing1-271 + DON1-Swing1-279</td>
+            <td><span class="valid">통과</span></td>
+            <td>원본 최대: 54.3분 → 통합: 84.3분</td>
+            <td><a href="DON1/MERGE_DON1-Swing1-271_DON1-Swing1-279.html">보기</a></td>
+        </tr>
+
+        <tr class="">
+            <td>DON1</td>
+            <td>MERGE</td>
+            <td>DON1-Day1-276 + DON1-Day1-297</td>
+            <td><span class="valid">통과</span></td>
+            <td>원본 최대: 46.0분 → 통합: 77.2분</td>
+            <td><a href="DON1/MERGE_DON1-Day1-276_DON1-Day1-297.html">보기</a></td>
+        </tr>
+
+        <tr class="excluded-row">
+            <td>DON1</td>
+            <td>MERGE</td>
+            <td>DON1-Day1-1079 + DON1-Day1-265</td>
+            <td><span class="excluded">제외</span></td>
+            <td>원본 최대: 53.8분 → 통합: 95.0분 <span style='color:red'>(승객 63.7명 > 54명)</span></td>
+            <td><a href="DON1/MERGE_DON1-Day1-1079_DON1-Day1-265.html">보기</a></td>
+        </tr>
+
+        <tr class="excluded-row">
+            <td>DON1</td>
+            <td>CONNECT</td>
+            <td>DON1-Day1-279 + DON1-Day1-295</td>
+            <td><span class="excluded">제외</span></td>
+            <td>원본 최대: 57.1분 → 통합: 82.8분 <span style='color:red'>(승객 54.4명 > 54명)</span></td>
+            <td><a href="DON1/CONNECT_DON1-Day1-279_DON1-Day1-295.html">보기</a></td>
+        </tr>
+
+        <tr class="excluded-row">
+            <td>DON1</td>
+            <td>CONNECT</td>
+            <td>DON1-Swing1-272 + DON1-Swing1-301</td>
+            <td><span class="excluded">제외</span></td>
+            <td>원본 최대: 57.2분 → 통합: 90.3분 <span style='color:red'>(승객 70.3명 > 54명)</span></td>
+            <td><a href="DON1/CONNECT_DON1-Swing1-272_DON1-Swing1-301.html">보기</a></td>
+        </tr>
+
+        <tr class="excluded-row">
+            <td>DON1</td>
+            <td>CONNECT</td>
+            <td>DON1-Swing1-1083 + DON1-Swing1-1710</td>
+            <td><span class="excluded">제외</span></td>
+            <td>원본 최대: 67.6분 → 통합: 129.5분 <span style='color:red'>(시간 61.9분 초과, 승객 68.9명 > 54명)</span></td>
+            <td><a href="DON1/CONNECT_DON1-Swing1-1083_DON1-Swing1-1710.html">보기</a></td>
+        </tr>
+
+    </table>
+    
+    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666;">
+        <p>생성 시각: 2025-09-02 08:48:44</p>
+    </div>
+</body>
+</html>

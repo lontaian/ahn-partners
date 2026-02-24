@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="apple-touch-icon" href="../favicon.png">
+    <title>노선 프레젠테이션 뷰어 | Portfolio</title>
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">Portfolio</a>
+            <div class="flex gap-6">
+                <a href="../index.html" class="text-gray-700 hover:text-primary">Projects</a>
+                <a href="../about.html" class="text-gray-700 hover:text-primary">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-16 max-w-5xl mx-auto px-4">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-gray-600 hover:text-primary mb-6">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            Back to Projects
+        </a>
+
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+            <div class="aspect-video bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                <iframe src="../demos/pt-reports/index.html" class="w-full h-full" frameborder="0"></iframe>
+            </div>
+            <div class="p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Web App</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">v10</span>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">노선 프레젠테이션 뷰어</h1>
+                <p class="text-xl text-gray-600">서울시 공무원 보고용 인터랙티브 노선 뷰어. 노선 비교, 시간표, 히트맵 시각화 지원.</p>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="md:col-span-2 space-y-8">
+                <section class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-4">Features</h2>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>노선별 색상 구분 및 애니메이션</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>기존/신규 노선 비교 뷰</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>시간표 데이터 통합 표시</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>권역별 히트맵 오버레이</span>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="font-bold mb-4">Tech Stack</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Leaflet.js</span>
+                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">Kakao API</span>
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">HTML/CSS</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="font-bold mb-4">Links</h3>
+                    <a href="../demos/pt-reports/index.html" target="_blank" class="flex items-center gap-2 text-primary hover:underline">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        Open Full Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2025 Portfolio</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1584 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <!-- Favicon -->
+            <link rel="icon" type="image/png" href="../../favicon.png">
+            <link rel="apple-touch-icon" href="../../favicon.png">
+            <title>통합 노선 상세: DON1-Swing1-1083 + DON1-Swing1-1710</title>
+            <style>
+                body { font-family: 'Malgun Gothic', Arial, sans-serif; margin: 0; padding: 20px; }
+                h1, h2, h3 { color: #333; }
+                .container { max-width: 1600px; margin: 0 auto; }
+                .map-container { height: 600px; margin: 30px 0; border: 1px solid #ddd; }
+                
+                table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                th { background-color: #4CAF50; color: white; padding: 12px; text-align: left; }
+                td { border: 1px solid #ddd; padding: 8px; }
+                tr:nth-child(even) { background-color: #f2f2f2; }
+                
+                .route1 { background-color: #ffe6e6; }
+                .route2 { background-color: #e6e6ff; }
+                .integrated { background-color: #e6ffe6; }
+                .savings { background-color: #fffacd; font-weight: bold; }
+                
+                .status-maintained { color: #008000; font-weight: bold; }
+                .status-removed { color: #FF0000; text-decoration: line-through; }
+                .status-new { color: #0000FF; font-weight: bold; }
+                
+                .exclusion-banner {
+                    background-color: #ffcccb;
+                    border: 2px solid #ff0000;
+                    padding: 15px;
+                    margin: 20px 0;
+                    border-radius: 5px;
+                    text-align: center;
+                }
+                .exclusion-badge {
+                    background-color: #ff6666;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 3px;
+                    font-weight: bold;
+                    display: inline-block;
+                    margin: 0 5px;
+                }
+                
+                .summary-box { 
+                    background: #f9f9f9; 
+                    border: 2px solid #4CAF50; 
+                    border-radius: 10px; 
+                    padding: 15px; 
+                    margin: 20px 0;
+                }
+                
+                .metric { 
+                    display: inline-block; 
+                    margin: 10px 20px; 
+                    padding: 10px; 
+                    background: white; 
+                    border-radius: 5px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                .metric-value { font-size: 24px; font-weight: bold; color: #4CAF50; }
+                .metric-label { font-size: 12px; color: #666; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>🚌 노선 통합 상세 분석 보고서 </h1>
+                <h2>FC: DON1 | CONNECT 방식</h2>
+                <h3>통합: DON1-Swing1-1083 + DON1-Swing1-1710</h3>
+                
+                
+                
+                
+        <div style="background-color: #dc3545; color: white; padding: 10px; margin: 10px 0; border-radius: 5px;">
+            <strong>품질 검사:</strong> 
+            U턴=4 | 교차=0 | FC위반=0 | 
+            미세구간=0 (0.0%)
+            <span style="float: right;">❌ 불합격</span>
+        </div>
+        
+                
+                
+        <div class="summary-box">
+            <h3>[STAT] 통합 효과 요약</h3>
+            <div>
+                <div class="metric">
+                    <div class="metric-value">23.3 km</div>
+                    <div class="metric-label">거리 절감</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">19.6 분</div>
+                    <div class="metric-label">시간 절감</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">64.7 점</div>
+                    <div class="metric-label">통합 점수</div>
+                </div>
+            </div>
+        </div>
+        
+                
+                
+        <div class="summary-box">
+            <h3>📊 통합 효과 요약</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>항목</th>
+                        <th>원본 노선1</th>
+                        <th>원본 노선2</th>
+                        <th>원본 합계</th>
+                        <th>통합 노선</th>
+                        <th>절감 효과</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>정류장 수</b></td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td class="savings">-1개</td>
+                    </tr>
+                    <tr>
+                        <td><b>거리 (km)</b></td>
+                        <td>82.0</td>
+                        <td>52.0</td>
+                        <td>134.0</td>
+                        <td>46.8</td>
+                        <td class="savings">-87.2km</td>
+                    </tr>
+                    <tr>
+                        <td><b>시간 (분)</b></td>
+                        <td>61</td>
+                        <td>68</td>
+                        <td>129</td>
+                        <td>92</td>
+                        <td class="savings">-37분</td>
+                    </tr>
+                    <tr>
+                        <td><b>평균 승객</b></td>
+                        <td>35.8</td>
+                        <td>33.1</td>
+                        <td>68.9</td>
+                        <td>68.9</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><b>버스 대수</b></td>
+                        <td>45인승 1대</td>
+                        <td>45인승 1대</td>
+                        <td>2대</td>
+                        <td>45인승 1대 + 25인승 1대</td>
+                        <td class="savings">-</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+                
+                <h3>[STAT] 원본 노선 1: DON1-Swing1-1083</h3>
+                
+        <table>
+            <thead>
+                <tr>
+                    <th>순서</th>
+                    <th>정류장명</th>
+                    <th>승객수</th>
+                    <th>다음 정류장까지</th>
+                    <th>거리(km)</th>
+                    <th>이동시간(분)</th>
+                    <th>정차시간(분)</th>
+                    <th>누적거리(km)</th>
+                    <th>누적시간(분)</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                <tr>
+                    <td>1</td>
+                    <td>산본2동 주민센터 앞 버스정류장</td>
+                    <td>3.5</td>
+                    <td>원광대 산본병원 앞 택시정류장 70m 전 버스정류장</td>
+                    <td>1.49</td>
+                    <td>3.9</td>
+                    <td>1.0</td>
+                    <td>1.49</td>
+                    <td>4.9</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td>원광대 산본병원 앞 택시정류장 70m 전 버스정류장</td>
+                    <td>8.2</td>
+                    <td>우리은행 군포지점 사거리 맘모스수족관 앞 버스정류장</td>
+                    <td>1.88</td>
+                    <td>6.4</td>
+                    <td>1.0</td>
+                    <td>3.37</td>
+                    <td>12.2</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td>우리은행 군포지점 사거리 맘모스수족관 앞 버스정류장</td>
+                    <td>11.1</td>
+                    <td>호계사거리 호계약국 앞</td>
+                    <td>2.29</td>
+                    <td>3.9</td>
+                    <td>1.0</td>
+                    <td>5.65</td>
+                    <td>17.1</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td>호계사거리 호계약국 앞</td>
+                    <td>3.5</td>
+                    <td>포도원사거리 에이스침대 앞</td>
+                    <td>1.12</td>
+                    <td>2.7</td>
+                    <td>1.0</td>
+                    <td>6.77</td>
+                    <td>20.8</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td>포도원사거리 에이스침대 앞</td>
+                    <td>3.1</td>
+                    <td>의왕시 고천 시외버스정류장 앞</td>
+                    <td>1.76</td>
+                    <td>4.4</td>
+                    <td>1.0</td>
+                    <td>8.53</td>
+                    <td>26.2</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td>의왕시 고천 시외버스정류장 앞</td>
+                    <td>5.2</td>
+                    <td>FC</td>
+                    <td>30.69</td>
+                    <td>36.8</td>
+                    <td>1.0</td>
+                    <td>39.22</td>
+                    <td>64.0</td>
+                </tr>
+            
+            </tbody>
+            <tfoot>
+                <tr style="font-weight: bold;">
+                    <td colspan="4">합계</td>
+                    <td>39.22</td>
+                    <td colspan="2">64.0</td>
+                    <td colspan="2">정류장 6개</td>
+                </tr>
+            </tfoot>
+        </table>
+        
+                
+                <h3>[STAT] 원본 노선 2: DON1-Swing1-1710</h3>
+                
+        <table>
+            <thead>
+                <tr>
+                    <th>순서</th>
+                    <th>정류장명</th>
+                    <th>승객수</th>
+                    <th>다음 정류장까지</th>
+                    <th>거리(km)</th>
+                    <th>이동시간(분)</th>
+                    <th>정차시간(분)</th>
+                    <th>누적거리(km)</th>
+                    <th>누적시간(분)</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                <tr>
+                    <td>1</td>
+                    <td>장안구민회관 한누리아트홀 앞</td>
+                    <td>7.6</td>
+                    <td>우만주공 아파트 402동 맞은편 버스정류장</td>
+                    <td>2.53</td>
+                    <td>10.5</td>
+                    <td>1.0</td>
+                    <td>2.53</td>
+                    <td>11.5</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td>우만주공 아파트 402동 맞은편 버스정류장</td>
+                    <td>4.7</td>
+                    <td>삼성 탑내과 버스정류장</td>
+                    <td>4.00</td>
+                    <td>13.8</td>
+                    <td>1.0</td>
+                    <td>6.54</td>
+                    <td>26.3</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td>삼성 탑내과 버스정류장</td>
+                    <td>2.7</td>
+                    <td>화홍중학교 맞은편 버스정류장</td>
+                    <td>5.29</td>
+                    <td>20.8</td>
+                    <td>1.0</td>
+                    <td>11.82</td>
+                    <td>48.1</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td>화홍중학교 맞은편 버스정류장</td>
+                    <td>15.1</td>
+                    <td>예당중학교앞 버스정류장</td>
+                    <td>7.90</td>
+                    <td>14.3</td>
+                    <td>1.0</td>
+                    <td>19.72</td>
+                    <td>63.4</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td>예당중학교앞 버스정류장</td>
+                    <td>1.9</td>
+                    <td>FC</td>
+                    <td>9.35</td>
+                    <td>20.6</td>
+                    <td>1.0</td>
+                    <td>29.06</td>
+                    <td>85.0</td>
+                </tr>
+            
+            </tbody>
+            <tfoot>
+                <tr style="font-weight: bold;">
+                    <td colspan="4">합계</td>
+                    <td>29.06</td>
+                    <td colspan="2">85.0</td>
+                    <td colspan="2">정류장 5개</td>
+                </tr>
+            </tfoot>
+        </table>
+        
+                
+                <h3> 통합 노선</h3>
+                
+        <table>
+            <thead>
+                <tr>
+                    <th>순서</th>
+                    <th>정류장명</th>
+                    <th>승객수</th>
+                    <th>출처</th>
+                    <th>상태</th>
+                    <th>다음 정류장까지</th>
+                    <th>거리(km)</th>
+                    <th>이동시간(분)</th>
+                    <th>정차시간(분)</th>
+                    <th>누적거리(km)</th>
+                    <th>누적시간(분)</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                <tr>
+                    <td>1</td>
+                    <td class="status-maintained">산본2동 주민센터 앞 버스정류장</td>
+                    <td>3.5</td>
+                    <td>노선1</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>원광대 산본병원 앞 택시정류장 70m 전 버스정류장</td>
+                    <td>1.49</td>
+                    <td>3.9</td>
+                    <td>1.0</td>
+                    <td>1.49</td>
+                    <td>4.9</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="status-maintained">원광대 산본병원 앞 택시정류장 70m 전 버스정류장</td>
+                    <td>8.2</td>
+                    <td>노선1</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>호계사거리 호계약국 앞</td>
+                    <td>1.88</td>
+                    <td>6.4</td>
+                    <td>1.0</td>
+                    <td>3.37</td>
+                    <td>12.2</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="status-maintained">호계사거리 호계약국 앞</td>
+                    <td>3.5</td>
+                    <td>노선1</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>우리은행 군포지점 사거리 맘모스수족관 앞 버스정류장</td>
+                    <td>2.29</td>
+                    <td>3.9</td>
+                    <td>1.0</td>
+                    <td>5.65</td>
+                    <td>17.1</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="status-maintained">우리은행 군포지점 사거리 맘모스수족관 앞 버스정류장</td>
+                    <td>11.1</td>
+                    <td>노선1</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>포도원사거리 에이스침대 앞</td>
+                    <td>1.12</td>
+                    <td>2.7</td>
+                    <td>1.0</td>
+                    <td>6.77</td>
+                    <td>20.8</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="status-maintained">포도원사거리 에이스침대 앞</td>
+                    <td>3.1</td>
+                    <td>노선1</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>의왕시 고천 시외버스정류장 앞</td>
+                    <td>1.76</td>
+                    <td>4.4</td>
+                    <td>1.0</td>
+                    <td>8.53</td>
+                    <td>26.2</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="status-maintained">의왕시 고천 시외버스정류장 앞</td>
+                    <td>5.2</td>
+                    <td>노선1</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>장안구민회관 한누리아트홀 앞</td>
+                    <td>7.37</td>
+                    <td>16.2</td>
+                    <td>1.0</td>
+                    <td>15.90</td>
+                    <td>43.5</td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="status-maintained">장안구민회관 한누리아트홀 앞</td>
+                    <td>7.6</td>
+                    <td>노선2</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>우만주공 아파트 402동 맞은편 버스정류장</td>
+                    <td>2.53</td>
+                    <td>10.5</td>
+                    <td>1.0</td>
+                    <td>18.43</td>
+                    <td>54.9</td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="status-maintained">우만주공 아파트 402동 맞은편 버스정류장</td>
+                    <td>4.7</td>
+                    <td>노선2</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>삼성 탑내과 버스정류장</td>
+                    <td>4.00</td>
+                    <td>13.8</td>
+                    <td>1.0</td>
+                    <td>22.43</td>
+                    <td>69.8</td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="status-maintained">삼성 탑내과 버스정류장</td>
+                    <td>2.7</td>
+                    <td>노선2</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>화홍중학교 맞은편 버스정류장</td>
+                    <td>5.29</td>
+                    <td>20.8</td>
+                    <td>1.0</td>
+                    <td>27.72</td>
+                    <td>91.5</td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td class="status-maintained">화홍중학교 맞은편 버스정류장</td>
+                    <td>15.1</td>
+                    <td>노선2</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>예당중학교앞 버스정류장</td>
+                    <td>7.90</td>
+                    <td>14.3</td>
+                    <td>1.0</td>
+                    <td>35.62</td>
+                    <td>106.9</td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td class="status-maintained">예당중학교앞 버스정류장</td>
+                    <td>1.9</td>
+                    <td>노선2</td>
+                    <td class="status-maintained">maintained</td>
+                    <td>【최종】 FC DON1 도착</td>
+                    <td>9.35</td>
+                    <td>20.6</td>
+                    <td>1.0</td>
+                    <td>44.96</td>
+                    <td>128.5</td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td class="status-new">【최종】 FC DON1 도착</td>
+                    <td>0.0</td>
+                    <td>신규</td>
+                    <td class="status-new">new</td>
+                    <td>【최종】 FC DON1 도착</td>
+                    <td>0.00</td>
+                    <td>0.0</td>
+                    <td>1.0</td>
+                    <td>44.96</td>
+                    <td>129.5</td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td class="status-new">【최종】 FC DON1 도착</td>
+                    <td>0.0</td>
+                    <td>신규</td>
+                    <td class="status-new">new</td>
+                    <td>FC</td>
+                    <td>0.00</td>
+                    <td>0.0</td>
+                    <td>1.0</td>
+                    <td>44.96</td>
+                    <td>130.5</td>
+                </tr>
+            
+            </tbody>
+            <tfoot>
+                <tr style="font-weight: bold;">
+                    <td colspan="6">합계</td>
+                    <td>44.96</td>
+                    <td colspan="2">129.5</td>
+                    <td colspan="2">정류장 13개</td>
+                </tr>
+            </tfoot>
+        </table>
+        <p>
+            <span class="status-maintained">유지: 11개</span> | 
+            <span class="status-removed">폐지: 0개</span> | 
+            <span class="status-new">신규: 1개</span>
+        </p>
+        
+                
+                <h3>📍 지도 시각화</h3>
+                <div class="map-container">
+                    <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_1832698b82be53b9256f0669fafcd401 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+
+            &lt;style&gt;html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            &lt;/style&gt;
+
+            &lt;style&gt;#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            &lt;/style&gt;
+
+            &lt;script&gt;
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            &lt;/script&gt;
+
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_1832698b82be53b9256f0669fafcd401&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_1832698b82be53b9256f0669fafcd401 = L.map(
+                &quot;map_1832698b82be53b9256f0669fafcd401&quot;,
+                {
+                    center: [37.37, 126.9327],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 13,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_698924600581abb7ef74b2f010e3dd7b = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_698924600581abb7ef74b2f010e3dd7b.addTo(map_1832698b82be53b9256f0669fafcd401);
+        
+    
+            var feature_group_08760eb7bc3fdca13777af28c90461a5 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_e8e49c3a34ea4015c71aade26753bb00 = L.circleMarker(
+                [37.37, 126.9327],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#FF0000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#FF0000&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_08760eb7bc3fdca13777af28c90461a5);
+        
+    
+        var popup_b8695001022742c3e8486d1752fd82bc = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_c9a6aa462fc8d364241c2a63c62a7a38 = $(`&lt;div id=&quot;html_c9a6aa462fc8d364241c2a63c62a7a38&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1083] 1. 산본2동 주민센터 앞 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 3.5명                 &lt;/div&gt;`)[0];
+                popup_b8695001022742c3e8486d1752fd82bc.setContent(html_c9a6aa462fc8d364241c2a63c62a7a38);
+            
+        
+
+        circle_marker_e8e49c3a34ea4015c71aade26753bb00.bindPopup(popup_b8695001022742c3e8486d1752fd82bc)
+        ;
+
+        
+    
+    
+            var circle_marker_8b2e8fbcff2274200ff1ad08f6d1c086 = L.circleMarker(
+                [37.3598, 126.9333],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#FF0000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#FF0000&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_08760eb7bc3fdca13777af28c90461a5);
+        
+    
+        var popup_fcc048343a1acbd915d2867761c6e615 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_73b480fcc9346bc4e5afe5fcb5b2f0e9 = $(`&lt;div id=&quot;html_73b480fcc9346bc4e5afe5fcb5b2f0e9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1083] 2. 원광대 산본병원 앞 택시정류장 70m 전 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 8.2명                 &lt;/div&gt;`)[0];
+                popup_fcc048343a1acbd915d2867761c6e615.setContent(html_73b480fcc9346bc4e5afe5fcb5b2f0e9);
+            
+        
+
+        circle_marker_8b2e8fbcff2274200ff1ad08f6d1c086.bindPopup(popup_fcc048343a1acbd915d2867761c6e615)
+        ;
+
+        
+    
+    
+            var circle_marker_7404f5e9c63861286051299e421943c2 = L.circleMarker(
+                [37.3559, 126.9472],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#FF0000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#FF0000&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_08760eb7bc3fdca13777af28c90461a5);
+        
+    
+        var popup_6a47fbe037ac755802271827919cef49 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_ce7d0e62128e3a86af8f2f86142e9fdf = $(`&lt;div id=&quot;html_ce7d0e62128e3a86af8f2f86142e9fdf&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1083] 3. 우리은행 군포지점 사거리 맘모스수족관 앞 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 11.1명                 &lt;/div&gt;`)[0];
+                popup_6a47fbe037ac755802271827919cef49.setContent(html_ce7d0e62128e3a86af8f2f86142e9fdf);
+            
+        
+
+        circle_marker_7404f5e9c63861286051299e421943c2.bindPopup(popup_6a47fbe037ac755802271827919cef49)
+        ;
+
+        
+    
+    
+            var circle_marker_1ffb9ce1a027b5f97fe0ac8ae33f3901 = L.circleMarker(
+                [37.3698, 126.9575],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#FF0000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#FF0000&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_08760eb7bc3fdca13777af28c90461a5);
+        
+    
+        var popup_bf438c56fbbb32f7995ae984b60b0337 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_4736cae87b757acfa84125c78d08100f = $(`&lt;div id=&quot;html_4736cae87b757acfa84125c78d08100f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1083] 4. 호계사거리 호계약국 앞&lt;/b&gt;&lt;br&gt;                 승객: 3.5명                 &lt;/div&gt;`)[0];
+                popup_bf438c56fbbb32f7995ae984b60b0337.setContent(html_4736cae87b757acfa84125c78d08100f);
+            
+        
+
+        circle_marker_1ffb9ce1a027b5f97fe0ac8ae33f3901.bindPopup(popup_bf438c56fbbb32f7995ae984b60b0337)
+        ;
+
+        
+    
+    
+            var circle_marker_cfa097a66589cf80ec6e91a75dc6b598 = L.circleMarker(
+                [37.3609, 126.9624],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#FF0000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#FF0000&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_08760eb7bc3fdca13777af28c90461a5);
+        
+    
+        var popup_bce15cc3bc6bb59be64e7fda1d54a796 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_4834b0bbba963a230ee1a7de340596de = $(`&lt;div id=&quot;html_4834b0bbba963a230ee1a7de340596de&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1083] 5. 포도원사거리 에이스침대 앞&lt;/b&gt;&lt;br&gt;                 승객: 3.1명                 &lt;/div&gt;`)[0];
+                popup_bce15cc3bc6bb59be64e7fda1d54a796.setContent(html_4834b0bbba963a230ee1a7de340596de);
+            
+        
+
+        circle_marker_cfa097a66589cf80ec6e91a75dc6b598.bindPopup(popup_bce15cc3bc6bb59be64e7fda1d54a796)
+        ;
+
+        
+    
+    
+            var circle_marker_166cccb72645accf85896f77f90a5ded = L.circleMarker(
+                [37.3486, 126.973],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#FF0000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#FF0000&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_08760eb7bc3fdca13777af28c90461a5);
+        
+    
+        var popup_8e3cb84931c366fd848453e58e71cf25 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_6008ac929f635cfe8e97af454e77e665 = $(`&lt;div id=&quot;html_6008ac929f635cfe8e97af454e77e665&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1083] 6. 의왕시 고천 시외버스정류장 앞&lt;/b&gt;&lt;br&gt;                 승객: 5.2명                 &lt;/div&gt;`)[0];
+                popup_8e3cb84931c366fd848453e58e71cf25.setContent(html_6008ac929f635cfe8e97af454e77e665);
+            
+        
+
+        circle_marker_166cccb72645accf85896f77f90a5ded.bindPopup(popup_8e3cb84931c366fd848453e58e71cf25)
+        ;
+
+        
+    
+    
+            var poly_line_851394010685153a0c3daa4e208fa38a = L.polyline(
+                [[37.369784, 126.932987], [37.368642, 126.931626], [37.368525, 126.931486], [37.368352, 126.931279], [37.366488, 126.929062], [37.3662, 126.92872], [37.366177, 126.928692], [37.366034, 126.928511], [37.365965, 126.928559], [37.365843, 126.928646], [37.364585, 126.929706], [37.364556, 126.92973], [37.364393, 126.929868], [37.363526, 126.930598], [37.363417, 126.93069], [37.363272, 126.930811], [37.363191, 126.93088], [37.363103, 126.930954], [37.362732, 126.931283], [37.362463, 126.931539], [37.362119, 126.931865], [37.361987, 126.931973], [37.361876, 126.93206], [37.361506, 126.932369], [37.361251, 126.932582], [37.360853, 126.93293], [37.360594, 126.933157], [37.360527, 126.933209], [37.360227, 126.933453], [37.359801, 126.9338], [37.359542, 126.933317], [37.359529, 126.93329], [37.359514, 126.933261], [37.359699, 126.933107], [37.359864, 126.93297], [37.360238, 126.932658], [37.36059, 126.932366], [37.36096, 126.932058], [37.361251, 126.932582], [37.360853, 126.93293], [37.360594, 126.933157], [37.360527, 126.933209], [37.360227, 126.933453], [37.359801, 126.9338], [37.359768, 126.933827], [37.359566, 126.933987], [37.359204, 126.934275], [37.359098, 126.934358], [37.358641, 126.934793], [37.358481, 126.934961], [37.358354, 126.935059], [37.357889, 126.935416], [37.357759, 126.93555], [37.357596, 126.935688], [37.357239, 126.935871], [37.356963, 126.936108], [37.35674, 126.936382], [37.356697, 126.936434], [37.356571, 126.936617], [37.356498, 126.936759], [37.35643, 126.936896], [37.356387, 126.93698], [37.356328, 126.93717], [37.356306, 126.937244], [37.356294, 126.937283], [37.356255, 126.937462], [37.35622, 126.937624], [37.356186, 126.937871], [37.355733, 126.942144], [37.35555, 126.943794], [37.35543, 126.944876], [37.355396, 126.945209], [37.35532, 126.945935], [37.355249, 126.946626], [37.355234, 126.94677], [37.35561, 126.946842], [37.356004, 126.946917], [37.355996, 126.947204], [37.355976, 126.947865], [37.357511, 126.947904], [37.357571, 126.947888], [37.357725, 126.947754], [37.358088, 126.947899], [37.358208, 126.947931], [37.358568, 126.947986], [37.35906, 126.948061], [37.359257, 126.948069], [37.359567, 126.94808], [37.360217, 126.948088], [37.360276, 126.948089], [37.360681, 126.948088], [37.361025, 126.948041], [37.361362, 126.947949], [37.361619, 126.947848], [37.361832, 126.947758], [37.362059, 126.947659], [37.362382, 126.947518], [37.362655, 126.947422], [37.363554, 126.946994], [37.363749, 126.946936], [37.364097, 126.946856], [37.364392, 126.946826], [37.364697, 126.946842], [37.365091, 126.946997], [37.365285, 126.94713], [37.365574, 126.94741], [37.36579, 126.94766], [37.366056, 126.948018], [37.366407, 126.948687], [37.366767, 126.949372], [37.36723, 126.950235], [37.367436, 126.950603], [37.367467, 126.950673], [37.367679, 126.951039], [37.367809, 126.951268], [37.36827, 126.952002], [37.368498, 126.952423], [37.368809, 126.953005], [37.368901, 126.953193], [37.368979, 126.953389], [37.36909, 126.953767], [37.369268, 126.954355], [37.369374, 126.954714], [37.369457, 126.955219], [37.369512, 126.955404], [37.369758, 126.95625], [37.369977, 126.956999], [37.370137, 126.957566], [37.370205, 126.957807], [37.369986, 126.957827], [37.369816, 126.95784], [37.369772, 126.957843], [37.369256, 126.957882], [37.369096, 126.9579], [37.367922, 126.957991], [37.366761, 126.9581], [37.366356, 126.958162], [37.366029, 126.958193], [37.365776, 126.958235], [37.365569, 126.958295], [37.365351, 126.958385], [37.365155, 126.95846], [37.365017, 126.95853], [37.364784, 126.958649], [37.364446, 126.958899], [37.364247, 126.959082], [37.363369, 126.960048], [37.361542, 126.962059], [37.361377, 126.962235], [37.361047, 126.962607], [37.360689, 126.963011], [37.360204, 126.963559], [37.359209, 126.964681], [37.358984, 126.964935], [37.358854, 126.965082], [37.35861, 126.965329], [37.358388, 126.965581], [37.358281, 126.965716], [37.357802, 126.966305], [37.357695, 126.966419], [37.35763, 126.966493], [37.357597, 126.966528], [37.35652, 126.967672], [37.355283, 126.968774], [37.353734, 126.970224], [37.353039, 126.970801], [37.352694, 126.971102], [37.352483, 126.971289], [37.35208, 126.97158], [37.3519, 126.971709], [37.351626, 126.971868], [37.351369, 126.972015], [37.349971, 126.97281], [37.349933, 126.972832], [37.349571, 126.97303], [37.349291, 126.973215], [37.348484, 126.973692], [37.348286, 126.973159], [37.34822, 126.972864], [37.348466, 126.972731], [37.348517, 126.972899], [37.348563, 126.972877]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#FF0000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#FF0000&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 0.7, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
+            ).addTo(feature_group_08760eb7bc3fdca13777af28c90461a5);
+        
+    
+            feature_group_08760eb7bc3fdca13777af28c90461a5.addTo(map_1832698b82be53b9256f0669fafcd401);
+        
+    
+            var feature_group_e2dbf02806ea07ebc92aab5efbed8998 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_dce68ea0f9b3a654eb342a04234e98e0 = L.circleMarker(
+                [37.3038, 127.0101],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0000FF&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#0000FF&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_e2dbf02806ea07ebc92aab5efbed8998);
+        
+    
+        var popup_7593ac057fc3a7dd3dd2fec1887c3561 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_2b6815f2853ff69c4e0a3a541dd82f1e = $(`&lt;div id=&quot;html_2b6815f2853ff69c4e0a3a541dd82f1e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1710] 1. 장안구민회관 한누리아트홀 앞&lt;/b&gt;&lt;br&gt;                 승객: 7.6명                 &lt;/div&gt;`)[0];
+                popup_7593ac057fc3a7dd3dd2fec1887c3561.setContent(html_2b6815f2853ff69c4e0a3a541dd82f1e);
+            
+        
+
+        circle_marker_dce68ea0f9b3a654eb342a04234e98e0.bindPopup(popup_7593ac057fc3a7dd3dd2fec1887c3561)
+        ;
+
+        
+    
+    
+            var circle_marker_7f1212676aabd1a69d33aa5dad3bc3b8 = L.circleMarker(
+                [37.2907, 127.0298],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0000FF&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#0000FF&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_e2dbf02806ea07ebc92aab5efbed8998);
+        
+    
+        var popup_c6184be62d1a454cd2ac1431c5f658ce = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_4ba0dc84f9ddd1ab7553e4a612ce10ec = $(`&lt;div id=&quot;html_4ba0dc84f9ddd1ab7553e4a612ce10ec&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1710] 2. 우만주공 아파트 402동 맞은편 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 4.7명                 &lt;/div&gt;`)[0];
+                popup_c6184be62d1a454cd2ac1431c5f658ce.setContent(html_4ba0dc84f9ddd1ab7553e4a612ce10ec);
+            
+        
+
+        circle_marker_7f1212676aabd1a69d33aa5dad3bc3b8.bindPopup(popup_c6184be62d1a454cd2ac1431c5f658ce)
+        ;
+
+        
+    
+    
+            var circle_marker_6a071e874ef5187b68032e1115bf1d81 = L.circleMarker(
+                [37.2674, 127.0562],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0000FF&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#0000FF&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_e2dbf02806ea07ebc92aab5efbed8998);
+        
+    
+        var popup_2894d469eae494dbf57b900d5763d627 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_73cae8d5b7214d8a38c9985ebb1c59a0 = $(`&lt;div id=&quot;html_73cae8d5b7214d8a38c9985ebb1c59a0&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1710] 3. 삼성 탑내과 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 2.7명                 &lt;/div&gt;`)[0];
+                popup_2894d469eae494dbf57b900d5763d627.setContent(html_73cae8d5b7214d8a38c9985ebb1c59a0);
+            
+        
+
+        circle_marker_6a071e874ef5187b68032e1115bf1d81.bindPopup(popup_2894d469eae494dbf57b900d5763d627)
+        ;
+
+        
+    
+    
+            var circle_marker_f8b012866b6a8077e0b64b98e28b9cbb = L.circleMarker(
+                [37.2458, 127.0339],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0000FF&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#0000FF&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_e2dbf02806ea07ebc92aab5efbed8998);
+        
+    
+        var popup_05684f146ff301d6a83adb1ea1d28055 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_a1a3c3d6f4840c55905ec03e0c4f02b4 = $(`&lt;div id=&quot;html_a1a3c3d6f4840c55905ec03e0c4f02b4&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1710] 4. 화홍중학교 맞은편 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 15.1명                 &lt;/div&gt;`)[0];
+                popup_05684f146ff301d6a83adb1ea1d28055.setContent(html_a1a3c3d6f4840c55905ec03e0c4f02b4);
+            
+        
+
+        circle_marker_f8b012866b6a8077e0b64b98e28b9cbb.bindPopup(popup_05684f146ff301d6a83adb1ea1d28055)
+        ;
+
+        
+    
+    
+            var circle_marker_0db696c4cbc92e57d0b0ad2b770bdc81 = L.circleMarker(
+                [37.2079, 127.0793],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0000FF&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#0000FF&quot;, &quot;fillOpacity&quot;: 0.6, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 5, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_e2dbf02806ea07ebc92aab5efbed8998);
+        
+    
+        var popup_6cbc07641f70e5830f18068f17f14c0c = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_c84b88d6e7f7614434d32927c899cef6 = $(`&lt;div id=&quot;html_c84b88d6e7f7614434d32927c899cef6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[DON1-Swing1-1710] 5. 예당중학교앞 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 1.9명                 &lt;/div&gt;`)[0];
+                popup_6cbc07641f70e5830f18068f17f14c0c.setContent(html_c84b88d6e7f7614434d32927c899cef6);
+            
+        
+
+        circle_marker_0db696c4cbc92e57d0b0ad2b770bdc81.bindPopup(popup_6cbc07641f70e5830f18068f17f14c0c)
+        ;
+
+        
+    
+    
+            var poly_line_0fdc2148938d3c5b6fd3c92ac50076fd = L.polyline(
+                [[37.303908, 127.009914], [37.303896, 127.009903], [37.304117, 127.009521], [37.303889, 127.009313], [37.303757, 127.009193], [37.303631, 127.009077], [37.303583, 127.009034], [37.303444, 127.00907], [37.303363, 127.009222], [37.30319, 127.009068], [37.302731, 127.009843], [37.302546, 127.010168], [37.302685, 127.010293], [37.302861, 127.010458], [37.304006, 127.011735], [37.303753, 127.012157], [37.303486, 127.01267], [37.302643, 127.013664], [37.302317, 127.014109], [37.301607, 127.014987], [37.300959, 127.015777], [37.300835, 127.015913], [37.299961, 127.017003], [37.299701, 127.017319], [37.299384, 127.01771], [37.298931, 127.0182], [37.298655, 127.01853], [37.298609, 127.018584], [37.298362, 127.018879], [37.29815, 127.019131], [37.298108, 127.019179], [37.297864, 127.019454], [37.29782, 127.019503], [37.297811, 127.019514], [37.297441, 127.019931], [37.297415, 127.019961], [37.296742, 127.020724], [37.296625, 127.021035], [37.296449, 127.021592], [37.296353, 127.021708], [37.295869, 127.022047], [37.295627, 127.022236], [37.295176, 127.022587], [37.29507, 127.022779], [37.294999, 127.022906], [37.294841, 127.023201], [37.29476, 127.023363], [37.294566, 127.023763], [37.294534, 127.023825], [37.294405, 127.024065], [37.29438, 127.024108], [37.293723, 127.025317], [37.293628, 127.025492], [37.293187, 127.026295], [37.293061, 127.026527], [37.292411, 127.027724], [37.291867, 127.028769], [37.291237, 127.02944], [37.291076, 127.029611], [37.290979, 127.029715], [37.290783, 127.029923], [37.290641, 127.030075], [37.290303, 127.030436], [37.290151, 127.030607], [37.289936, 127.030829], [37.289487, 127.031261], [37.288629, 127.032115], [37.288223, 127.032521], [37.287786, 127.032954], [37.287363, 127.033378], [37.286978, 127.033763], [37.286135, 127.034608], [37.285421, 127.035308], [37.285248, 127.035478], [37.28428, 127.036429], [37.283906, 127.036797], [37.283837, 127.036872], [37.283791, 127.036927], [37.283736, 127.036997], [37.283682, 127.037075], [37.283621, 127.037168], [37.283515, 127.03736], [37.283458, 127.037455], [37.282914, 127.038351], [37.282449, 127.038074], [37.282087, 127.037858], [37.281621, 127.03753], [37.2814, 127.037365], [37.28121, 127.037267], [37.281074, 127.037214], [37.280896, 127.037146], [37.280842, 127.037133], [37.280645, 127.037088], [37.28042, 127.037088], [37.280173, 127.037112], [37.280007, 127.037154], [37.279951, 127.037173], [37.279723, 127.03725], [37.279651, 127.037274], [37.279506, 127.037323], [37.278905, 127.037569], [37.278366, 127.037811], [37.278112, 127.037884], [37.277986, 127.037921], [37.277577, 127.037932], [37.277101, 127.03784], [37.276962, 127.037789], [37.276736, 127.037703], [37.276611, 127.037655], [37.276558, 127.037832], [37.276524, 127.037961], [37.276486, 127.038103], [37.276456, 127.038204], [37.276368, 127.038501], [37.275971, 127.039837], [37.275764, 127.040531], [37.275017, 127.042718], [37.274686, 127.043813], [37.274608, 127.044094], [37.274175, 127.04557], [37.273897, 127.046561], [37.273832, 127.046796], [37.273699, 127.047228], [37.273482, 127.047952], [37.273423, 127.048173], [37.273347, 127.048596], [37.273306, 127.049855], [37.273331, 127.050606], [37.273344, 127.050969], [37.273265, 127.052072], [37.273154, 127.052786], [37.273122, 127.052905], [37.272899, 127.0536], [37.272794, 127.053568], [37.272385, 127.053441], [37.271899, 127.053251], [37.271831, 127.053225], [37.271209, 127.05298], [37.271139, 127.052954], [37.27083, 127.052838], [37.270411, 127.052674], [37.26985, 127.052445], [37.26905, 127.052143], [37.268733, 127.052023], [37.268013, 127.05173], [37.267729, 127.052866], [37.267294, 127.054908], [37.267192, 127.055384], [37.267146, 127.055544], [37.267458, 127.056154], [37.267857, 127.056935], [37.268098, 127.057458], [37.26862, 127.058369], [37.268712, 127.058296], [37.267669, 127.056333], [37.267352, 127.055726], [37.267192, 127.055384], [37.266991, 127.054995], [37.266726, 127.054449], [37.266622, 127.054211], [37.266547, 127.054022], [37.26646, 127.053724], [37.265993, 127.05229], [37.265968, 127.05222], [37.265853, 127.051856], [37.265784, 127.051639], [37.26566, 127.051247], [37.265581, 127.051095], [37.265486, 127.050963], [37.265422, 127.050874], [37.265363, 127.050801], [37.265064, 127.05056], [37.264083, 127.050247], [37.26311, 127.049914], [37.263027, 127.049889], [37.262903, 127.049844], [37.260917, 127.048996], [37.260516, 127.048876], [37.260137, 127.048709], [37.258739, 127.048103], [37.258474, 127.047981], [37.258316, 127.047872], [37.258118, 127.047729], [37.257976, 127.04762], [37.25777, 127.047467], [37.255963, 127.045972], [37.255827, 127.04586], [37.255628, 127.045695], [37.255456, 127.045514], [37.253275, 127.043225], [37.25306, 127.042995], [37.252889, 127.042846], [37.252645, 127.042656], [37.251684, 127.041906], [37.251497, 127.041756], [37.251309, 127.041618], [37.250496, 127.041021], [37.250398, 127.04095], [37.2503, 127.040715], [37.248787, 127.039585], [37.248293, 127.039281], [37.248128, 127.039179], [37.247653, 127.03895], [37.246965, 127.038656], [37.24676, 127.038592], [37.246125, 127.038394], [37.245792, 127.038273], [37.245429, 127.038141], [37.245582, 127.037506], [37.245975, 127.035872], [37.246774, 127.032478], [37.246698, 127.032437], [37.246603, 127.032385], [37.246544, 127.032353], [37.245754, 127.031924], [37.245208, 127.031621], [37.245035, 127.032157], [37.245366, 127.032342], [37.245669, 127.032511], [37.246028, 127.032711], [37.245731, 127.033872], [37.245724, 127.0339], [37.245282, 127.033679], [37.244975, 127.033525], [37.24464, 127.033367], [37.245035, 127.032157], [37.245208, 127.031621], [37.245754, 127.031924], [37.246544, 127.032353], [37.246603, 127.032385], [37.24552, 127.036949], [37.24537, 127.037582], [37.24525, 127.038086], [37.244896, 127.038008], [37.244548, 127.037888], [37.24439, 127.037801], [37.244028, 127.037701], [37.24283, 127.037329], [37.242588, 127.037257], [37.241938, 127.037056], [37.24101, 127.036836], [37.240535, 127.036685], [37.239173, 127.036264], [37.238163, 127.035961], [37.23772, 127.035818], [37.23675, 127.035535], [37.236205, 127.035415], [37.235833, 127.03537], [37.2355, 127.03534], [37.235172, 127.035343], [37.234862, 127.03538], [37.234543, 127.035455], [37.234312, 127.035529], [37.234105, 127.035615], [37.233771, 127.035786], [37.233453, 127.035964], [37.233216, 127.036136], [37.232998, 127.036328], [37.232742, 127.036585], [37.23252, 127.036835], [37.232322, 127.03711], [37.232165, 127.037337], [37.232038, 127.037561], [37.231917, 127.037793], [37.23178, 127.038098], [37.23165, 127.038439], [37.231541, 127.038769], [37.231449, 127.039132], [37.231382, 127.039482], [37.231328, 127.039821], [37.231284, 127.040171], [37.231239, 127.040744], [37.231213, 127.041445], [37.231195, 127.042207], [37.23118, 127.042818], [37.231129, 127.045182], [37.231117, 127.045917], [37.231106, 127.046298], [37.231089, 127.046652], [37.231068, 127.047011], [37.231038, 127.04735], [37.231009, 127.047616], [37.230962, 127.047905], [37.230886, 127.048277], [37.230789, 127.048643], [37.230653, 127.049067], [37.230467, 127.049498], [37.230324, 127.049796], [37.230224, 127.049961], [37.230153, 127.050082], [37.230069, 127.050211], [37.229885, 127.050458], [37.229654, 127.050732], [37.229406, 127.050985], [37.229238, 127.051137], [37.229037, 127.051292], [37.228807, 127.051452], [37.228589, 127.051578], [37.228355, 127.051695], [37.228135, 127.051796], [37.228023, 127.051835], [37.227899, 127.051875], [37.227514, 127.051985], [37.227131, 127.052064], [37.225005, 127.052406], [37.224485, 127.05252], [37.22402, 127.052652], [37.223554, 127.052802], [37.223151, 127.052965], [37.222765, 127.053135], [37.222381, 127.053317], [37.222041, 127.053494], [37.221634, 127.053734], [37.221515, 127.053812], [37.221259, 127.05398], [37.221041, 127.054128], [37.220795, 127.054312], [37.220324, 127.05468], [37.220087, 127.054878], [37.219665, 127.055254], [37.21933, 127.055599], [37.215991, 127.059321], [37.213858, 127.061638], [37.213502, 127.062019], [37.213462, 127.062065], [37.212173, 127.063517], [37.21199, 127.063785], [37.211978, 127.063802], [37.211907, 127.063942], [37.211892, 127.063972], [37.211767, 127.064293], [37.211695, 127.064526], [37.211637, 127.064856], [37.211627, 127.065021], [37.211611, 127.065489], [37.211608, 127.065649], [37.211606, 127.066503], [37.211603, 127.066611], [37.211559, 127.067022], [37.211507, 127.067296], [37.211428, 127.067613], [37.211347, 127.06786], [37.211227, 127.068129], [37.211089, 127.068372], [37.21041, 127.069442], [37.209122, 127.07153], [37.208048, 127.073271], [37.207905, 127.073492], [37.207802, 127.073646], [37.207011, 127.074882], [37.206801, 127.075214], [37.206742, 127.075309], [37.20659, 127.075549], [37.206536, 127.075635], [37.20647, 127.075739], [37.206576, 127.075842], [37.206677, 127.075953], [37.206828, 127.076115], [37.206902, 127.076197], [37.206914, 127.07621], [37.206979, 127.076286], [37.207121, 127.076453], [37.207259, 127.076629], [37.20739, 127.076799], [37.207523, 127.076984], [37.207603, 127.077107], [37.207646, 127.077172], [37.207851, 127.077493], [37.208019, 127.077776], [37.208087, 127.077906], [37.208166, 127.078056], [37.208272, 127.078268], [37.208172, 127.078342], [37.207636, 127.078738]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#0000FF&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#0000FF&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 0.7, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
+            ).addTo(feature_group_e2dbf02806ea07ebc92aab5efbed8998);
+        
+    
+            feature_group_e2dbf02806ea07ebc92aab5efbed8998.addTo(map_1832698b82be53b9256f0669fafcd401);
+        
+    
+            var feature_group_fce4fb8031c6964e931433c23ddaa2d4 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_282da1f9bebcb0f61323d18f265265fd = L.marker(
+                [37.37, 126.9327],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_3af85f575ae23d52f5f56b70633c074b = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_fe07969127a7794534382cce676999da = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_f06c1eddbbf7b7e471d50fbd2bfc8552 = $(`&lt;div id=&quot;html_f06c1eddbbf7b7e471d50fbd2bfc8552&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 1. 산본2동 주민센터 앞 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 3.5명&lt;br&gt;                 출처: route1&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_fe07969127a7794534382cce676999da.setContent(html_f06c1eddbbf7b7e471d50fbd2bfc8552);
+            
+        
+
+        marker_282da1f9bebcb0f61323d18f265265fd.bindPopup(popup_fe07969127a7794534382cce676999da)
+        ;
+
+        
+    
+    
+                marker_282da1f9bebcb0f61323d18f265265fd.setIcon(icon_3af85f575ae23d52f5f56b70633c074b);
+            
+    
+            var marker_7b579b69433e679739f71ae363e4a182 = L.marker(
+                [37.3598, 126.9333],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_4cab5f94ad222f990f234f16c6168b63 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_e082892058b27c76205d6ab10ef06e37 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_8f5ff0bd356c738b74153555a6b54d4e = $(`&lt;div id=&quot;html_8f5ff0bd356c738b74153555a6b54d4e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 2. 원광대 산본병원 앞 택시정류장 70m 전 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 8.2명&lt;br&gt;                 출처: route1&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_e082892058b27c76205d6ab10ef06e37.setContent(html_8f5ff0bd356c738b74153555a6b54d4e);
+            
+        
+
+        marker_7b579b69433e679739f71ae363e4a182.bindPopup(popup_e082892058b27c76205d6ab10ef06e37)
+        ;
+
+        
+    
+    
+                marker_7b579b69433e679739f71ae363e4a182.setIcon(icon_4cab5f94ad222f990f234f16c6168b63);
+            
+    
+            var marker_e258b7b1ac360fd9a01aa719ce7861f5 = L.marker(
+                [37.3698, 126.9575],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_abf790b82aae54ea708a56adfb8a1312 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_6a3ea85298ba2370d452bac84885d211 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_d0d95ed693105d37dbf357da749ea536 = $(`&lt;div id=&quot;html_d0d95ed693105d37dbf357da749ea536&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 3. 호계사거리 호계약국 앞&lt;/b&gt;&lt;br&gt;                 승객: 3.5명&lt;br&gt;                 출처: route1&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_6a3ea85298ba2370d452bac84885d211.setContent(html_d0d95ed693105d37dbf357da749ea536);
+            
+        
+
+        marker_e258b7b1ac360fd9a01aa719ce7861f5.bindPopup(popup_6a3ea85298ba2370d452bac84885d211)
+        ;
+
+        
+    
+    
+                marker_e258b7b1ac360fd9a01aa719ce7861f5.setIcon(icon_abf790b82aae54ea708a56adfb8a1312);
+            
+    
+            var marker_0fbf4580997fc01dd5bb7a75e31ccd1f = L.marker(
+                [37.3559, 126.9472],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_cb3ae716ef39fff836818bb1a3fcf669 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_c5ef88ea09727a63d395457bb9bad694 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_5d5c39835522701fd772f4a6a05ceded = $(`&lt;div id=&quot;html_5d5c39835522701fd772f4a6a05ceded&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 4. 우리은행 군포지점 사거리 맘모스수족관 앞 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 11.1명&lt;br&gt;                 출처: route1&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_c5ef88ea09727a63d395457bb9bad694.setContent(html_5d5c39835522701fd772f4a6a05ceded);
+            
+        
+
+        marker_0fbf4580997fc01dd5bb7a75e31ccd1f.bindPopup(popup_c5ef88ea09727a63d395457bb9bad694)
+        ;
+
+        
+    
+    
+                marker_0fbf4580997fc01dd5bb7a75e31ccd1f.setIcon(icon_cb3ae716ef39fff836818bb1a3fcf669);
+            
+    
+            var marker_c1bd2b11720e90dd9e559438986bed41 = L.marker(
+                [37.3609, 126.9624],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_07f914e3f4c2f6ebb0a1ace0dc59d7da = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_91b5a2530ed17cf4f790868070d1365c = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_5b0b63021e1a9a249ff91a72b8b16674 = $(`&lt;div id=&quot;html_5b0b63021e1a9a249ff91a72b8b16674&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 5. 포도원사거리 에이스침대 앞&lt;/b&gt;&lt;br&gt;                 승객: 3.1명&lt;br&gt;                 출처: route1&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_91b5a2530ed17cf4f790868070d1365c.setContent(html_5b0b63021e1a9a249ff91a72b8b16674);
+            
+        
+
+        marker_c1bd2b11720e90dd9e559438986bed41.bindPopup(popup_91b5a2530ed17cf4f790868070d1365c)
+        ;
+
+        
+    
+    
+                marker_c1bd2b11720e90dd9e559438986bed41.setIcon(icon_07f914e3f4c2f6ebb0a1ace0dc59d7da);
+            
+    
+            var marker_48945087a5c3ab9a1afa21779ac73b38 = L.marker(
+                [37.3486, 126.973],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_7044748445c1a7ee1488abbd55d69207 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_60dbf4a14d0a379817aacc2f14ef0371 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_6e12fce27d2badfd4ec81441239b36aa = $(`&lt;div id=&quot;html_6e12fce27d2badfd4ec81441239b36aa&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 6. 의왕시 고천 시외버스정류장 앞&lt;/b&gt;&lt;br&gt;                 승객: 5.2명&lt;br&gt;                 출처: route1&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_60dbf4a14d0a379817aacc2f14ef0371.setContent(html_6e12fce27d2badfd4ec81441239b36aa);
+            
+        
+
+        marker_48945087a5c3ab9a1afa21779ac73b38.bindPopup(popup_60dbf4a14d0a379817aacc2f14ef0371)
+        ;
+
+        
+    
+    
+                marker_48945087a5c3ab9a1afa21779ac73b38.setIcon(icon_7044748445c1a7ee1488abbd55d69207);
+            
+    
+            var marker_fd77836f773735246929a6a5bfe15cc2 = L.marker(
+                [37.3038, 127.0101],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_68586a12fae141028c3ec5d435b56975 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_e21763687e108290d77f772b61404c13 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_f217cd5efd196957fee364f748cf38c2 = $(`&lt;div id=&quot;html_f217cd5efd196957fee364f748cf38c2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 7. 장안구민회관 한누리아트홀 앞&lt;/b&gt;&lt;br&gt;                 승객: 7.6명&lt;br&gt;                 출처: route2&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_e21763687e108290d77f772b61404c13.setContent(html_f217cd5efd196957fee364f748cf38c2);
+            
+        
+
+        marker_fd77836f773735246929a6a5bfe15cc2.bindPopup(popup_e21763687e108290d77f772b61404c13)
+        ;
+
+        
+    
+    
+                marker_fd77836f773735246929a6a5bfe15cc2.setIcon(icon_68586a12fae141028c3ec5d435b56975);
+            
+    
+            var marker_214fb1f10dcc6504b00b44db6bb99937 = L.marker(
+                [37.2907, 127.0298],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_463b591206dbd7977ec5dffcf06157f5 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_55db75b2577768d51a51c81321efdec3 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_03a35815f650820967d4a6ee74f6e672 = $(`&lt;div id=&quot;html_03a35815f650820967d4a6ee74f6e672&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 8. 우만주공 아파트 402동 맞은편 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 4.7명&lt;br&gt;                 출처: route2&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_55db75b2577768d51a51c81321efdec3.setContent(html_03a35815f650820967d4a6ee74f6e672);
+            
+        
+
+        marker_214fb1f10dcc6504b00b44db6bb99937.bindPopup(popup_55db75b2577768d51a51c81321efdec3)
+        ;
+
+        
+    
+    
+                marker_214fb1f10dcc6504b00b44db6bb99937.setIcon(icon_463b591206dbd7977ec5dffcf06157f5);
+            
+    
+            var marker_a6007b7644032af18024310814eece6f = L.marker(
+                [37.2674, 127.0562],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_2c79d6b28b463e0dd881b7740ceb1167 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_d690c0966208fd67932f7a314b73194e = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_d13dbeec04b0671375b52cfeade53638 = $(`&lt;div id=&quot;html_d13dbeec04b0671375b52cfeade53638&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 9. 삼성 탑내과 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 2.7명&lt;br&gt;                 출처: route2&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_d690c0966208fd67932f7a314b73194e.setContent(html_d13dbeec04b0671375b52cfeade53638);
+            
+        
+
+        marker_a6007b7644032af18024310814eece6f.bindPopup(popup_d690c0966208fd67932f7a314b73194e)
+        ;
+
+        
+    
+    
+                marker_a6007b7644032af18024310814eece6f.setIcon(icon_2c79d6b28b463e0dd881b7740ceb1167);
+            
+    
+            var marker_b6a2addb56dfacf001f9ecaf76368798 = L.marker(
+                [37.2458, 127.0339],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_9df45fae2df4af80c17149afed9700b2 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_7fc86d80da9a75202b886f61e876c405 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_7d456d9a1845507f5f64e20534506dff = $(`&lt;div id=&quot;html_7d456d9a1845507f5f64e20534506dff&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 10. 화홍중학교 맞은편 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 15.1명&lt;br&gt;                 출처: route2&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_7fc86d80da9a75202b886f61e876c405.setContent(html_7d456d9a1845507f5f64e20534506dff);
+            
+        
+
+        marker_b6a2addb56dfacf001f9ecaf76368798.bindPopup(popup_7fc86d80da9a75202b886f61e876c405)
+        ;
+
+        
+    
+    
+                marker_b6a2addb56dfacf001f9ecaf76368798.setIcon(icon_9df45fae2df4af80c17149afed9700b2);
+            
+    
+            var marker_708591813607ea05019fda0573092a38 = L.marker(
+                [37.2079, 127.0793],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_d4b5c0693af3041409ef358226bccb26 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;green&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_6eca17ca0ee67d7ead5e26ac702fbaf3 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_80083d0967621b070f6b4cd264c00319 = $(`&lt;div id=&quot;html_80083d0967621b070f6b4cd264c00319&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 11. 예당중학교앞 버스정류장&lt;/b&gt;&lt;br&gt;                 승객: 1.9명&lt;br&gt;                 출처: route2&lt;br&gt;                 상태: maintained                 &lt;/div&gt;`)[0];
+                popup_6eca17ca0ee67d7ead5e26ac702fbaf3.setContent(html_80083d0967621b070f6b4cd264c00319);
+            
+        
+
+        marker_708591813607ea05019fda0573092a38.bindPopup(popup_6eca17ca0ee67d7ead5e26ac702fbaf3)
+        ;
+
+        
+    
+    
+                marker_708591813607ea05019fda0573092a38.setIcon(icon_d4b5c0693af3041409ef358226bccb26);
+            
+    
+            var marker_b6a2187b214a5712511f7eaf7829cdd9 = L.marker(
+                [37.172, 127.126],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_1de5a98946f418797374bff5459024af = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;blue&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_c59e5cc484f6d228f790e738f8b5e828 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_413d340f9f9c5a6d4313f91d4739b80f = $(`&lt;div id=&quot;html_413d340f9f9c5a6d4313f91d4739b80f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 12. 【최종】 FC DON1 도착&lt;/b&gt;&lt;br&gt;                 승객: 0명&lt;br&gt;                 출처: new&lt;br&gt;                 상태: new                 &lt;/div&gt;`)[0];
+                popup_c59e5cc484f6d228f790e738f8b5e828.setContent(html_413d340f9f9c5a6d4313f91d4739b80f);
+            
+        
+
+        marker_b6a2187b214a5712511f7eaf7829cdd9.bindPopup(popup_c59e5cc484f6d228f790e738f8b5e828)
+        ;
+
+        
+    
+    
+                marker_b6a2187b214a5712511f7eaf7829cdd9.setIcon(icon_1de5a98946f418797374bff5459024af);
+            
+    
+            var marker_99d2156b45b00dc8eb183d939216ac3f = L.marker(
+                [37.172, 127.126],
+                {
+}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            var icon_b0fbb9dbd6a598132a010785499aeb78 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;blue&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;info-sign&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_94ea08645e59c021ceb57cc7b5f7fb06 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_f1dc72ff5adb41db3c89654597577c7e = $(`&lt;div id=&quot;html_f1dc72ff5adb41db3c89654597577c7e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;                 &lt;b&gt;[통합] 13. 【최종】 FC DON1 도착&lt;/b&gt;&lt;br&gt;                 승객: 0명&lt;br&gt;                 출처: new&lt;br&gt;                 상태: new                 &lt;/div&gt;`)[0];
+                popup_94ea08645e59c021ceb57cc7b5f7fb06.setContent(html_f1dc72ff5adb41db3c89654597577c7e);
+            
+        
+
+        marker_99d2156b45b00dc8eb183d939216ac3f.bindPopup(popup_94ea08645e59c021ceb57cc7b5f7fb06)
+        ;
+
+        
+    
+    
+                marker_99d2156b45b00dc8eb183d939216ac3f.setIcon(icon_b0fbb9dbd6a598132a010785499aeb78);
+            
+    
+            var poly_line_3e9cdc19c41d31ba5df24ca0efd34166 = L.polyline(
+                [[37.369784, 126.932987], [37.368642, 126.931626], [37.368525, 126.931486], [37.368352, 126.931279], [37.366488, 126.929062], [37.3662, 126.92872], [37.366177, 126.928692], [37.366034, 126.928511], [37.365965, 126.928559], [37.365843, 126.928646], [37.364585, 126.929706], [37.364556, 126.92973], [37.364393, 126.929868], [37.363526, 126.930598], [37.363417, 126.93069], [37.363272, 126.930811], [37.363191, 126.93088], [37.363103, 126.930954], [37.362732, 126.931283], [37.362463, 126.931539], [37.362119, 126.931865], [37.361987, 126.931973], [37.361876, 126.93206], [37.361506, 126.932369], [37.361251, 126.932582], [37.360853, 126.93293], [37.360594, 126.933157], [37.360527, 126.933209], [37.360227, 126.933453], [37.359801, 126.9338], [37.359542, 126.933317], [37.359529, 126.93329], [37.359514, 126.933261], [37.359699, 126.933107], [37.359864, 126.93297], [37.360238, 126.932658], [37.36059, 126.932366], [37.36096, 126.932058], [37.361251, 126.932582], [37.360853, 126.93293], [37.360594, 126.933157], [37.360527, 126.933209], [37.360227, 126.933453], [37.359801, 126.9338], [37.359768, 126.933827], [37.359566, 126.933987], [37.359204, 126.934275], [37.359098, 126.934358], [37.358641, 126.934793], [37.358702, 126.93491], [37.358836, 126.935154], [37.359043, 126.935535], [37.359271, 126.935855], [37.359613, 126.936188], [37.360194, 126.937271], [37.36077, 126.938335], [37.361267, 126.939266], [37.36145, 126.939622], [37.361547, 126.939802], [37.36172, 126.940113], [37.361726, 126.940124], [37.362374, 126.941321], [37.362438, 126.941449], [37.362625, 126.941792], [37.363198, 126.942879], [37.363267, 126.94301], [37.363842, 126.944115], [37.364016, 126.94441], [37.364107, 126.945108], [37.364192, 126.945736], [37.364272, 126.946001], [37.364356, 126.946188], [37.364498, 126.946376], [37.364647, 126.946502], [37.364927, 126.946683], [37.365175, 126.946835], [37.365416, 126.947002], [37.365583, 126.94719], [37.365712, 126.947363], [37.365801, 126.947534], [37.366056, 126.948018], [37.366407, 126.948687], [37.366767, 126.949372], [37.36723, 126.950235], [37.367436, 126.950603], [37.367467, 126.950673], [37.367679, 126.951039], [37.367809, 126.951268], [37.36827, 126.952002], [37.368498, 126.952423], [37.368809, 126.953005], [37.368901, 126.953193], [37.368979, 126.953389], [37.36909, 126.953767], [37.369268, 126.954355], [37.369374, 126.954714], [37.369457, 126.955219], [37.369512, 126.955404], [37.369758, 126.95625], [37.369977, 126.956999], [37.370137, 126.957566], [37.370205, 126.957807], [37.369986, 126.957827], [37.369816, 126.95784], [37.369772, 126.957843], [37.369256, 126.957882], [37.369166, 126.957954], [37.369142, 126.958027], [37.36917, 126.958189], [37.369361, 126.95816], [37.37001, 126.958084], [37.37024, 126.958062], [37.370373, 126.958058], [37.370322, 126.957797], [37.370244, 126.957518], [37.370109, 126.95703], [37.369574, 126.955167], [37.369374, 126.954714], [37.369268, 126.954355], [37.36909, 126.953767], [37.368979, 126.953389], [37.368901, 126.953193], [37.368809, 126.953005], [37.368498, 126.952423], [37.36827, 126.952002], [37.367889, 126.951171], [37.367824, 126.95105], [37.367585, 126.950601], [37.367536, 126.950511], [37.367329, 126.950149], [37.366998, 126.949533], [37.366861, 126.949278], [37.366478, 126.948613], [37.365675, 126.947087], [37.36529, 126.946545], [37.365152, 126.946395], [37.364997, 126.946264], [37.364792, 126.946144], [37.364632, 126.946088], [37.364436, 126.946047], [37.36433, 126.946054], [37.364188, 126.946101], [37.364087, 126.946148], [37.363932, 126.94625], [37.363813, 126.94637], [37.36355, 126.946662], [37.363417, 126.946793], [37.363288, 126.946882], [37.362987, 126.947027], [37.362643, 126.947306], [37.362382, 126.947518], [37.362059, 126.947659], [37.361832, 126.947758], [37.361619, 126.947848], [37.361362, 126.947949], [37.361025, 126.948041], [37.360681, 126.948088], [37.360276, 126.948089], [37.360217, 126.948088], [37.359567, 126.94808], [37.359257, 126.948069], [37.35906, 126.948061], [37.358568, 126.947986], [37.358208, 126.947931], [37.358088, 126.947899], [37.357725, 126.947754], [37.357571, 126.947888], [37.357511, 126.947904], [37.355976, 126.947865], [37.355996, 126.947204], [37.356004, 126.946917], [37.356291, 126.94698], [37.356471, 126.947039], [37.356734, 126.94713], [37.357145, 126.947409], [37.357638, 126.947702], [37.357725, 126.947754], [37.358088, 126.947899], [37.358208, 126.947931], [37.358568, 126.947986], [37.35879, 126.948149], [37.359874, 126.948268], [37.359947, 126.94827], [37.359977, 126.948278], [37.360013, 126.948309], [37.360033, 126.94836], [37.360049, 126.94843], [37.360055, 126.948493], [37.360074, 126.948888], [37.360089, 126.949154], [37.360107, 126.949219], [37.360125, 126.949325], [37.360173, 126.949609], [37.36051, 126.950282], [37.360643, 126.950547], [37.361939, 126.953129], [37.362434, 126.954126], [37.36257, 126.954369], [37.363145, 126.955547], [37.363334, 126.955926], [37.363386, 126.956028], [37.36342, 126.956099], [37.36364, 126.956526], [37.363661, 126.956576], [37.364258, 126.957754], [37.364431, 126.958084], [37.364521, 126.958232], [37.364614, 126.958422], [37.364784, 126.958649], [37.364446, 126.958899], [37.364247, 126.959082], [37.363369, 126.960048], [37.361542, 126.962059], [37.361377, 126.962235], [37.361047, 126.962607], [37.360689, 126.963011], [37.360204, 126.963559], [37.359209, 126.964681], [37.358984, 126.964935], [37.358854, 126.965082], [37.35861, 126.965329], [37.358388, 126.965581], [37.358281, 126.965716], [37.357802, 126.966305], [37.357695, 126.966419], [37.35763, 126.966493], [37.357597, 126.966528], [37.35652, 126.967672], [37.355283, 126.968774], [37.353734, 126.970224], [37.353039, 126.970801], [37.352694, 126.971102], [37.352483, 126.971289], [37.35208, 126.97158], [37.3519, 126.971709], [37.351626, 126.971868], [37.351369, 126.972015], [37.349971, 126.97281], [37.349933, 126.972832], [37.349571, 126.97303], [37.349291, 126.973215], [37.348484, 126.973692], [37.348286, 126.973159], [37.34822, 126.972864], [37.348466, 126.972731], [37.348632, 126.972641], [37.348685, 126.972819], [37.348563, 126.972877], [37.348517, 126.972899], [37.348466, 126.972731], [37.34822, 126.972864], [37.348286, 126.973159], [37.348484, 126.973692], [37.348156, 126.973878], [37.347709, 126.974132], [37.347178, 126.974433], [37.346854, 126.974676], [37.345531, 126.975405], [37.345196, 126.975592], [37.344673, 126.97592], [37.34427, 126.97618], [37.343818, 126.976518], [37.342799, 126.977317], [37.342454, 126.977564], [37.342045, 126.977806], [37.341446, 126.978264], [37.34108, 126.978543], [37.340851, 126.978703], [37.340643, 126.978875], [37.340426, 126.978987], [37.340274, 126.979084], [37.340128, 126.979148], [37.339811, 126.979253], [37.339231, 126.979409], [37.338478, 126.979577], [37.338259, 126.979628], [37.338163, 126.97965], [37.337307, 126.979849], [37.335332, 126.980426], [37.334618, 126.980742], [37.334052, 126.98106], [37.332859, 126.981834], [37.331783, 126.982596], [37.330835, 126.983192], [37.329158, 126.984207], [37.328984, 126.984305], [37.328607, 126.984567], [37.328292, 126.984747], [37.327983, 126.984922], [37.32694, 126.985536], [37.325681, 126.98617], [37.324708, 126.98658], [37.323618, 126.98698], [37.322157, 126.987379], [37.321131, 126.987659], [37.319349, 126.987975], [37.319012, 126.988037], [37.318495, 126.988072], [37.318352, 126.988082], [37.318204, 126.988092], [37.318034, 126.988114], [37.317384, 126.988178], [37.315811, 126.988242], [37.314683, 126.988301], [37.314371, 126.988335], [37.313976, 126.988437], [37.313557, 126.988591], [37.313131, 126.988761], [37.312496, 126.989146], [37.312182, 126.989395], [37.311782, 126.989746], [37.311671, 126.989859], [37.311558, 126.989975], [37.311152, 126.990473], [37.310929, 126.99072], [37.310529, 126.991407], [37.310434, 126.99157], [37.310207, 126.992078], [37.309801, 126.992987], [37.309612, 126.993436], [37.309445, 126.993834], [37.309361, 126.994044], [37.309082, 126.994694], [37.308996, 126.994912], [37.308705, 126.995578], [37.308216, 126.996621], [37.30769, 126.997845], [37.30764, 126.99796], [37.307608, 126.99803], [37.307169, 126.999065], [37.306685, 127.000207], [37.306642, 127.000303], [37.306159, 127.001389], [37.305872, 127.002013], [37.305534, 127.002562], [37.305176, 127.003179], [37.304862, 127.003659], [37.304412, 127.004402], [37.304142, 127.004799], [37.303839, 127.00526], [37.30338, 127.006027], [37.303291, 127.006195], [37.303228, 127.006241], [37.303007, 127.006582], [37.302385, 127.007678], [37.301879, 127.008503], [37.301763, 127.008701], [37.301618, 127.00894], [37.301445, 127.009222], [37.301525, 127.009274], [37.301626, 127.009328], [37.301916, 127.00959], [37.302368, 127.009999], [37.302461, 127.010087], [37.302546, 127.010168], [37.302731, 127.009843], [37.30319, 127.009068], [37.303363, 127.009222], [37.303483, 127.009334], [37.303613, 127.009454], [37.303738, 127.00957], [37.303889, 127.009313], [37.304117, 127.009521], [37.304242, 127.009634], [37.30421, 127.009694], [37.304097, 127.009919], [37.304038, 127.010033], [37.303908, 127.009914], [37.303896, 127.009903], [37.304117, 127.009521], [37.303889, 127.009313], [37.303757, 127.009193], [37.303631, 127.009077], [37.303583, 127.009034], [37.303444, 127.00907], [37.303363, 127.009222], [37.30319, 127.009068], [37.302731, 127.009843], [37.302546, 127.010168], [37.302685, 127.010293], [37.302861, 127.010458], [37.304006, 127.011735], [37.303753, 127.012157], [37.303486, 127.01267], [37.302643, 127.013664], [37.302317, 127.014109], [37.301607, 127.014987], [37.300959, 127.015777], [37.300835, 127.015913], [37.299961, 127.017003], [37.299701, 127.017319], [37.299384, 127.01771], [37.298931, 127.0182], [37.298655, 127.01853], [37.298609, 127.018584], [37.298362, 127.018879], [37.29815, 127.019131], [37.298108, 127.019179], [37.297864, 127.019454], [37.29782, 127.019503], [37.297811, 127.019514], [37.297441, 127.019931], [37.297415, 127.019961], [37.296742, 127.020724], [37.296625, 127.021035], [37.296449, 127.021592], [37.296353, 127.021708], [37.295869, 127.022047], [37.295627, 127.022236], [37.295176, 127.022587], [37.29507, 127.022779], [37.294999, 127.022906], [37.294841, 127.023201], [37.29476, 127.023363], [37.294566, 127.023763], [37.294534, 127.023825], [37.294405, 127.024065], [37.29438, 127.024108], [37.293723, 127.025317], [37.293628, 127.025492], [37.293187, 127.026295], [37.293061, 127.026527], [37.292411, 127.027724], [37.291867, 127.028769], [37.291237, 127.02944], [37.291076, 127.029611], [37.290979, 127.029715], [37.290783, 127.029923], [37.290641, 127.030075], [37.290303, 127.030436], [37.290151, 127.030607], [37.289936, 127.030829], [37.289487, 127.031261], [37.288629, 127.032115], [37.288223, 127.032521], [37.287786, 127.032954], [37.287363, 127.033378], [37.286978, 127.033763], [37.286135, 127.034608], [37.285421, 127.035308], [37.285248, 127.035478], [37.28428, 127.036429], [37.283906, 127.036797], [37.283837, 127.036872], [37.283791, 127.036927], [37.283736, 127.036997], [37.283682, 127.037075], [37.283621, 127.037168], [37.283515, 127.03736], [37.283458, 127.037455], [37.282914, 127.038351], [37.282449, 127.038074], [37.282087, 127.037858], [37.281621, 127.03753], [37.2814, 127.037365], [37.28121, 127.037267], [37.281074, 127.037214], [37.280896, 127.037146], [37.280842, 127.037133], [37.280645, 127.037088], [37.28042, 127.037088], [37.280173, 127.037112], [37.280007, 127.037154], [37.279951, 127.037173], [37.279723, 127.03725], [37.279651, 127.037274], [37.279506, 127.037323], [37.278905, 127.037569], [37.278366, 127.037811], [37.278112, 127.037884], [37.277986, 127.037921], [37.277577, 127.037932], [37.277101, 127.03784], [37.276962, 127.037789], [37.276736, 127.037703], [37.276611, 127.037655], [37.276558, 127.037832], [37.276524, 127.037961], [37.276486, 127.038103], [37.276456, 127.038204], [37.276368, 127.038501], [37.275971, 127.039837], [37.275764, 127.040531], [37.275017, 127.042718], [37.274686, 127.043813], [37.274608, 127.044094], [37.274175, 127.04557], [37.273897, 127.046561], [37.273832, 127.046796], [37.273699, 127.047228], [37.273482, 127.047952], [37.273423, 127.048173], [37.273347, 127.048596], [37.273306, 127.049855], [37.273331, 127.050606], [37.273344, 127.050969], [37.273265, 127.052072], [37.273154, 127.052786], [37.273122, 127.052905], [37.272899, 127.0536], [37.272794, 127.053568], [37.272385, 127.053441], [37.271899, 127.053251], [37.271831, 127.053225], [37.271209, 127.05298], [37.271139, 127.052954], [37.27083, 127.052838], [37.270411, 127.052674], [37.26985, 127.052445], [37.26905, 127.052143], [37.268733, 127.052023], [37.268013, 127.05173], [37.267729, 127.052866], [37.267294, 127.054908], [37.267192, 127.055384], [37.267146, 127.055544], [37.267458, 127.056154], [37.267857, 127.056935], [37.268098, 127.057458], [37.26862, 127.058369], [37.268712, 127.058296], [37.267669, 127.056333], [37.267352, 127.055726], [37.267192, 127.055384], [37.266991, 127.054995], [37.266726, 127.054449], [37.266622, 127.054211], [37.266547, 127.054022], [37.26646, 127.053724], [37.265993, 127.05229], [37.265968, 127.05222], [37.265853, 127.051856], [37.265784, 127.051639], [37.26566, 127.051247], [37.265581, 127.051095], [37.265486, 127.050963], [37.265422, 127.050874], [37.265363, 127.050801], [37.265064, 127.05056], [37.264083, 127.050247], [37.26311, 127.049914], [37.263027, 127.049889], [37.262903, 127.049844], [37.260917, 127.048996], [37.260516, 127.048876], [37.260137, 127.048709], [37.258739, 127.048103], [37.258474, 127.047981], [37.258316, 127.047872], [37.258118, 127.047729], [37.257976, 127.04762], [37.25777, 127.047467], [37.255963, 127.045972], [37.255827, 127.04586], [37.255628, 127.045695], [37.255456, 127.045514], [37.253275, 127.043225], [37.25306, 127.042995], [37.252889, 127.042846], [37.252645, 127.042656], [37.251684, 127.041906], [37.251497, 127.041756], [37.251309, 127.041618], [37.250496, 127.041021], [37.250398, 127.04095], [37.2503, 127.040715], [37.248787, 127.039585], [37.248293, 127.039281], [37.248128, 127.039179], [37.247653, 127.03895], [37.246965, 127.038656], [37.24676, 127.038592], [37.246125, 127.038394], [37.245792, 127.038273], [37.245429, 127.038141], [37.245582, 127.037506], [37.245975, 127.035872], [37.246774, 127.032478], [37.246698, 127.032437], [37.246603, 127.032385], [37.246544, 127.032353], [37.245754, 127.031924], [37.245208, 127.031621], [37.245035, 127.032157], [37.245366, 127.032342], [37.245669, 127.032511], [37.246028, 127.032711], [37.245731, 127.033872], [37.245724, 127.0339], [37.245282, 127.033679], [37.244975, 127.033525], [37.24464, 127.033367], [37.245035, 127.032157], [37.245208, 127.031621], [37.245754, 127.031924], [37.246544, 127.032353], [37.246603, 127.032385], [37.24552, 127.036949], [37.24537, 127.037582], [37.24525, 127.038086], [37.244896, 127.038008], [37.244548, 127.037888], [37.24439, 127.037801], [37.244028, 127.037701], [37.24283, 127.037329], [37.242588, 127.037257], [37.241938, 127.037056], [37.24101, 127.036836], [37.240535, 127.036685], [37.239173, 127.036264], [37.238163, 127.035961], [37.23772, 127.035818], [37.23675, 127.035535], [37.236205, 127.035415], [37.235833, 127.03537], [37.2355, 127.03534], [37.235172, 127.035343], [37.234862, 127.03538], [37.234543, 127.035455], [37.234312, 127.035529], [37.234105, 127.035615], [37.233771, 127.035786], [37.233453, 127.035964], [37.233216, 127.036136], [37.232998, 127.036328], [37.232742, 127.036585], [37.23252, 127.036835], [37.232322, 127.03711], [37.232165, 127.037337], [37.232038, 127.037561], [37.231917, 127.037793], [37.23178, 127.038098], [37.23165, 127.038439], [37.231541, 127.038769], [37.231449, 127.039132], [37.231382, 127.039482], [37.231328, 127.039821], [37.231284, 127.040171], [37.231239, 127.040744], [37.231213, 127.041445], [37.231195, 127.042207], [37.23118, 127.042818], [37.231129, 127.045182], [37.231117, 127.045917], [37.231106, 127.046298], [37.231089, 127.046652], [37.231068, 127.047011], [37.231038, 127.04735], [37.231009, 127.047616], [37.230962, 127.047905], [37.230886, 127.048277], [37.230789, 127.048643], [37.230653, 127.049067], [37.230467, 127.049498], [37.230324, 127.049796], [37.230224, 127.049961], [37.230153, 127.050082], [37.230069, 127.050211], [37.229885, 127.050458], [37.229654, 127.050732], [37.229406, 127.050985], [37.229238, 127.051137], [37.229037, 127.051292], [37.228807, 127.051452], [37.228589, 127.051578], [37.228355, 127.051695], [37.228135, 127.051796], [37.228023, 127.051835], [37.227899, 127.051875], [37.227514, 127.051985], [37.227131, 127.052064], [37.225005, 127.052406], [37.224485, 127.05252], [37.22402, 127.052652], [37.223554, 127.052802], [37.223151, 127.052965], [37.222765, 127.053135], [37.222381, 127.053317], [37.222041, 127.053494], [37.221634, 127.053734], [37.221515, 127.053812], [37.221259, 127.05398], [37.221041, 127.054128], [37.220795, 127.054312], [37.220324, 127.05468], [37.220087, 127.054878], [37.219665, 127.055254], [37.21933, 127.055599], [37.215991, 127.059321], [37.213858, 127.061638], [37.213502, 127.062019], [37.213462, 127.062065], [37.212173, 127.063517], [37.21199, 127.063785], [37.211978, 127.063802], [37.211907, 127.063942], [37.211892, 127.063972], [37.211767, 127.064293], [37.211695, 127.064526], [37.211637, 127.064856], [37.211627, 127.065021], [37.211611, 127.065489], [37.211608, 127.065649], [37.211606, 127.066503], [37.211603, 127.066611], [37.211559, 127.067022], [37.211507, 127.067296], [37.211428, 127.067613], [37.211347, 127.06786], [37.211227, 127.068129], [37.211089, 127.068372], [37.21041, 127.069442], [37.209122, 127.07153], [37.208048, 127.073271], [37.207905, 127.073492], [37.207802, 127.073646], [37.207011, 127.074882], [37.206801, 127.075214], [37.206742, 127.075309], [37.20659, 127.075549], [37.206536, 127.075635], [37.20647, 127.075739], [37.206576, 127.075842], [37.206677, 127.075953], [37.206828, 127.076115], [37.206902, 127.076197], [37.206914, 127.07621], [37.206979, 127.076286], [37.207121, 127.076453], [37.207259, 127.076629], [37.20739, 127.076799], [37.207523, 127.076984], [37.207603, 127.077107], [37.207646, 127.077172], [37.207851, 127.077493], [37.208019, 127.077776], [37.208087, 127.077906], [37.208166, 127.078056], [37.208272, 127.078268], [37.208172, 127.078342], [37.207636, 127.078738], [37.207505, 127.078835], [37.207091, 127.079141], [37.207812, 127.081223], [37.207835, 127.081279], [37.207583, 127.081432], [37.207485, 127.081502], [37.207333, 127.081617], [37.20721, 127.081725], [37.206898, 127.082022], [37.206779, 127.082134], [37.206575, 127.082325], [37.205191, 127.083637], [37.204911, 127.083902], [37.204802, 127.083999], [37.204655, 127.084121], [37.204655, 127.084223], [37.204655, 127.084394], [37.204656, 127.084768], [37.204657, 127.085563], [37.20466, 127.087162], [37.2046, 127.087346], [37.204599, 127.087568], [37.204579, 127.087705], [37.204533, 127.087819], [37.204501, 127.087873], [37.204471, 127.087909], [37.204403, 127.087956], [37.204302, 127.087981], [37.204004, 127.088029], [37.202957, 127.088057], [37.202205, 127.088144], [37.201961, 127.088147], [37.20162, 127.088138], [37.197426, 127.088115], [37.196146, 127.0881], [37.193858, 127.088096], [37.191767, 127.088077], [37.19152, 127.088071], [37.191071, 127.088058], [37.190195, 127.088069], [37.189648, 127.088069], [37.189302, 127.088069], [37.187913, 127.08809], [37.187405, 127.088117], [37.186483, 127.08815], [37.185673, 127.088163], [37.185349, 127.088166], [37.184955, 127.088153], [37.184421, 127.088144], [37.183906, 127.088147], [37.183454, 127.088133], [37.182942, 127.088136], [37.18228, 127.088129], [37.181999, 127.088142], [37.181724, 127.088126], [37.17792, 127.087767], [37.177089, 127.087695], [37.17674, 127.087638], [37.17614, 127.087464], [37.175573, 127.087378], [37.175195, 127.087281], [37.17408, 127.087052], [37.173389, 127.086883], [37.172708, 127.086697], [37.172581, 127.086663], [37.172473, 127.086634], [37.172334, 127.086595], [37.171799, 127.086443], [37.171006, 127.086237], [37.16966, 127.085861], [37.168994, 127.085709], [37.168649, 127.085659], [37.168345, 127.085625], [37.168099, 127.085614], [37.167436, 127.08559], [37.166934, 127.085536], [37.166491, 127.085475], [37.16611, 127.085396], [37.16566, 127.085288], [37.164827, 127.085042], [37.164624, 127.084978], [37.163879, 127.084748], [37.163362, 127.084604], [37.162472, 127.084337], [37.161594, 127.08403], [37.161457, 127.083985], [37.161371, 127.083951], [37.161021, 127.083828], [37.159569, 127.083267], [37.159469, 127.083224], [37.158911, 127.082984], [37.158835, 127.082952], [37.158839, 127.083239], [37.158796, 127.084032], [37.158783, 127.084589], [37.158744, 127.08627], [37.158742, 127.086429], [37.158721, 127.087009], [37.158695, 127.088303], [37.158694, 127.08834], [37.158661, 127.089481], [37.158651, 127.090315], [37.158636, 127.09237], [37.158692, 127.092953], [37.158821, 127.094144], [37.15888, 127.095023], [37.158891, 127.095493], [37.158889, 127.095775], [37.158896, 127.096466], [37.15891, 127.097657], [37.158928, 127.099017], [37.158916, 127.099275], [37.158914, 127.099334], [37.158804, 127.10027], [37.15878, 127.100475], [37.158736, 127.100801], [37.158634, 127.10129], [37.158493, 127.101797], [37.158365, 127.102187], [37.158099, 127.102994], [37.158025, 127.10321], [37.15773, 127.104042], [37.157631, 127.104315], [37.157297, 127.105028], [37.156913, 127.105761], [37.156571, 127.106368], [37.156528, 127.106441], [37.156401, 127.106655], [37.156116, 127.107251], [37.156054, 127.107412], [37.155977, 127.107612], [37.155828, 127.108332], [37.155799, 127.108513], [37.155703, 127.109137], [37.155657, 127.109459], [37.155599, 127.109807], [37.155224, 127.112113], [37.154603, 127.116658], [37.154467, 127.117453], [37.154424, 127.117685], [37.154332, 127.118015], [37.15414, 127.118766], [37.154027, 127.119213], [37.153893, 127.119643], [37.153814, 127.119882], [37.15374, 127.12008], [37.153662, 127.12028], [37.153569, 127.120518], [37.153509, 127.120635], [37.15344, 127.120777], [37.15342, 127.120777], [37.153342, 127.120811], [37.153312, 127.120841], [37.153278, 127.120876], [37.153234, 127.120963], [37.153215, 127.121064], [37.153224, 127.121167], [37.153251, 127.12124], [37.153259, 127.12126], [37.153315, 127.121332], [37.153386, 127.121378], [37.153466, 127.121392], [37.153545, 127.121374], [37.153615, 127.121325], [37.153774, 127.12134], [37.153903, 127.121352], [37.15399, 127.121366], [37.155194, 127.12157], [37.156074, 127.121724], [37.156976, 127.121802], [37.158045, 127.121998], [37.16102, 127.122569], [37.16121, 127.122597], [37.161995, 127.122717], [37.163195, 127.122945], [37.163434, 127.122991], [37.164731, 127.123256], [37.166631, 127.123479], [37.168129, 127.123643], [37.168269, 127.123657], [37.168533, 127.12375], [37.169303, 127.123851], [37.170337, 127.124061], [37.170549, 127.12413], [37.170705, 127.124251], [37.170801, 127.124428], [37.170923, 127.12482], [37.171224, 127.125569], [37.171345, 127.126082], [37.171345, 127.126088], [37.171345, 127.126088]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#008000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#008000&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 0.8, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_fce4fb8031c6964e931433c23ddaa2d4);
+        
+    
+            feature_group_fce4fb8031c6964e931433c23ddaa2d4.addTo(map_1832698b82be53b9256f0669fafcd401);
+        
+    
+            var marker_6f5552c7256fa34bb911bfcd6a5f0a03 = L.marker(
+                [37.172, 127.126],
+                {
+}
+            ).addTo(map_1832698b82be53b9256f0669fafcd401);
+        
+    
+            var icon_326cf2c0b21a2df5f2a90d6213cccbee = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;purple&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;home&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_98414f1a55e1345be16f05126ca63d85 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_c87f25d69ad50b54247a924c5d01fe4e = $(`&lt;div id=&quot;html_c87f25d69ad50b54247a924c5d01fe4e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;FC: DON1&lt;/b&gt;&lt;/div&gt;`)[0];
+                popup_98414f1a55e1345be16f05126ca63d85.setContent(html_c87f25d69ad50b54247a924c5d01fe4e);
+            
+        
+
+        marker_6f5552c7256fa34bb911bfcd6a5f0a03.bindPopup(popup_98414f1a55e1345be16f05126ca63d85)
+        ;
+
+        
+    
+    
+                marker_6f5552c7256fa34bb911bfcd6a5f0a03.setIcon(icon_326cf2c0b21a2df5f2a90d6213cccbee);
+            
+    
+            var layer_control_d266399ce487abbea9ec6831baa53fb5_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_698924600581abb7ef74b2f010e3dd7b,
+                },
+                overlays :  {
+                    &quot;\uc6d0\ubcf8: DON1-Swing1-1083&quot; : feature_group_08760eb7bc3fdca13777af28c90461a5,
+                    &quot;\uc6d0\ubcf8: DON1-Swing1-1710&quot; : feature_group_e2dbf02806ea07ebc92aab5efbed8998,
+                    &quot;\ud1b5\ud569 \ub178\uc120&quot; : feature_group_fce4fb8031c6964e931433c23ddaa2d4,
+                },
+            };
+            let layer_control_d266399ce487abbea9ec6831baa53fb5 = L.control.layers(
+                layer_control_d266399ce487abbea9ec6831baa53fb5_layers.base_layers,
+                layer_control_d266399ce487abbea9ec6831baa53fb5_layers.overlays,
+                {
+  &quot;position&quot;: &quot;topright&quot;,
+  &quot;collapsed&quot;: true,
+  &quot;autoZIndex&quot;: true,
+}
+            ).addTo(map_1832698b82be53b9256f0669fafcd401);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div>
+                </div>
+                
+                <h3>[UP] 통합 효과 분석</h3>
+                
+        <table>
+            <thead>
+                <tr>
+                    <th>항목</th>
+                    <th>원본 노선1</th>
+                    <th>원본 노선2</th>
+                    <th>원본 합계</th>
+                    <th>통합 노선</th>
+                    <th>절감 효과</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>정류장 수</td>
+                    <td>6</td>
+                    <td>5</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>-1</td>
+                </tr>
+                <tr>
+                    <td>총 거리(km)</td>
+                    <td>39.22</td>
+                    <td>29.06</td>
+                    <td>68.28</td>
+                    <td>44.96</td>
+                    <td>23.32</td>
+                </tr>
+                <tr>
+                    <td>총 시간(분)</td>
+                    <td>64.0</td>
+                    <td>85.0</td>
+                    <td>149.1</td>
+                    <td>129.5</td>
+                    <td>19.6</td>
+                </tr>
+                <tr>
+                    <td>승객 수</td>
+                    <td>35.8</td>
+                    <td>33.1</td>
+                    <td>68.9</td>
+                    <td>68.9</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+        
+            </div>
+        </body>
+        </html>
+        

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="apple-touch-icon" href="../favicon.png">
+    <title>FC 셔틀 노선 빌더 | Portfolio</title>
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">Portfolio</a>
+            <div class="flex gap-6">
+                <a href="../index.html" class="text-gray-700 hover:text-primary">Projects</a>
+                <a href="../about.html" class="text-gray-700 hover:text-primary">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-16 max-w-5xl mx-auto px-4">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-gray-600 hover:text-primary mb-6">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            Back to Projects
+        </a>
+
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+            <div class="aspect-video bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-white">
+                <div class="text-center">
+                    <div class="text-6xl mb-4">📍</div>
+                    <h2 class="text-2xl font-bold">Route Builder v1.0</h2>
+                    <p class="text-pink-200">Flask + Leaflet.js + OSRM</p>
+                </div>
+            </div>
+            <div class="p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Web App</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">v1.0.0</span>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">FC 셔틀 노선 빌더</h1>
+                <p class="text-xl text-gray-600">물류센터(FC) 셔틀버스 노선 생성 시스템. 41개 FC, 4,274개 정류장 커버.</p>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="md:col-span-2 space-y-8">
+                <section class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-4">Core Features</h2>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>클릭으로 정류장 추가 (인터랙티브 맵)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>75분 노선 + 44인승 제약 실시간 검증</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>OSRM + Kakao API 하이브리드 라우팅</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>FC 도착 시간 기반 자동 시간표 생성</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-4">Technical Workflow</h2>
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-600 font-bold">1</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">FC 선택 및 정류장 로드</h3>
+                                <p class="text-gray-600 text-sm">41개 물류센터 중 선택 시 반경 내 4,274개 정류장이 지도에 표시됩니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-600 font-bold">2</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">클릭으로 노선 구성</h3>
+                                <p class="text-gray-600 text-sm">정류장 클릭 순서대로 노선이 구성되며, OSRM이 실시간으로 도로 기반 경로를 계산합니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-600 font-bold">3</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">제약조건 실시간 검증</h3>
+                                <p class="text-gray-600 text-sm">75분 운행시간 및 44인승 버스 정원 초과 시 경고가 표시됩니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-600 font-bold">4</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">시간표 자동 생성</h3>
+                                <p class="text-gray-600 text-sm">FC 도착 시간을 기준으로 역산하여 각 정류장 출발 시간표가 자동 생성됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-4">Business Constraints</h2>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-amber-50 rounded-xl border border-amber-200">
+                            <div class="flex items-center gap-2 mb-2">
+                                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <h3 class="font-bold text-amber-900">75분 제한</h3>
+                            </div>
+                            <p class="text-amber-700 text-sm">첫 정류장 ~ FC 도착까지 최대 75분</p>
+                        </div>
+                        <div class="p-4 bg-blue-50 rounded-xl border border-blue-200">
+                            <div class="flex items-center gap-2 mb-2">
+                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <h3 class="font-bold text-blue-900">44인승 정원</h3>
+                            </div>
+                            <p class="text-blue-700 text-sm">정류장당 승차인원 합계 44명 이하</p>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-xl border border-green-200">
+                            <div class="flex items-center gap-2 mb-2">
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                                <h3 class="font-bold text-green-900">Hybrid Routing</h3>
+                            </div>
+                            <p class="text-green-700 text-sm">OSRM (속도) + Kakao (정확도) 이중 검증</p>
+                        </div>
+                        <div class="p-4 bg-purple-50 rounded-xl border border-purple-200">
+                            <div class="flex items-center gap-2 mb-2">
+                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <h3 class="font-bold text-purple-900">시간표 역산</h3>
+                            </div>
+                            <p class="text-purple-700 text-sm">FC 도착시간 기준 출발시간 자동 계산</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-4">Coverage Stats</h2>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="text-center p-4 bg-pink-50 rounded-xl">
+                            <div class="text-3xl font-bold text-pink-600">41</div>
+                            <div class="text-sm text-gray-600">FCs</div>
+                        </div>
+                        <div class="text-center p-4 bg-rose-50 rounded-xl">
+                            <div class="text-3xl font-bold text-rose-600">4,274</div>
+                            <div class="text-sm text-gray-600">Stops</div>
+                        </div>
+                        <div class="text-center p-4 bg-red-50 rounded-xl">
+                            <div class="text-3xl font-bold text-red-600">75</div>
+                            <div class="text-sm text-gray-600">Min Route</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="font-bold mb-4">Tech Stack</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">Flask</span>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Leaflet.js</span>
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">SQLite</span>
+                        <span class="px-2 py-1 bg-cyan-100 text-cyan-800 rounded text-xs">OSRM</span>
+                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">Kakao API</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="font-bold mb-4">Quick Links</h3>
+                    <div class="space-y-3">
+                        <a href="https://route-builder.onrender.com/" target="_blank"
+                           class="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition text-sm font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                            Live Demo
+                        </a>
+                        <a href="../demos/coupang-route.html"
+                           class="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            Sample Output
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2025 Portfolio</p>
+        </div>
+    </footer>
+</body>
+</html>
