@@ -1,0 +1,51 @@
+# Ahn Partners - robots.txt
+# https://ahn-partners.netlify.app
+
+# Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI Crawlers - Explicitly Allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Default - Allow All
+User-agent: *
+Allow: /
+
+# Blocked Paths
+Disallow: /demos/DON1/
+Disallow: /node_modules/
+Disallow: /.netlify/
+Disallow: /src/
+Disallow: /dist/
+
+# Sitemap
+Sitemap: https://ahn-partners.netlify.app/sitemap.xml

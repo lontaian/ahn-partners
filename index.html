@@ -10,11 +10,22 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
 
+    <link rel="canonical" href="https://ahn-partners.netlify.app/">
+
     <!-- Open Graph -->
     <meta property="og:title" content="Ahn Partners | 기획부터 납품까지, 전문 개발 파트너">
     <meta property="og:description" content="웹앱 · 모바일 앱 · 관리시스템 · 대시보드 · AI 자동화 — 요구사항 분석부터 배포까지 한 번에.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ahn-partners.netlify.app/">
     <meta property="og:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
+    <meta property="og:site_name" content="Ahn Partners">
+    <meta property="og:locale" content="ko_KR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ahn Partners | 기획부터 납품까지, 전문 개발 파트너">
+    <meta name="twitter:description" content="웹앱 · 모바일 앱 · 관리시스템 · 대시보드 · AI 자동화 — 요구사항 분석부터 배포까지 한 번에.">
+    <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
 
     <!-- Tailwind CSS (Built) -->
     <link rel="stylesheet" href="./dist/output.css">
@@ -104,6 +115,55 @@
             position: absolute;
         }
     </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Ahn Partners",
+          "url": "https://ahn-partners.netlify.app",
+          "logo": "https://ahn-partners.netlify.app/favicon.png",
+          "description": "웹앱, 모바일 앱, 관리시스템(ERP), 대시보드, AI 자동화 개발 전문 파트너. 요구사항 분석부터 배포까지 책임 납품.",
+          "areaServed": {
+            "@type": "Country",
+            "name": "KR"
+          },
+          "knowsAbout": ["웹 애플리케이션 개발", "모바일 앱 개발", "ERP 시스템", "대시보드", "AI 자동화", "GIS 시스템", "데이터 시각화"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "개발 서비스",
+            "itemListElement": [
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "업무 관리시스템 (ERP/백오피스)"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "대시보드/데이터 시각화"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "웹앱/웹서비스 개발"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "GIS/지도 기반 시스템"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "모바일 앱 (iOS/Android)"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI 자동화/API 연동"}}
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "name": "Ahn Partners",
+          "url": "https://ahn-partners.netlify.app",
+          "inLanguage": "ko-KR"
+        },
+        {
+          "@type": "CollectionPage",
+          "name": "수행 실적",
+          "url": "https://ahn-partners.netlify.app/",
+          "description": "Ahn Partners의 프로젝트 포트폴리오. 웹앱, ERP, 대시보드, 자동화 시스템 등 10건 이상의 실제 납품 사례.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "url": "https://ahn-partners.netlify.app"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="bg-gray-50 font-sans">
     <!-- Navigation -->

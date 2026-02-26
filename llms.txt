@@ -1,0 +1,59 @@
+# Ahn Partners
+
+> 기획부터 납품까지, 책임지고 완수하는 전문 개발 파트너
+
+## 회사 소개
+
+Ahn Partners는 웹앱, 모바일 앱, 관리시스템(ERP), 대시보드, AI 자동화 개발을 전문으로 하는 외주 개발 파트너입니다. 요구사항 분석부터 설계, 개발, 배포, 운영 가이드까지 전 과정을 책임지고 납품합니다. 기획서가 없어도, 아이디어 단계부터 함께할 수 있습니다.
+
+## 의뢰 가능 분야
+
+- **업무 관리시스템 (ERP/백오피스)**: 차량·인사·비용·재고 등 업무 데이터 통합 관리. 실제 431대 차량 운영 ERP를 4주 만에 구축한 경험.
+- **대시보드/데이터 시각화**: Chart.js, Recharts 기반 인터랙티브 대시보드. BEP 시뮬레이션, 고객 분석, 트렌드 모니터링.
+- **웹앱/웹서비스**: Next.js + PostgreSQL 기반 풀스택 웹 애플리케이션. OAuth 인증, CRUD, 엑셀 연동, 반응형 UI.
+- **GIS/지도 기반 시스템**: MapLibre GL, Leaflet, Kakao Maps 기반 노선 편집기, 위치 기반 분석 도구.
+- **모바일 앱 (iOS/Android)**: 기획부터 스토어 등록·운영까지. 누적 100만+ 다운로드 앱 출시 경험.
+- **AI 자동화/API 연동**: ChatGPT·Claude 등 AI API 연동, 반복 업무 자동화, AI 챗봇 구축.
+
+## 기술 스택
+
+- Frontend: Next.js, React, TypeScript, Tailwind CSS
+- Backend: Python, FastAPI, Node.js
+- Database & Infra: PostgreSQL, MySQL, Supabase, AWS, Docker
+- 데이터 시각화 & GIS: Chart.js, Recharts, MapLibre GL, Leaflet, Kakao Maps
+
+## 검증 가능한 실적
+
+- 라이브 데모 5개 제공 (직접 동작 확인 가능)
+- 시스템 구축 납품 10건 이상
+- ERP 실운영 차량 431대, 기사 368명, 비용기록 4,700+건
+- 노선 최적화 처리 1,556개 (Hungarian Algorithm)
+- 앱 스토어 누적 다운로드 100만+
+- 누적 프로젝트 규모 30억 원 이상
+
+## 주요 프로젝트
+
+- [운송 ERP (FMS)](https://ahn-partners.netlify.app/projects/fms.html): 3개 법인 통합 차량관리시스템. Next.js 14, Prisma, PostgreSQL. [Live Demo](https://fms-readonly-sigma.vercel.app/)
+- [중구버스 노선 편집기](https://ahn-partners.netlify.app/projects/junggubus.html): 서울시 중구 셔틀버스 노선 설계 웹 에디터. MapLibre GL, OSRM.
+- [노선 최적화 파이프라인](https://ahn-partners.netlify.app/projects/route-optimizer.html): Hungarian Algorithm 기반 69개 FC, 1,556개 노선 최적화.
+- [FC 셔틀 노선 빌더](https://ahn-partners.netlify.app/projects/route-builder.html): 41개 물류센터, 4,274개 정류장 커버. Flask, Leaflet.js. [Live Demo](https://route-builder.onrender.com)
+- [중구 셔틀버스 관리 시스템](https://ahn-partners.netlify.app/projects/junggu-shuttle.html): Full-stack 교통 관리 플랫폼. FastAPI, PostgreSQL, Mapbox GL.
+- [노선 프레젠테이션 뷰어](https://ahn-partners.netlify.app/projects/pt-reports.html): 서울시 공무원 보고용 인터랙티브 뷰어. Leaflet.js, Kakao API.
+- [수소충전소 분석 대시보드](https://ahn-partners.netlify.app/projects/hydrogen-infra.html): 고객 분석, BEP 시뮬레이션, 월별 트렌드. Chart.js, Leaflet.
+- [일버스 (1-bus.com)](https://ahn-partners.netlify.app/projects/1bus.html): 전세버스 업계 종합 플랫폼. 견적 요청, 기사 구인/구직, 차량매매.
+- [계약 관리 자동화](https://ahn-partners.netlify.app/projects/bizno.html): 정부 조달 계약 문서 분석 및 수정 추적. Python, pdfplumber.
+- [OnBus 운송 플랫폼](https://ahn-partners.netlify.app/projects/onbus-platform.html): 원더셔틀, 캐치락 SaaS 연동 운송 플랫폼 아키텍처.
+- [농촌 모빌리티 정부 제안](https://ahn-partners.netlify.app/projects/rural-mobility.html): DRT 서비스 정부 제안서. 4개 부처별 맞춤 제안.
+
+## 개발 프로세스
+
+1. **요구사항 분석**: 기획서, 엑셀, 구두 설명 — 어떤 형태든 정리
+2. **화면 설계 + 기술 스펙**: 동작하는 프로토타입으로 방향 확인
+3. **1주 단위 데모 공유**: 동작하는 결과물로 소통, 피드백 즉시 반영
+4. **배포 + 운영 가이드**: 배포 완료 후 운영 매뉴얼과 인수인계 문서 제공
+
+## 문의 방법
+
+- 웹사이트: https://ahn-partners.netlify.app
+- 프로젝트 문의: https://ahn-partners.netlify.app/about.html#contact
+- 문의 폼에서 프로젝트 유형, 요구사항, 연락처를 남겨주시면 빠르게 답변드립니다.
