@@ -24,6 +24,9 @@
 
     <style>
         body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        @media (max-width: 639px) {
+            .hero-mobile-br { display: block !important; }
+        }
         .card-hover {
             transition: all 0.3s ease;
             display: flex;
@@ -133,7 +136,7 @@
                 <span class="text-primary">책임지고 완수합니다.</span>
             </h1>
             <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4 hero-animate-delay-2">
-                웹앱 · 모바일 앱 · 관리시스템 · 대시보드 · AI 자동화<br>
+                웹앱 · 모바일 앱 · 관리시스템 ·<br style="display:none;" class="hero-mobile-br"> 대시보드 · AI 자동화<br>
                 요구사항 분석부터 배포까지 한 번에.
             </p>
 
