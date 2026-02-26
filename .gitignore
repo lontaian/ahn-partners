@@ -1,0 +1,17 @@
+# Local Netlify folder
+.netlify
+
+# Dependencies
+node_modules/
+
+# Screenshots (dev only)
+*.png
+
+# Serena MCP
+.serena/
+
+# Playwright MCP
+.playwright-mcp/
+
+# Package lock
+package-lock.json

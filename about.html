@@ -56,10 +56,25 @@
             top: 4px;
             width: 12px;
             height: 12px;
-            background: #003876;
+            background: #7C3AED;
             border-radius: 50%;
             border: 2px solid white;
             box-shadow: 0 0 0 3px #f9fafb;
+        }
+        /* FAQ Accordion */
+        details summary::-webkit-details-marker,
+        details summary::marker {
+            display: none;
+            content: '';
+        }
+        details summary {
+            list-style: none;
+        }
+        .faq-chevron {
+            transition: transform 0.2s ease;
+        }
+        details[open] .faq-chevron {
+            transform: rotate(180deg);
         }
     </style>
 
@@ -159,311 +174,330 @@
     </nav>
 
     <main class="pt-24 pb-16">
-        <div class="max-w-5xl mx-auto px-4">
 
-            <!-- Profile Header -->
-            <section class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
-                <!-- Hero Image -->
-                <div class="relative h-64 sm:h-80 md:h-96 lg:h-[28rem] bg-gradient-to-br from-primary to-blue-800">
-                    <img src="images/profile/hero.png" alt="Profile" class="w-full h-full object-cover opacity-90" style="object-position: top;"
-                         onerror="this.style.display='none'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <!-- Profile Header: full-bleed -->
+        <section class="bg-white shadow-lg overflow-hidden mb-8">
+            <!-- Hero Image: full viewport width -->
+            <div class="relative h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[32rem] bg-gradient-to-br from-primary to-blue-800">
+                <img src="images/profile/hero.png" alt="Profile" class="w-full h-full object-cover opacity-90" style="object-position: top;"
+                     onerror="this.style.display='none'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+
+            <!-- Hero content: constrained -->
+            <div class="max-w-5xl mx-auto px-6 sm:px-8 pb-8" style="padding-top: 3.5rem;">
+                <h1 class="text-3xl font-bold text-gray-900 mb-6">Ahn Partners</h1>
+                <p class="text-xl text-primary font-medium mb-6">만들고 싶은 것만 알려주세요.<span class="mobile-br"></span> 결과물로 돌려드립니다.</p>
+                <p class="text-gray-600 mb-6">
+                    아이디어 단계부터 함께합니다. <strong>요구사항 정리, 설계, 개발, 배포, 운영 가이드까지 한 번에 납품</strong>합니다.<br>아래 프로젝트에서 실제 결과물을 확인해 보세요.
+                </p>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">웹앱 / 관리시스템</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">모바일 앱 (iOS/Android)</span>
+                    <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm font-medium">AI 자동화 / API 연동</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">대시보드 / 데이터 분석</span>
+                    <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">업무자동화</span>
                 </div>
 
-                <div class="relative px-8 pb-8" style="padding-top: 3.5rem;">
-                        <h1 class="text-3xl font-bold text-gray-900 mb-6">Ahn Partners</h1>
-                        <p class="text-xl text-primary font-medium mb-6">만들고 싶은 것만 알려주세요.<span class="mobile-br"></span> 결과물로 돌려드립니다.</p>
-                        <p class="text-gray-600 mb-6">
-                            아이디어 단계부터 함께합니다. <strong>요구사항 정리, 설계, 개발, 배포, 운영 가이드까지 한 번에 납품</strong>합니다.<br>아래 프로젝트에서 실제 결과물을 확인해 보세요.
-                        </p>
+                <!-- Contact Buttons -->
+                <div class="flex flex-wrap gap-3">
+                    <a href="#contact" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-800 transition flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        프로젝트 문의
+                    </a>
+                    <a href="index.html" class="px-4 py-2 bg-primary/10 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        전체 수행 실적 보기 →
+                    </a>
+                </div>
+            </div>
+        </section>
 
-                        <!-- Tags -->
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">웹앱 / 관리시스템</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">모바일 앱 (iOS/Android)</span>
-                            <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm font-medium">AI 자동화 / API 연동</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">대시보드 / 데이터 분석</span>
-                            <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">업무자동화</span>
+        <!-- 검증 가능한 실적: full-bleed gradient -->
+        <section class="bg-gradient-to-br from-primary to-blue-700 text-white mb-8">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-10">
+                <h2 class="text-2xl font-bold mb-6 text-center">검증 가능한 실적</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl lg:text-4xl font-bold mb-1">5개</div>
+                        <div class="text-blue-200 text-sm">라이브 데모 제공</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl lg:text-4xl font-bold mb-1">10+</div>
+                        <div class="text-blue-200 text-sm">시스템 구축 납품</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl lg:text-4xl font-bold mb-1">431대</div>
+                        <div class="text-blue-200 text-sm">ERP 실운영 차량</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl lg:text-4xl font-bold mb-1">1,556</div>
+                        <div class="text-blue-200 text-sm">노선 최적화 처리</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl lg:text-4xl font-bold mb-1">100만+</div>
+                        <div class="text-blue-200 text-sm">앱 스토어 다운로드</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl lg:text-4xl font-bold mb-1">30억+</div>
+                        <div class="text-blue-200 text-sm">누적 프로젝트 규모</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content sections: max-w-6xl -->
+        <div class="max-w-6xl mx-auto px-4">
+
+            <!-- 의뢰 가능 분야 -->
+            <section class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                    <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    </span>
+                    의뢰 가능 분야
+                </h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <h3 class="font-bold text-gray-900 mb-2">업무 관리시스템</h3>
+                        <p class="text-gray-600 text-sm">ERP · 백오피스 · 관리자페이지 — 차량·인사·비용·재고 등 업무 데이터를 통합 관리하는 웹 기반 시스템. 실제 800대+ 차량 운영 시스템을 구축·운영한 경험이 있습니다.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <h3 class="font-bold text-gray-900 mb-2">대시보드 / 데이터 시각화</h3>
+                        <p class="text-gray-600 text-sm">Chart.js, Recharts 기반 인터랙티브 대시보드. BEP 시뮬레이션, 고객 분석, 트렌드 모니터링. <a href="demos/hrs-dashboard.html" class="text-primary underline">라이브 데모</a>에서 확인 가능.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <h3 class="font-bold text-gray-900 mb-2">웹앱 / 웹서비스</h3>
+                        <p class="text-gray-600 text-sm">Next.js + PostgreSQL 기반 풀스택 웹 애플리케이션. OAuth 인증, CRUD, 엑셀 임포트/익스포트, 반응형 UI까지.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <h3 class="font-bold text-gray-900 mb-2">GIS / 지도 기반 시스템</h3>
+                        <p class="text-gray-600 text-sm">MapLibre GL, Leaflet, Kakao Maps 기반 노선 편집기, 위치 기반 분석 도구. <a href="demos/junggubus-editor.html" class="text-primary underline">노선 편집기 데모</a>에서 확인 가능.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <h3 class="font-bold text-gray-900 mb-2">모바일 앱 (iOS / Android)</h3>
+                        <p class="text-gray-600 text-sm">기획부터 스토어 등록·운영까지. 누적 100만+ 다운로드 앱 출시 경험을 바탕으로, 웹서비스와 앱을 동시에 구축 가능.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <h3 class="font-bold text-gray-900 mb-2">AI 자동화 / API 연동</h3>
+                        <p class="text-gray-600 text-sm">ChatGPT·Claude 등 AI API 연동, 반복 업무 자동화, AI 챗봇 구축. 외부 API(PG사, 공공데이터 등) 연동 개발도 가능.</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-500 border-t pt-4 mt-4">
+                    이 페이지의 프로젝트들은 실제 운영 중이거나 운영되었던 시스템입니다. 데모 링크에서 동작하는 결과물을 직접 확인해 보세요.
+                </p>
+            </section>
+
+            <!-- 개발 프로세스 -->
+            <section class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                    <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                    </span>
+                    개발 프로세스
+                </h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 text-primary font-bold text-sm">1</div>
+                        <div>
+                            <div class="font-semibold text-gray-900">요구사항 분석</div>
+                            <div class="text-gray-600 text-sm">기획서, 엑셀, 구두 설명 — 어떤 형태든 정리해 드립니다</div>
                         </div>
-
-                        <!-- Contact Buttons -->
-                        <div class="flex flex-wrap gap-3">
-                            <a href="#contact" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-800 transition flex items-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                프로젝트 문의
-                            </a>
-                            <a href="index.html" class="px-4 py-2 bg-primary/10 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition flex items-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                                전체 수행 실적 보기 →
-                            </a>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 text-primary font-bold text-sm">2</div>
+                        <div>
+                            <div class="font-semibold text-gray-900">화면 설계 + 기술 스펙</div>
+                            <div class="text-gray-600 text-sm">동작하는 프로토타입으로 방향을 먼저 확인합니다</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0 text-green-700 font-bold text-sm">3</div>
+                        <div>
+                            <div class="font-semibold text-gray-900">1주 단위 데모 공유</div>
+                            <div class="text-gray-600 text-sm">동작하는 결과물로 소통합니다. 피드백 즉시 반영</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0 text-purple-700 font-bold text-sm">4</div>
+                        <div>
+                            <div class="font-semibold text-gray-900">배포 + 운영 가이드</div>
+                            <div class="text-gray-600 text-sm">배포 완료 후 운영 매뉴얼과 인수인계 문서를 제공합니다</div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <div class="grid md:grid-cols-2 gap-6 items-start">
-
-                <!-- Left Column -->
-                <div class="space-y-6">
-
-                    <!-- About Me -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                            <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                            </span>
-                            의뢰 가능 분야
-                        </h2>
-                        <div class="text-gray-600 space-y-4">
-                            <p>
-                                <strong class="text-gray-900">업무 관리시스템</strong> (ERP · 백오피스 · 관리자페이지) — 차량·인사·비용·재고 등 업무 데이터를 통합 관리하는 웹 기반 시스템. 실제 800대+ 차량 운영 시스템을 구축·운영한 경험이 있습니다.
-                            </p>
-                            <p>
-                                <strong class="text-gray-900">대시보드 / 데이터 시각화</strong> — Chart.js, Recharts 기반 인터랙티브 대시보드. BEP 시뮬레이션, 고객 분석, 트렌드 모니터링 등. <a href="demos/hrs-dashboard.html" class="text-primary underline">라이브 데모</a>에서 직접 확인하실 수 있습니다.
-                            </p>
-                            <p>
-                                <strong class="text-gray-900">웹앱 / 웹서비스</strong> — Next.js + PostgreSQL 기반 풀스택 웹 애플리케이션. OAuth 인증, CRUD, 엑셀 임포트/익스포트, 반응형 UI까지.
-                            </p>
-                            <p>
-                                <strong class="text-gray-900">GIS / 지도 기반 시스템</strong> — MapLibre GL, Leaflet, Kakao Maps 기반 노선 편집기, 위치 기반 분석 도구. <a href="demos/junggubus-editor.html" class="text-primary underline">노선 편집기 데모</a>에서 확인 가능합니다.
-                            </p>
-                            <p>
-                                <strong class="text-gray-900">모바일 앱 (iOS / Android)</strong> — 기획부터 스토어 등록·운영까지. 누적 100만+ 다운로드 앱 출시 경험을 바탕으로, 웹서비스와 앱을 동시에 구축하는 것도 가능합니다.
-                            </p>
-                            <p>
-                                <strong class="text-gray-900">AI 자동화 / API 연동</strong> — ChatGPT·Claude 등 AI API 연동, 반복 업무 자동화, AI 챗봇 구축. 외부 API(PG사, 공공데이터 등) 연동 개발도 가능합니다.
-                            </p>
-                            <p class="text-sm text-gray-500 border-t pt-4 mt-2">
-                                이 페이지의 프로젝트들은 실제 운영 중이거나 운영되었던 시스템입니다. 데모 링크에서 동작하는 결과물을 직접 확인해 보세요.
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Experience Timeline -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                            <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            </span>
-                            수행 프로젝트
-                        </h2>
-                        <div class="relative border-l-2 border-gray-200 pl-6 space-y-8">
-                            <div class="timeline-item relative">
-                                <h3 class="font-bold text-gray-900 mb-1">운송 그룹 ERP 시스템</h3>
-                                <p class="text-gray-600 text-sm">
-                                    3개 법인 통합 관리 — 차량 431대, 기사 368명, 비용기록 4,700+건<br>
-                                    <span class="text-gray-500">Next.js 14 · Prisma · PostgreSQL · OAuth 2.0</span>
-                                </p>
-                            </div>
-                            <div class="timeline-item relative">
-                                <h3 class="font-bold text-gray-900 mb-1">물류 노선 최적화 시스템</h3>
-                                <p class="text-gray-600 text-sm">
-                                    69개 거점, 1,556개 노선 자동 배정 — Hungarian Algorithm 적용<br>
-                                    <span class="text-gray-500">Python · NetworkX · OSRM</span>
-                                </p>
-                            </div>
-                            <div class="timeline-item relative">
-                                <h3 class="font-bold text-gray-900 mb-1">GIS 기반 노선 편집기</h3>
-                                <p class="text-gray-600 text-sm">
-                                    드래그앤드롭 노선 설계, 실시간 경로 계산, 검증 리포트<br>
-                                    <span class="text-gray-500">MapLibre GL · JavaScript · OSRM · Python</span>
-                                </p>
-                            </div>
-                            <div class="timeline-item relative">
-                                <h3 class="font-bold text-gray-900 mb-1">인터랙티브 데이터 대시보드</h3>
-                                <p class="text-gray-600 text-sm">
-                                    고객 분석, BEP 시뮬레이션, 월별 트렌드 — 실시간 필터링<br>
-                                    <span class="text-gray-500">Chart.js · Leaflet · Tailwind CSS</span>
-                                </p>
-                            </div>
-                            <div class="timeline-item relative">
-                                <h3 class="font-bold text-gray-900 mb-1">모바일 앱 서비스 (iOS/Android)</h3>
-                                <p class="text-gray-600 text-sm">
-                                    스토어 등록 · 운영 — 누적 <strong class="text-gray-700">100만+ 다운로드</strong> 달성
-                                </p>
-                            </div>
-                            <div class="timeline-item relative">
-                                <h3 class="font-bold text-gray-900 mb-1">대기업 B2B 서비스</h3>
-                                <p class="text-gray-600 text-sm">
-                                    국내 통신 3사 대상 서비스 개발 및 운영
-                                </p>
-                            </div>
-                            <div class="timeline-item relative">
-                                <h3 class="font-bold text-gray-900 mb-1">대규모 프로젝트 수행</h3>
-                                <p class="text-gray-600 text-sm">
-                                    30억+ 규모 프로젝트 수주부터 납품까지 완료
-                                </p>
+            <!-- 기술 스택 + 수행 프로젝트 -->
+            <div class="grid md:grid-cols-5 gap-6 mb-8 items-start">
+                <!-- 기술 스택 (40%) -->
+                <section class="md:col-span-2 bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </span>
+                        기술 스택
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Frontend</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-900 text-white rounded-full text-sm">Next.js</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">React</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">TypeScript</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Tailwind CSS</span>
                             </div>
                         </div>
-                    </section>
-
-
-
-                </div>
-
-                <!-- Right Column -->
-                <div class="space-y-6">
-
-                    <!-- Tech Stack -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                            <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                            </span>
-                            기술 스택
-                        </h2>
-
-                        <div class="space-y-4">
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Frontend</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-gray-900 text-white rounded-full text-sm">Next.js</span>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">React</span>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">TypeScript</span>
-                                    <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Tailwind CSS</span>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Backend</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Python</span>
-                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">FastAPI</span>
-                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Node.js</span>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Database & Infra</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">PostgreSQL</span>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">MySQL</span>
-                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Supabase</span>
-                                    <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">AWS</span>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Docker</span>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">데이터 시각화 & GIS</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Chart.js</span>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">MapLibre GL</span>
-                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Kakao Maps</span>
-                                </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Backend</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">FastAPI</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Node.js</span>
                             </div>
                         </div>
-                    </section>
-
-                    <!-- Project Stats -->
-                    <section class="bg-gradient-to-br from-primary to-blue-700 rounded-2xl shadow-lg p-8 text-white">
-                        <h2 class="text-2xl font-bold mb-6">검증 가능한 실적</h2>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="text-center">
-                                <div class="text-4xl font-bold mb-1">5개</div>
-                                <div class="text-blue-200 text-sm">라이브 데모 제공</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-4xl font-bold mb-1">10+</div>
-                                <div class="text-blue-200 text-sm">시스템 구축 납품</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-4xl font-bold mb-1">431대</div>
-                                <div class="text-blue-200 text-sm">ERP 실운영 차량</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-4xl font-bold mb-1">1,556</div>
-                                <div class="text-blue-200 text-sm">노선 최적화 처리</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-4xl font-bold mb-1">100만+</div>
-                                <div class="text-blue-200 text-sm">앱 스토어 다운로드</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-4xl font-bold mb-1">30억+</div>
-                                <div class="text-blue-200 text-sm">누적 프로젝트 규모</div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Database & Infra</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">PostgreSQL</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">MySQL</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Supabase</span>
+                                <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">AWS</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Docker</span>
                             </div>
                         </div>
-                    </section>
-
-                    <!-- Work Style -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                            <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            </span>
-                            개발 프로세스
-                        </h2>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-primary font-bold text-sm">1</div>
-                                <div>
-                                    <div class="font-semibold text-gray-900">요구사항 분석</div>
-                                    <div class="text-gray-600 text-sm">기획서, 엑셀, 구두 설명 — 어떤 형태든 정리해 드립니다</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-primary font-bold text-sm">2</div>
-                                <div>
-                                    <div class="font-semibold text-gray-900">화면 설계 + 기술 스펙</div>
-                                    <div class="text-gray-600 text-sm">동작하는 프로토타입으로 방향을 먼저 확인합니다</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-green-700 font-bold text-sm">3</div>
-                                <div>
-                                    <div class="font-semibold text-gray-900">1주 단위 데모 공유</div>
-                                    <div class="text-gray-600 text-sm">동작하는 결과물로 소통합니다. 피드백 즉시 반영</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-purple-700 font-bold text-sm">4</div>
-                                <div>
-                                    <div class="font-semibold text-gray-900">배포 + 운영 가이드</div>
-                                    <div class="text-gray-600 text-sm">배포 완료 후 운영 매뉴얼과 인수인계 문서를 제공합니다</div>
-                                </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">데이터 시각화 & GIS</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Chart.js</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">MapLibre GL</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Kakao Maps</span>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                </div>
+                <!-- 수행 프로젝트 (60%) -->
+                <section class="md:col-span-3 bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </span>
+                        수행 프로젝트
+                    </h2>
+                    <div class="relative border-l-2 border-gray-200 pl-6 space-y-8">
+                        <div class="timeline-item relative">
+                            <h3 class="font-bold text-gray-900 mb-1">운송 그룹 ERP 시스템</h3>
+                            <p class="text-gray-600 text-sm">
+                                3개 법인 통합 관리 — 차량 431대, 기사 368명, 비용기록 4,700+건<br>
+                                <span class="text-gray-500">Next.js 14 · Prisma · PostgreSQL · OAuth 2.0</span>
+                            </p>
+                        </div>
+                        <div class="timeline-item relative">
+                            <h3 class="font-bold text-gray-900 mb-1">물류 노선 최적화 시스템</h3>
+                            <p class="text-gray-600 text-sm">
+                                69개 거점, 1,556개 노선 자동 배정 — Hungarian Algorithm 적용<br>
+                                <span class="text-gray-500">Python · NetworkX · OSRM</span>
+                            </p>
+                        </div>
+                        <div class="timeline-item relative">
+                            <h3 class="font-bold text-gray-900 mb-1">GIS 기반 노선 편집기</h3>
+                            <p class="text-gray-600 text-sm">
+                                드래그앤드롭 노선 설계, 실시간 경로 계산, 검증 리포트<br>
+                                <span class="text-gray-500">MapLibre GL · JavaScript · OSRM · Python</span>
+                            </p>
+                        </div>
+                        <div class="timeline-item relative">
+                            <h3 class="font-bold text-gray-900 mb-1">인터랙티브 데이터 대시보드</h3>
+                            <p class="text-gray-600 text-sm">
+                                고객 분석, BEP 시뮬레이션, 월별 트렌드 — 실시간 필터링<br>
+                                <span class="text-gray-500">Chart.js · Leaflet · Tailwind CSS</span>
+                            </p>
+                        </div>
+                        <div class="timeline-item relative">
+                            <h3 class="font-bold text-gray-900 mb-1">모바일 앱 서비스 (iOS/Android)</h3>
+                            <p class="text-gray-600 text-sm">
+                                스토어 등록 · 운영 — 누적 <strong class="text-gray-700">100만+ 다운로드</strong> 달성
+                            </p>
+                        </div>
+                        <div class="timeline-item relative">
+                            <h3 class="font-bold text-gray-900 mb-1">대기업 B2B 서비스</h3>
+                            <p class="text-gray-600 text-sm">
+                                국내 통신 3사 대상 서비스 개발 및 운영
+                            </p>
+                        </div>
+                        <div class="timeline-item relative">
+                            <h3 class="font-bold text-gray-900 mb-1">대규모 프로젝트 수행</h3>
+                            <p class="text-gray-600 text-sm">
+                                30억+ 규모 프로젝트 수주부터 납품까지 완료
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <!-- FAQ Section -->
-            <section class="bg-white rounded-2xl shadow-lg p-8 mt-8">
+            <section class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                     <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </span>
                     자주 묻는 질문
                 </h2>
-                <div class="space-y-6">
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-2">어떤 종류의 개발을 의뢰할 수 있나요?</h3>
-                        <p class="text-gray-600 text-sm">웹앱, 모바일 앱(iOS/Android), 업무 관리시스템(ERP), 대시보드, AI 자동화, GIS 지도 시스템 등 다양한 개발이 가능합니다. 실제로 431대 차량을 관리하는 ERP, 1,556개 노선 최적화 시스템, 누적 100만+ 다운로드 앱 등을 구축한 경험이 있습니다.</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-3">
+                        <details class="border border-gray-200 rounded-xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-gray-900 hover:bg-gray-50 text-sm sm:text-base">
+                                어떤 종류의 개발을 의뢰할 수 있나요?
+                                <svg class="w-5 h-5 text-gray-400 faq-chevron flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <p class="px-4 pb-4 text-gray-600 text-sm">웹앱, 모바일 앱(iOS/Android), 업무 관리시스템(ERP), 대시보드, AI 자동화, GIS 지도 시스템 등 다양한 개발이 가능합니다. 실제로 431대 차량을 관리하는 ERP, 1,556개 노선 최적화 시스템, 누적 100만+ 다운로드 앱 등을 구축한 경험이 있습니다.</p>
+                        </details>
+                        <details class="border border-gray-200 rounded-xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-gray-900 hover:bg-gray-50 text-sm sm:text-base">
+                                개발 기간은 보통 얼마나 걸리나요?
+                                <svg class="w-5 h-5 text-gray-400 faq-chevron flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <p class="px-4 pb-4 text-gray-600 text-sm">프로젝트 규모에 따라 다르지만, 일반적으로 MVP는 2~4주, 풀 기능 시스템은 4~8주 소요됩니다. 운송 ERP(FMS)의 경우 요구사항 분석부터 프로덕션 배포까지 4주 만에 완료했습니다. 1주 단위로 동작하는 데모를 공유하며 진행합니다.</p>
+                        </details>
+                        <details class="border border-gray-200 rounded-xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-gray-900 hover:bg-gray-50 text-sm sm:text-base">
+                                기획서가 없어도 의뢰할 수 있나요?
+                                <svg class="w-5 h-5 text-gray-400 faq-chevron flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <p class="px-4 pb-4 text-gray-600 text-sm">네, 가능합니다. 아이디어 단계부터 함께합니다. 구두 설명, 엑셀 파일, 참고 사이트 등 어떤 형태의 요구사항이든 정리해 드립니다. 실제로 FMS 프로젝트는 18개 엑셀 파일과 현업 인터뷰를 분석해 요구사항을 직접 도출했습니다.</p>
+                        </details>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-2">개발 기간은 보통 얼마나 걸리나요?</h3>
-                        <p class="text-gray-600 text-sm">프로젝트 규모에 따라 다르지만, 일반적으로 MVP는 2~4주, 풀 기능 시스템은 4~8주 소요됩니다. 운송 ERP(FMS)의 경우 요구사항 분석부터 프로덕션 배포까지 4주 만에 완료했습니다. 1주 단위로 동작하는 데모를 공유하며 진행합니다.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-2">기획서가 없어도 의뢰할 수 있나요?</h3>
-                        <p class="text-gray-600 text-sm">네, 가능합니다. 아이디어 단계부터 함께합니다. 구두 설명, 엑셀 파일, 참고 사이트 등 어떤 형태의 요구사항이든 정리해 드립니다. 실제로 FMS 프로젝트는 18개 엑셀 파일과 현업 인터뷰를 분석해 요구사항을 직접 도출했습니다.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-2">주로 어떤 기술 스택을 사용하나요?</h3>
-                        <p class="text-gray-600 text-sm">프론트엔드는 Next.js, React, TypeScript, Tailwind CSS를 주로 사용합니다. 백엔드는 Python(FastAPI), Node.js이며, 데이터베이스는 PostgreSQL, MySQL을 사용합니다. 지도 시스템은 MapLibre GL, Leaflet, Kakao Maps를 활용합니다.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-2">모바일 앱도 개발 가능한가요?</h3>
-                        <p class="text-gray-600 text-sm">네, iOS와 Android 모바일 앱 개발이 가능합니다. 기획부터 스토어 등록, 운영까지 전 과정을 지원합니다. 누적 100만+ 다운로드를 달성한 앱 출시 경험이 있으며, 웹서비스와 앱을 동시에 구축하는 것도 가능합니다.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-2">결과물을 미리 확인할 수 있나요?</h3>
-                        <p class="text-gray-600 text-sm">네, 5개 이상의 라이브 데모를 제공하고 있어 실제 동작하는 결과물을 직접 확인하실 수 있습니다. 운송 ERP, 노선 편집기, 대시보드 등의 데모가 준비되어 있습니다. 개발 중에도 1주 단위로 동작하는 데모를 공유하며 소통합니다.</p>
+                    <div class="space-y-3">
+                        <details class="border border-gray-200 rounded-xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-gray-900 hover:bg-gray-50 text-sm sm:text-base">
+                                주로 어떤 기술 스택을 사용하나요?
+                                <svg class="w-5 h-5 text-gray-400 faq-chevron flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <p class="px-4 pb-4 text-gray-600 text-sm">프론트엔드는 Next.js, React, TypeScript, Tailwind CSS를 주로 사용합니다. 백엔드는 Python(FastAPI), Node.js이며, 데이터베이스는 PostgreSQL, MySQL을 사용합니다. 지도 시스템은 MapLibre GL, Leaflet, Kakao Maps를 활용합니다.</p>
+                        </details>
+                        <details class="border border-gray-200 rounded-xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-gray-900 hover:bg-gray-50 text-sm sm:text-base">
+                                모바일 앱도 개발 가능한가요?
+                                <svg class="w-5 h-5 text-gray-400 faq-chevron flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <p class="px-4 pb-4 text-gray-600 text-sm">네, iOS와 Android 모바일 앱 개발이 가능합니다. 기획부터 스토어 등록, 운영까지 전 과정을 지원합니다. 누적 100만+ 다운로드를 달성한 앱 출시 경험이 있으며, 웹서비스와 앱을 동시에 구축하는 것도 가능합니다.</p>
+                        </details>
+                        <details class="border border-gray-200 rounded-xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-gray-900 hover:bg-gray-50 text-sm sm:text-base">
+                                결과물을 미리 확인할 수 있나요?
+                                <svg class="w-5 h-5 text-gray-400 faq-chevron flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <p class="px-4 pb-4 text-gray-600 text-sm">네, 5개 이상의 라이브 데모를 제공하고 있어 실제 동작하는 결과물을 직접 확인하실 수 있습니다. 운송 ERP, 노선 편집기, 대시보드 등의 데모가 준비되어 있습니다. 개발 중에도 1주 단위로 동작하는 데모를 공유하며 소통합니다.</p>
+                        </details>
                     </div>
                 </div>
             </section>
 
             <!-- Contact Form -->
-            <section id="contact" class="bg-white rounded-2xl shadow-lg p-8 mt-8">
+            <section id="contact" class="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                     <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
