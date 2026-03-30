@@ -299,46 +299,52 @@
 <body class="bg-gray-100 min-h-screen">
     <!-- Header - Sticky for easy month switching -->
     <header class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white shadow-2xl sticky top-0 z-[100000]">
-        <div class="container mx-auto px-6 py-5">
-            <div class="flex items-center justify-between">
+        <div class="container mx-auto px-3 py-2 lg:px-6 lg:py-5">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-0">
                 <!-- 좌측: 로고 + 타이틀 + 이용방법 버튼 -->
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/20">
-                        <span class="text-2xl">⚡</span>
+                <div class="flex items-center gap-2 lg:gap-4">
+                    <div class="w-8 h-8 lg:w-12 lg:h-12 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/20 shrink-0">
+                        <span class="text-lg lg:text-2xl">⚡</span>
                     </div>
-                    <div>
-                        <div class="flex items-center gap-3">
-                            <h1 class="text-2xl font-bold tracking-tight">
+                    <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-2 lg:gap-3">
+                            <h1 class="text-sm lg:text-2xl font-bold tracking-tight truncate">
                                 원더에너지 수소충전소 <span class="text-blue-300">수요 분석</span> 대시보드
                             </h1>
-                            <button id="helpBtn" onclick="openHelpModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-900 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <button id="helpBtn" onclick="openHelpModal()" class="flex items-center gap-1 lg:gap-1.5 px-2 py-1 lg:px-3 lg:py-1.5 bg-yellow-400 hover:bg-yellow-300 text-slate-900 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 shrink-0">
+                                <svg class="w-3.5 h-3.5 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
-                                <span class="text-sm font-bold">이용방법</span>
+                                <span class="text-xs lg:text-sm font-bold hidden sm:inline">이용방법</span>
                             </button>
                         </div>
-                        <p class="text-blue-200/80 text-sm mt-0.5">
+                        <p class="text-blue-200/80 text-xs lg:text-sm mt-0.5 hidden lg:block">
                             용인 포곡 삼계리 신규 충전소 (2026.10 오픈 예정) · 거래처 · 잠재수요 통합 분석
                         </p>
                     </div>
                 </div>
-                <!-- 우측: 월 선택 탭 -->
+                <!-- 우측(모바일은 하단): 월 선택 탭 -->
                 <div class="flex items-center gap-2">
-                    <div class="flex bg-blue-800/50 rounded-lg p-1">
-                        <button onclick="switchMonth('2025-10')" id="month-tab-2025-10" class="month-tab px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-200 hover:bg-blue-700/50">
+                    <div class="flex bg-blue-800/50 rounded-lg p-1 overflow-x-auto">
+                        <button onclick="switchMonth('2025-10')" id="month-tab-2025-10" class="month-tab px-3 lg:px-4 py-1 lg:py-1.5 rounded-md text-xs lg:text-sm font-medium transition-all text-blue-200 hover:bg-blue-700/50 whitespace-nowrap">
                             10월
                         </button>
-                        <button onclick="switchMonth('2025-11')" id="month-tab-2025-11" class="month-tab px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-200 hover:bg-blue-700/50">
+                        <button onclick="switchMonth('2025-11')" id="month-tab-2025-11" class="month-tab px-3 lg:px-4 py-1 lg:py-1.5 rounded-md text-xs lg:text-sm font-medium transition-all text-blue-200 hover:bg-blue-700/50 whitespace-nowrap">
                             11월
                         </button>
-                        <button onclick="switchMonth('2025-12')" id="month-tab-2025-12" class="month-tab px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white text-blue-600">
+                        <button onclick="switchMonth('2025-12')" id="month-tab-2025-12" class="month-tab px-3 lg:px-4 py-1 lg:py-1.5 rounded-md text-xs lg:text-sm font-medium transition-all text-blue-200 hover:bg-blue-700/50 whitespace-nowrap">
                             12월
+                        </button>
+                        <button onclick="switchMonth('2026-01')" id="month-tab-2026-01" class="month-tab px-3 lg:px-4 py-1 lg:py-1.5 rounded-md text-xs lg:text-sm font-medium transition-all text-blue-200 hover:bg-blue-700/50 whitespace-nowrap">
+                            1월
+                        </button>
+                        <button onclick="switchMonth('2026-02')" id="month-tab-2026-02" class="month-tab px-3 lg:px-4 py-1 lg:py-1.5 rounded-md text-xs lg:text-sm font-medium transition-all bg-white text-blue-600 whitespace-nowrap">
+                            2월
                         </button>
                     </div>
                     <div class="text-right text-sm hidden md:block ml-2">
                         <div class="text-blue-200/60">데이터 기준</div>
-                        <div class="font-medium" id="currentMonthDisplay">2025년 12월</div>
+                        <div class="font-medium" id="currentMonthDisplay">2026년 2월</div>
                     </div>
                 </div>
             </div>
@@ -347,7 +353,7 @@
 
     <main class="container mx-auto px-4 py-6">
         <!-- Summary Cards - Enhanced Design with Categories -->
-        <div class="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
+        <div class="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4 mb-6">
             <div class="stat-card gradient-blue rounded-xl shadow-lg p-4 text-white">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-white/80 text-xs font-medium">수소버스 대수</span>
@@ -382,11 +388,11 @@
             </div>
             <div class="stat-card gradient-green rounded-xl shadow-lg p-4 text-white">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-white/80 text-xs font-medium" id="chargeCardLabel">12월 원더 전체 충전량</span>
+                    <span class="text-white/80 text-xs font-medium" id="chargeCardLabel">2월 원더 전체 충전량</span>
                     <span class="text-xl">⛽</span>
                 </div>
-<div class="text-2xl font-bold tracking-tight" id="monthlyChargeDisplay">25,335<span class="text-sm ml-1">kg</span></div>
-                <div class="text-white/60 text-[10px] mt-1" id="chargeChangeDisplay">전월 대비 +3,569kg (+16.4%)</div>
+<div class="text-2xl font-bold tracking-tight" id="monthlyChargeDisplay">21,777<span class="text-sm ml-1">kg</span></div>
+                <div class="text-white/60 text-[10px] mt-1" id="chargeChangeDisplay">전월 대비 -5,568kg (-20.4%)</div>
             </div>
             <div class="stat-card gradient-rose rounded-xl shadow-lg p-4 text-white">
                 <div class="flex items-center justify-between mb-2">
@@ -609,19 +615,19 @@
         <!-- Data Tables with Tabs -->
         <div class="bg-white rounded-lg shadow mt-6">
             <!-- Tab Header -->
-            <div class="border-b">
-                <div class="flex">
-                    <button class="tab-btn active px-6 py-3 text-sm text-gray-600 hover:text-blue-600" data-tab="customers">
-                        🏢 현재 거래처(수소버스) <span class="ml-1 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full" id="customerTabCount">15개 (81대)</span>
+            <div class="border-b overflow-x-auto">
+                <div class="flex min-w-max">
+                    <button class="tab-btn active px-3 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm text-gray-600 hover:text-blue-600 whitespace-nowrap" data-tab="customers">
+                        🏢 거래처 <span class="ml-1 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full" id="customerTabCount">19개 (85대)</span>
                     </button>
-                    <button class="tab-btn px-6 py-3 text-sm text-gray-600 hover:text-orange-600" data-tab="potential">
+                    <button class="tab-btn px-3 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm text-gray-600 hover:text-orange-600 whitespace-nowrap" data-tab="potential">
                         🎯 잠재고객 <span class="ml-1 text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full" id="potentialTabCount">28</span>
                     </button>
-                    <button class="tab-btn px-6 py-3 text-sm text-gray-600 hover:text-purple-600" data-tab="depots">
-                        🚌 버스 차고지 <span class="ml-1 text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full" id="depotTabCount">5</span>
+                    <button class="tab-btn px-3 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm text-gray-600 hover:text-purple-600 whitespace-nowrap" data-tab="depots">
+                        🚌 차고지 <span class="ml-1 text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full" id="depotTabCount">5</span>
                     </button>
-                    <button class="tab-btn px-6 py-3 text-sm text-gray-600 hover:text-green-600" data-tab="stations">
-                        ⛽ 타사 충전소 이용 현황 <span class="ml-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full" id="stationTabCount">14</span>
+                    <button class="tab-btn px-3 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm text-gray-600 hover:text-green-600 whitespace-nowrap" data-tab="stations">
+                        ⛽ 충전소 현황 <span class="ml-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full" id="stationTabCount">14</span>
                     </button>
                 </div>
             </div>
@@ -738,11 +744,11 @@
                 <div class="p-4 bg-green-50 border-b">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h3 id="stationMonthTitle" class="font-semibold text-green-800">충전소별 이용 현황 (12월)</h3>
+                            <h3 id="stationMonthTitle" class="font-semibold text-green-800">충전소별 이용 현황 (2월)</h3>
                             <p class="text-xs text-green-600 mt-1">원더모빌리티 소속 수소버스 타사 충전소 이용 현황</p>
                         </div>
                         <div class="text-right">
-                            <div id="stationTotalKg" class="text-2xl font-bold text-green-700">25,335<span class="text-sm">kg</span></div>
+                            <div id="stationTotalKg" class="text-2xl font-bold text-green-700">21,777<span class="text-sm">kg</span></div>
                             <div class="text-xs text-green-600">총 충전량</div>
                         </div>
                     </div>
@@ -835,19 +841,21 @@
                     <h3>📊 대시보드 소개</h3>
                     <p class="text-gray-600 mb-4">원더에너지 포곡 삼계리 수소충전소(2026.10 오픈 예정)의 수요 분석 대시보드입니다.</p>
 
-                    <h3>🆕 v5.2 업데이트</h3>
+                    <h3>🆕 v5.4 업데이트</h3>
                     <ul>
-                        <li><strong>12월 데이터 추가</strong>: 2025년 12월 충전 데이터 (25,335kg, 15개 거래처, 81대)</li>
-                        <li><strong>3개월 비교</strong>: 10월/11월/12월 월별 데이터 전환 및 전월대비 분석</li>
-                        <li><strong>충전량 증가</strong>: 11월 대비 +3,569kg (+16.4%) 증가</li>
+                        <li><strong>2월 데이터 추가</strong>: 2026년 2월 충전 데이터 (21,777kg, 19개 거래처, 85대)</li>
+                        <li><strong>5개월 비교</strong>: 10월/11월/12월/1월/2월 월별 데이터 전환 및 전월대비 분석</li>
+                        <li><strong>신규 거래처 4개</strong>: 광역버스, 위키드(대구), 마크로젠, 서울대학교(시흥)</li>
+                        <li><strong>법인명 변경</strong>: 온모(온버스모빌리티) → 알이백(알이백버스)</li>
+                        <li><strong>충전량 감소</strong>: 1월 대비 -5,568kg (-20.4%), 설 연휴 영향</li>
                     </ul>
 
                     <h3>🗓️ 월별 데이터 전환</h3>
                     <ul>
-                        <li>상단 헤더의 <strong>10월 / 11월 / 12월</strong> 탭으로 월별 데이터 전환</li>
+                        <li>상단 헤더의 <strong>10월 / 11월 / 12월 / 1월 / 2월</strong> 탭으로 월별 데이터 전환</li>
                         <li>헤더가 <strong>고정(Sticky)</strong>되어 스크롤 중에도 언제든 월 변경 가능</li>
                         <li>전환 시 거래처, 법인별 충전량, 시뮬레이션 결과 등 모든 데이터 자동 갱신</li>
-                        <li>11월/12월 선택 시 <strong>전월대비/증감률</strong> 컬럼 추가 표시</li>
+                        <li>11월/12월/1월/2월 선택 시 <strong>전월대비/증감률</strong> 컬럼 추가 표시</li>
                     </ul>
 
                     <h3>상단 요약 카드</h3>
@@ -860,11 +868,11 @@
                             <tr><td>🎯 잠재고객</td><td><strong>도로거리 30km 이내</strong> 쿠팡 물류센터 수 (16개소)</td></tr>
                             <tr><td>🚌 버스 차고지</td><td>인근 시내/광역버스 차고지 (수소버스 전환 잠재 수요)</td></tr>
                             <tr><td>💧 주변 수소버스</td><td>타 운수사 운행 수소버스 (이천시내버스 등)</td></tr>
-                            <tr><td>⛽ 월간 충전량</td><td>선택 월 원더 전체 충전량 (11월: 전월 대비 증감 표시)</td></tr>
+                            <tr><td>⛽ 월간 충전량</td><td>선택 월 원더 전체 충전량 (전월 대비 증감 표시)</td></tr>
                             <tr><td>📊 MTOP 목표</td><td>월간 최소 계약량 (에너하이 MTOP 기준)</td></tr>
                         </tbody>
                     </table>
-                    <div class="tip">💡 <strong>데이터 출처</strong>: 2025년 10월/11월/12월 수소충전현황 Excel</div>
+                    <div class="tip">💡 <strong>데이터 출처</strong>: 2025년 10월~2026년 2월 수소충전현황 Excel</div>
                 </div>
 
                 <!-- 지도 탭 -->
@@ -958,7 +966,7 @@
                         <li>마우스 호버 시 충전량(kg) 및 정확한 비율 툴팁 표시</li>
                         <li><strong>온버스</strong>: 주력 법인 (약 83% 비중)</li>
                         <li><strong>원더온</strong>: 중형 법인 (약 10%)</li>
-                        <li><strong>온모</strong>: 소형 법인 (약 7%)</li>
+                        <li><strong>알이백</strong>: 소형 법인 (약 7%)</li>
                         <li>월별 전환 시 차트 데이터 자동 갱신</li>
                         <li>하단 테이블에서 거래처수/버스/충전량/횟수/일평균/충전주기 상세 확인</li>
                     </ul>
@@ -979,7 +987,7 @@
                     <h3>📋 데이터 테이블</h3>
 
                     <h3>🏢 현재 거래처 탭</h3>
-                    <p class="text-gray-600">원더모빌리티 소속 거래처 상세 (10월: 16개, 11월: 15개, 12월: 15개):</p>
+                    <p class="text-gray-600">원더모빌리티 소속 거래처 상세 (10월: 16개, 11월: 15개, 12월: 15개, 1월: 15개):</p>
                     <ul>
                         <li>수소버스 대수, 월간 충전량, 충전횟수</li>
                         <li><strong class="text-amber-600">충전금액(VAT)</strong>, <strong class="text-blue-600">유가보조금</strong> - 실제 청구 금액</li>
@@ -1044,7 +1052,7 @@
 
     <footer class="bg-gray-800 text-gray-400 text-sm py-4 mt-8">
         <div class="container mx-auto px-4 text-center">
-            <p id="footerDataLabel">원더에너지 수소충전소 시뮬레이션 대시보드 v5.2 | 데이터 기준: 2025년 12월</p>
+            <p id="footerDataLabel">원더에너지 수소충전소 시뮬레이션 대시보드 v5.4 | 데이터 기준: 2026년 2월</p>
         </div>
     </footer>
 
@@ -1093,7 +1101,7 @@
                 daily_avg: 72.16,
                 charge_cycle: 2.24
             },
-            '온모': {
+            '알이백': {
                 total_kg: 1548.80,
                 color: '#8B5CF6',
                 customers: 1,
@@ -1106,7 +1114,7 @@
 
         // ========== 월별 시계열 데이터 ==========
         // 데이터 출처: charging_history.json (build_timeseries_data.py로 생성)
-        let currentMonth = '2025-12';
+        let currentMonth = '2026-02';
 
         // 거래처별 기본 정보 (좌표, 버스 대수, 도로 거리 등은 고정)
         const CUSTOMER_INFO = {
@@ -1127,7 +1135,11 @@
             '청담어학원(송파)': { lat: 37.512579, lng: 127.124999, h2_buses: 1, road_distance_km: 36.4, road_time_min: 63 },
             '청담어학원(분당)': { lat: 37.379416, lng: 127.115406, h2_buses: 1, road_distance_km: 27.5, road_time_min: 41 },
             '최선어학원(영통)': { lat: 37.254519, lng: 127.073461, h2_buses: 1, road_distance_km: 22.2, road_time_min: 37 },
-            'DL E&C': { lat: 37.5665, lng: 126.9780, h2_buses: 1, road_distance_km: 55.0, road_time_min: 80 }
+            'DL E&C': { lat: 37.5665, lng: 126.9780, h2_buses: 1, road_distance_km: 55.0, road_time_min: 80 },
+            '광역버스': { lat: 37.420, lng: 127.126, h2_buses: 3, road_distance_km: 25.0, road_time_min: 35 },
+            '위키드(대구)': { lat: 35.871, lng: 128.601, h2_buses: 2, road_distance_km: 220.0, road_time_min: 170 },
+            '마크로젠': { lat: 37.383, lng: 126.661, h2_buses: 2, road_distance_km: 60.0, road_time_min: 70 },
+            '서울대학교(시흥)': { lat: 37.340, lng: 126.736, h2_buses: 1, road_distance_km: 50.0, road_time_min: 60 }
         };
 
         // 월별 충전 데이터
@@ -1175,7 +1187,7 @@
                         daily_avg: 57.34,
                         charge_cycle: 2.53
                     },
-                    '온모': {
+                    '알이백': {
                         total_kg: 1204.00,
                         color: '#8B5CF6',
                         customers: 3,
@@ -1250,7 +1262,7 @@
                         daily_avg: 72.16,
                         charge_cycle: 2.24
                     },
-                    '온모': {
+                    '알이백': {
                         total_kg: 1548.80,
                         color: '#8B5CF6',
                         customers: 1,
@@ -1325,7 +1337,7 @@
                         daily_avg: 70.70,
                         charge_cycle: 2.25
                     },
-                    '온모': {
+                    '알이백': {
                         total_kg: 1470.26,
                         color: '#8B5CF6',
                         customers: 2,
@@ -1351,6 +1363,167 @@
                     '청담어학원(송파)': { total_kg: 262.67, charge_count: 16, avg_per_charge: 16.42 },
                     '청담어학원(분당)': { total_kg: 231.15, charge_count: 10, avg_per_charge: 23.12 },
                     '최선어학원(영통)': { total_kg: 216.51, charge_count: 10, avg_per_charge: 21.65 }
+                }
+            },
+            '2026-01': {
+                summary: { total_kg: 27344.84, total_count: 1374, customer_count: 15, vehicle_count: 84 },
+                vehicles_by_customer: {
+                    '삼성전자(수원)': 30, '경복초등학교': 11,
+                    '삼성바이오로직스': 10, '인스파이어 엔터테인먼트 리조트': 5,
+                    '삼성물산(에버랜드)': 5, '삼성전자(평택)': 5,
+                    '분당서울대병원': 4, '롯데바이오로직스': 3,
+                    '평택미군스쿨': 3, '할렐루야교회': 2,
+                    '고대구로병원': 2, '롯데면세점': 1,
+                    '청담어학원(분당)': 1, '청담어학원(송파)': 1, '최선어학원(영통)': 1
+                },
+                charging_stations: [
+                    { name: '에스케이 성남사송 수소충전소', total_kg: 6286.96, count: 296, lat: 37.414814, lng: 127.115619, price_per_kg: 11000, road_distance_km: 26.7, road_time_min: 37 },
+                    { name: '에스케이 수원고색 수소충전소', total_kg: 3913.48, count: 201, lat: 37.2372, lng: 126.9880, price_per_kg: 11550, road_distance_km: 33.4, road_time_min: 34 },
+                    { name: '에스케이 송도액화 수소충전소', total_kg: 2603.29, count: 138, lat: 37.3679, lng: 126.6382, price_per_kg: 11550, road_distance_km: 58.0, road_time_min: 58 },
+                    { name: '성남 수소충전소', total_kg: 2275.99, count: 121, lat: 37.421758, lng: 127.155178, price_per_kg: 11000, road_distance_km: 24.7, road_time_min: 34 },
+                    { name: '세운산업(주)가좌 수소충전소', total_kg: 2060.28, count: 99, lat: 37.492005, lng: 126.650939, price_per_kg: 12155, road_distance_km: 68.5, road_time_min: 92 },
+                    { name: '코하이젠 안산본오 수소충전소', total_kg: 2030.59, count: 91, lat: 37.289790, lng: 126.872924, price_per_kg: 11900, road_distance_km: 40.6, road_time_min: 44 },
+                    { name: '에스케이 인천운서 수소충전소', total_kg: 1519.22, count: 62, lat: 37.4614, lng: 126.4089, price_per_kg: 11000, road_distance_km: 85.0, road_time_min: 80 },
+                    { name: '하이넷 인천공항T1 수소충전소', total_kg: 1398.20, count: 57, lat: 37.481639, lng: 126.423174, price_per_kg: 11333, road_distance_km: 87.0, road_time_min: 81 },
+                    { name: '에스케이 평택모곡 수소충전소', total_kg: 1175.77, count: 58, lat: 37.053813, lng: 127.080491, price_per_kg: 11000, road_distance_km: 35.5, road_time_min: 55 },
+                    { name: '하이넷 에버랜드 수소충전소', total_kg: 1048.72, count: 60, lat: 37.293399, lng: 127.222755, price_per_kg: 11372, road_distance_km: 2.6, road_time_min: 7 },
+                    { name: '에스케이 인천신흥 수소충전소', total_kg: 974.01, count: 50, lat: 37.436280, lng: 126.623811, price_per_kg: 11000, road_distance_km: 64.0, road_time_min: 76 },
+                    { name: '기흥휴게소(부산) 수소충전소', total_kg: 965.23, count: 86, lat: 37.233563, lng: 127.105789, price_per_kg: 11400, road_distance_km: 20.2, road_time_min: 29 },
+                    { name: '하이넷 광명소하 수소충전소', total_kg: 553.10, count: 24, lat: 37.438555, lng: 126.892585, price_per_kg: 11390, road_distance_km: 47.5, road_time_min: 50 },
+                    { name: '에스케이 대구검단 수소충전소', total_kg: 188.14, count: 9, lat: 35.8833, lng: 128.5536, price_per_kg: 12100, road_distance_km: 220.0, road_time_min: 170 },
+                    { name: '에스케이 송도기체 수소충전소', total_kg: 165.00, count: 11, lat: 37.3798, lng: 126.6561, price_per_kg: 11550, road_distance_km: 55.0, road_time_min: 60 },
+                    { name: '월곡수소충전소(주)', total_kg: 128.46, count: 8, lat: 35.143749, lng: 126.816904, price_per_kg: 9900, road_distance_km: 269.8, road_time_min: 195 },
+                    { name: '에스케이 이천대흥 수소충전소', total_kg: 29.47, count: 1, lat: 37.2719, lng: 127.4375, price_per_kg: 11000, road_distance_km: 28.0, road_time_min: 35 },
+                    { name: '덕평휴게소(강릉) 수소충전소', total_kg: 14.54, count: 1, lat: 37.242839, lng: 127.391004, price_per_kg: 10950, road_distance_km: 27.4, road_time_min: 38 },
+                    { name: '안성맞춤(제천) 수소충전소', total_kg: 14.39, count: 1, lat: 37.0700, lng: 128.0256, price_per_kg: 11000, road_distance_km: 75.0, road_time_min: 68 }
+                ],
+                companies: {
+                    '온버스': {
+                        total_kg: 23085.65,
+                        color: '#3B82F6',
+                        customers: 14,
+                        vehicles: 67,
+                        charge_count: 1159,
+                        daily_avg: 744.70,
+                        charge_cycle: 1.79
+                    },
+                    '원더온': {
+                        total_kg: 2422.44,
+                        color: '#10B981',
+                        customers: 4,
+                        vehicles: 8,
+                        charge_count: 125,
+                        daily_avg: 78.14,
+                        charge_cycle: 1.98
+                    },
+                    '알이백': {
+                        total_kg: 1836.75,
+                        color: '#8B5CF6',
+                        customers: 3,
+                        vehicles: 6,
+                        charge_count: 90,
+                        daily_avg: 59.25,
+                        charge_cycle: 2.07
+                    }
+                },
+                customers: {
+                    '삼성전자(수원)': { total_kg: 11048.79, charge_count: 559, avg_per_charge: 19.76 },
+                    '인스파이어 엔터테인먼트 리조트': { total_kg: 3917.22, charge_count: 161, avg_per_charge: 24.33 },
+                    '삼성바이오로직스': { total_kg: 3083.78, charge_count: 162, avg_per_charge: 19.04 },
+                    '삼성물산(에버랜드)': { total_kg: 1765.34, charge_count: 100, avg_per_charge: 17.65 },
+                    '롯데바이오로직스': { total_kg: 1214.15, charge_count: 64, avg_per_charge: 18.97 },
+                    '경복초등학교': { total_kg: 1148.82, charge_count: 50, avg_per_charge: 22.98 },
+                    '분당서울대병원': { total_kg: 1021.69, charge_count: 54, avg_per_charge: 18.92 },
+                    '삼성전자(평택)': { total_kg: 969.93, charge_count: 53, avg_per_charge: 18.30 },
+                    '할렐루야교회': { total_kg: 785.09, charge_count: 38, avg_per_charge: 20.66 },
+                    '고대구로병원': { total_kg: 553.10, charge_count: 24, avg_per_charge: 23.05 },
+                    '롯데면세점': { total_kg: 503.51, charge_count: 30, avg_per_charge: 16.78 },
+                    '평택미군스쿨': { total_kg: 445.11, charge_count: 18, avg_per_charge: 24.73 },
+                    '청담어학원(분당)': { total_kg: 318.33, charge_count: 21, avg_per_charge: 15.16 },
+                    '청담어학원(송파)': { total_kg: 315.93, charge_count: 19, avg_per_charge: 16.63 },
+                    '최선어학원(영통)': { total_kg: 254.06, charge_count: 21, avg_per_charge: 12.10 }
+                }
+            },
+            '2026-02': {
+                summary: { total_kg: 21777.48, total_count: 1132, customer_count: 19, vehicle_count: 85 },
+                vehicles_by_customer: {
+                    '삼성전자(수원)': 26, '경복초등학교': 11, '삼성바이오로직스': 10,
+                    '삼성전자(평택)': 6, '인스파이어 엔터테인먼트 리조트': 5,
+                    '삼성물산(에버랜드)': 5, '분당서울대병원': 5,
+                    '롯데바이오로직스': 3, '광역버스': 3, '평택미군스쿨': 3,
+                    '위키드(대구)': 2, '할렐루야교회': 2, '고대구로병원': 2, '마크로젠': 2,
+                    '롯데면세점': 1, '청담어학원(송파)': 1, '최선어학원(영통)': 1,
+                    '청담어학원(분당)': 1, '서울대학교(시흥)': 1
+                },
+                charging_stations: [
+                    { name: '에스케이 성남사송 수소충전소', total_kg: 4230.61, count: 219, lat: 37.414814, lng: 127.115619, price_per_kg: 11000, road_distance_km: 26.7, road_time_min: 37 },
+                    { name: '에스케이 수원고색 수소충전소', total_kg: 3558.52, count: 185, lat: 37.2372, lng: 126.9880, price_per_kg: 11550, road_distance_km: 33.4, road_time_min: 34 },
+                    { name: '에스케이 송도액화 수소충전소', total_kg: 2885.84, count: 158, lat: 37.3679, lng: 126.6382, price_per_kg: 11550, road_distance_km: 58.0, road_time_min: 58 },
+                    { name: '에스케이 인천운서 수소충전소', total_kg: 1822.68, count: 84, lat: 37.4614, lng: 126.4089, price_per_kg: 11000, road_distance_km: 85.0, road_time_min: 80 },
+                    { name: '성남 수소충전소', total_kg: 1806.78, count: 100, lat: 37.421758, lng: 127.155178, price_per_kg: 11000, road_distance_km: 24.7, road_time_min: 34 },
+                    { name: '코하이젠 안산본오 수소충전소', total_kg: 1267.72, count: 60, lat: 37.289790, lng: 126.872924, price_per_kg: 11900, road_distance_km: 40.6, road_time_min: 44 },
+                    { name: '에스케이 평택모곡 수소충전소', total_kg: 1206.54, count: 58, lat: 37.053813, lng: 127.080491, price_per_kg: 11000, road_distance_km: 35.5, road_time_min: 55 },
+                    { name: '하이넷 에버랜드 수소충전소', total_kg: 1193.80, count: 80, lat: 37.293399, lng: 127.222755, price_per_kg: 11372, road_distance_km: 2.6, road_time_min: 7 },
+                    { name: '하이넷 인천공항T1 수소충전소', total_kg: 1100.78, count: 47, lat: 37.481639, lng: 126.423174, price_per_kg: 11333, road_distance_km: 87.0, road_time_min: 81 },
+                    { name: '세운산업(주)가좌 수소충전소', total_kg: 951.48, count: 51, lat: 37.492005, lng: 126.650939, price_per_kg: 12155, road_distance_km: 68.5, road_time_min: 92 },
+                    { name: '에스케이 대구검단 수소충전소', total_kg: 422.74, count: 22, lat: 35.8833, lng: 128.5536, price_per_kg: 12100, road_distance_km: 220.0, road_time_min: 170 },
+                    { name: '하이넷 광명소하 수소충전소', total_kg: 402.73, count: 17, lat: 37.438555, lng: 126.892585, price_per_kg: 11390, road_distance_km: 47.5, road_time_min: 50 },
+                    { name: '기흥휴게소(부산) 수소충전소', total_kg: 321.30, count: 23, lat: 37.233563, lng: 127.105789, price_per_kg: 11400, road_distance_km: 20.2, road_time_min: 29 },
+                    { name: '코하이젠 양주회정 수소충전소', total_kg: 251.68, count: 10, lat: 37.8548, lng: 127.0535, price_per_kg: 12300, road_distance_km: 79.9, road_time_min: 69 },
+                    { name: '에스케이 인천신흥 수소충전소', total_kg: 221.05, count: 10, lat: 37.436280, lng: 126.623811, price_per_kg: 11000, road_distance_km: 64.0, road_time_min: 76 },
+                    { name: '월곡수소충전소(주)', total_kg: 65.36, count: 4, lat: 35.143749, lng: 126.816904, price_per_kg: 9900, road_distance_km: 269.8, road_time_min: 195 },
+                    { name: '에스케이 송도기체 수소충전소', total_kg: 50.48, count: 3, lat: 37.3798, lng: 126.6561, price_per_kg: 11550, road_distance_km: 55.0, road_time_min: 60 },
+                    { name: '안성맞춤(제천) 수소충전소', total_kg: 17.39, count: 1, lat: 37.0700, lng: 128.0256, price_per_kg: 11000, road_distance_km: 75.0, road_time_min: 68 }
+                ],
+                companies: {
+                    '온버스': {
+                        total_kg: 18558.92,
+                        color: '#3B82F6',
+                        customers: 17,
+                        vehicles: 71,
+                        charge_count: 963,
+                        daily_avg: 662.82,
+                        charge_cycle: 2.06
+                    },
+                    '원더온': {
+                        total_kg: 1796.12,
+                        color: '#10B981',
+                        customers: 4,
+                        vehicles: 8,
+                        charge_count: 102,
+                        daily_avg: 64.15,
+                        charge_cycle: 2.20
+                    },
+                    '알이백': {
+                        total_kg: 1422.44,
+                        color: '#8B5CF6',
+                        customers: 3,
+                        vehicles: 6,
+                        charge_count: 67,
+                        daily_avg: 50.80,
+                        charge_cycle: 2.51
+                    }
+                },
+                customers: {
+                    '삼성전자(수원)': { total_kg: 7319.54, charge_count: 382, avg_per_charge: 19.16 },
+                    '인스파이어 엔터테인먼트 리조트': { total_kg: 3391.55, charge_count: 148, avg_per_charge: 22.92 },
+                    '삼성바이오로직스': { total_kg: 1733.15, charge_count: 103, avg_per_charge: 16.83 },
+                    '삼성물산(에버랜드)': { total_kg: 1483.46, charge_count: 96, avg_per_charge: 15.45 },
+                    '롯데바이오로직스': { total_kg: 1173.16, charge_count: 60, avg_per_charge: 19.55 },
+                    '분당서울대병원': { total_kg: 1163.70, charge_count: 61, avg_per_charge: 19.08 },
+                    '경복초등학교': { total_kg: 789.19, charge_count: 32, avg_per_charge: 24.66 },
+                    '삼성전자(평택)': { total_kg: 785.02, charge_count: 43, avg_per_charge: 18.26 },
+                    '광역버스': { total_kg: 615.72, charge_count: 32, avg_per_charge: 19.24 },
+                    '할렐루야교회': { total_kg: 536.17, charge_count: 29, avg_per_charge: 18.49 },
+                    '롯데면세점': { total_kg: 474.79, charge_count: 27, avg_per_charge: 17.59 },
+                    '평택미군스쿨': { total_kg: 462.42, charge_count: 18, avg_per_charge: 25.69 },
+                    '위키드(대구)': { total_kg: 422.74, charge_count: 22, avg_per_charge: 19.22 },
+                    '고대구로병원': { total_kg: 402.73, charge_count: 17, avg_per_charge: 23.69 },
+                    '마크로젠': { total_kg: 368.94, charge_count: 21, avg_per_charge: 17.57 },
+                    '청담어학원(송파)': { total_kg: 235.26, charge_count: 17, avg_per_charge: 13.84 },
+                    '최선어학원(영통)': { total_kg: 204.16, charge_count: 11, avg_per_charge: 18.56 },
+                    '청담어학원(분당)': { total_kg: 180.06, charge_count: 11, avg_per_charge: 16.37 },
+                    '서울대학교(시흥)': { total_kg: 35.72, charge_count: 2, avg_per_charge: 17.86 }
                 }
             }
         };
@@ -1418,6 +1591,44 @@
                 "청담어학원(분당)": {"에스케이 성남사송 수소충전소": 231.15},
                 "경복초등학교": {"에스케이 성남사송 수소충전소": 1166.83, "코하이젠 양주회정 수소충전소": 109.58},
                 "최선어학원(영통)": {"에스케이 성남사송 수소충전소": 216.51}
+            },
+            "2026-01": {
+                "삼성전자(수원)": {"에스케이 수원고색 수소충전소": 3361.82, "에스케이 성남사송 수소충전소": 3271.46, "코하이젠 안산본오 수소충전소": 1906.46, "성남 수소충전소": 1230.34, "기흥휴게소(부산) 수소충전소": 738.01, "에스케이 대구검단 수소충전소": 188.14, "에스케이 평택모곡 수소충전소": 124.63, "세운산업(주)가좌 수소충전소": 21.26},
+                "인스파이어 엔터테인먼트 리조트": {"하이넷 인천공항T1 수소충전소": 1398.20, "에스케이 인천운서 수소충전소": 1385.12, "세운산업(주)가좌 수소충전소": 1107.38, "에스케이 송도액화 수소충전소": 26.52},
+                "삼성바이오로직스": {"에스케이 송도액화 수소충전소": 1865.14, "에스케이 인천신흥 수소충전소": 906.33, "세운산업(주)가좌 수소충전소": 219.57, "에스케이 송도기체 수소충전소": 92.74},
+                "삼성물산(에버랜드)": {"하이넷 에버랜드 수소충전소": 1048.72, "성남 수소충전소": 358.68, "에스케이 수원고색 수소충전소": 166.15, "에스케이 성남사송 수소충전소": 95.04, "기흥휴게소(부산) 수소충전소": 42.49, "코하이젠 안산본오 수소충전소": 25.32, "덕평휴게소(강릉) 수소충전소": 14.54, "안성맞춤(제천) 수소충전소": 14.39},
+                "롯데바이오로직스": {"에스케이 송도액화 수소충전소": 711.63, "세운산업(주)가좌 수소충전소": 208.56, "에스케이 인천운서 수소충전소": 134.10, "에스케이 송도기체 수소충전소": 72.26, "에스케이 인천신흥 수소충전소": 51.64, "코하이젠 안산본오 수소충전소": 35.96},
+                "경복초등학교": {"에스케이 성남사송 수소충전소": 1044.43, "성남 수소충전소": 36.37, "에스케이 이천대흥 수소충전소": 29.47, "에스케이 수원고색 수소충전소": 21.15, "기흥휴게소(부산) 수소충전소": 17.40},
+                "분당서울대병원": {"에스케이 성남사송 수소충전소": 915.92, "성남 수소충전소": 137.79, "기흥휴게소(부산) 수소충전소": 99.49, "코하이젠 안산본오 수소충전소": 21.06},
+                "삼성전자(평택)": {"에스케이 평택모곡 수소충전소": 696.05, "월곡수소충전소(주)": 128.46},
+                "할렐루야교회": {"에스케이 성남사송 수소충전소": 519.95, "성남 수소충전소": 238.95, "에스케이 수원고색 수소충전소": 26.19},
+                "고대구로병원": {"하이넷 광명소하 수소충전소": 553.10},
+                "롯데면세점": {"세운산업(주)가좌 수소충전소": 503.51},
+                "평택미군스쿨": {"에스케이 평택모곡 수소충전소": 355.09, "에스케이 수원고색 수소충전소": 203.01, "코하이젠 안산본오 수소충전소": 41.79, "에스케이 성남사송 수소충전소": 28.70, "에스케이 인천신흥 수소충전소": 16.04},
+                "청담어학원(분당)": {"에스케이 성남사송 수소충전소": 318.33},
+                "청담어학원(송파)": {"성남 수소충전소": 273.86, "에스케이 성남사송 수소충전소": 42.07},
+                "최선어학원(영통)": {"에스케이 수원고색 수소충전소": 135.16, "기흥휴게소(부산) 수소충전소": 67.84, "에스케이 성남사송 수소충전소": 51.06}
+            },
+            "2026-02": {
+                "삼성전자(수원)": {"에스케이 수원고색 수소충전소": 2858.23, "에스케이 성남사송 수소충전소": 2116.91, "코하이젠 안산본오 수소충전소": 1180.71, "성남 수소충전소": 895.35, "기흥휴게소(부산) 수소충전소": 243.88, "에스케이 평택모곡 수소충전소": 24.46},
+                "인스파이어 엔터테인먼트 리조트": {"에스케이 인천운서 수소충전소": 1421.45, "하이넷 인천공항T1 수소충전소": 1100.78, "세운산업(주)가좌 수소충전소": 453.97, "에스케이 송도액화 수소충전소": 415.35},
+                "삼성바이오로직스": {"에스케이 송도액화 수소충전소": 1277.53, "에스케이 인천신흥 수소충전소": 204.85, "세운산업(주)가좌 수소충전소": 143.82, "에스케이 수원고색 수소충전소": 73.57, "에스케이 송도기체 수소충전소": 33.38},
+                "삼성물산(에버랜드)": {"하이넷 에버랜드 수소충전소": 1114.37, "에스케이 수원고색 수소충전소": 135.30, "성남 수소충전소": 132.82, "코하이젠 안산본오 수소충전소": 50.29, "에스케이 성남사송 수소충전소": 33.29, "안성맞춤(제천) 수소충전소": 17.39},
+                "롯데바이오로직스": {"에스케이 송도액화 수소충전소": 905.69, "에스케이 인천운서 수소충전소": 143.07, "세운산업(주)가좌 수소충전소": 107.30, "에스케이 송도기체 수소충전소": 17.10},
+                "분당서울대병원": {"에스케이 성남사송 수소충전소": 889.36, "성남 수소충전소": 127.55, "에스케이 수원고색 수소충전소": 98.55, "코하이젠 안산본오 수소충전소": 36.72, "기흥휴게소(부산) 수소충전소": 11.52},
+                "경복초등학교": {"에스케이 성남사송 수소충전소": 537.51, "코하이젠 양주회정 수소충전소": 251.68},
+                "삼성전자(평택)": {"에스케이 평택모곡 수소충전소": 719.66, "월곡수소충전소(주)": 65.36},
+                "광역버스": {"에스케이 성남사송 수소충전소": 288.29, "에스케이 수원고색 수소충전소": 162.90, "하이넷 에버랜드 수소충전소": 79.43, "성남 수소충전소": 58.90, "기흥휴게소(부산) 수소충전소": 26.20},
+                "할렐루야교회": {"성남 수소충전소": 356.90, "에스케이 성남사송 수소충전소": 161.30, "기흥휴게소(부산) 수소충전소": 17.97},
+                "롯데면세점": {"에스케이 인천운서 수소충전소": 258.16, "세운산업(주)가좌 수소충전소": 198.75, "에스케이 송도액화 수소충전소": 17.88},
+                "평택미군스쿨": {"에스케이 평택모곡 수소충전소": 462.42},
+                "위키드(대구)": {"에스케이 대구검단 수소충전소": 422.74},
+                "고대구로병원": {"하이넷 광명소하 수소충전소": 402.73},
+                "마크로젠": {"에스케이 송도액화 수소충전소": 269.39, "세운산업(주)가좌 수소충전소": 47.64, "에스케이 성남사송 수소충전소": 23.89, "에스케이 인천신흥 수소충전소": 16.20, "에스케이 수원고색 수소충전소": 11.82},
+                "청담어학원(송파)": {"성남 수소충전소": 235.26},
+                "최선어학원(영통)": {"에스케이 수원고색 수소충전소": 182.43, "기흥휴게소(부산) 수소충전소": 21.73},
+                "청담어학원(분당)": {"에스케이 성남사송 수소충전소": 180.06},
+                "서울대학교(시흥)": {"에스케이 수원고색 수소충전소": 35.72}
             }
         };
 
@@ -1425,7 +1636,9 @@
         const CHARGING_HOURLY_STATS = {
             "2025-10": {"05": 2, "06": 30, "07": 22, "08": 100, "09": 186, "10": 153, "11": 109, "12": 37, "13": 61, "14": 45, "15": 60, "16": 42, "17": 35, "18": 46, "19": 33, "20": 13, "21": 2, "22": 1},
             "2025-11": {"05": 17, "06": 34, "07": 18, "08": 122, "09": 228, "10": 209, "11": 123, "12": 61, "13": 66, "14": 50, "15": 64, "16": 48, "17": 26, "18": 30, "19": 7, "20": 6, "21": 2, "22": 1},
-            "2025-12": {"05": 15, "06": 38, "07": 25, "08": 135, "09": 245, "10": 220, "11": 130, "12": 65, "13": 70, "14": 55, "15": 68, "16": 52, "17": 30, "18": 35, "19": 10, "20": 8, "21": 3, "22": 1}
+            "2025-12": {"05": 15, "06": 38, "07": 25, "08": 135, "09": 245, "10": 220, "11": 130, "12": 65, "13": 70, "14": 55, "15": 68, "16": 52, "17": 30, "18": 35, "19": 10, "20": 8, "21": 3, "22": 1},
+            "2026-01": {"05": 4, "06": 15, "07": 27, "08": 167, "09": 244, "10": 247, "11": 178, "12": 78, "13": 72, "14": 77, "15": 91, "16": 74, "17": 32, "18": 43, "19": 15, "20": 10},
+            "2026-02": {"04": 1, "05": 1, "06": 9, "07": 40, "08": 121, "09": 230, "10": 175, "11": 141, "12": 58, "13": 52, "14": 72, "15": 89, "16": 68, "17": 41, "18": 25, "19": 7, "21": 2}
         };
 
         // 외부 충전소 도로거리 (포곡 기준) - Kakao Directions API 계산 결과
@@ -1753,7 +1966,9 @@
             // 전월 데이터 매핑
             const prevMonthMap = {
 '2025-11': '2025-10',
-            '2025-12': '2025-11'
+            '2025-12': '2025-11',
+            '2026-01': '2025-12',
+            '2026-02': '2026-01'
             };
             const prevMonth = prevMonthMap[month] || null;
             const prevData = prevMonth ? MONTHLY_DATA[prevMonth] : null;
@@ -1804,8 +2019,8 @@
         // 이탈 고객 찾기
         function getChurnedCustomers(currentMonth) {
 if (currentMonth === '2025-10') return [];
-            
-            const prevMonthMap = { '2025-11': '2025-10', '2025-12': '2025-11' };
+
+            const prevMonthMap = { '2025-11': '2025-10', '2025-12': '2025-11', '2026-01': '2025-12', '2026-02': '2026-01' };
             const prevMonth = prevMonthMap[currentMonth];
             if (!prevMonth) return [];
 
@@ -1844,16 +2059,16 @@ if (currentMonth === '2025-10') return [];
             });
 
             // 2. 월 표시 텍스트 업데이트
-            const monthLabelMap = { '2025-10': '10월', '2025-11': '11월', '2025-12': '12월' };
-            const monthLabel = monthLabelMap[month] || '12월';
-            const monthYearLabelMap = { '2025-10': '2025년 10월', '2025-11': '2025년 11월', '2025-12': '2025년 12월' };
-            const monthYearLabel = monthYearLabelMap[month] || '2025년 12월';
+            const monthLabelMap = { '2025-10': '10월', '2025-11': '11월', '2025-12': '12월', '2026-01': '1월', '2026-02': '2월' };
+            const monthLabel = monthLabelMap[month] || '2월';
+            const monthYearLabelMap = { '2025-10': '2025년 10월', '2025-11': '2025년 11월', '2025-12': '2025년 12월', '2026-01': '2026년 1월', '2026-02': '2026년 2월' };
+            const monthYearLabel = monthYearLabelMap[month] || '2026년 2월';
             document.getElementById('currentMonthDisplay').textContent = monthYearLabel;
             const monthHeaderEl = document.getElementById('monthHeaderLabel');
             if (monthHeaderEl) monthHeaderEl.textContent = monthLabel;
 
             // 3. 전월대비 컬럼 헤더 표시/숨김 (11월, 12월은 전월대비 표시)
-            const hasComparison = month === '2025-11' || month === '2025-12';
+            const hasComparison = month === '2025-11' || month === '2025-12' || month === '2026-01' || month === '2026-02';
             document.querySelectorAll('[data-sort="change_kg"], [data-sort="change_pct"]').forEach(th => {
                 th.style.display = hasComparison ? '' : 'none';
             });
@@ -1894,18 +2109,18 @@ if (currentMonth === '2025-10') return [];
             // 10. 푸터 업데이트
             const footerLabel = document.getElementById('footerDataLabel');
             if (footerLabel) {
-                footerLabel.textContent = `원더에너지 수소충전소 시뮬레이션 대시보드 v5.1 | 데이터 기준: 2025년 ${monthLabel}`;
+                footerLabel.textContent = `원더에너지 수소충전소 시뮬레이션 대시보드 v5.4 | 데이터 기준: ${monthYearLabel}`;
             }
         }
 
         // 요약 통계 업데이트
         function updateSummaryStats(month) {
             const data = MONTHLY_DATA[month];
-            const prevMonthMap = { '2025-11': '2025-10', '2025-12': '2025-11' };
+            const prevMonthMap = { '2025-11': '2025-10', '2025-12': '2025-11', '2026-01': '2025-12', '2026-02': '2026-01' };
             const prevMonth = prevMonthMap[month] || null;
             const prevData = prevMonth ? MONTHLY_DATA[prevMonth] : null;
-            const monthLabelMap = { '2025-10': '10월', '2025-11': '11월', '2025-12': '12월' };
-            const monthLabel = monthLabelMap[month] || '12월';
+            const monthLabelMap = { '2025-10': '10월', '2025-11': '11월', '2025-12': '12월', '2026-01': '1월', '2026-02': '2월' };
+            const monthLabel = monthLabelMap[month] || '2월';
 
             // 1. 수소버스 대수 카드 (첫 번째 카드)
             const vehicleCountEl = document.getElementById('vehicleCountDisplay');
@@ -1982,7 +2197,15 @@ if (currentMonth === '2025-10') return [];
             { name: '인천그린 수소충전소', lat: 37.438660, lng: 126.620014, total_kg: 194.72, count: 13, price_per_kg: 9900, road_distance_km: 68.7, road_time_min: 75, subsidy: 973600 },
             { name: '덕평휴게소(강릉) 수소충전소', lat: 37.242839, lng: 127.391004, total_kg: 24.23, count: 2, price_per_kg: 10950, road_distance_km: 27.4, road_time_min: 38, subsidy: 121100 },
             { name: '에스케이 원주장양 수소충전소', lat: 37.420459, lng: 127.964931, total_kg: 17.56, count: 1, price_per_kg: 11000, road_distance_km: 86.1, road_time_min: 76, subsidy: 87800 },
-            { name: '하이넷 H국회 수소충전소', lat: 37.530125, lng: 126.914625, total_kg: 280.61, count: 1, price_per_kg: 11000, road_distance_km: 52.3, road_time_min: 65, subsidy: 1403050 }
+            { name: '하이넷 H국회 수소충전소', lat: 37.530125, lng: 126.914625, total_kg: 280.61, count: 1, price_per_kg: 11000, road_distance_km: 52.3, road_time_min: 65, subsidy: 1403050 },
+            { name: '에스케이 수원고색 수소충전소', lat: 37.2372, lng: 126.9880, total_kg: 98.68, count: 5, price_per_kg: 11550, road_distance_km: 33.4, road_time_min: 34, subsidy: 493400 },
+            { name: '에스케이 송도액화 수소충전소', lat: 37.3679, lng: 126.6382, total_kg: 729.85, count: 41, price_per_kg: 11550, road_distance_km: 58.0, road_time_min: 58, subsidy: 3649250 },
+            { name: '에스케이 인천운서 수소충전소', lat: 37.4614, lng: 126.4089, total_kg: 0, count: 0, price_per_kg: 11000, road_distance_km: 85.0, road_time_min: 80, subsidy: 0 },
+            { name: '에스케이 대구검단 수소충전소', lat: 35.8833, lng: 128.5536, total_kg: 0, count: 0, price_per_kg: 12100, road_distance_km: 220.0, road_time_min: 170, subsidy: 0 },
+            { name: '에스케이 송도기체 수소충전소', lat: 37.3798, lng: 126.6561, total_kg: 0, count: 0, price_per_kg: 11550, road_distance_km: 55.0, road_time_min: 60, subsidy: 0 },
+            { name: '에스케이 이천대흥 수소충전소', lat: 37.2719, lng: 127.4375, total_kg: 0, count: 0, price_per_kg: 11000, road_distance_km: 28.0, road_time_min: 35, subsidy: 0 },
+            { name: '안성맞춤(제천) 수소충전소', lat: 37.0700, lng: 128.0256, total_kg: 0, count: 0, price_per_kg: 11000, road_distance_km: 75.0, road_time_min: 68, subsidy: 0 },
+            { name: '코하이젠 양주회정 수소충전소', lat: 37.8548, lng: 127.0535, total_kg: 222.53, count: 9, price_per_kg: 12300, road_distance_km: 79.9, road_time_min: 69, subsidy: 1112650 }
         ];
 
         // 충전소 기본 정보 (위치, 가격 등 - 고정)
@@ -2010,8 +2233,8 @@ if (currentMonth === '2025-10') return [];
             const currentRadius = parseInt(document.getElementById('radiusSlider')?.value || 30);
             const stations = getChargingStationsForMonth(month);
             const totalCharge = stations.reduce((sum, s) => sum + s.total_kg, 0);
-            const monthLabelMap = { '2025-10': '10월', '2025-11': '11월', '2025-12': '12월' };
-            const monthLabel = monthLabelMap[month] || '12월';
+            const monthLabelMap = { '2025-10': '10월', '2025-11': '11월', '2025-12': '12월', '2026-01': '1월', '2026-02': '2월' };
+            const monthLabel = monthLabelMap[month] || '2월';
 
             // 헤더 정보 업데이트
             const titleEl = document.getElementById('stationMonthTitle');
@@ -2512,7 +2735,7 @@ if (currentMonth === '2025-10') return [];
                         <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/>
                         </svg>
-                        <span class="text-sm text-gray-600">원더 수소버스 대수</span>
+                        <span class="text-sm text-gray-600">반경 내 수소버스</span>
                     </div>
                     <div class="text-2xl font-bold text-green-700">${totalH2Buses}<span class="text-base font-normal ml-1">대</span></div>
                     <div class="text-xs text-green-600 mt-1">(대당 ${avgKgPerBusDay.toFixed(1)}kg/일 충전)</div>
@@ -2891,8 +3114,8 @@ if (currentMonth === '2025-10') return [];
                         changePctHtml = '-';
                     }
 
-                    // 10월은 전월대비 컬럼 없음 (11월, 12월은 전월대비 표시)
-                    const showComparison = currentMonth === '2025-11' || currentMonth === '2025-12';
+                    // 10월은 전월대비 컬럼 없음 (11월, 12월, 1월은 전월대비 표시)
+                    const showComparison = currentMonth === '2025-11' || currentMonth === '2025-12' || currentMonth === '2026-01' || currentMonth === '2026-02';
                     const comparisonCells = showComparison ? `
                         <td class="px-3 py-2 text-right bg-gray-50 text-xs">${changeKgHtml}</td>
                         <td class="px-3 py-2 text-right bg-gray-50 text-xs">${changePctHtml}</td>
@@ -2953,9 +3176,9 @@ if (currentMonth === '2025-10') return [];
                     </tr>
                 `}).join('');
 
-            // 이탈 고객 표시 - 11월, 12월에 표시됨
+            // 이탈 고객 표시 - 11월, 12월, 1월에 표시됨
             const churnedCustomers = getChurnedCustomers(currentMonth);
-            const showComparisonChurned = currentMonth === '2025-11' || currentMonth === '2025-12';
+            const showComparisonChurned = currentMonth === '2025-11' || currentMonth === '2025-12' || currentMonth === '2026-01' || currentMonth === '2026-02';
             const churnedRows = churnedCustomers.map((c, idx) => {
                 const comparisonCellsChurned = showComparisonChurned ? `
                     <td class="px-3 py-2 text-right bg-red-100"><span class="text-red-500 font-medium">▼ ${Math.abs(c.change_kg).toFixed(0)} kg</span></td>

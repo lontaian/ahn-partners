@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --minify",
     "watch": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync:hrs": "sed '/비밀번호 보호 모듈/d; /auth-gate\\.js/d' /c/Dev/active/hydrogen/hrs-dash/deploy/index.html > ./demos/hrs-dashboard.html && echo 'HRS dashboard synced (auth removed)'"
   },
   "repository": {
     "type": "git",
