@@ -6,79 +6,20 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="apple-touch-icon" href="../favicon.png">
-    <link rel="canonical" href="https://ahn-partners.netlify.app/projects/hydrogen-infra.html">
-    <title>수소충전소 분석 대시보드 - 인프라 계획 시각화 | Ahn Partners</title>
-    <meta name="description" content="정부 수소충전소 인프라 계획 대시보드. EPC 선정, 예산 분석, 부지 평가 시각화. Chart.js, Leaflet, GIS 분석 기반. 라이브 데모 제공.">
-    <!-- Open Graph -->
-    <meta property="og:title" content="수소충전소 분석 대시보드 - 인프라 계획 시각화 | Ahn Partners">
-    <meta property="og:description" content="정부 수소충전소 인프라 계획 대시보드. EPC 선정, 예산 분석, 부지 평가 시각화. Chart.js, Leaflet, GIS 분석 기반. 라이브 데모 제공.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ahn-partners.netlify.app/projects/hydrogen-infra.html">
-    <meta property="og:image" content="https://ahn-partners.netlify.app/images/projects/hydrogen/main.png">
-    <meta property="og:site_name" content="Ahn Partners">
-    <meta property="og:locale" content="ko_KR">
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="수소충전소 분석 대시보드 - 인프라 계획 시각화 | Ahn Partners">
-    <meta name="twitter:description" content="정부 수소충전소 인프라 계획 대시보드. EPC 선정, 예산 분석, 부지 평가 시각화. Chart.js, Leaflet, GIS 분석 기반. 라이브 데모 제공.">
-    <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/projects/hydrogen/main.png">
+    <title>수소충전소 인프라 계획 | Portfolio</title>
     <link rel="stylesheet" href="../dist/output.css">
 
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
     </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "SoftwareApplication",
-          "name": "수소충전소 분석 대시보드",
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "Web",
-          "description": "정부 수소충전소 인프라 계획 대시보드. EPC 선정, 예산 분석, 부지 평가 시각화. Chart.js, Leaflet, GIS 분석 기반. 라이브 데모 제공.",
-          "url": "https://ahn-partners.netlify.app/projects/hydrogen-infra.html",
-          "image": "https://ahn-partners.netlify.app/images/projects/hydrogen/main.png",
-          "author": {
-            "@type": "Organization",
-            "name": "Ahn Partners",
-            "url": "https://ahn-partners.netlify.app"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "홈",
-              "item": "https://ahn-partners.netlify.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "수행 실적",
-              "item": "https://ahn-partners.netlify.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "수소충전소 분석 대시보드",
-              "item": "https://ahn-partners.netlify.app/projects/hydrogen-infra.html"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
 </head>
 <body class="bg-gray-50">
     <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            <a href="../index.html" class="text-xl font-bold text-primary">Ahn Partners</a>
+            <a href="../index.html" class="text-xl font-bold text-primary">Portfolio</a>
             <div class="flex gap-6">
-                <a href="../index.html" class="text-gray-700 hover:text-primary">수행 실적</a>
-                <a href="../about.html" class="text-gray-700 hover:text-primary">회사 소개</a>
+                <a href="../index.html" class="text-gray-700 hover:text-primary">Projects</a>
+                <a href="../about.html" class="text-gray-700 hover:text-primary">About</a>
             </div>
         </div>
     </nav>
@@ -102,8 +43,8 @@
                     <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Analysis</span>
                     <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Active</span>
                 </div>
-                <h1 class="text-3xl font-bold text-gray-900 mb-4">수소충전소 인프라 계획</h1>
-                <p class="text-xl text-gray-600">정부 수소충전소 구축 계획. EPC 선정, 예산 분석, 부지 평가 시스템.</p>
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">수소버스 충전 네트워크 분석</h1>
+                <p class="text-xl text-gray-600">수소버스 운영사의 거래처-충전소 간 충전 네트워크를 지도 위에 시각화하고, 충전 패턴을 분석하는 운영 대시보드.</p>
             </div>
         </div>
 
@@ -113,16 +54,16 @@
                     <h2 class="text-2xl font-bold mb-6">Project Scope</h2>
                     <div class="space-y-4">
                         <div class="p-4 bg-emerald-50 rounded-xl border-l-4 border-emerald-500">
-                            <h3 class="font-bold text-emerald-900">EPC 사업자 선정</h3>
-                            <p class="text-emerald-700 text-sm mt-1">나라장터 기반 입찰 프로세스 설계 및 평가 기준 수립</p>
+                            <h3 class="font-bold text-emerald-900">충전 네트워크 시각화</h3>
+                            <p class="text-emerald-700 text-sm mt-1">Leaflet 지도 위에 거래처→충전소 방사형 연결선을 충전량 비례 굵기로 표현. 법인별(온버스/알이백/원더온) 색상 구분</p>
                         </div>
                         <div class="p-4 bg-teal-50 rounded-xl border-l-4 border-teal-500">
-                            <h3 class="font-bold text-teal-900">예산 분석</h3>
-                            <p class="text-teal-700 text-sm mt-1">신규/증설 비용 추정, 보험료 산정, 보조금 추적</p>
+                            <h3 class="font-bold text-teal-900">복수 거래처 비교 분석</h3>
+                            <p class="text-teal-700 text-sm mt-1">여러 거래처를 동시 선택하여 충전소별 충전량/횟수/금액 합산 비교. 도넛 차트로 충전소 비중 시각화</p>
                         </div>
                         <div class="p-4 bg-cyan-50 rounded-xl border-l-4 border-cyan-500">
-                            <h3 class="font-bold text-cyan-900">부지 평가</h3>
-                            <p class="text-cyan-700 text-sm mt-1">용인 포곡읍 등 후보지 분석 및 매물 현황 관리</p>
+                            <h3 class="font-bold text-cyan-900">신규 충전소 수요 시뮬레이션</h3>
+                            <p class="text-cyan-700 text-sm mt-1">예정지 기준 반경 내 잠재 고객, 버스 차고지, 경쟁 충전소 분석 및 BEP 시뮬레이션</p>
                         </div>
                     </div>
                 </section>
@@ -131,30 +72,41 @@
                     <h2 class="text-2xl font-bold mb-4">Dashboard Features</h2>
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div class="p-4 bg-emerald-50 rounded-xl">
-                            <h3 class="font-bold text-emerald-900 mb-2">충전소 현황 지도</h3>
-                            <p class="text-emerald-700 text-sm">전국 수소충전소 운영/건설 현황 시각화</p>
+                            <h3 class="font-bold text-emerald-900 mb-2">네트워크 지도</h3>
+                            <p class="text-emerald-700 text-sm">거래처↔충전소 방사형 연결선, 충전량 비례 굵기, 법인별 색상</p>
                         </div>
                         <div class="p-4 bg-teal-50 rounded-xl">
-                            <h3 class="font-bold text-teal-900 mb-2">예산 분석 차트</h3>
-                            <p class="text-teal-700 text-sm">신규/증설 비용, 보조금 현황 대시보드</p>
+                            <h3 class="font-bold text-teal-900 mb-2">복수 선택 비교</h3>
+                            <p class="text-teal-700 text-sm">여러 거래처 동시 선택, 충전소별 합산 테이블 + 도넛 차트</p>
                         </div>
                         <div class="p-4 bg-cyan-50 rounded-xl">
-                            <h3 class="font-bold text-cyan-900 mb-2">부지 평가 리포트</h3>
-                            <p class="text-cyan-700 text-sm">후보지별 적합성 점수 및 비교 분석</p>
+                            <h3 class="font-bold text-cyan-900 mb-2">월별 추이 & 전월 대비</h3>
+                            <p class="text-cyan-700 text-sm">5개월 충전 데이터 탭 전환, 요약 카드에 전월 대비 변화량</p>
                         </div>
                         <div class="p-4 bg-blue-50 rounded-xl">
-                            <h3 class="font-bold text-blue-900 mb-2">진행 현황 트래커</h3>
-                            <p class="text-blue-700 text-sm">프로젝트 마일스톤 및 일정 관리</p>
+                            <h3 class="font-bold text-blue-900 mb-2">포곡 수요 시뮬레이션</h3>
+                            <p class="text-blue-700 text-sm">반경 선택 슬라이더로 잠재 고객 수, BEP 달성 시점 계산</p>
                         </div>
                     </div>
                 </section>
             </div>
             <div class="space-y-6">
-                <a href="../demos/hrs-dashboard.html" class="block bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition group">
+                <a href="../demos/hrs-dashboard.html" class="block bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition group mb-3">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h3 class="font-bold text-lg">View Dashboard</h3>
-                            <p class="text-emerald-100 text-sm">수소충전소 현황 대시보드</p>
+                            <h3 class="font-bold text-lg">충전 네트워크</h3>
+                            <p class="text-blue-100 text-sm">거래처→충전소 네트워크 지도</p>
+                        </div>
+                        <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </a>
+                <a href="../demos/pogok.html" class="block bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition group">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg">포곡 지역 분석</h3>
+                            <p class="text-emerald-100 text-sm">신규 충전소 수요 시뮬레이션</p>
                         </div>
                         <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -174,7 +126,7 @@
                         </div>
                         <div class="flex justify-between">
                             <dt class="text-gray-500">Timeline</dt>
-                            <dd class="font-medium">2024-2025</dd>
+                            <dd class="font-medium">2024-2026</dd>
                         </div>
                     </dl>
                 </div>
@@ -193,7 +145,7 @@
 
     <footer class="bg-gray-900 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-500 text-sm">&copy; 2026 Ahn Partners. All rights reserved.</p>
+            <p class="text-gray-500 text-sm">&copy; 2025 Portfolio</p>
         </div>
     </footer>
 </body>
