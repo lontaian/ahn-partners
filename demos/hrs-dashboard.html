@@ -1408,6 +1408,40 @@ function showStationDetail(stationName) {
     spokeLines = [];
     stationLabels.forEach(l => map.removeLayer(l));
     stationLabels = [];
+    updateResetButton();
+
+    // Draw spokes from each customer to this station
+    const md = MONTHLY_DATA[currentMonth];
+    const stationCoord = md.charging_stations.find(st => st.name === stationName);
+    if (stationCoord) {
+        const maxKg = Math.max(...users.map(u => u.kg)) || 1;
+        const bounds = [[stationCoord.lat, stationCoord.lng]];
+        users.forEach(u => {
+            const info = CUSTOMER_INFO[u.name];
+            if (!info) return;
+            const color = CORP_COLORS[u.company] || '#3B82F6';
+            const w = Math.max(2, 2 + (u.kg / maxKg) * 6);
+            const line = L.polyline([[info.lat, info.lng], [stationCoord.lat, stationCoord.lng]], {
+                color, weight: w, opacity: 0.7, className: 'flow-line'
+            }).addTo(map);
+            spokeLines.push(line);
+            bounds.push([info.lat, info.lng]);
+
+            // Customer label near their marker
+            const label = L.marker([info.lat, info.lng], {
+                icon: L.divIcon({
+                    html: `<div class="station-pill" style="color:${color}">${Math.round(u.kg).toLocaleString('ko-KR')}kg</div>`,
+                    className: 'custom-marker-bg',
+                    iconSize: [80, 24],
+                    iconAnchor: [40, -16]
+                }),
+                interactive: false
+            });
+            map.addLayer(label);
+            stationLabels.push(label);
+        });
+        if (bounds.length > 1) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12 });
+    }
 
     document.getElementById('detailSection').style.display = '';
     const shortName = stationName.replace(/ 수소충전소/g, '');
