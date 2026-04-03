@@ -767,6 +767,22 @@ const CUSTOMER_DISPLAY = {
 };
 function displayName(n) { return CUSTOMER_DISPLAY[n] || n; }
 
+// 충전소명 2줄 표시용
+const STATION_DISPLAY = {
+    '에스케이 수원고색': 'SK<br>수원고색', '에스케이 성남사송': 'SK<br>성남사송',
+    '에스케이 송도액화': 'SK<br>송도액화', '에스케이 송도기체': 'SK<br>송도기체',
+    '에스케이 인천운서': 'SK<br>인천운서', '에스케이 인천신흥': 'SK<br>인천신흥',
+    '에스케이 평택모곡': 'SK<br>평택모곡', '에스케이 대구검단': 'SK<br>대구검단',
+    '에스케이 원주장양': 'SK<br>원주장양', '에스케이 이천대흥': 'SK<br>이천대흥',
+    '코하이젠 안산본오': '코하이젠<br>안산본오', '코하이젠 양주회정': '코하이젠<br>양주회정',
+    '하이넷 에버랜드': '하이넷<br>에버랜드', '하이넷 인천공항T1': '하이넷<br>인천공항T1',
+    '하이넷 광명소하': '하이넷<br>광명소하', '하이넷 H국회': '하이넷<br>H국회',
+    '세운산업(주)가좌': '세운산업<br>가좌', '기흥휴게소(부산)': '기흥휴게소<br>(부산)',
+    '덕평휴게소(강릉)': '덕평휴게소<br>(강릉)', '안성맞춤(제천)': '안성맞춤<br>(제천)',
+    '인천그린': '인천그린', '성남': '성남', '월곡수소충전소(주)': '월곡'
+};
+function displayStation(s) { const n = s.replace(/ 수소충전소/g, ''); return STATION_DISPLAY[n] || n; }
+
 const CORP_COLORS = { '온버스': '#3B82F6', '원더온': '#10B981', '알이백': '#8B5CF6' };
 
 const MONTHS = ['2025-10','2025-11','2025-12','2026-01','2026-02'];
@@ -1325,7 +1341,7 @@ function showCustomerDetail() {
     });
 
     // Build matrix table HTML
-    let thead = '<tr class="text-left text-xs border-b-2 border-gray-200"><th class="py-2.5 px-2 font-semibold text-gray-600" style="min-width:120px;white-space:nowrap">충전소</th>';
+    let thead = '<tr class="text-left text-xs border-b-2 border-gray-200"><th class="py-2.5 px-2 font-semibold text-gray-600" style="min-width:80px">충전소</th>';
     customerNames.forEach((n, i) => {
         const corp = CUSTOMER_COMPANY[n] || '온버스';
         const team = CUSTOMER_TEAM[n] || '-';
@@ -1344,9 +1360,8 @@ function showCustomerDetail() {
 
     let tbody = '';
     stationEntries.forEach(([sName, data]) => {
-        const shortStation = sName.replace(/ 수소충전소/g, '');
         tbody += `<tr class="border-b border-gray-100 hover:bg-blue-50/30 transition-colors">`;
-        tbody += `<td class="py-2 px-2 font-medium text-gray-800 text-sm" style="white-space:nowrap">${shortStation}</td>`;
+        tbody += `<td class="py-2 px-2 font-medium text-gray-800 text-sm" style="min-width:80px">${displayStation(sName)}</td>`;
         customerNames.forEach((n, i) => {
             const kg = data.customers[n] || 0;
             customerTotals[n] += kg;
@@ -1395,7 +1410,7 @@ function showCustomerDetail() {
     detailPieChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: top8.map(([s]) => s.replace(/ 수소충전소/g, '')),
+            labels: top8.map(([s]) => { const n = s.replace(/ 수소충전소/g, ''); return (STATION_DISPLAY[n] || n).replace(/<br>/g, ' '); }),
             datasets: customerNames.map((n, i) => ({
                 label: n,
                 data: top8.map(([, d]) => Math.round(d.customers[n] || 0)),
