@@ -62,6 +62,11 @@
     <div class="flex flex-col lg:flex-row gap-3">
         <!-- Left Panel -->
         <div class="w-full lg:w-[30%] bg-white rounded-lg shadow-sm border border-gray-200 flex flex-col" style="max-height: 600px;">
+            <!-- Left Panel Tabs -->
+            <div class="flex border-b border-gray-200" id="leftTabs">
+                <button class="flex-1 py-2 text-sm font-semibold text-blue-600 border-b-2 border-blue-600" data-tab="customer">거래처</button>
+                <button class="flex-1 py-2 text-sm font-medium text-gray-400 hover:text-gray-600" data-tab="station">충전소</button>
+            </div>
             <!-- Corp Filters -->
             <div class="p-3 border-b border-gray-100 flex gap-1.5 flex-wrap" id="corpFilters"></div>
             <!-- Customer List -->
@@ -811,6 +816,8 @@ function getNormalizedDetail(month) {
 // ===== STATE =====
 let currentMonth = '2026-02';
 let selectedCustomers = new Set();
+let selectedStations = new Set();
+let leftTab = 'customer'; // 'customer' or 'station'
 let corpFilter = '전체';
 let showAllLines = false;
 let map, spokeLines = [], customerMarkers = {}, stationMarkers = {}, stationLabels = [];
@@ -824,6 +831,31 @@ function init() {
     initCorpFilters();
     initMap();
     updateAll();
+
+    document.getElementById('leftTabs').addEventListener('click', e => {
+        const btn = e.target.closest('button[data-tab]');
+        if (!btn) return;
+        leftTab = btn.dataset.tab;
+        document.querySelectorAll('#leftTabs button').forEach(b => {
+            b.classList.toggle('text-blue-600', b.dataset.tab === leftTab);
+            b.classList.toggle('border-b-2', b.dataset.tab === leftTab);
+            b.classList.toggle('border-blue-600', b.dataset.tab === leftTab);
+            b.classList.toggle('font-semibold', b.dataset.tab === leftTab);
+            b.classList.toggle('text-gray-400', b.dataset.tab !== leftTab);
+            b.classList.toggle('font-medium', b.dataset.tab !== leftTab);
+        });
+        // Show/hide corp filters (only for customer tab)
+        document.getElementById('corpFilters').style.display = leftTab === 'customer' ? '' : 'none';
+        renderLeftPanel();
+    });
+}
+
+function renderLeftPanel() {
+    if (leftTab === 'customer') {
+        renderCustomerList();
+    } else {
+        renderStationList();
+    }
 }
 
 function updateAll() {
@@ -831,7 +863,7 @@ function updateAll() {
     const prevMonth = MONTHS[MONTHS.indexOf(currentMonth) - 1];
     const prevMd = prevMonth ? MONTHLY_DATA[prevMonth] : null;
     renderSummaryCards(md, prevMd);
-    renderCustomerList();
+    renderLeftPanel();
     updateMap();
     if (selectedCustomers.size > 0) showCustomerDetail();
 }
@@ -1013,6 +1045,9 @@ function renderCustomerList() {
     // Toggle selection on click
     container.querySelectorAll('.customer-card').forEach(el => {
         el.addEventListener('click', () => {
+            if (selectedStations.size > 0) {
+                selectedStations.clear();
+            }
             const name = el.dataset.customer;
             if (selectedCustomers.has(name)) {
                 selectedCustomers.delete(name);
@@ -1048,8 +1083,9 @@ function initMap() {
 
     document.getElementById('resetSelection').addEventListener('click', () => {
         selectedCustomers.clear();
+        selectedStations.clear();
         document.getElementById('detailSection').style.display = 'none';
-        renderCustomerList();
+        renderLeftPanel();
         updateMap();
         updateResetButton();
     });
@@ -1057,7 +1093,7 @@ function initMap() {
 
 function updateResetButton() {
     const btn = document.getElementById('resetSelection');
-    if (selectedCustomers.size > 0) {
+    if (selectedCustomers.size > 0 || selectedStations.size > 0) {
         btn.classList.remove('hidden');
     } else {
         btn.classList.add('hidden');
@@ -1111,7 +1147,33 @@ function updateMap() {
                 const btn = document.getElementById('toggleAllLines');
                 btn.classList.remove('bg-blue-50', 'text-blue-600', 'border-blue-300');
             }
-            showStationDetail(s.name);
+            // Clear customer selection when switching to station mode
+            if (selectedCustomers.size > 0) {
+                selectedCustomers.clear();
+                renderCustomerList();
+            }
+            if (selectedStations.has(s.name)) {
+                selectedStations.delete(s.name);
+            } else {
+                selectedStations.add(s.name);
+            }
+            if (leftTab !== 'station') {
+                leftTab = 'station';
+                document.querySelectorAll('#leftTabs button').forEach(b => {
+                    b.classList.toggle('text-blue-600', b.dataset.tab === 'station');
+                    b.classList.toggle('border-b-2', b.dataset.tab === 'station');
+                    b.classList.toggle('border-blue-600', b.dataset.tab === 'station');
+                    b.classList.toggle('font-semibold', b.dataset.tab === 'station');
+                    b.classList.toggle('text-gray-400', b.dataset.tab !== 'station');
+                    b.classList.toggle('font-medium', b.dataset.tab !== 'station');
+                });
+                document.getElementById('corpFilters').style.display = 'none';
+            }
+            renderStationList();
+            drawStationSpokes();
+            if (selectedStations.size > 0) showMultiStationDetail();
+            else document.getElementById('detailSection').style.display = 'none';
+            updateResetButton();
         });
         stationMarkers[s.name] = marker;
     });
@@ -1139,10 +1201,25 @@ function updateMap() {
                 const btn = document.getElementById('toggleAllLines');
                 btn.classList.remove('bg-blue-50', 'text-blue-600', 'border-blue-300');
             }
+            if (selectedStations.size > 0) {
+                selectedStations.clear();
+            }
             if (selectedCustomers.has(c.name)) {
                 selectedCustomers.delete(c.name);
             } else {
                 selectedCustomers.add(c.name);
+            }
+            if (leftTab !== 'customer') {
+                leftTab = 'customer';
+                document.querySelectorAll('#leftTabs button').forEach(b => {
+                    b.classList.toggle('text-blue-600', b.dataset.tab === 'customer');
+                    b.classList.toggle('border-b-2', b.dataset.tab === 'customer');
+                    b.classList.toggle('border-blue-600', b.dataset.tab === 'customer');
+                    b.classList.toggle('font-semibold', b.dataset.tab === 'customer');
+                    b.classList.toggle('text-gray-400', b.dataset.tab !== 'customer');
+                    b.classList.toggle('font-medium', b.dataset.tab !== 'customer');
+                });
+                document.getElementById('corpFilters').style.display = '';
             }
             renderCustomerList();
             drawSpokesMulti();
@@ -1457,57 +1534,142 @@ function showCustomerDetail() {
     document.getElementById('detailSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// ===== STATION DETAIL =====
-function showStationDetail(stationName) {
+// ===== STATION LIST =====
+function renderStationList() {
+    const md = MONTHLY_DATA[currentMonth];
     const detail = getNormalizedDetail(currentMonth);
-    const customers = getCustomersForMonth(currentMonth);
-    const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+    const container = document.getElementById('customerList');
 
-    // Find all customers using this station
-    const users = [];
-    filtered.forEach(c => {
-        const stations = detail[c.name];
-        if (stations && stations[stationName]) {
-            users.push({ name: c.name, company: c.company, ...stations[stationName] });
+    // Build station data with aggregated customer info
+    const stationData = [];
+    md.charging_stations.forEach(s => {
+        let totalKg = 0, totalCount = 0, totalAmount = 0, customerCount = 0;
+        const customers = getCustomersForMonth(currentMonth);
+        const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+        filtered.forEach(c => {
+            const stations = detail[c.name];
+            if (stations && stations[s.name]) {
+                totalKg += stations[s.name].kg;
+                totalCount += stations[s.name].count;
+                totalAmount += stations[s.name].amount;
+                customerCount++;
+            }
+        });
+        if (totalKg > 0) {
+            stationData.push({ name: s.name, totalKg, totalCount, totalAmount, customerCount });
         }
     });
-    if (users.length === 0) return;
-    users.sort((a, b) => b.kg - a.kg);
+    stationData.sort((a, b) => b.totalKg - a.totalKg);
 
-    const totalKg = users.reduce((s, u) => s + u.kg, 0);
-    const totalCount = users.reduce((s, u) => s + u.count, 0);
-    const totalAmount = users.reduce((s, u) => s + u.amount, 0);
+    // Selection clear button
+    const clearBtn = selectedStations.size > 0
+        ? `<div class="flex items-center justify-between px-2 py-1.5 mb-1 bg-emerald-50 rounded-lg">
+            <span class="text-xs font-medium text-emerald-700">${selectedStations.size}개 충전소 선택</span>
+            <button id="clearStationSelection" class="text-xs text-emerald-500 hover:text-emerald-700 font-medium">초기화</button>
+        </div>` : '';
 
-    // Clear customer selections
-    selectedCustomers.clear();
-    renderCustomerList();
+    container.innerHTML = clearBtn + stationData.map(s => {
+        const isActive = selectedStations.has(s.name);
+        const shortName = displayStation(s.name);
+        return `<div class="customer-card rounded-lg p-2.5 mb-1.5 ${isActive ? 'active' : ''}" data-station="${s.name}" style="${isActive ? 'border-left-color:#059669;background:#f0fdf4' : ''}">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 min-w-0">
+                    <span class="w-3.5 h-3.5 rounded flex-shrink-0 border-2 flex items-center justify-center text-[9px]" style="border-color:#059669;${isActive ? 'background:#059669;color:white' : ''}">${isActive ? '✓' : ''}</span>
+                    <span class="text-sm font-semibold text-gray-800">${shortName}</span>
+                </div>
+                <span class="text-xs text-gray-400 flex-shrink-0">${s.customerCount}거래처</span>
+            </div>
+            <div class="flex items-center gap-3 mt-1.5 ml-5 text-xs text-gray-500">
+                <span class="font-medium text-gray-700">${Math.round(s.totalKg).toLocaleString('ko-KR')} kg</span>
+                <span>${s.totalCount}회</span>
+            </div>
+        </div>`;
+    }).join('');
+
+    // Clear button
+    const clearEl = document.getElementById('clearStationSelection');
+    if (clearEl) {
+        clearEl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectedStations.clear();
+            document.getElementById('detailSection').style.display = 'none';
+            renderStationList();
+            updateMap();
+            updateResetButton();
+        });
+    }
+
+    // Toggle selection on click
+    container.querySelectorAll('.customer-card[data-station]').forEach(el => {
+        el.addEventListener('click', () => {
+            const name = el.dataset.station;
+            if (selectedStations.has(name)) {
+                selectedStations.delete(name);
+            } else {
+                selectedStations.add(name);
+            }
+            renderStationList();
+            drawStationSpokes();
+            if (selectedStations.size > 0) showMultiStationDetail();
+            else document.getElementById('detailSection').style.display = 'none';
+            updateResetButton();
+        });
+    });
+}
+
+// ===== STATION SPOKES =====
+function drawStationSpokes() {
+    const md = MONTHLY_DATA[currentMonth];
+    const detail = getNormalizedDetail(currentMonth);
+
     spokeLines.forEach(l => map.removeLayer(l));
     spokeLines = [];
     stationLabels.forEach(l => map.removeLayer(l));
     stationLabels = [];
-    updateResetButton();
 
-    // Draw spokes from each customer to this station
-    const md = MONTHLY_DATA[currentMonth];
-    const stationCoord = md.charging_stations.find(st => st.name === stationName);
-    if (stationCoord) {
-        const maxKg = Math.max(...users.map(u => u.kg)) || 1;
-        const bounds = [[stationCoord.lat, stationCoord.lng]];
-        users.forEach(u => {
-            const info = CUSTOMER_INFO[u.name];
+    if (selectedStations.size === 0) return;
+
+    const stationCoords = {};
+    md.charging_stations.forEach(s => { stationCoords[s.name] = { lat: s.lat, lng: s.lng }; });
+
+    const customers = getCustomersForMonth(currentMonth);
+    const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+
+    const bounds = [];
+    let allKgs = [];
+
+    // Collect all kg values for proportional width
+    for (const sName of selectedStations) {
+        filtered.forEach(c => {
+            const stations = detail[c.name];
+            if (stations && stations[sName]) allKgs.push(stations[sName].kg);
+        });
+    }
+    const maxKg = Math.max(...allKgs) || 1;
+
+    for (const sName of selectedStations) {
+        const sc = stationCoords[sName];
+        if (!sc) continue;
+        bounds.push([sc.lat, sc.lng]);
+
+        filtered.forEach(c => {
+            const stations = detail[c.name];
+            if (!stations || !stations[sName]) return;
+            const info = CUSTOMER_INFO[c.name];
             if (!info) return;
-            const color = CORP_COLORS[u.company] || '#3B82F6';
-            const w = Math.max(2, 2 + (u.kg / maxKg) * 6);
-            const line = L.polyline([[info.lat, info.lng], [stationCoord.lat, stationCoord.lng]], {
+
+            const color = CORP_COLORS[c.company] || '#3B82F6';
+            const w = Math.max(2, 2 + (stations[sName].kg / maxKg) * 6);
+            const line = L.polyline([[info.lat, info.lng], [sc.lat, sc.lng]], {
                 color, weight: w, opacity: 0.7, className: 'flow-line'
             }).addTo(map);
             spokeLines.push(line);
             bounds.push([info.lat, info.lng]);
 
-            // Customer label near their marker
+            // Customer kg label
             const label = L.marker([info.lat, info.lng], {
                 icon: L.divIcon({
-                    html: `<div class="station-pill" style="color:${color}">${Math.round(u.kg).toLocaleString('ko-KR')}kg</div>`,
+                    html: `<div class="station-pill" style="color:${color}">${Math.round(stations[sName].kg).toLocaleString('ko-KR')}kg</div>`,
                     className: 'custom-marker-bg',
                     iconSize: [80, 24],
                     iconAnchor: [40, -16]
@@ -1517,98 +1679,245 @@ function showStationDetail(stationName) {
             map.addLayer(label);
             stationLabels.push(label);
         });
-        if (bounds.length > 1) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12 });
     }
 
-    document.getElementById('detailSection').style.display = '';
-    const shortName = stationName.replace(/ 수소충전소/g, '');
-    document.getElementById('detailTitle').textContent = `⛽ ${shortName} — ${users.length}개 거래처`;
+    if (bounds.length > 1) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12 });
+}
 
-    // Table: customer rows
-    let thead = '<tr class="text-left text-xs uppercase border-b-2 border-gray-200">';
-    thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">거래처</th>';
-    thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">계약법인</th>';
-    thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">담당팀</th>';
-    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">충전량(kg)</th>';
-    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
-    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액<span class="normal-case text-[9px] text-gray-400 block">VAT포함</span></th>';
-    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">비율</th></tr>';
+// ===== MULTI STATION DETAIL =====
+function showMultiStationDetail() {
+    const detail = getNormalizedDetail(currentMonth);
+    const md = MONTHLY_DATA[currentMonth];
+    if (selectedStations.size === 0) return;
 
-    let tbody = '';
-    users.forEach(u => {
-        const color = CORP_COLORS[u.company] || '#3B82F6';
-        const team = CUSTOMER_TEAM[u.name] || '-';
-        const teamColor = TEAM_COLORS[team] || '#6B7280';
-        const teamBg = team === '원더온' ? `${teamColor}15` : 'transparent';
-        const pct = totalKg > 0 ? ((u.kg / totalKg) * 100).toFixed(1) : 0;
-        tbody += `<tr class="border-b border-gray-100 hover:bg-blue-50/30 transition-colors">`;
-        tbody += `<td class="py-2 px-2 font-medium text-gray-800 text-sm">${u.name}</td>`;
-        tbody += `<td class="py-2 px-2 text-sm"><span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background:${color}"></span>${u.company}</span></td>`;
-        tbody += `<td class="py-2 px-2 text-sm"><span class="px-1.5 py-0.5 rounded border text-xs" style="color:${teamColor};border-color:${teamColor};background:${teamBg}">${team}</span></td>`;
-        tbody += `<td class="py-2 px-2 text-right text-sm font-medium tabular-nums">${Math.round(u.kg).toLocaleString('ko-KR')}</td>`;
-        tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${u.count.toLocaleString('ko-KR')}</td>`;
-        tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${(u.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
-        tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${pct}%</td></tr>`;
-    });
+    const customers = getCustomersForMonth(currentMonth);
+    const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
 
-    let tfoot = '<tr class="border-t-2 border-gray-300 font-bold bg-gray-50">';
-    tfoot += `<td class="py-2.5 px-2 text-sm">합계</td><td class="py-2.5 px-2 text-sm" colspan="2">${users.length}개</td>`;
-    tfoot += `<td class="py-2.5 px-2 text-right text-sm">${Math.round(totalKg).toLocaleString('ko-KR')}</td>`;
-    tfoot += `<td class="py-2.5 px-2 text-right text-sm">${totalCount.toLocaleString('ko-KR')}</td>`;
-    tfoot += `<td class="py-2.5 px-2 text-right text-sm">${(totalAmount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
-    tfoot += `<td class="py-2.5 px-2 text-right text-sm">100%</td></tr>`;
-
-    const tableEl = document.getElementById('detailTableBody').closest('table');
-    tableEl.querySelector('thead tr').outerHTML = thead;
-    document.getElementById('detailTableBody').innerHTML = tbody;
-    let tfootEl = tableEl.querySelector('tfoot');
-    if (!tfootEl) { tfootEl = document.createElement('tfoot'); tableEl.appendChild(tfootEl); }
-    tfootEl.innerHTML = tfoot;
-
-    // Horizontal bar chart: customers at this station
-    if (detailPieChart) detailPieChart.destroy();
-    const ctx = document.getElementById('detailPieChart').getContext('2d');
-
-    const chartH = Math.max(120, users.length * 40 + 60);
-    document.getElementById('detailPieChart').parentElement.style.height = chartH + 'px';
-
-    detailPieChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: users.map(u => u.name.length > 10 ? u.name.substring(0, 10) + '\u2026' : u.name),
-            datasets: [{
-                label: '충전량(kg)',
-                data: users.map(u => Math.round(u.kg)),
-                _amounts: users.map(u => u.amount),
-                backgroundColor: users.map(u => CORP_COLORS[u.company] || '#3B82F6'),
-                borderColor: '#ffffff',
-                borderWidth: 1,
-                barThickness: 24,
-                maxBarThickness: 24,
-                borderRadius: 4
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: 'rgba(17,24,39,0.9)', cornerRadius: 8, padding: 10,
-                    callbacks: { label: ctx => {
-                        const amt = ctx.dataset._amounts?.[ctx.dataIndex] || 0;
-                        const amtStr = (amt / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                        return `${ctx.parsed.x.toLocaleString('ko-KR')}kg / ${amtStr}만원`;
-                    }}
-                }
-            },
-            scales: {
-                x: { grid: { color: '#f3f4f6', drawBorder: false }, ticks: { font: { size: 10 } } },
-                y: { grid: { display: false, drawBorder: false }, ticks: { font: { size: 11 }, color: '#4b5563' } }
-            }
+    // Find all customers that used any selected station
+    const customerSet = new Set();
+    for (const sName of selectedStations) {
+        filtered.forEach(c => {
+            const stations = detail[c.name];
+            if (stations && stations[sName]) customerSet.add(c.name);
+        });
+    }
+    const customerNames = [...customerSet].sort((a, b) => {
+        // Sort by total kg across selected stations
+        let aKg = 0, bKg = 0;
+        for (const sName of selectedStations) {
+            const aS = detail[a]; if (aS && aS[sName]) aKg += aS[sName].kg;
+            const bS = detail[b]; if (bS && bS[sName]) bKg += bS[sName].kg;
         }
+        return bKg - aKg;
     });
+
+    document.getElementById('detailSection').style.display = '';
+    const stationNames = [...selectedStations];
+    const titleText = selectedStations.size === 1
+        ? `⛽ ${displayStation(stationNames[0])} — ${customerNames.length}개 거래처`
+        : `⛽ ${selectedStations.size}개 충전소 합산 — ${customerNames.length}개 거래처`;
+    document.getElementById('detailTitle').textContent = titleText;
+
+    if (selectedStations.size === 1) {
+        // Single station selected: show customers as rows
+        const sName = stationNames[0];
+        const users = [];
+        filtered.forEach(c => {
+            const stations = detail[c.name];
+            if (stations && stations[sName]) {
+                users.push({ name: c.name, company: c.company, ...stations[sName] });
+            }
+        });
+        users.sort((a, b) => b.kg - a.kg);
+
+        const totalKg = users.reduce((s, u) => s + u.kg, 0);
+        const totalCount = users.reduce((s, u) => s + u.count, 0);
+        const totalAmount = users.reduce((s, u) => s + u.amount, 0);
+
+        let thead = '<tr class="text-left text-xs uppercase border-b-2 border-gray-200">';
+        thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">거래처</th>';
+        thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">계약법인</th>';
+        thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">담당팀</th>';
+        thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">충전량(kg)</th>';
+        thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
+        thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액<span class="normal-case text-[9px] text-gray-400 block">VAT포함</span></th>';
+        thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">비율</th></tr>';
+
+        let tbody = '';
+        users.forEach(u => {
+            const color = CORP_COLORS[u.company] || '#3B82F6';
+            const team = CUSTOMER_TEAM[u.name] || '-';
+            const teamColor = TEAM_COLORS[team] || '#6B7280';
+            const teamBg = team === '원더온' ? `${teamColor}15` : 'transparent';
+            const pct = totalKg > 0 ? ((u.kg / totalKg) * 100).toFixed(1) : 0;
+            tbody += `<tr class="border-b border-gray-100 hover:bg-blue-50/30 transition-colors">`;
+            tbody += `<td class="py-2 px-2 font-medium text-gray-800 text-sm">${u.name}</td>`;
+            tbody += `<td class="py-2 px-2 text-sm"><span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background:${color}"></span>${u.company}</span></td>`;
+            tbody += `<td class="py-2 px-2 text-sm"><span class="px-1.5 py-0.5 rounded border text-xs" style="color:${teamColor};border-color:${teamColor};background:${teamBg}">${team}</span></td>`;
+            tbody += `<td class="py-2 px-2 text-right text-sm font-medium tabular-nums">${Math.round(u.kg).toLocaleString('ko-KR')}</td>`;
+            tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${u.count.toLocaleString('ko-KR')}</td>`;
+            tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${(u.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+            tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${pct}%</td></tr>`;
+        });
+
+        let tfoot = '<tr class="border-t-2 border-gray-300 font-bold bg-gray-50">';
+        tfoot += `<td class="py-2.5 px-2 text-sm">합계</td><td class="py-2.5 px-2 text-sm" colspan="2">${users.length}개</td>`;
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm">${Math.round(totalKg).toLocaleString('ko-KR')}</td>`;
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm">${totalCount.toLocaleString('ko-KR')}</td>`;
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm">${(totalAmount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm">100%</td></tr>`;
+
+        const tableEl = document.getElementById('detailTableBody').closest('table');
+        tableEl.querySelector('thead tr').outerHTML = thead;
+        document.getElementById('detailTableBody').innerHTML = tbody;
+        let tfootEl = tableEl.querySelector('tfoot');
+        if (!tfootEl) { tfootEl = document.createElement('tfoot'); tableEl.appendChild(tfootEl); }
+        tfootEl.innerHTML = tfoot;
+
+        // Chart
+        if (detailPieChart) detailPieChart.destroy();
+        const ctx = document.getElementById('detailPieChart').getContext('2d');
+        const chartH = Math.max(120, users.length * 40 + 60);
+        document.getElementById('detailPieChart').parentElement.style.height = chartH + 'px';
+        detailPieChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: users.map(u => u.name.length > 10 ? u.name.substring(0, 10) + '\u2026' : u.name),
+                datasets: [{
+                    label: '충전량(kg)',
+                    data: users.map(u => Math.round(u.kg)),
+                    _amounts: users.map(u => u.amount),
+                    backgroundColor: users.map(u => CORP_COLORS[u.company] || '#3B82F6'),
+                    borderColor: '#ffffff', borderWidth: 1, barThickness: 24, maxBarThickness: 24, borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(17,24,39,0.9)', cornerRadius: 8, padding: 10,
+                        callbacks: { label: ctx => {
+                            const amt = ctx.dataset._amounts?.[ctx.dataIndex] || 0;
+                            const amtStr = (amt / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            return `${ctx.parsed.x.toLocaleString('ko-KR')}kg / ${amtStr}만원`;
+                        }}
+                    }
+                },
+                scales: {
+                    x: { grid: { color: '#f3f4f6', drawBorder: false }, ticks: { font: { size: 10 } } },
+                    y: { grid: { display: false, drawBorder: false }, ticks: { font: { size: 11 }, color: '#4b5563' } }
+                }
+            }
+        });
+    } else {
+        // Multiple stations: matrix with stations as columns, customers as rows
+        const stationList = [...selectedStations];
+
+        let thead = '<tr class="text-left text-xs border-b-2 border-gray-200">';
+        thead += '<th class="py-2.5 px-2 font-semibold text-gray-600" style="min-width:80px">거래처</th>';
+        stationList.forEach(sn => {
+            thead += `<th class="py-2 px-2 text-right" style="min-width:70px"><span class="font-semibold text-xs text-emerald-700">${displayStation(sn)}</span></th>`;
+        });
+        thead += '<th class="py-2.5 px-2 text-right font-bold text-gray-800 bg-gray-50">합계(kg)</th>';
+        thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
+        thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액<span class="normal-case text-[9px] text-gray-400 block">VAT포함</span></th></tr>';
+
+        const grandTotal = { kg: 0, count: 0, amount: 0 };
+        const stationTotals = {};
+        stationList.forEach(sn => stationTotals[sn] = 0);
+
+        let tbody = '';
+        customerNames.forEach(cName => {
+            let rowKg = 0, rowCount = 0, rowAmount = 0;
+            const cStations = detail[cName] || {};
+            stationList.forEach(sn => {
+                const d = cStations[sn];
+                if (d) { rowKg += d.kg; rowCount += d.count; rowAmount += d.amount; }
+            });
+
+            const color = CORP_COLORS[CUSTOMER_COMPANY[cName] || '온버스'];
+            tbody += `<tr class="border-b border-gray-100 hover:bg-blue-50/30 transition-colors">`;
+            tbody += `<td class="py-2 px-2 font-medium text-gray-800 text-sm" style="min-width:80px"><span class="inline-block w-2 h-2 rounded-full mr-1" style="background:${color}"></span>${displayName(cName)}</td>`;
+            stationList.forEach(sn => {
+                const d = cStations[sn];
+                if (d && d.kg > 0) {
+                    stationTotals[sn] += d.kg;
+                    tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${Math.round(d.kg).toLocaleString('ko-KR')}</td>`;
+                } else {
+                    tbody += `<td class="py-2 px-2 text-right text-gray-300">-</td>`;
+                }
+            });
+            tbody += `<td class="py-2 px-2 text-right font-bold text-sm bg-gray-50 tabular-nums">${Math.round(rowKg).toLocaleString('ko-KR')}</td>`;
+            tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${rowCount.toLocaleString('ko-KR')}</td>`;
+            tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${(rowAmount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+            tbody += '</tr>';
+            grandTotal.kg += rowKg; grandTotal.count += rowCount; grandTotal.amount += rowAmount;
+        });
+
+        let tfoot = '<tr class="border-t-2 border-gray-300 font-bold bg-gray-50">';
+        tfoot += '<td class="py-2.5 px-2 text-sm">합계</td>';
+        stationList.forEach(sn => {
+            tfoot += `<td class="py-2.5 px-2 text-right text-sm text-emerald-700">${Math.round(stationTotals[sn]).toLocaleString('ko-KR')}</td>`;
+        });
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm bg-gray-100">${Math.round(grandTotal.kg).toLocaleString('ko-KR')}</td>`;
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm">${grandTotal.count.toLocaleString('ko-KR')}</td>`;
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm">${(grandTotal.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+        tfoot += '</tr>';
+
+        const tableEl = document.getElementById('detailTableBody').closest('table');
+        tableEl.querySelector('thead tr').outerHTML = thead;
+        document.getElementById('detailTableBody').innerHTML = tbody;
+        let tfootEl = tableEl.querySelector('tfoot');
+        if (!tfootEl) { tfootEl = document.createElement('tfoot'); tableEl.appendChild(tfootEl); }
+        tfootEl.innerHTML = tfoot;
+
+        // Chart: horizontal stacked bar, stations stacked per customer
+        if (detailPieChart) detailPieChart.destroy();
+        const ctx = document.getElementById('detailPieChart').getContext('2d');
+        const top8c = customerNames.slice(0, 8);
+        const chartH = Math.max(120, top8c.length * 40 + 60);
+        document.getElementById('detailPieChart').parentElement.style.height = chartH + 'px';
+
+        const stationColors = ['#059669','#10B981','#34D399','#6EE7B7','#047857','#A7F3D0'];
+        detailPieChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: top8c.map(cn => displayName(cn).replace(/<br>/g, ' ')),
+                datasets: stationList.map((sn, si) => ({
+                    label: displayStation(sn),
+                    data: top8c.map(cn => {
+                        const d = detail[cn]; return d && d[sn] ? Math.round(d[sn].kg) : 0;
+                    }),
+                    _amounts: top8c.map(cn => {
+                        const d = detail[cn]; return d && d[sn] ? d[sn].amount : 0;
+                    }),
+                    backgroundColor: stationColors[si % stationColors.length],
+                    borderColor: '#ffffff', borderWidth: 1, barThickness: 20, maxBarThickness: 20, borderRadius: 3
+                }))
+            },
+            options: {
+                indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'rectRounded', boxWidth: 8, font: { size: 10 } } },
+                    tooltip: {
+                        mode: 'index', intersect: true, axis: 'y',
+                        backgroundColor: 'rgba(17,24,39,0.9)', cornerRadius: 8, padding: 10,
+                        filter: ctx => ctx.parsed.x > 0,
+                        callbacks: { label: ctx => {
+                            const amt = ctx.dataset._amounts?.[ctx.dataIndex] || 0;
+                            const amtStr = (amt / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            return `${ctx.dataset.label}: ${ctx.parsed.x.toLocaleString('ko-KR')}kg / ${amtStr}만원`;
+                        }}
+                    }
+                },
+                scales: {
+                    x: { stacked: true, grid: { color: '#f3f4f6', drawBorder: false }, ticks: { font: { size: 10 } } },
+                    y: { stacked: true, grid: { display: false, drawBorder: false }, ticks: { font: { size: 11 }, color: '#4b5563' } }
+                }
+            }
+        });
+    }
 
     document.getElementById('detailSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
