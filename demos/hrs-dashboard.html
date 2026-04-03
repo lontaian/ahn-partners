@@ -1415,6 +1415,11 @@ function showCustomerDetail() {
             datasets: customerNames.map((n, i) => ({
                 label: n,
                 data: top8.map(([, d]) => Math.round(d.customers[n] || 0)),
+                _amounts: top8.map(([sName, d]) => {
+                    const detail2 = getNormalizedDetail(currentMonth);
+                    const st = detail2[n];
+                    return st && st[sName] ? st[sName].amount : 0;
+                }),
                 backgroundColor: customerColors[i],
                 borderColor: '#ffffff',
                 borderWidth: 1,
@@ -1434,7 +1439,11 @@ function showCustomerDetail() {
                     mode: 'index', intersect: true, axis: 'y',
                     backgroundColor: 'rgba(17,24,39,0.9)', cornerRadius: 8, padding: 10,
                     filter: ctx => ctx.parsed.x > 0,
-                    callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.x.toLocaleString('ko-KR')} kg` }
+                    callbacks: { label: ctx => {
+                        const amt = ctx.dataset._amounts?.[ctx.dataIndex] || 0;
+                        const amtStr = (amt / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        return `${ctx.dataset.label}: ${ctx.parsed.x.toLocaleString('ko-KR')}kg / ${amtStr}만원`;
+                    }}
                 }
             },
             scales: {
@@ -1570,6 +1579,7 @@ function showStationDetail(stationName) {
             datasets: [{
                 label: '충전량(kg)',
                 data: users.map(u => Math.round(u.kg)),
+                _amounts: users.map(u => u.amount),
                 backgroundColor: users.map(u => CORP_COLORS[u.company] || '#3B82F6'),
                 borderColor: '#ffffff',
                 borderWidth: 1,
@@ -1586,7 +1596,11 @@ function showStationDetail(stationName) {
                 legend: { display: false },
                 tooltip: {
                     backgroundColor: 'rgba(17,24,39,0.9)', cornerRadius: 8, padding: 10,
-                    callbacks: { label: ctx => `${ctx.parsed.x.toLocaleString('ko-KR')} kg` }
+                    callbacks: { label: ctx => {
+                        const amt = ctx.dataset._amounts?.[ctx.dataIndex] || 0;
+                        const amtStr = (amt / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        return `${ctx.parsed.x.toLocaleString('ko-KR')}kg / ${amtStr}만원`;
+                    }}
                 }
             },
             scales: {
