@@ -86,7 +86,7 @@
 <section class="max-w-screen-2xl mx-auto px-3 lg:px-6 pb-4" id="detailSection" style="display:none;">
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
         <h3 class="text-base font-bold text-gray-800 mb-3" id="detailTitle"></h3>
-        <div class="flex flex-col lg:flex-row gap-4">
+        <div class="flex flex-col lg:flex-row gap-4 items-start">
             <div class="flex-1 lg:w-3/5 overflow-x-auto">
                 <table class="w-full text-sm detail-table">
                     <thead>
@@ -1337,6 +1337,10 @@ function showCustomerDetail() {
     const ctx = document.getElementById('detailPieChart').getContext('2d');
     const top8 = stationEntries.slice(0, 8);
 
+    // Dynamic height: fixed bar height per row + padding
+    const chartH = Math.max(120, top8.length * 40 + 60);
+    document.getElementById('detailPieChart').parentElement.style.height = chartH + 'px';
+
     detailPieChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -1348,7 +1352,9 @@ function showCustomerDetail() {
                 borderColor: '#ffffff',
                 borderWidth: 1,
                 borderSkipped: false,
-                borderRadius: 2
+                barThickness: 20,
+                maxBarThickness: 20,
+                borderRadius: 3
             }))
         },
         options: {
@@ -1359,12 +1365,13 @@ function showCustomerDetail() {
                 legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'rectRounded', boxWidth: 8, font: { size: 10 } } },
                 tooltip: {
                     mode: 'index', intersect: false,
+                    backgroundColor: 'rgba(17,24,39,0.9)', cornerRadius: 8, padding: 10,
                     callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.x.toLocaleString('ko-KR')} kg` }
                 }
             },
             scales: {
-                x: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 } } },
-                y: { stacked: true, grid: { color: '#f3f4f6' }, ticks: { font: { size: 11 } } }
+                x: { stacked: true, grid: { color: '#f3f4f6', drawBorder: false }, ticks: { font: { size: 10 } } },
+                y: { stacked: true, grid: { display: false, drawBorder: false }, ticks: { font: { size: 11 }, color: '#4b5563' } }
             }
         }
     });
@@ -1445,6 +1452,10 @@ function showStationDetail(stationName) {
     // Horizontal bar chart: customers at this station
     if (detailPieChart) detailPieChart.destroy();
     const ctx = document.getElementById('detailPieChart').getContext('2d');
+
+    const chartH = Math.max(120, users.length * 40 + 60);
+    document.getElementById('detailPieChart').parentElement.style.height = chartH + 'px';
+
     detailPieChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -1455,7 +1466,9 @@ function showStationDetail(stationName) {
                 backgroundColor: users.map(u => CORP_COLORS[u.company] || '#3B82F6'),
                 borderColor: '#ffffff',
                 borderWidth: 1,
-                borderRadius: 3
+                barThickness: 24,
+                maxBarThickness: 24,
+                borderRadius: 4
             }]
         },
         options: {
@@ -1464,11 +1477,14 @@ function showStationDetail(stationName) {
             maintainAspectRatio: false,
             plugins: {
                 legend: { display: false },
-                tooltip: { callbacks: { label: ctx => `${ctx.parsed.x.toLocaleString('ko-KR')} kg` } }
+                tooltip: {
+                    backgroundColor: 'rgba(17,24,39,0.9)', cornerRadius: 8, padding: 10,
+                    callbacks: { label: ctx => `${ctx.parsed.x.toLocaleString('ko-KR')} kg` }
+                }
             },
             scales: {
-                x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-                y: { grid: { color: '#f3f4f6' }, ticks: { font: { size: 11 } } }
+                x: { grid: { color: '#f3f4f6', drawBorder: false }, ticks: { font: { size: 10 } } },
+                y: { grid: { display: false, drawBorder: false }, ticks: { font: { size: 11 }, color: '#4b5563' } }
             }
         }
     });
