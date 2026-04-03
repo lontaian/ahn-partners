@@ -25,6 +25,10 @@
         .month-tab.active { background: #3b82f6; color: white; }
         #map { z-index: 1; }
         .detail-table th { position: sticky; top: 0; background: #f8fafc; }
+        .flow-line { stroke-dasharray: 12, 8; animation: flowAnim 1.2s linear infinite; }
+        @keyframes flowAnim { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
+        .custom-marker-bg { background: transparent !important; border: none !important; }
+        .station-pill { background: rgba(255,255,255,0.92); backdrop-filter: blur(4px); padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 700; box-shadow: 0 1px 4px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.06); white-space: nowrap; }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -78,7 +82,7 @@
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
         <h3 class="text-base font-bold text-gray-800 mb-3" id="detailTitle"></h3>
         <div class="flex flex-col lg:flex-row gap-4">
-            <div class="flex-1 overflow-x-auto">
+            <div class="flex-1 lg:w-3/5 overflow-x-auto">
                 <table class="w-full text-sm detail-table">
                     <thead>
                         <tr class="text-left text-gray-500 border-b border-gray-200">
@@ -92,8 +96,11 @@
                     <tbody id="detailTableBody"></tbody>
                 </table>
             </div>
-            <div class="w-full lg:w-64 flex-shrink-0">
-                <canvas id="detailPieChart" height="200"></canvas>
+            <div class="w-full lg:w-2/5 flex-shrink-0">
+                <h4 class="text-xs font-bold text-gray-500 uppercase mb-2">충전소별 거래처 비중</h4>
+                <div style="height: 320px">
+                    <canvas id="detailPieChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -1018,9 +1025,17 @@ function updateMap() {
     });
     md.charging_stations.forEach(s => {
         if (!usedStations.has(s.name)) return;
-        const marker = L.circleMarker([s.lat, s.lng], {
-            radius: 6, fillColor: '#22c55e', fillOpacity: 0.9, color: '#16a34a', weight: 1.5
-        }).addTo(map);
+        const sIcon = L.divIcon({
+            html: `<div style="display:flex;flex-direction:column;align-items:center">
+                <div style="width:28px;height:28px;background:#059669;border-radius:50%;border:2.5px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+            </div>`,
+            className: 'custom-marker-bg',
+            iconSize: [28, 28],
+            iconAnchor: [14, 14]
+        });
+        const marker = L.marker([s.lat, s.lng], { icon: sIcon }).addTo(map);
         marker.bindTooltip(s.name.replace(' 수소충전소', ''), { direction: 'top', offset: [0, -8] });
         stationMarkers[s.name] = marker;
     });
@@ -1030,10 +1045,16 @@ function updateMap() {
         const info = CUSTOMER_INFO[c.name];
         if (!info) return;
         const color = CORP_COLORS[c.company] || '#3B82F6';
-        const radius = Math.max(5, Math.min(14, 5 + Math.log(c.totalKg / 100) * 2));
-        const marker = L.circleMarker([info.lat, info.lng], {
-            radius, fillColor: color, fillOpacity: 0.85, color: '#fff', weight: 2
-        }).addTo(map);
+        const size = Math.max(24, Math.min(36, 24 + Math.log(c.totalKg / 100) * 3));
+        const cIcon = L.divIcon({
+            html: `<div style="width:${size}px;height:${size}px;background:${color};border-radius:50%;border:2.5px solid white;box-shadow:0 2px 8px ${color}44;display:flex;align-items:center;justify-content:center;transition:transform 0.2s">
+                <svg width="${size*0.45}" height="${size*0.45}" viewBox="0 0 24 24" fill="white"><path d="M17 20H7V8l5-6 5 6v12zM9 18h6V9.2l-3-3.6L9 9.2V18z"/></svg>
+            </div>`,
+            className: 'custom-marker-bg',
+            iconSize: [size, size],
+            iconAnchor: [size/2, size/2]
+        });
+        const marker = L.marker([info.lat, info.lng], { icon: cIcon }).addTo(map);
         marker.bindTooltip(c.name, { direction: 'top', offset: [0, -8] });
         marker.on('click', () => {
             if (selectedCustomers.has(c.name)) {
@@ -1088,7 +1109,7 @@ function drawAllSpokes(customers, detail, stationCoords) {
             const w = Math.max(1.5, 1 + (sData.kg / globalMaxKg) * 7);
             const opacity = selectedCustomers.has(c.name) ? 0.8 : 0.15;
             const line = L.polyline([[info.lat, info.lng], [sc.lat, sc.lng]], {
-                color, weight: w, opacity, dashArray: null
+                color, weight: w, opacity, className: 'flow-line'
             }).addTo(map);
             line.on('mouseover', () => { line.setStyle({ opacity: 1 }); });
             line.on('mouseout', () => { line.setStyle({ opacity: selectedCustomers.has(c.name) ? 0.8 : 0.15 }); });
@@ -1144,7 +1165,7 @@ function drawSpokesMulti() {
             const w = Math.max(1.5, 1 + (sData.kg / maxKg) * 7);
             const opacity = showAllLines ? 0.8 : 0.7;
             const line = L.polyline([[info.lat, info.lng], [sc.lat, sc.lng]], {
-                color, weight: w, opacity
+                color, weight: w, opacity, className: 'flow-line'
             }).addTo(map);
             spokeLines.push(line);
             bounds.push([sc.lat, sc.lng]);
@@ -1157,9 +1178,15 @@ function drawSpokesMulti() {
 
     // Show aggregated station labels
     for (const [sName, agg] of Object.entries(stationAgg)) {
-        const label = L.tooltip({ permanent: true, direction: 'center', className: 'station-kg-label' })
-            .setContent(`<span style="font-size:11px;font-weight:600;color:#1e40af">${Math.round(agg.kg).toLocaleString('ko-KR')}kg</span>`)
-            .setLatLng([agg.lat, agg.lng]);
+        const label = L.marker([agg.lat, agg.lng], {
+            icon: L.divIcon({
+                html: `<div class="station-pill" style="color:#1e40af">${Math.round(agg.kg).toLocaleString('ko-KR')}kg</div>`,
+                className: 'custom-marker-bg',
+                iconSize: [80, 24],
+                iconAnchor: [40, -16]
+            }),
+            interactive: false
+        });
         map.addLayer(label);
         stationLabels.push(label);
     }
@@ -1181,77 +1208,123 @@ function showCustomerDetail() {
         normVehicles[n] = Math.max(normVehicles[n] || 0, v);
     }
 
-    // Merge stations across all selected customers
-    const mergedStations = {};
+    // Build per-customer per-station data
+    const customerNames = [...selectedCustomers];
+    const stationMap = {}; // stationName -> { customers: {name: kg}, total: {kg, count, amount} }
+
     let totalVehicles = 0;
-    const names = [];
-    for (const customerName of selectedCustomers) {
-        const stations = detail[customerName];
+    for (const cName of customerNames) {
+        totalVehicles += (normVehicles[cName] || 0);
+        const stations = detail[cName];
         if (!stations) continue;
-        names.push(customerName);
-        totalVehicles += (normVehicles[customerName] || 0);
         for (const [sName, d] of Object.entries(stations)) {
-            if (!mergedStations[sName]) mergedStations[sName] = { kg: 0, count: 0, amount: 0 };
-            mergedStations[sName].kg += d.kg;
-            mergedStations[sName].count += d.count;
-            mergedStations[sName].amount += d.amount;
+            if (!stationMap[sName]) stationMap[sName] = { customers: {}, total: { kg: 0, count: 0, amount: 0 } };
+            stationMap[sName].customers[cName] = d.kg;
+            stationMap[sName].total.kg += d.kg;
+            stationMap[sName].total.count += d.count;
+            stationMap[sName].total.amount += d.amount;
         }
     }
 
+    // Sort stations by total kg desc
+    const stationEntries = Object.entries(stationMap).sort((a, b) => b[1].total.kg - a[1].total.kg);
+
+    // Title
     document.getElementById('detailSection').style.display = '';
-    const titleText = names.length === 1
-        ? `${names[0]} - ${totalVehicles}대`
-        : `${names.length}개 거래처 합산 - ${totalVehicles}대`;
+    const titleText = customerNames.length === 1
+        ? `${customerNames[0]} - ${totalVehicles}대`
+        : `${customerNames.length}개 거래처 합산 - ${totalVehicles}대`;
     document.getElementById('detailTitle').textContent = titleText;
 
-    // Build sorted station list
-    const entries = Object.entries(mergedStations).map(([name, d]) => ({ name, ...d }));
-    entries.sort((a, b) => b.kg - a.kg);
-    const totalKg = entries.reduce((s, e) => s + e.kg, 0);
-    const totalCount = entries.reduce((s, e) => s + e.count, 0);
-    const totalAmount = entries.reduce((s, e) => s + e.amount, 0);
+    // Customer colors for columns
+    const customerColors = customerNames.map(n => CORP_COLORS[CUSTOMER_COMPANY[n] || '온버스']);
 
-    const tbody = document.getElementById('detailTableBody');
-    tbody.innerHTML = entries.map(e => {
-        const pct = totalKg > 0 ? ((e.kg / totalKg) * 100).toFixed(1) : 0;
-        return `<tr class="border-b border-gray-100 hover:bg-gray-50">
-            <td class="py-2 px-2 text-gray-700">${e.name.replace(' 수소충전소', '')}</td>
-            <td class="py-2 px-2 text-right font-medium">${Math.round(e.kg).toLocaleString('ko-KR')}</td>
-            <td class="py-2 px-2 text-right">${e.count.toLocaleString('ko-KR')}</td>
-            <td class="py-2 px-2 text-right">${(e.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>
-            <td class="py-2 px-2 text-right">${pct}%</td>
-        </tr>`;
-    }).join('') + `<tr class="border-t-2 border-gray-300 font-bold bg-gray-50">
-        <td class="py-2 px-2">합계</td>
-        <td class="py-2 px-2 text-right">${Math.round(totalKg).toLocaleString('ko-KR')}</td>
-        <td class="py-2 px-2 text-right">${totalCount.toLocaleString('ko-KR')}</td>
-        <td class="py-2 px-2 text-right">${(totalAmount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>
-        <td class="py-2 px-2 text-right">100%</td>
-    </tr>`;
+    // Build matrix table HTML
+    let thead = '<tr class="text-left text-xs uppercase border-b-2 border-gray-200"><th class="py-2.5 px-2 font-semibold text-gray-600">충전소</th>';
+    customerNames.forEach((n, i) => {
+        const shortName = n.length > 6 ? n.substring(0, 6) + '\u2026' : n;
+        thead += `<th class="py-2.5 px-2 text-right font-semibold" style="color:${customerColors[i]}">${shortName}</th>`;
+    });
+    thead += '<th class="py-2.5 px-2 text-right font-bold text-gray-800 bg-gray-50">합계(kg)</th>';
+    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
+    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액</th></tr>';
 
-    // Pie chart
+    // Body rows
+    const grandTotal = { kg: 0, count: 0, amount: 0 };
+    const customerTotals = {};
+    customerNames.forEach(n => customerTotals[n] = 0);
+
+    let tbody = '';
+    stationEntries.forEach(([sName, data]) => {
+        const shortStation = sName.replace(/ 수소충전소/g, '');
+        tbody += `<tr class="border-b border-gray-100 hover:bg-blue-50/30 transition-colors">`;
+        tbody += `<td class="py-2 px-2 font-medium text-gray-800 text-sm">${shortStation}</td>`;
+        customerNames.forEach((n, i) => {
+            const kg = data.customers[n] || 0;
+            customerTotals[n] += kg;
+            if (kg > 0) {
+                tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${Math.round(kg).toLocaleString('ko-KR')}</td>`;
+            } else {
+                tbody += `<td class="py-2 px-2 text-right text-gray-300">-</td>`;
+            }
+        });
+        tbody += `<td class="py-2 px-2 text-right font-bold text-sm bg-gray-50 tabular-nums">${Math.round(data.total.kg).toLocaleString('ko-KR')}</td>`;
+        tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${data.total.count.toLocaleString('ko-KR')}</td>`;
+        tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${(data.total.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+        tbody += '</tr>';
+        grandTotal.kg += data.total.kg;
+        grandTotal.count += data.total.count;
+        grandTotal.amount += data.total.amount;
+    });
+
+    // Footer
+    let tfoot = '<tr class="border-t-2 border-gray-300 font-bold bg-gray-50">';
+    tfoot += '<td class="py-2.5 px-2 text-sm">합계</td>';
+    customerNames.forEach((n, i) => {
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm" style="color:${customerColors[i]}">${Math.round(customerTotals[n]).toLocaleString('ko-KR')}</td>`;
+    });
+    tfoot += `<td class="py-2.5 px-2 text-right text-sm bg-gray-100">${Math.round(grandTotal.kg).toLocaleString('ko-KR')}</td>`;
+    tfoot += `<td class="py-2.5 px-2 text-right text-sm">${grandTotal.count.toLocaleString('ko-KR')}</td>`;
+    tfoot += `<td class="py-2.5 px-2 text-right text-sm">${(grandTotal.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+    tfoot += '</tr>';
+
+    document.getElementById('detailTableBody').innerHTML = tbody;
+    const tableEl = document.getElementById('detailTableBody').closest('table');
+    tableEl.querySelector('thead tr').outerHTML = thead;
+    let tfootEl = tableEl.querySelector('tfoot');
+    if (!tfootEl) { tfootEl = document.createElement('tfoot'); tableEl.appendChild(tfootEl); }
+    tfootEl.innerHTML = tfoot;
+
+    // Horizontal Stacked Bar chart
     if (detailPieChart) detailPieChart.destroy();
     const ctx = document.getElementById('detailPieChart').getContext('2d');
-    const colors = ['#3b82f6','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
+    const top8 = stationEntries.slice(0, 8);
+
     detailPieChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'bar',
         data: {
-            labels: entries.map(e => e.name.replace(' 수소충전소', '')),
-            datasets: [{
-                data: entries.map(e => Math.round(e.kg)),
-                backgroundColor: entries.map((_, i) => colors[i % colors.length]),
-                borderWidth: 1, borderColor: '#fff'
-            }]
+            labels: top8.map(([s]) => s.replace(/ 수소충전소/g, '')),
+            datasets: customerNames.map((n, i) => ({
+                label: n.length > 8 ? n.substring(0, 8) + '\u2026' : n,
+                data: top8.map(([, d]) => Math.round(d.customers[n] || 0)),
+                backgroundColor: customerColors[i],
+                borderRadius: 2
+            }))
         },
         options: {
+            indexAxis: 'y',
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
-                legend: { display: true, position: 'bottom', labels: { font: { size: 10 }, boxWidth: 10 } },
+                legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'rectRounded', boxWidth: 8, font: { size: 10 } } },
                 tooltip: {
-                    callbacks: {
-                        label: ctx => `${ctx.label}: ${ctx.parsed.toLocaleString('ko-KR')} kg`
-                    }
+                    mode: 'index', intersect: false,
+                    callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.x.toLocaleString('ko-KR')} kg` }
                 }
+            },
+            scales: {
+                x: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 } } },
+                y: { stacked: true, grid: { color: '#f3f4f6' }, ticks: { font: { size: 11 } } }
             }
         }
     });
