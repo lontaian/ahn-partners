@@ -1105,7 +1105,14 @@ function updateMap() {
         });
         const marker = L.marker([s.lat, s.lng], { icon: sIcon }).addTo(map);
         marker.bindTooltip(s.name.replace(' 수소충전소', ''), { direction: 'top', offset: [0, -8] });
-        marker.on('click', () => { showStationDetail(s.name); });
+        marker.on('click', () => {
+            if (showAllLines) {
+                showAllLines = false;
+                const btn = document.getElementById('toggleAllLines');
+                btn.classList.remove('bg-blue-50', 'text-blue-600', 'border-blue-300');
+            }
+            showStationDetail(s.name);
+        });
         stationMarkers[s.name] = marker;
     });
 
@@ -1126,6 +1133,12 @@ function updateMap() {
         const marker = L.marker([info.lat, info.lng], { icon: cIcon }).addTo(map);
         marker.bindTooltip(c.name, { direction: 'top', offset: [0, -8] });
         marker.on('click', () => {
+            // 전체 보기 해제
+            if (showAllLines) {
+                showAllLines = false;
+                const btn = document.getElementById('toggleAllLines');
+                btn.classList.remove('bg-blue-50', 'text-blue-600', 'border-blue-300');
+            }
             if (selectedCustomers.has(c.name)) {
                 selectedCustomers.delete(c.name);
             } else {
@@ -1134,7 +1147,7 @@ function updateMap() {
             renderCustomerList();
             drawSpokesMulti();
             if (selectedCustomers.size > 0) showCustomerDetail();
-            else document.getElementById('detailSection').style.display = 'none';
+            else { document.getElementById('detailSection').style.display = 'none'; updateMap(); }
             updateResetButton();
         });
         customerMarkers[c.name] = marker;
@@ -1177,12 +1190,11 @@ function drawAllSpokes(customers, detail, stationCoords) {
             const sc = stationCoords[sName];
             if (!sc) continue;
             const w = Math.max(2, 1.5 + (sData.kg / globalMaxKg) * 6);
-            const opacity = selectedCustomers.has(c.name) ? 0.9 : 0.55;
             const line = L.polyline([[info.lat, info.lng], [sc.lat, sc.lng]], {
-                color, weight: w, opacity, className: 'flow-line'
+                color, weight: w, opacity: 0.7, className: 'flow-line'
             }).addTo(map);
-            line.on('mouseover', () => { line.setStyle({ opacity: 1 }); });
-            line.on('mouseout', () => { line.setStyle({ opacity: selectedCustomers.has(c.name) ? 0.9 : 0.55 }); });
+            line.on('mouseover', () => { line.setStyle({ opacity: 1, weight: w + 1 }); });
+            line.on('mouseout', () => { line.setStyle({ opacity: 0.7, weight: w }); });
             spokeLines.push(line);
         }
     });
