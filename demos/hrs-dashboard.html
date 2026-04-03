@@ -1037,6 +1037,20 @@ function updateMap() {
         });
         const marker = L.marker([s.lat, s.lng], { icon: sIcon }).addTo(map);
         marker.bindTooltip(s.name.replace(' 수소충전소', ''), { direction: 'top', offset: [0, -8] });
+        marker.on('click', () => {
+            // Find all customers that used this station
+            const detail = getNormalizedDetail(currentMonth);
+            const customers = getCustomersForMonth(currentMonth);
+            const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+            selectedCustomers.clear();
+            filtered.forEach(c => {
+                const stations = detail[c.name];
+                if (stations && stations[s.name]) selectedCustomers.add(c.name);
+            });
+            renderCustomerList();
+            drawSpokesMulti();
+            if (selectedCustomers.size > 0) showCustomerDetail();
+        });
         stationMarkers[s.name] = marker;
     });
 
