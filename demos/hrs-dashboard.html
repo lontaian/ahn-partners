@@ -1303,12 +1303,11 @@ function showCustomerDetail() {
     // Build matrix table HTML
     let thead = '<tr class="text-left text-xs border-b-2 border-gray-200"><th class="py-2.5 px-2 font-semibold text-gray-600">충전소</th>';
     customerNames.forEach((n, i) => {
-        const shortName = n.length > 6 ? n.substring(0, 6) + '\u2026' : n;
         const corp = CUSTOMER_COMPANY[n] || '온버스';
         const team = CUSTOMER_TEAM[n] || '-';
         const teamColor = TEAM_COLORS[team] || '#6B7280';
         const teamBg = team === '원더온' ? `${teamColor}15` : 'transparent';
-        thead += `<th class="py-2 px-2 text-right"><span class="font-semibold" style="color:${customerColors[i]}">${shortName}</span><br><span class="text-[10px] font-normal" style="color:${CORP_COLORS[corp]}">${corp}</span> <span class="text-[10px] font-normal px-1 rounded border" style="color:${teamColor};border-color:${teamColor};background:${teamBg}">${team}</span></th>`;
+        thead += `<th class="py-2 px-2 text-right" style="min-width:80px"><span class="font-semibold text-xs leading-tight block" style="color:${customerColors[i]}">${n}</span><span class="text-[10px] font-normal" style="color:${CORP_COLORS[corp]}">${corp}</span> <span class="text-[10px] font-normal px-1 rounded border" style="color:${teamColor};border-color:${teamColor};background:${teamBg}">${team}</span></th>`;
     });
     thead += '<th class="py-2.5 px-2 text-right font-bold text-gray-800 bg-gray-50">합계(kg)</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
@@ -1374,7 +1373,7 @@ function showCustomerDetail() {
         data: {
             labels: top8.map(([s]) => s.replace(/ 수소충전소/g, '')),
             datasets: customerNames.map((n, i) => ({
-                label: n.length > 10 ? n.substring(0, 10) + '\u2026' : n,
+                label: n,
                 data: top8.map(([, d]) => Math.round(d.customers[n] || 0)),
                 backgroundColor: customerColors[i],
                 borderColor: '#ffffff',
