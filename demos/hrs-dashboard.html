@@ -1176,13 +1176,13 @@ function drawAllSpokes(customers, detail, stationCoords) {
         for (const [sName, sData] of Object.entries(stations)) {
             const sc = stationCoords[sName];
             if (!sc) continue;
-            const w = Math.max(1.5, 1 + (sData.kg / globalMaxKg) * 7);
-            const opacity = selectedCustomers.has(c.name) ? 0.8 : 0.35;
+            const w = Math.max(2, 1.5 + (sData.kg / globalMaxKg) * 6);
+            const opacity = selectedCustomers.has(c.name) ? 0.9 : 0.55;
             const line = L.polyline([[info.lat, info.lng], [sc.lat, sc.lng]], {
                 color, weight: w, opacity, className: 'flow-line'
             }).addTo(map);
             line.on('mouseover', () => { line.setStyle({ opacity: 1 }); });
-            line.on('mouseout', () => { line.setStyle({ opacity: selectedCustomers.has(c.name) ? 0.8 : 0.35 }); });
+            line.on('mouseout', () => { line.setStyle({ opacity: selectedCustomers.has(c.name) ? 0.9 : 0.55 }); });
             spokeLines.push(line);
         }
     });
