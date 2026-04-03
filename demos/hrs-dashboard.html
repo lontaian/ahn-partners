@@ -1067,10 +1067,9 @@ function renderCustomerList() {
 function initMap() {
     const isMobile = L.Browser.mobile;
     map = L.map('map', { zoomControl: true, dragging: !isMobile, tap: !isMobile }).setView([37.35, 127.0], 10);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/">OSM</a>',
-        maxZoom: 19,
-        subdomains: 'abcd'
+    L.tileLayer('https://tiles.osm.kr/hot/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://osm.kr/">OpenStreetMap Korea</a>',
+        maxZoom: 19
     }).addTo(map);
 
     document.getElementById('toggleAllLines').addEventListener('click', () => {
