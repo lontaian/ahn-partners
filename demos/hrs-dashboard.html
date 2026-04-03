@@ -94,7 +94,7 @@
                             <th class="py-2 px-2">충전소</th>
                             <th class="py-2 px-2 text-right">충전량(kg)</th>
                             <th class="py-2 px-2 text-right">횟수</th>
-                            <th class="py-2 px-2 text-right">금액(원)</th>
+                            <th class="py-2 px-2 text-right">금액<span class="text-[9px] text-gray-400 block">VAT포함</span></th>
                             <th class="py-2 px-2 text-right">비율</th>
                         </tr>
                     </thead>
@@ -1352,7 +1352,7 @@ function showCustomerDetail() {
     });
     thead += '<th class="py-2.5 px-2 text-right font-bold text-gray-800 bg-gray-50">합계(kg)</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
-    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액</th></tr>';
+    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액<span class="normal-case text-[9px] text-gray-400 block">VAT포함</span></th></tr>';
 
     // Body rows
     const grandTotal = { kg: 0, count: 0, amount: 0 };
@@ -1531,7 +1531,7 @@ function showStationDetail(stationName) {
     thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">담당팀</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">충전량(kg)</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
-    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액</th>';
+    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액<span class="normal-case text-[9px] text-gray-400 block">VAT포함</span></th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">비율</th></tr>';
 
     let tbody = '';
