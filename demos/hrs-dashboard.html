@@ -712,20 +712,36 @@ const CUSTOMER_STATION_DETAIL = {
   }
 };
 
-// Customer -> Company mapping
+// Customer -> Company (계약법인) mapping — 운송계약현황 26.03.24 기준
 const CUSTOMER_COMPANY = {
     '삼성전자(수원)': '온버스', '삼성디지털시티(수원)': '온버스',
     '인스파이어 엔터테인먼트 리조트': '온버스', '삼성바이오로직스': '온버스',
-    '삼성전자(평택)': '온버스', '평택미군스쿨': '온버스', '평택 미군스쿨': '온버스',
-    '분당서울대병원': '온버스', '할렐루야교회': '온버스',
-    '롯데바이오로직스': '온버스', 'DL E&C': '온버스',
-    '최선어학원(영통)': '온버스', '청담어학원(분당)': '온버스',
-    '광역버스': '온버스', '위키드(대구)': '온버스', '마크로젠': '온버스',
-    '서울대학교(시흥)': '온버스',
-    '롯데면세점': '원더온', '고대구로병원': '원더온',
-    '청담어학원(송파)': '원더온',
-    '경복초등학교': '알이백', '삼성물산(에버랜드)': '알이백'
+    '롯데바이오로직스': '온버스', '분당서울대병원': '온버스',
+    '광역버스': '온버스', '마크로젠': '온버스', '위키드(대구)': '온버스',
+    '서울대학교(시흥)': '온버스', '롯데면세점': '온버스',
+    '고대구로병원': '온버스', '최선어학원(영통)': '온버스',
+    '경복초등학교': '온버스', 'DL E&C': '온버스',
+    '삼성전자(평택)': '알이백', '삼성전자평택': '알이백',
+    '평택미군스쿨': '알이백', '평택 미군스쿨': '알이백',
+    '할렐루야교회': '알이백',
+    '삼성물산(에버랜드)': '알이백',
+    '청담어학원(송파)': '원더온', '청담어학원(분당)': '원더온'
 };
+
+// Customer -> Team (담당팀) mapping — 팀별 차량현황 26.03.20 기준
+const CUSTOMER_TEAM = {
+    '삼성전자(평택)': '1팀',
+    '삼성전자(수원)': '2팀', '삼성디지털시티(수원)': '2팀',
+    '분당서울대병원': '2팀', '할렐루야교회': '2팀', '경복초등학교': '2팀',
+    '고대구로병원': '2팀', '롯데바이오로직스': '2팀', '삼성물산(에버랜드)': '2팀',
+    '롯데면세점': '2팀', '삼성바이오로직스': '2팀', '마크로젠': '2팀',
+    '광역버스': '2팀', '평택미군스쿨': '2팀', '서울대학교(시흥)': '2팀',
+    '인스파이어 엔터테인먼트 리조트': '3팀',
+    '청담어학원(송파)': '원더온', '청담어학원(분당)': '원더온',
+    '최선어학원(영통)': '원더온',
+    '위키드(대구)': '2팀'
+};
+const TEAM_COLORS = { '1팀': '#F59E0B', '2팀': '#3B82F6', '3팀': '#EF4444', '원더온': '#10B981' };
 
 const CORP_COLORS = { '온버스': '#3B82F6', '원더온': '#10B981', '알이백': '#8B5CF6' };
 
@@ -1132,12 +1148,12 @@ function drawAllSpokes(customers, detail, stationCoords) {
             const sc = stationCoords[sName];
             if (!sc) continue;
             const w = Math.max(1.5, 1 + (sData.kg / globalMaxKg) * 7);
-            const opacity = selectedCustomers.has(c.name) ? 0.8 : 0.15;
+            const opacity = selectedCustomers.has(c.name) ? 0.8 : 0.35;
             const line = L.polyline([[info.lat, info.lng], [sc.lat, sc.lng]], {
                 color, weight: w, opacity, className: 'flow-line'
             }).addTo(map);
             line.on('mouseover', () => { line.setStyle({ opacity: 1 }); });
-            line.on('mouseout', () => { line.setStyle({ opacity: selectedCustomers.has(c.name) ? 0.8 : 0.15 }); });
+            line.on('mouseout', () => { line.setStyle({ opacity: selectedCustomers.has(c.name) ? 0.8 : 0.35 }); });
             spokeLines.push(line);
         }
     });
@@ -1256,10 +1272,18 @@ function showCustomerDetail() {
 
     // Title
     document.getElementById('detailSection').style.display = '';
-    const titleText = customerNames.length === 1
-        ? `${customerNames[0]} - ${totalVehicles}대`
-        : `${customerNames.length}개 거래처 합산 - ${totalVehicles}대`;
-    document.getElementById('detailTitle').textContent = titleText;
+    document.getElementById('detailSection').style.display = '';
+    const detailTitleEl = document.getElementById('detailTitle');
+    if (customerNames.length === 1) {
+        const cn = customerNames[0];
+        const corp = CUSTOMER_COMPANY[cn] || '온버스';
+        const team = CUSTOMER_TEAM[cn] || '-';
+        const corpColor = CORP_COLORS[corp];
+        const teamColor = TEAM_COLORS[team] || '#6B7280';
+        detailTitleEl.innerHTML = `${cn} - ${totalVehicles}대 <span class="ml-2 inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full" style="background:${corpColor}22;color:${corpColor}">${corp}</span><span class="ml-1 inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full border" style="border-color:${teamColor};color:${teamColor}">${team}</span>`;
+    } else {
+        detailTitleEl.textContent = `${customerNames.length}개 거래처 합산 - ${totalVehicles}대`;
+    }
 
     // Customer colors - vary lightness within same corp to distinguish
     const corpShades = {
@@ -1277,10 +1301,14 @@ function showCustomerDetail() {
     });
 
     // Build matrix table HTML
-    let thead = '<tr class="text-left text-xs uppercase border-b-2 border-gray-200"><th class="py-2.5 px-2 font-semibold text-gray-600">충전소</th>';
+    let thead = '<tr class="text-left text-xs border-b-2 border-gray-200"><th class="py-2.5 px-2 font-semibold text-gray-600">충전소</th>';
     customerNames.forEach((n, i) => {
         const shortName = n.length > 6 ? n.substring(0, 6) + '\u2026' : n;
-        thead += `<th class="py-2.5 px-2 text-right font-semibold" style="color:${customerColors[i]}">${shortName}</th>`;
+        const corp = CUSTOMER_COMPANY[n] || '온버스';
+        const team = CUSTOMER_TEAM[n] || '-';
+        const teamColor = TEAM_COLORS[team] || '#6B7280';
+        const teamBg = team === '원더온' ? `${teamColor}15` : 'transparent';
+        thead += `<th class="py-2 px-2 text-right"><span class="font-semibold" style="color:${customerColors[i]}">${shortName}</span><br><span class="text-[10px] font-normal" style="color:${CORP_COLORS[corp]}">${corp}</span> <span class="text-[10px] font-normal px-1 rounded border" style="color:${teamColor};border-color:${teamColor};background:${teamBg}">${team}</span></th>`;
     });
     thead += '<th class="py-2.5 px-2 text-right font-bold text-gray-800 bg-gray-50">합계(kg)</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
@@ -1450,7 +1478,8 @@ function showStationDetail(stationName) {
     // Table: customer rows
     let thead = '<tr class="text-left text-xs uppercase border-b-2 border-gray-200">';
     thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">거래처</th>';
-    thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">법인</th>';
+    thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">계약법인</th>';
+    thead += '<th class="py-2.5 px-2 font-semibold text-gray-600">담당팀</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">충전량(kg)</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액</th>';
@@ -1459,10 +1488,14 @@ function showStationDetail(stationName) {
     let tbody = '';
     users.forEach(u => {
         const color = CORP_COLORS[u.company] || '#3B82F6';
+        const team = CUSTOMER_TEAM[u.name] || '-';
+        const teamColor = TEAM_COLORS[team] || '#6B7280';
+        const teamBg = team === '원더온' ? `${teamColor}15` : 'transparent';
         const pct = totalKg > 0 ? ((u.kg / totalKg) * 100).toFixed(1) : 0;
         tbody += `<tr class="border-b border-gray-100 hover:bg-blue-50/30 transition-colors">`;
         tbody += `<td class="py-2 px-2 font-medium text-gray-800 text-sm">${u.name}</td>`;
-        tbody += `<td class="py-2 px-2 text-sm"><span class="inline-block w-2 h-2 rounded-full mr-1" style="background:${color}"></span>${u.company}</td>`;
+        tbody += `<td class="py-2 px-2 text-sm"><span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background:${color}"></span>${u.company}</span></td>`;
+        tbody += `<td class="py-2 px-2 text-sm"><span class="px-1.5 py-0.5 rounded border text-xs" style="color:${teamColor};border-color:${teamColor};background:${teamBg}">${team}</span></td>`;
         tbody += `<td class="py-2 px-2 text-right text-sm font-medium tabular-nums">${Math.round(u.kg).toLocaleString('ko-KR')}</td>`;
         tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${u.count.toLocaleString('ko-KR')}</td>`;
         tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${(u.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
@@ -1470,7 +1503,7 @@ function showStationDetail(stationName) {
     });
 
     let tfoot = '<tr class="border-t-2 border-gray-300 font-bold bg-gray-50">';
-    tfoot += `<td class="py-2.5 px-2 text-sm">합계</td><td class="py-2.5 px-2 text-sm">${users.length}개</td>`;
+    tfoot += `<td class="py-2.5 px-2 text-sm">합계</td><td class="py-2.5 px-2 text-sm" colspan="2">${users.length}개</td>`;
     tfoot += `<td class="py-2.5 px-2 text-right text-sm">${Math.round(totalKg).toLocaleString('ko-KR')}</td>`;
     tfoot += `<td class="py-2.5 px-2 text-right text-sm">${totalCount.toLocaleString('ko-KR')}</td>`;
     tfoot += `<td class="py-2.5 px-2 text-right text-sm">${(totalAmount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
