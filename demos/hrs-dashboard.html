@@ -751,7 +751,7 @@ const CUSTOMER_DISPLAY = {
     '삼성바이오로직스': '삼성바이오',
     '삼성물산(에버랜드)': '에버랜드',
     '롯데바이오로직스': '롯데바이오',
-    '분당서울대병원': '분당서울대',
+    '분당서울대병원': '서울대분당',
     '평택미군스쿨': '미군스쿨',
     '서울대학교(시흥)': '서울대<br>(시흥)',
     '최선어학원(영통)': '최선<br>(영통)',
@@ -1415,7 +1415,7 @@ function showCustomerDetail() {
             plugins: {
                 legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'rectRounded', boxWidth: 8, font: { size: 10 } } },
                 tooltip: {
-                    mode: 'index', intersect: true,
+                    mode: 'index', intersect: true, axis: 'y',
                     backgroundColor: 'rgba(17,24,39,0.9)', cornerRadius: 8, padding: 10,
                     filter: ctx => ctx.parsed.x > 0,
                     callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.x.toLocaleString('ko-KR')} kg` }
