@@ -767,21 +767,10 @@ const CUSTOMER_DISPLAY = {
 };
 function displayName(n) { return CUSTOMER_DISPLAY[n] || n; }
 
-// 충전소명 2줄 표시용
-const STATION_DISPLAY = {
-    '에스케이 수원고색': 'SK<br>수원고색', '에스케이 성남사송': 'SK<br>성남사송',
-    '에스케이 송도액화': 'SK<br>송도액화', '에스케이 송도기체': 'SK<br>송도기체',
-    '에스케이 인천운서': 'SK<br>인천운서', '에스케이 인천신흥': 'SK<br>인천신흥',
-    '에스케이 평택모곡': 'SK<br>평택모곡', '에스케이 대구검단': 'SK<br>대구검단',
-    '에스케이 원주장양': 'SK<br>원주장양', '에스케이 이천대흥': 'SK<br>이천대흥',
-    '코하이젠 안산본오': '코하이젠<br>안산본오', '코하이젠 양주회정': '코하이젠<br>양주회정',
-    '하이넷 에버랜드': '하이넷<br>에버랜드', '하이넷 인천공항T1': '하이넷<br>인천공항T1',
-    '하이넷 광명소하': '하이넷<br>광명소하', '하이넷 H국회': '하이넷<br>H국회',
-    '세운산업(주)가좌': '세운산업<br>가좌', '기흥휴게소(부산)': '기흥휴게소<br>(부산)',
-    '덕평휴게소(강릉)': '덕평휴게소<br>(강릉)', '안성맞춤(제천)': '안성맞춤<br>(제천)',
-    '인천그린': '인천그린', '성남': '성남', '월곡수소충전소(주)': '월곡'
-};
-function displayStation(s) { const n = s.replace(/ 수소충전소/g, ''); return STATION_DISPLAY[n] || n; }
+// 충전소명 축약 (에스케이→SK, 수소충전소 제거)
+function displayStation(s) {
+    return s.replace(/ 수소충전소/g, '').replace(/^에스케이 /, 'SK ').replace(/^세운산업\(주\)/, '세운산업 ').replace(/^월곡수소충전소\(주\)/, '월곡');
+}
 
 const CORP_COLORS = { '온버스': '#3B82F6', '원더온': '#10B981', '알이백': '#8B5CF6' };
 
@@ -1410,7 +1399,7 @@ function showCustomerDetail() {
     detailPieChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: top8.map(([s]) => { const n = s.replace(/ 수소충전소/g, ''); return (STATION_DISPLAY[n] || n).replace(/<br>/g, ' '); }),
+            labels: top8.map(([s]) => displayStation(s)),
             datasets: customerNames.map((n, i) => ({
                 label: n,
                 data: top8.map(([, d]) => Math.round(d.customers[n] || 0)),
