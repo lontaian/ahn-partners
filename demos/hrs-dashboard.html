@@ -1236,8 +1236,20 @@ function showCustomerDetail() {
         : `${customerNames.length}개 거래처 합산 - ${totalVehicles}대`;
     document.getElementById('detailTitle').textContent = titleText;
 
-    // Customer colors for columns
-    const customerColors = customerNames.map(n => CORP_COLORS[CUSTOMER_COMPANY[n] || '온버스']);
+    // Customer colors - vary lightness within same corp to distinguish
+    const corpShades = {
+        '온버스':  ['#3B82F6','#60A5FA','#1D4ED8','#93C5FD','#2563EB','#BFDBFE'],
+        '원더온':  ['#10B981','#34D399','#059669','#6EE7B7','#047857'],
+        '알이백':  ['#8B5CF6','#A78BFA','#6D28D9','#C4B5FD','#5B21B6']
+    };
+    const corpCount = {};
+    const customerColors = customerNames.map(n => {
+        const corp = CUSTOMER_COMPANY[n] || '온버스';
+        const idx = corpCount[corp] || 0;
+        corpCount[corp] = idx + 1;
+        const shades = corpShades[corp] || corpShades['온버스'];
+        return shades[idx % shades.length];
+    });
 
     // Build matrix table HTML
     let thead = '<tr class="text-left text-xs uppercase border-b-2 border-gray-200"><th class="py-2.5 px-2 font-semibold text-gray-600">충전소</th>';
@@ -1305,9 +1317,12 @@ function showCustomerDetail() {
         data: {
             labels: top8.map(([s]) => s.replace(/ 수소충전소/g, '')),
             datasets: customerNames.map((n, i) => ({
-                label: n.length > 8 ? n.substring(0, 8) + '\u2026' : n,
+                label: n.length > 10 ? n.substring(0, 10) + '\u2026' : n,
                 data: top8.map(([, d]) => Math.round(d.customers[n] || 0)),
                 backgroundColor: customerColors[i],
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                borderSkipped: false,
                 borderRadius: 2
             }))
         },
