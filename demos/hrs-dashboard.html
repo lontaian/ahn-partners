@@ -36,7 +36,7 @@
 <!-- Top Navigation -->
 <nav class="bg-gray-900 text-white">
     <div class="max-w-screen-2xl mx-auto px-3 lg:px-6 flex items-center h-9 text-xs lg:text-sm gap-4">
-        <a href="hrs-dashboard.html" class="font-semibold text-white border-b-2 border-blue-400 pb-0.5">충전 네트워크</a>
+        <a href="index.html" class="font-semibold text-white border-b-2 border-blue-400 pb-0.5">충전 네트워크</a>
         <a href="pogok.html" class="text-gray-400 hover:text-white transition-colors pb-0.5">포곡 지역 분석</a>
     </div>
 </nav>
@@ -57,6 +57,48 @@
     <div class="grid grid-cols-3 lg:grid-cols-5 gap-2 lg:gap-3" id="summaryCards"></div>
 </section>
 
+<section class="max-w-screen-2xl mx-auto px-3 lg:px-6 pb-2">
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div class="flex items-center justify-between mb-2 gap-3">
+            <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wide">📊 수소충전소 현재 판매가격 기준 지역 평균</h3>
+            <div class="flex items-center gap-2 shrink-0">
+                <button id="livePriceRefreshBtn" class="px-2.5 py-1 rounded-md border border-blue-200 bg-blue-50 text-[11px] font-semibold text-blue-700 hover:bg-blue-100 transition-colors">실시간 가격 업데이트</button>
+                <span class="text-[10px] text-gray-400 text-right" id="livePriceSource">출처: 수소전담기관 h2biz.or.kr</span>
+            </div>
+        </div>
+        <div class="hidden items-center gap-2 mb-2 text-[11px] text-blue-600 font-medium" id="livePriceLoading">
+            <span class="inline-block w-3 h-3 border-2 border-blue-200 border-t-blue-600 rounded-full animate-spin"></span>
+            <span>실시간 가격 업데이트 중...</span>
+        </div>
+        <div class="grid grid-cols-3 lg:grid-cols-6 gap-2 text-center text-xs">
+            <div class="bg-gray-50 rounded-lg p-2">
+                <div class="text-[10px] text-gray-500 font-medium">전국</div>
+                <div class="text-sm font-bold text-gray-800" id="regional-price-전국">10,311원</div>
+            </div>
+            <div class="bg-blue-50 rounded-lg p-2">
+                <div class="text-[10px] text-blue-600 font-medium">서울</div>
+                <div class="text-sm font-bold text-blue-700" id="regional-price-서울">10,344원</div>
+            </div>
+            <div class="bg-indigo-50 rounded-lg p-2">
+                <div class="text-[10px] text-indigo-600 font-medium">경기</div>
+                <div class="text-sm font-bold text-indigo-700" id="regional-price-경기">10,476원</div>
+            </div>
+            <div class="bg-cyan-50 rounded-lg p-2">
+                <div class="text-[10px] text-cyan-600 font-medium">인천</div>
+                <div class="text-sm font-bold text-cyan-700" id="regional-price-인천">11,075원</div>
+            </div>
+            <div class="bg-teal-50 rounded-lg p-2">
+                <div class="text-[10px] text-teal-600 font-medium">부산</div>
+                <div class="text-sm font-bold text-teal-700" id="regional-price-부산">11,375원</div>
+            </div>
+            <div class="bg-orange-50 rounded-lg p-2">
+                <div class="text-[10px] text-orange-600 font-medium">제주</div>
+                <div class="text-sm font-bold text-orange-700" id="regional-price-제주">15,000원</div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Main Area: Customer Panel + Map -->
 <section class="max-w-screen-2xl mx-auto px-3 lg:px-6 pb-3">
     <div class="flex flex-col lg:flex-row gap-3">
@@ -67,8 +109,9 @@
                 <button class="flex-1 py-2 text-sm font-semibold text-blue-600 border-b-2 border-blue-600" data-tab="customer">거래처</button>
                 <button class="flex-1 py-2 text-sm font-medium text-gray-400 hover:text-gray-600" data-tab="station">충전소</button>
             </div>
-            <!-- Corp Filters -->
-            <div class="p-3 border-b border-gray-100 flex gap-1.5 flex-wrap" id="corpFilters"></div>
+            <!-- Corp / Team Filters -->
+            <div class="p-3 pb-1.5 flex gap-1.5 flex-wrap" id="corpFilters"></div>
+            <div class="px-3 pt-0 pb-3 border-b border-gray-100 flex gap-1.5 flex-wrap" id="teamFilters"></div>
             <!-- Customer List -->
             <div class="flex-1 overflow-y-auto custom-scrollbar p-2" id="customerList"></div>
         </div>
@@ -82,6 +125,12 @@
                 <button id="toggleAllLines" class="bg-white px-3 py-1.5 rounded-lg shadow-md text-sm font-medium text-gray-700 hover:bg-gray-50 border border-gray-200 transition-colors">
                 전체 네트워크 보기
             </button>
+            </div>
+            <div class="absolute bottom-3 left-3 z-[1000] flex gap-1.5 flex-wrap max-w-[70%]">
+                <button id="h2-layer-SK" onclick="toggleH2Layer('SK')" class="px-2 py-1 rounded-md text-xs font-medium border transition-all" style="background:white;color:#f97316;border-color:#f97316">SK</button>
+                <button id="h2-layer-코하이젠" onclick="toggleH2Layer('코하이젠')" class="px-2 py-1 rounded-md text-xs font-medium border transition-all" style="background:white;color:#a855f7;border-color:#a855f7">코하이젠</button>
+                <button id="h2-layer-하이넷" onclick="toggleH2Layer('하이넷')" class="px-2 py-1 rounded-md text-xs font-medium border transition-all" style="background:white;color:#14b8a6;border-color:#14b8a6">하이넷</button>
+                <button id="h2-layer-기타" onclick="toggleH2Layer('기타')" class="px-2 py-1 rounded-md text-xs font-medium border transition-all" style="background:white;color:#6b7280;border-color:#6b7280">기타</button>
             </div>
         </div>
     </div>
@@ -119,7 +168,7 @@
 <!-- Footer -->
 <footer class="bg-white border-t border-gray-200 mt-2">
     <div class="max-w-screen-2xl mx-auto px-3 lg:px-6 py-3 text-center text-xs text-gray-400">
-        원더에너지 수소충전소 대시보드 v6.0 | 데이터 기준: 2025년 10월 ~ 2026년 2월
+        원더에너지 수소충전소 대시보드 v6.0 | 데이터 기준: 2025년 10월 ~ 2026년 3월
     </div>
 </footer>
 
@@ -147,7 +196,10 @@ const CUSTOMER_INFO = {
     '광역버스': { lat: 37.420, lng: 127.126 },
     '위키드(대구)': { lat: 35.871, lng: 128.601 },
     '마크로젠': { lat: 37.383, lng: 126.661 },
-    '서울대학교(시흥)': { lat: 37.340, lng: 126.736 }
+    '서울대학교(시흥)': { lat: 37.340, lng: 126.736 },
+    '용인대학교': { lat: 37.226332, lng: 127.168803 },
+    '장안대학교': { lat: 37.213113, lng: 126.946329 },
+    '기흥,이천/하남차고지': { lat: 37.117134, lng: 127.584009 }
 };
 
 const MONTHLY_DATA = {
@@ -321,7 +373,36 @@ const MONTHLY_DATA = {
             '원더온': { total_kg: 1796.12, color: '#10B981', customers: 4, vehicles: 8 },
             '알이백': { total_kg: 1422.44, color: '#8B5CF6', customers: 3, vehicles: 6 }
         }
-    }
+    },
+    '2026-03': {
+        summary: { total_kg: 28976.76, total_count: 1535, customer_count: 22, vehicle_count: 90 },
+        vehicles_by_customer: {
+            '삼성전자(수원)': 26, '경복초등학교': 10, '삼성전자(평택)': 9, '삼성바이오로직스': 7, '분당서울대병원': 6, '인스파이어 엔터테인먼트 리조트': 5, '삼성물산(에버랜드)': 5, '서울대학교(시흥)': 5, '광역버스': 3, '롯데바이오로직스': 3, '평택미군스쿨': 3, '할렐루야교회': 2, '마크로젠': 2, '고대구로병원': 2, '위키드(대구)': 2, '롯데면세점': 1, '용인대학교': 1, '청담어학원(분당)': 1, '최선어학원(영통)': 1, '청담어학원(송파)': 1, '장안대학교': 1, '기흥,이천/하남차고지': 1
+        },
+        charging_stations: [
+            { name: '에스케이 성남사송 수소충전소', total_kg: 6412.35, count: 315, lat: 37.414814, lng: 127.115619, price_per_kg: 11000 },
+            { name: '에스케이 송도액화 수소충전소', total_kg: 4442.1, count: 250, lat: 37.3679, lng: 126.6382, price_per_kg: 11550 },
+            { name: '에스케이 수원고색 수소충전소', total_kg: 3412.2, count: 184, lat: 37.2372, lng: 126.988, price_per_kg: 11550 },
+            { name: '에스케이 인천운서 수소충전소', total_kg: 2598.35, count: 127, lat: 37.4614, lng: 126.4089, price_per_kg: 11000 },
+            { name: '성남 수소충전소', total_kg: 2363.15, count: 130, lat: 37.421758, lng: 127.155178, price_per_kg: 11000 },
+            { name: '하이넷 에버랜드 수소충전소', total_kg: 2130.41, count: 125, lat: 37.293399, lng: 127.222755, price_per_kg: 11550 },
+            { name: '코하이젠 안산본오 수소충전소', total_kg: 1826.1, count: 87, lat: 37.28979, lng: 126.872924, price_per_kg: 11900 },
+            { name: '기흥휴게소(부산) 수소충전소', total_kg: 1618.58, count: 108, lat: 37.233563, lng: 127.105789, price_per_kg: 11400 },
+            { name: '에스케이 평택모곡 수소충전소', total_kg: 1369.38, count: 70, lat: 37.053813, lng: 127.080491, price_per_kg: 11000 },
+            { name: '하이넷 인천공항T1 수소충전소', total_kg: 1329.41, count: 54, lat: 37.481639, lng: 126.423174, price_per_kg: 11550 },
+            { name: '세운산업(주)가좌 수소충전소', total_kg: 528.11, count: 34, lat: 37.492005, lng: 126.650939, price_per_kg: 12155 },
+            { name: '하이넷 광명소하 수소충전소', total_kg: 413.32, count: 21, lat: 37.438555, lng: 126.892585, price_per_kg: 11550 },
+            { name: '용인휴게소(인천) 수소충전소', total_kg: 336.17, count: 17, lat: 37.248333, lng: 127.238382, price_per_kg: 11550 },
+            { name: '월곡수소충전소(주)', total_kg: 106.49, count: 7, lat: 35.143749, lng: 126.816904, price_per_kg: 9900 },
+            { name: '에스케이 대구검단 수소충전소', total_kg: 78.1, count: 5, lat: 35.8833, lng: 128.5536, price_per_kg: 12100 },
+            { name: '덕평휴게소(강릉) 수소충전소', total_kg: 12.54, count: 1, lat: 37.242839, lng: 127.391004, price_per_kg: 10950 },
+        ],
+        companies: {
+            '온버스': { total_kg: 23957.96, color: '#3B82F6', customers: 13, vehicles: 72 },
+            '원더온': { total_kg: 1200.98, color: '#10B981', customers: 5, vehicles: 5 },
+            '알이백': { total_kg: 3817.82, color: '#8B5CF6', customers: 4, vehicles: 19 },
+        }
+    },
 };
 
 const CUSTOMER_STATION_DETAIL = {
@@ -714,6 +795,116 @@ const CUSTOMER_STATION_DETAIL = {
     },
     "청담어학원(분당)": {"에스케이 성남사송 수소충전소":{"kg":180.06,"count":11,"amount":1980660}},
     "서울대학교(시흥)": {"에스케이 수원고색 수소충전소":{"kg":35.72,"count":2,"amount":412566}}
+  },
+  "2026-03": {
+    "삼성전자(수원)": {
+      "에스케이 성남사송 수소충전소": {"kg":2541.1,"count":135,"amount":27952100},
+      "코하이젠 안산본오 수소충전소": {"kg":1382.93,"count":65,"amount":16456867},
+      "에스케이 수원고색 수소충전소": {"kg":3121.49,"count":170,"amount":36053168},
+      "기흥휴게소(부산) 수소충전소": {"kg":1042.29,"count":73,"amount":11882106},
+      "성남 수소충전소": {"kg":849.36,"count":44,"amount":9342960},
+      "에스케이 대구검단 수소충전소": {"kg":13.21,"count":1,"amount":159840},
+      "하이넷 에버랜드 수소충전소": {"kg":22.93,"count":1,"amount":264841},
+      "에스케이 송도액화 수소충전소": {"kg":18.04,"count":1,"amount":208362}
+    },
+    "삼성바이오로직스": {
+      "성남 수소충전소": {"kg":27.61,"count":1,"amount":303710},
+      "에스케이 송도액화 수소충전소": {"kg":1815.97,"count":103,"amount":20974426},
+      "세운산업(주)가좌 수소충전소": {"kg":106.91,"count":6,"amount":1299491}
+    },
+    "삼성물산(에버랜드)": {
+      "하이넷 에버랜드 수소충전소": {"kg":1017.4,"count":67,"amount":11750949},
+      "성남 수소충전소": {"kg":322.4,"count":22,"amount":3546400},
+      "에스케이 성남사송 수소충전소": {"kg":98.84,"count":6,"amount":1087240},
+      "기흥휴게소(부산) 수소충전소": {"kg":78.48,"count":6,"amount":894672},
+      "에스케이 수원고색 수소충전소": {"kg":17.64,"count":1,"amount":203742},
+      "용인휴게소(인천) 수소충전소": {"kg":13.71,"count":1,"amount":158350},
+      "덕평휴게소(강릉) 수소충전소": {"kg":12.54,"count":1,"amount":137258}
+    },
+    "롯데바이오로직스": {
+      "에스케이 인천운서 수소충전소": {"kg":224.81,"count":11,"amount":2472910},
+      "에스케이 송도액화 수소충전소": {"kg":858.92,"count":49,"amount":9920516},
+      "세운산업(주)가좌 수소충전소": {"kg":73.41,"count":4,"amount":892299}
+    },
+    "롯데면세점": {
+      "에스케이 인천운서 수소충전소": {"kg":332.94,"count":19,"amount":3662340},
+      "세운산업(주)가좌 수소충전소": {"kg":162.79,"count":11,"amount":1978713},
+      "에스케이 송도액화 수소충전소": {"kg":16.23,"count":1,"amount":187456}
+    },
+    "마크로젠": {
+      "세운산업(주)가좌 수소충전소": {"kg":185.0,"count":13,"amount":2248674},
+      "에스케이 송도액화 수소충전소": {"kg":486.78,"count":29,"amount":5622303},
+      "에스케이 인천운서 수소충전소": {"kg":4.13,"count":1,"amount":45430}
+    },
+    "인스파이어 엔터테인먼트 리조트": {
+      "에스케이 인천운서 수소충전소": {"kg":2036.47,"count":96,"amount":22401170},
+      "하이넷 인천공항T1 수소충전소": {"kg":1329.41,"count":54,"amount":15354655},
+      "에스케이 송도액화 수소충전소": {"kg":136.18,"count":6,"amount":1572878}
+    },
+    "분당서울대병원": {
+      "에스케이 성남사송 수소충전소": {"kg":1503.79,"count":73,"amount":16541690},
+      "기흥휴게소(부산) 수소충전소": {"kg":17.48,"count":1,"amount":199272},
+      "성남 수소충전소": {"kg":555.67,"count":28,"amount":6112370}
+    },
+    "할렐루야교회": {
+      "성남 수소충전소": {"kg":337.38,"count":20,"amount":3711180},
+      "에스케이 성남사송 수소충전소": {"kg":220.75,"count":12,"amount":2428250},
+      "에스케이 수원고색 수소충전소": {"kg":5.9,"count":1,"amount":68145}
+    },
+    "서울대학교(시흥)": {
+      "기흥휴게소(부산) 수소충전소": {"kg":21.54,"count":1,"amount":245556},
+      "에스케이 송도액화 수소충전소": {"kg":970.13,"count":54,"amount":11204988},
+      "에스케이 수원고색 수소충전소": {"kg":90.26,"count":4,"amount":1042502},
+      "코하이젠 안산본오 수소충전소": {"kg":392.26,"count":20,"amount":4667894}
+    },
+    "광역버스": {
+      "기흥휴게소(부산) 수소충전소": {"kg":120.08,"count":7,"amount":1368912},
+      "성남 수소충전소": {"kg":49.27,"count":2,"amount":541970},
+      "에스케이 성남사송 수소충전소": {"kg":178.04,"count":8,"amount":1958440},
+      "하이넷 에버랜드 수소충전소": {"kg":932.49,"count":46,"amount":10770244},
+      "코하이젠 안산본오 수소충전소": {"kg":50.91,"count":2,"amount":605829},
+      "용인휴게소(인천) 수소충전소": {"kg":322.46,"count":16,"amount":3724410}
+    },
+    "경복초등학교": {
+      "에스케이 성남사송 수소충전소": {"kg":1470.22,"count":62,"amount":16172420}
+    },
+    "위키드(대구)": {
+      "에스케이 대구검단 수소충전소": {"kg":53.18,"count":3,"amount":643480}
+    },
+    "삼성전자(평택)": {
+      "에스케이 평택모곡 수소충전소": {"kg":1100.66,"count":59,"amount":12107260},
+      "에스케이 성남사송 수소충전소": {"kg":65.35,"count":3,"amount":718850},
+      "월곡수소충전소(주)": {"kg":106.49,"count":7,"amount":1054251},
+      "에스케이 대구검단 수소충전소": {"kg":11.71,"count":1,"amount":141690}
+    },
+    "청담어학원(분당)": {
+      "에스케이 성남사송 수소충전소": {"kg":238.51,"count":11,"amount":2623610}
+    },
+    "고대구로병원": {
+      "하이넷 광명소하 수소충전소": {"kg":413.32,"count":21,"amount":4773838}
+    },
+    "청담어학원(송파)": {
+      "성남 수소충전소": {"kg":221.46,"count":13,"amount":2436060}
+    },
+    "기흥,이천/하남차고지": {
+      "에스케이 수원고색 수소충전소": {"kg":27.95,"count":1,"amount":322822}
+    },
+    "최선어학원(영통)": {
+      "기흥휴게소(부산) 수소충전소": {"kg":206.33,"count":12,"amount":2352162},
+      "에스케이 수원고색 수소충전소": {"kg":19.64,"count":1,"amount":226842}
+    },
+    "평택미군스쿨": {
+      "에스케이 송도액화 수소충전소": {"kg":139.85,"count":7,"amount":1615266},
+      "에스케이 평택모곡 수소충전소": {"kg":268.72,"count":11,"amount":2955920}
+    },
+    "용인대학교": {
+      "하이넷 에버랜드 수소충전소": {"kg":157.59,"count":11,"amount":1820161},
+      "기흥휴게소(부산) 수소충전소": {"kg":132.38,"count":8,"amount":1509132},
+      "에스케이 성남사송 수소충전소": {"kg":95.75,"count":5,"amount":1053250}
+    },
+    "장안대학교": {
+      "에스케이 수원고색 수소충전소": {"kg":129.32,"count":6,"amount":1493643}
+    }
   }
 };
 
@@ -735,18 +926,38 @@ const CUSTOMER_COMPANY = {
 
 // Customer -> Team (담당팀) mapping — 팀별 차량현황 26.03.20 기준
 const CUSTOMER_TEAM = {
+    '삼성전자(수원)': '2팀',
     '삼성전자(평택)': '1팀',
-    '삼성전자(수원)': '2팀', '삼성디지털시티(수원)': '2팀',
-    '분당서울대병원': '2팀', '할렐루야교회': '2팀', '경복초등학교': '2팀',
-    '고대구로병원': '2팀', '롯데바이오로직스': '2팀', '삼성물산(에버랜드)': '2팀',
-    '롯데면세점': '2팀', '삼성바이오로직스': '2팀', '마크로젠': '2팀',
-    '광역버스': '2팀', '평택미군스쿨': '2팀', '서울대학교(시흥)': '2팀',
+    '삼성바이오로직스': '2팀',
+    '삼성물산(에버랜드)': '2팀',
+    '경복초등학교': '2팀',
+    '분당서울대병원': '2팀',
     '인스파이어 엔터테인먼트 리조트': '3팀',
-    '청담어학원(송파)': '원더온', '청담어학원(분당)': '원더온',
+    '롯데바이오로직스': '2팀',
+    '롯데면세점': '2팀',
+    '마크로젠': '2팀',
+    '고대구로병원': '원더온',
+    '청담어학원(송파)': '원더온',
+    '청담어학원(분당)': '원더온',
     '최선어학원(영통)': '원더온',
-    '위키드(대구)': '2팀'
+    '할렐루야교회': '2팀',
+    '장안대학교': '2팀',
+    '용인대학교': '2팀',
+    '서울대학교(시흥)': '2팀',
+    '쿠팡(양지4)': '2팀',
+    '버지니아 미군스쿨': '1팀',
+    '신영': '1팀',
+    '위키드(대구)': '2팀',
+    '광역버스': '2팀',
+    'DL E&C': '2팀',
+    'LG트윈타워': '원더온',
+    'HDC랩스': '2팀',
+    '랜드마크': '2팀',
+    '크래프톤': '2팀'
 };
-const TEAM_COLORS = { '1팀': '#D97706', '2팀': '#0369A1', '3팀': '#BE123C', '원더온': '#047857' };
+CUSTOMER_TEAM['삼성디지털시티(수원)'] = CUSTOMER_TEAM['삼성전자(수원)'];
+CUSTOMER_TEAM['평택미군스쿨'] = CUSTOMER_TEAM['버지니아 미군스쿨'];
+const TEAM_COLORS = { '1팀': '#EF4444', '2팀': '#3B82F6', '3팀': '#10B981', '원더온': '#8B5CF6' };
 
 // 거래처명 컬럼 표시용 (짧게)
 const CUSTOMER_DISPLAY = {
@@ -777,10 +988,799 @@ function displayStation(s) {
     return s.replace(/ 수소충전소/g, '').replace(/^에스케이 /, 'SK ').replace(/^세운산업\(주\)/, '세운산업 ').replace(/^월곡수소충전소\(주\)/, '월곡');
 }
 
+function getStraightDistanceKm(lat1, lng1, lat2, lng2) {
+    const toRad = deg => deg * Math.PI / 180;
+    const R = 6371;
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function addDistanceLabel(lat1, lng1, lat2, lng2, color = '#374151') {
+    const distanceKm = getStraightDistanceKm(lat1, lng1, lat2, lng2);
+    const label = L.marker([(lat1 + lat2) / 2, (lng1 + lng2) / 2], {
+        icon: L.divIcon({
+            html: `<div style="background:rgba(255,255,255,0.96);padding:1px 5px;border-radius:999px;font-size:10px;font-weight:700;line-height:1.2;color:${color};border:1px solid ${color}22;box-shadow:0 1px 4px rgba(0,0,0,0.12);white-space:nowrap;">${distanceKm.toFixed(1)}km</div>`,
+            className: 'custom-marker-bg',
+            iconSize: [56, 18],
+            iconAnchor: [28, 9]
+        }),
+        interactive: false,
+        pane: 'distanceLabelPane'
+    });
+    map.addLayer(label);
+    stationLabels.push(label);
+}
+
 const CORP_COLORS = { '온버스': '#3B82F6', '원더온': '#10B981', '알이백': '#8B5CF6' };
 
-const MONTHS = ['2025-10','2025-11','2025-12','2026-01','2026-02'];
-const MONTH_LABELS = {'2025-10':'10월','2025-11':'11월','2025-12':'12월','2026-01':'1월','2026-02':'2월'};
+const MONTHS = ['2025-10','2025-11','2025-12','2026-01','2026-02','2026-03'];
+const MONTH_LABELS = {'2025-10':'10월','2025-11':'11월','2025-12':'12월','2026-01':'1월','2026-02':'2월','2026-03':'3월'};
+
+// ===== H2 STATION API DATA (fetched 2026-04-21, based on 2026-03) =====
+const H2_API_DATA = {
+  fetchedAt: '2026-04-21',
+  baseMonth: '2026-03',
+  regionalAvg: {
+    '서울': { avg: 10344, count: 9 },
+    '경기': { avg: 10484, count: 46 },
+    '전국': { avg: 10335, count: 242 }
+  },
+  operatorAvg: {
+    'SK/하이버스': { avg: 11139, count: 23 },
+    '코하이젠': { avg: 11427, count: 11 },
+    '하이넷': { avg: 10034, count: 54 }
+  },
+  stationPrices: {
+    '하이버스 성남사송 수소충전소': 11000,
+    '하이버스 인천송도 수소충전소': 11550,
+    '하이버스 수원고색 수소충전소': 11550,
+    '하이버스 인천운서(인천공항 제2터미널) 수소충전소': 11000,
+    '성남시 수소충전소': 11000,
+    '하이넷 에버랜드 수소충전소': 9900,
+    '코하이젠 안산본오 수소충전소': 11900,
+    '기흥휴게소(부산방향) 수소충전소': 10400,
+    '하이버스 평택모곡 수소충전소': 11000,
+    '하이넷 인천공항T1 수소충전소': 10198,
+    '하이넷 광명소하 수소충전소': 10148.3,
+    '용인 휴게소(인천방향)수소충전소': 10900,
+    '평택 월곡 수소충전소': 9900,
+    '인천 가좌 액화수소 자동차 충전소': 12155,
+    '하이버스 대구검단 수소충전소': 12100,
+    '덕평휴게소(강릉방향) SK에너지 수소충전소': 10950,
+    '하이버스 인천송도(기체) 수소충전소': 11550,
+    '코하이젠 회천농협 수소충전소': 12300
+  },
+  stationMapping: {
+    '에스케이 성남사송 수소충전소': '하이버스 성남사송 수소충전소',
+    '에스케이 송도액화 수소충전소': '하이버스 인천송도 수소충전소',
+    '에스케이 송도기체 수소충전소': '하이버스 인천송도(기체) 수소충전소',
+    '에스케이 수원고색 수소충전소': '하이버스 수원고색 수소충전소',
+    '에스케이 인천운서 수소충전소': '하이버스 인천운서(인천공항 제2터미널) 수소충전소',
+    '성남 수소충전소': '성남시 수소충전소',
+    '하이넷 에버랜드 수소충전소': '하이넷 에버랜드 수소충전소',
+    '코하이젠 안산본오 수소충전소': '코하이젠 안산본오 수소충전소',
+    '코하이젠 양주회정 수소충전소': '코하이젠 회천농협 수소충전소',
+    '기흥휴게소(부산) 수소충전소': '기흥휴게소(부산방향) 수소충전소',
+    '에스케이 평택모곡 수소충전소': '하이버스 평택모곡 수소충전소',
+    '평택모곡충전소에스케이플러그하이': '하이버스 평택모곡 수소충전소',
+    '하이넷 인천공항T1 수소충전소': '하이넷 인천공항T1 수소충전소',
+    '하이넷 광명소하 수소충전소': '하이넷 광명소하 수소충전소',
+    '용인휴게소(인천) 수소충전소': '용인 휴게소(인천방향)수소충전소',
+    '월곡수소충전소(주)': '평택 월곡 수소충전소',
+    '세운산업(주)가좌 수소충전소': '인천 가좌 액화수소 자동차 충전소',
+    '에스케이 대구검단 수소충전소': '하이버스 대구검단 수소충전소',
+    '덕평휴게소(강릉) 수소충전소': '덕평휴게소(강릉방향) SK에너지 수소충전소'
+  }
+};
+
+const LIVE_PRICE_PROXY_URL = 'https://r.jina.ai/http://https://www.h2nbiz.or.kr/rt/sts/pce/rtAmountInfo.do';
+const LIVE_PRICE_REGIONS = ['전국', '서울', '경기', '인천', '부산', '제주'];
+const LIVE_PRICE_CACHE_KEY = 'hrsDashLivePriceCacheV1';
+const LIVE_PRICE_SEARCH_OVERRIDES = {
+  '에스케이 성남사송 수소충전소': '성남사송',
+  '에스케이 송도액화 수소충전소': '인천송도',
+  '에스케이 송도기체 수소충전소': '인천송도(기체)',
+  '에스케이 수원고색 수소충전소': '수원고색',
+  '에스케이 인천운서 수소충전소': '인천운서',
+  '성남 수소충전소': '성남시 수소충전소',
+  '하이넷 에버랜드 수소충전소': '에버랜드',
+  '코하이젠 안산본오 수소충전소': '안산본오',
+  '코하이젠 양주회정 수소충전소': '회천농협',
+  '기흥휴게소(부산) 수소충전소': '기흥휴게소(부산방향)',
+  '에스케이 평택모곡 수소충전소': '평택모곡',
+  '평택모곡충전소에스케이플러그하이': '평택모곡',
+  '하이넷 인천공항T1 수소충전소': '인천공항T1',
+  '하이넷 인천공항T2 수소충전소': '인천공항T2',
+  '하이넷 광명소하 수소충전소': '광명소하',
+  '용인휴게소(인천) 수소충전소': '용인 휴게소(인천방향)',
+  '월곡수소충전소(주)': '평택 월곡',
+  '세운산업(주)가좌 수소충전소': '가좌',
+  '에스케이 대구검단 수소충전소': '대구검단',
+  '덕평휴게소(강릉) 수소충전소': '덕평휴게소(강릉방향)',
+  '에스케이 원주장양 수소충전소': '원주장양',
+  '에스케이 인천신흥 수소충전소': '인천신흥',
+  '에스케이 이천대흥 수소충전소': '이천대흥',
+  '안성맞춤(제천) 수소충전소': '안성맞춤휴게소',
+  '인천그린 수소충전소': '인천그린',
+  '하이넷 H국회 수소충전소': '국회',
+  '하이버스 인천송도 수소충전소': '인천송도',
+  '하이버스 인천송도(기체) 수소충전소': '인천송도(기체)',
+  '용인 휴게소(인천방향)수소충전소': '용인 휴게소(인천방향)',
+  '코하이젠 회천농협 수소충전소': '회천농협'
+};
+
+const LIVE_PRICE_STATE = {
+  regionalAvg: {},
+  stationPrices: {},
+  inflight: new Set(),
+  loadingCount: 0,
+  initialized: false,
+  updatedAt: '',
+  cacheDate: ''
+};
+
+function getSeoulDateKey() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(new Date());
+  const map = Object.fromEntries(parts.filter(p => p.type !== 'literal').map(p => [p.type, p.value]));
+  return `${map.year}-${map.month}-${map.day}`;
+}
+
+function loadLivePriceCache() {
+  try {
+    const raw = localStorage.getItem(LIVE_PRICE_CACHE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    const today = getSeoulDateKey();
+    if (parsed.cacheDate !== today) return false;
+    LIVE_PRICE_STATE.cacheDate = parsed.cacheDate || '';
+    LIVE_PRICE_STATE.updatedAt = parsed.updatedAt || '';
+    LIVE_PRICE_STATE.regionalAvg = parsed.regionalAvg || {};
+    LIVE_PRICE_STATE.stationPrices = parsed.stationPrices || {};
+    return true;
+  } catch (error) {
+    console.warn('Failed to load live price cache', error);
+    return false;
+  }
+}
+
+function saveLivePriceCache() {
+  try {
+    localStorage.setItem(LIVE_PRICE_CACHE_KEY, JSON.stringify({
+      cacheDate: LIVE_PRICE_STATE.cacheDate,
+      updatedAt: LIVE_PRICE_STATE.updatedAt,
+      regionalAvg: LIVE_PRICE_STATE.regionalAvg,
+      stationPrices: LIVE_PRICE_STATE.stationPrices
+    }));
+  } catch (error) {
+    console.warn('Failed to save live price cache', error);
+  }
+}
+
+function setLivePriceLoading(delta) {
+  LIVE_PRICE_STATE.loadingCount = Math.max(0, LIVE_PRICE_STATE.loadingCount + delta);
+  const loadingEl = document.getElementById('livePriceLoading');
+  if (loadingEl) loadingEl.style.display = LIVE_PRICE_STATE.loadingCount > 0 ? 'flex' : 'none';
+  const refreshBtn = document.getElementById('livePriceRefreshBtn');
+  if (refreshBtn) {
+    refreshBtn.disabled = LIVE_PRICE_STATE.loadingCount > 0;
+    refreshBtn.classList.toggle('opacity-60', LIVE_PRICE_STATE.loadingCount > 0);
+    refreshBtn.classList.toggle('cursor-not-allowed', LIVE_PRICE_STATE.loadingCount > 0);
+  }
+}
+
+function parseWonNumber(text) {
+  const m = String(text || '').match(/([0-9]{1,3}(?:,[0-9]{3})*)원/);
+  return m ? Number(m[1].replace(/,/g, '')) : null;
+}
+
+function normalizeLiveSearchText(text) {
+  return String(text || '').replace(/\s+/g, '').replace(/수소충전소/g, '').replace(/[()]/g, '').toLowerCase();
+}
+
+function getLivePriceSearchKeyword(stationName) {
+  if (LIVE_PRICE_SEARCH_OVERRIDES[stationName]) return LIVE_PRICE_SEARCH_OVERRIDES[stationName];
+  return stationName
+    .replace(/^에스케이\s+/, '')
+    .replace(/^하이버스\s+/, '')
+    .replace(/^하이넷\s+/, '')
+    .replace(/^코하이젠\s+/, '')
+    .replace(/\s*수소충전소/g, '')
+    .trim();
+}
+
+function getDisplayedStationPrice(stationName, fallbackPrice = null) {
+  if (LIVE_PRICE_STATE.stationPrices[stationName] != null) return LIVE_PRICE_STATE.stationPrices[stationName];
+  const mapped = H2_API_DATA.stationMapping[stationName];
+  if (mapped && H2_API_DATA.stationPrices[mapped] != null) return H2_API_DATA.stationPrices[mapped];
+  return fallbackPrice;
+}
+
+function updateLivePriceSourceLabel(text) {
+  const el = document.getElementById('livePriceSource');
+  if (el) el.textContent = text;
+}
+
+function extractKoreanTimeText(dateTimeText) {
+  const match = String(dateTimeText || '').match(/(\d{1,2}시\s+\d{1,2}분\s+\d{1,2}초)$/);
+  return match ? match[1] : String(dateTimeText || '');
+}
+
+function renderRegionalLivePrices() {
+  LIVE_PRICE_REGIONS.forEach(region => {
+    const el = document.getElementById(`regional-price-${region}`);
+    const value = LIVE_PRICE_STATE.regionalAvg[region];
+    if (el && value != null) el.textContent = `${Math.round(value).toLocaleString('ko-KR')}원`;
+  });
+  if (LIVE_PRICE_STATE.updatedAt) {
+    updateLivePriceSourceLabel(`출처: h2biz 가격정보 · ${LIVE_PRICE_STATE.cacheDate || getSeoulDateKey()} · ${extractKoreanTimeText(LIVE_PRICE_STATE.updatedAt)}`);
+  } else {
+    updateLivePriceSourceLabel(`출처: h2biz 가격정보 · ${LIVE_PRICE_STATE.cacheDate || getSeoulDateKey()}`);
+  }
+}
+
+function parseRegionalPricesFromPage(markdown) {
+  const prices = {};
+  LIVE_PRICE_REGIONS.forEach(region => {
+    const match = markdown.match(new RegExp(`${region}\\s+([0-9]{1,3}(?:,[0-9]{3})*)원`));
+    if (match) prices[region] = Number(match[1].replace(/,/g, ''));
+  });
+  return prices;
+}
+
+function parseStationPriceFromPage(markdown, stationName, keyword) {
+  const blocks = [...markdown.matchAll(/충전소명\s*\n([^\n]+)\s*\n[\s\S]*?판매가격\s*\n\s*([0-9]{1,3}(?:,[0-9]{3})*)원/gu)];
+  if (!blocks.length) return null;
+  const normalizedStation = normalizeLiveSearchText(stationName);
+  const normalizedKeyword = normalizeLiveSearchText(keyword);
+  let best = blocks[0];
+  for (const block of blocks) {
+    const normalizedName = normalizeLiveSearchText(block[1]);
+    if (normalizedName.includes(normalizedStation) || normalizedStation.includes(normalizedName) || normalizedName.includes(normalizedKeyword)) {
+      best = block;
+      break;
+    }
+  }
+  return Number(best[2].replace(/,/g, ''));
+}
+
+async function fetchLiveRegionalPrices(force = false) {
+  setLivePriceLoading(1);
+  try {
+    const res = await fetch(LIVE_PRICE_PROXY_URL);
+    const markdown = await res.text();
+    const regional = parseRegionalPricesFromPage(markdown);
+    if (Object.keys(regional).length) {
+      LIVE_PRICE_STATE.regionalAvg = { ...LIVE_PRICE_STATE.regionalAvg, ...regional };
+      LIVE_PRICE_STATE.cacheDate = getSeoulDateKey();
+      LIVE_PRICE_STATE.updatedAt = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', hour12: false });
+      renderRegionalLivePrices();
+      saveLivePriceCache();
+    } else {
+      console.warn('Price parsing failed: no prices found in response');
+      if (force) {
+        updateLivePriceSourceLabel(`출처: h2biz 가격정보 · 갱신 실패 · 마지막 성공: ${LIVE_PRICE_STATE.cacheDate || '없음'} ${LIVE_PRICE_STATE.updatedAt ? extractKoreanTimeText(LIVE_PRICE_STATE.updatedAt) : ''}`);
+      }
+    }
+  } catch (error) {
+    console.warn('Failed to fetch live regional prices', error);
+    if (force) {
+        updateLivePriceSourceLabel(`출처: h2biz 가격정보 · 연결 실패 · 마지막 성공: ${LIVE_PRICE_STATE.cacheDate || '없음'} ${LIVE_PRICE_STATE.updatedAt ? extractKoreanTimeText(LIVE_PRICE_STATE.updatedAt) : ''}`);
+    }
+  } finally {
+    setLivePriceLoading(-1);
+  }
+}
+
+async function fetchLivePriceForStation(stationName, force = false) {
+  if ((!force && LIVE_PRICE_STATE.stationPrices[stationName] != null) || LIVE_PRICE_STATE.inflight.has(stationName)) return false;
+  LIVE_PRICE_STATE.inflight.add(stationName);
+  const keyword = getLivePriceSearchKeyword(stationName);
+  setLivePriceLoading(1);
+  try {
+    const url = `${LIVE_PRICE_PROXY_URL}?chrstnNm=${encodeURIComponent(keyword)}`;
+    const res = await fetch(url);
+    const markdown = await res.text();
+    const price = parseStationPriceFromPage(markdown, stationName, keyword);
+    if (price != null) {
+      LIVE_PRICE_STATE.stationPrices[stationName] = price;
+      LIVE_PRICE_STATE.cacheDate = getSeoulDateKey();
+      if (!LIVE_PRICE_STATE.updatedAt) {
+        LIVE_PRICE_STATE.updatedAt = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', hour12: false });
+      }
+      saveLivePriceCache();
+      return true;
+    }
+  } catch (error) {
+    console.warn('Failed to fetch live station price', stationName, error);
+  } finally {
+    LIVE_PRICE_STATE.inflight.delete(stationName);
+    setLivePriceLoading(-1);
+  }
+  return false;
+}
+
+async function runLimited(tasks, limit = 4) {
+  let index = 0;
+  const workers = Array.from({ length: Math.min(limit, tasks.length) }, async () => {
+    while (index < tasks.length) {
+      const current = tasks[index++];
+      await current();
+    }
+  });
+  await Promise.all(workers);
+}
+
+function rerenderCurrentMapView() {
+  renderLeftPanel();
+  updateMap();
+  if (selectedCustomers.size > 0) showCustomerDetail();
+  if (selectedStations.size > 0) {
+    drawStationSpokes();
+    showMultiStationDetail();
+  }
+}
+
+function getVisibleStationNamesToRefresh(force = false) {
+  if (!map) return [];
+  const bounds = map.getBounds();
+  const names = new Set();
+  const md = MONTHLY_DATA[currentMonth];
+  md.charging_stations.forEach(s => {
+    if (bounds.contains([s.lat, s.lng])) names.add(s.name);
+  });
+  H2_ALL_STATIONS.forEach(([name, op, lat, lng]) => {
+    if (h2LayerVisible[op] && bounds.contains([lat, lng])) names.add(name);
+  });
+  return [...names].filter(name => (force || LIVE_PRICE_STATE.stationPrices[name] == null) && !LIVE_PRICE_STATE.inflight.has(name));
+}
+
+let livePriceRefreshTimer = null;
+function scheduleVisibleLivePriceRefresh(force = false) {
+  clearTimeout(livePriceRefreshTimer);
+  livePriceRefreshTimer = setTimeout(async () => {
+    const names = getVisibleStationNamesToRefresh(force);
+    if (!names.length) return;
+    let updated = false;
+    await runLimited(names.map(name => async () => {
+      const changed = await fetchLivePriceForStation(name, force);
+      if (changed) updated = true;
+    }), force ? 1 : 2);
+    if (updated) rerenderCurrentMapView();
+  }, 250);
+}
+
+async function refreshLivePricesNow() {
+  await fetchLiveRegionalPrices(true);
+  scheduleVisibleLivePriceRefresh(true);
+}
+
+async function initLivePriceCrawl() {
+  if (LIVE_PRICE_STATE.initialized) return;
+  LIVE_PRICE_STATE.initialized = true;
+  const hasTodayCache = loadLivePriceCache();
+  if (hasTodayCache) {
+    renderRegionalLivePrices();
+    scheduleVisibleLivePriceRefresh(false);
+    return;
+  }
+  await fetchLiveRegionalPrices(false);
+  scheduleVisibleLivePriceRefresh(false);
+}
+
+// ===== ALL H2 STATIONS (from OpenAPI) =====
+// Format: [name, operator, lat, lng, price, station_type, dispenser, vehicle_type, pressure, congestion, operation, tt_pressure, wait_vehicles]
+const H2_ALL_STATIONS = [["신일복합충전소", "기타", 35.47169909556651, 129.21825841132, 9500, "복합", 1, "승용", "700 bar", "여유", "운영중", 1180, 0], ["마곡 에코 수소충전소", "기타", 37.57308112260575, 126.82915154971765, 9900, "단독", 1, "승용/버스", "700 bar", "-", "영업마감", 0, 0], ["울산상개 SK수소충전소", "SK", 35.505136920660426, 129.32025330063598, 9300, "복합", 2, "승용/버스/트럭", "800 bar", "여유", "운영중", 1200, 1], ["린데 수소충전소/입장휴게소(서울방향)", "기타", 36.942555557422594, 127.1899406093427, 10395, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 1291, 0], ["하이넷 상주외답 수소충전소", "하이넷", 36.418565917452895, 128.19306204706322, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1500, 0], ["충주시 수소 버스 충전소", "기타", 37.005320573422885, 127.92979401774424, 9900, "단독", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 1298, 0], ["대구 혁신도시 수소충전소", "기타", 35.884798099373995, 128.73131872036058, 10900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1820, 0], ["충북 청주 수소충전소(관문)", "기타", 36.707291583374214, 127.44063377380371, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1214, 1], ["울산 덕하복합충전소", "기타", 35.4752951656927, 129.30918395519254, 9800, "복합", 2, "버스", "700 bar", "여유", "운영중", 1576, 0], ["린데수소충전소/대전유성수소충전소", "기타", 36.35999661736244, 127.29028160930659, 10395, "복합", 2, "승용", "700 bar", "여유", "운영중", 0, 0], ["하이넷 대전삼정 수소충전소", "하이넷", 36.32237351438065, 127.47113178508064, 9900, "복합", 1, "승용/버스", "700 bar", "-", "영업마감", 1610, 0], ["하이넷 광명소하 수소충전소", "하이넷", 37.438650216551075, 126.89253689375151, 9900, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 1058, 1], ["하이버스 부산장림 수소충전소", "SK", 35.07904458159971, 128.953264364853, 12100, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1512, 0], ["코하이젠 창원성주 수소충전소", "코하이젠", 35.1895730005845, 128.722180111553, 11520, "단독", 1, "승용/버스/트럭", "800 bar", "-", "영업마감", 517, 0], ["평택 월곡 수소충전소", "기타", 37.018475328641905, 127.13204786853099, 9900, "단독", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 1400, 1], ["안성맞춤휴게소(제천방향) 수소충전소", "기타", 36.9682268459307, 127.27508945531056, 9700, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 811, 0], ["하이넷 여수둔덕 수소충전소", "하이넷", 34.7786178967747, 127.69491827618799, 9900, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1320, 1], ["원주 수소충전소", "기타", 37.331650729925165, 127.85008458601095, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 650, 0], ["하이넷 의왕왕곡 수소충전소", "하이넷", 37.334489742761946, 126.98031898212254, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 990, 1], ["E1 과천 수소충전소", "기타", 37.45571329817182, 127.00973560433977, 11000, "복합", 1, "승용", "700 bar", "여유", "운영중", 700, 0], ["하이넷 통영용남 수소충전소", "하이넷", 34.8910703504578, 128.471722257069, 9900, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 1840, 0], ["하이넷 부산정관 수소충전소", "하이넷", 35.328971040406785, 129.2013663840662, 9900, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 1320, 0], ["장등 수소 버스전용 충전소", "기타", 35.20099792204605, 126.93372202161905, 9900, "복합", 2, "버스", "700 bar", "-", "영업마감", 1310, 0], ["하이넷 경주충효 수소충전소", "하이넷", 35.84143536797242, 129.16551831103598, 9900, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1120, 0], ["서부산 강서 공영 수소버스충전소", "기타", 35.10256606963691, 128.867736933667, 11550, "단독", 1, "승용/버스/트럭", "800 bar", "여유", "운영중", 1100, 0], ["충주바이오그린수소충전소", "기타", 36.9693242307, 127.89469619981898, 9500, "단독", 1, "승용/버스/트럭", "700 bar", "혼잡", "운영중", 3356, 6], ["하이넷 인천연희 수소충전소", "하이넷", 37.552684701003116, 126.67210739867258, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1520, 0], ["하이넷 내린천휴게소(양양방향) 수소충전소", "하이넷", 37.91727509915062, 128.28805915801365, 9900, "복합", 1, "승용", "700 bar", "-", "영업마감", 1688, 0], ["평창 대관령 수소충전소", "기타", 37.686017312048115, 128.75881529704296, 9900, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 930, 0], ["보령1호 수소충전소", "기타", 36.33485617731892, 126.59368061847454, 9500, "단독", 2, "승용/버스", "700 bar", "여유", "운영중", 720, 0], ["백양사휴게소(천안방향) 수소충전소", "기타", 35.393949497615004, 126.8067768747186, 9200, "복합", 1, "승용", "700 bar", "여유", "운영중", 690, 0], ["E1 원당 수소충전소", "기타", 37.67071205521028, 126.8499967347918, 11000, "복합", 2, "승용", "700 bar", "여유", "운영중", 1050, 0], ["삼척 수소충전소", "기타", 37.42962728599759, 129.18348946596223, 9400, "복합", 1, "승용", "700 bar", "여유", "운영중", 1561, 0], ["린데 수소충전소/음성휴게소(하남방향)", "기타", 37.02143944811608, 127.4842206768687, 10395, "복합", 2, "승용/버스", "700 bar", "-", "영업마감", 916, 0], ["하이넷 에버랜드 수소충전소", "하이넷", 37.29349151282657, 127.2227240606352, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 893, 0], ["성주휴게소(양평방향) 수소충전소", "기타", 36.007900371310434, 128.26120549645208, 11800, "복합", 1, "승용", "700 bar", "여유", "운영중", 1380, 0], ["H안성휴게소(서울방향) 수소충전소", "기타", 37.07792455135363, 127.13150918483736, 10620, "복합", 1, "승용", "700 bar", "여유", "운영중", 940, 1], ["여주휴게소(강릉방향) 수소충전소", "기타", 37.238387983635164, 127.57077949259109, 10620, "복합", 1, "승용", "700 bar", "여유", "운영중", 1510, 0], ["H국회수소충전소", "기타", 37.528201238843565, 126.9150871038437, 9900, "단독", 1, "승용/버스", "700 bar", "보통", "운영중", 1700, 3], ["H완주 수소충전소", "기타", 35.9519595334353, 127.12607502937317, 9900, "단독", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 1298, 0], ["H함안휴게소(부산방향) 수소충전소", "기타", 35.2930167429223, 128.34734060639073, 10620, "복합", 1, "승용", "700 bar", "여유", "운영중", 1810, 0], ["창원 성주수소충전소", "기타", 35.19101137071954, 128.72219085713624, 9400, "단독", 2, "버스", "700 bar", "여유", "운영중", 961, 0], ["H부산수소충전소", "기타", 35.14605149158865, 128.98808652687202, 12100, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 730, 1], ["서부산NK수소충전소", "기타", 35.11350515420919, 128.84355040528732, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 920, 0], ["광주 진곡수소충전소", "기타", 35.1941663464833, 126.78829675565179, 9900, "단독", 1, "승용", "700 bar", "보통", "운영중", 1480, 2], ["광주 동곡수소충전소", "기타", 35.11122458766249, 126.78016103194402, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1241, 1], ["경동 수소복합충전소", "기타", 35.581247455892736, 129.35752050291006, 9900, "복합", 2, "승용/버스/트럭", "700 bar", "보통", "운영중", 1270, 2], ["창원 죽곡수소충전소", "기타", 35.11447201503049, 128.720813002732, 9400, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1765, 0], ["대전 학하수소충전소", "기타", 36.33569760749605, 127.31608873017925, 10200, "단독", 1, "승용", "700 bar", "여유", "운영중", 1335, 0], ["H하남드림휴게소(양방향) 수소충전소", "기타", 37.53115270511338, 127.2086203376261, 10620, "복합", 1, "승용", "700 bar", "여유", "운영중", 1180, 0], ["내포 수소충전소", "기타", 36.63517242858807, 126.68395313601503, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 810, 0], ["언양휴게소(서울방향) 수소충전소", "기타", 35.59887982067977, 129.14222729846935, 9800, "복합", 1, "승용", "700 bar", "여유", "운영중", 1530, 0], ["광주 임암수소충전소", "기타", 35.107259683537364, 126.86755836009976, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1030, 0], ["대구 주행시험장수소충전소", "기타", 35.64719728202957, 128.40055455987542, 9900, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 0, 1], ["대전 대성 중도가스 충전소", "기타", 36.294598568561966, 127.46053186368782, 9600, "복합", 1, "승용", "700 bar", "-", "영업마감", 0, 0], ["하이넷 신탄진휴게소(서울방향) 수소충전소", "하이넷", 36.42564559147264, 127.41822957138946, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1640, 0], ["하이넷 평택팽성 수소충전소", "하이넷", 36.95472814728992, 127.06108595284543, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1035, 1], ["하이넷 세종청사 수소충전소", "하이넷", 36.502391105334894, 127.26273626089095, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 850, 1], ["음성 휴게소(남이방향) 수소충전소", "기타", 37.01809209316475, 127.48097047353598, 11000, "복합", 1, "승용", "700 bar", "-", "영업마감", 0, 0], ["하이넷 인천공항T1 수소충전소", "하이넷", 37.45000815734778, 126.47503711886027, 9900, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1275, 1], ["하이넷 SPG 여수 수소충전소", "하이넷", 34.83026652793353, 127.68652809019838, 9900, "단독", 1, "승용", "700 bar", "-", "영업마감", 293, 0], ["울산 투게더수소충전소", "기타", 35.52616340614168, 129.34051483869553, 9500, "단독", 2, "승용/버스", "800 bar", "여유", "운영중", 257, 0], ["광주 벽진 수소충전소", "기타", 35.13015394372183, 126.83086899296589, 9900, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 720, 1], ["아산 초사수소충전소", "기타", 36.74763292740943, 126.97791785001755, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1570, 0], ["신대 수소충전소", "기타", 36.408211558890756, 127.42241136730563, 10200, "단독", 2, "승용/버스", "700 bar", "여유", "운영중", 1511, 0], ["서울특별시 상암수소스테이션 ", "기타", 37.5694217818912, 126.87846414585462, 9900, "단독", 1, "승용", "700 bar", "정보없음", "정보없음", 0, 0], ["음성 삼한수소충전소", "기타", 37.05511011978772, 127.60201568706468, 9800, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 1823, 0], ["하이넷 대구성서 수소충전소", "하이넷", 35.83546204200259, 128.49334985017774, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 640, 1], ["개미 수소충전소", "기타", 36.799199995972714, 127.7761791171066, 9900, "복합", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 1190, 0], ["인천 가좌 액화수소 자동차 충전소", "기타", 37.49188106798477, 126.65076155709868, 12155, "복합", 1, "승용/버스", "700 bar", "-", "영업마감", 1535, 0], ["동해휴게소(삼척방향) 수소충전소", "기타", 37.60086103074258, 129.07478423377924, 10500, "복합", 2, "승용", "700 bar", "여유", "운영중", 1154, 0], ["제천 삼보수소충전소", "기타", 37.139217695841964, 128.07271348872519, 9900, "단독", 2, "승용", "700 bar", "여유", "운영중", 1051, 0], ["익산2공단 수소충전소(넝쿨)", "기타", 35.942720820784245, 127.00789994986891, 9700, "복합", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 870, 1], ["하이넷 당진정미 수소충전소", "하이넷", 36.83837853633511, 126.58381629484973, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 790, 0], ["관음 복합 충전소", "기타", 35.94306568198457, 128.54155308799315, 10900, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 490, 0], ["하이버스 인천오류 수소충전소", "SK", 37.58775695244859, 126.605120401326, 11000, "단독", 1, "승용/버스", "800 bar", "-", "영업마감", 1412, 0], ["하이버스 인천신흥 수소충전소", "SK", 37.43658790494741, 126.624067521928, 11000, "단독", 1, "승용/버스", "800 bar", "보통", "운영중", 1495, 2], ["H강동수소충전소", "기타", 37.545165540366106, 127.16999642903505, 11700, "복합", 1, "승용", "700 bar", "여유", "운영중", 800, 1], ["속초 수소충전소", "기타", 38.21767628237849, 128.56367066593364, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 842, 1], ["하이넷 자운대 수소충전소", "하이넷", 36.3984254879575, 127.346924928351, 9900, "단독", 1, "승용/버스/트럭", "700 bar", "보통", "운영중", 980, 4], ["안성시 수소충전소", "기타", 37.000710770248396, 127.28112184038201, 9900, "단독", 2, "승용", "700 bar", "여유", "운영중", 1710, 0], ["성남시 수소충전소", "기타", 37.42218174222248, 127.15502113498455, 11000, "복합", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 960, 1], ["현대제철 H수소충전소", "기타", 36.97820786210729, 126.70366113207587, 9900, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1000, 0], ["광주 월출 수소충전소", "기타", 35.238327927809124, 126.86645982294701, 9900, "단독", 1, "승용/버스", "700 bar", "-", "영업마감", 1139, 0], ["하이넷 세종대평 수소충전소", "하이넷", 36.46933421683409, 127.26809410903324, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1019, 1], ["하이넷 아산인주 수소충전소", "하이넷", 36.84856011049259, 126.85670020407386, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1159, 0], ["하이넷 인천공항T2 수소충전소", "하이넷", 37.481840827353174, 126.4230848014365, 9900, "단독", 1, "승용/버스/트럭", "700 bar", "보통", "운영중", 1220, 2], ["하이넷 문막휴게소(강릉방향) 수소충전소", "하이넷", 37.33617123949578, 127.85891354084013, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1694, 0], ["하이넷 거제장평 수소충전소", "하이넷", 34.894529303225525, 128.58763327509664, 9900, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 1310, 0], ["코하이젠 안산본오 수소충전소", "코하이젠", 37.2899132745913, 126.873229168813, 11900, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 487, 1], ["문경(양평)수소충전소", "기타", 36.6218368730043, 128.151549718409, 10900, "단독", 1, "승용/버스/트럭", "800 bar", "여유", "운영중", 983, 1], ["하이버스 전주전미 수소충전소", "SK", 35.8893031118152, 127.105707701991, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 0, 1], ["코하이젠 울산명촌 수소충전소", "코하이젠", 35.5535360634277, 129.361155783017, 10700, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 231, 0], ["경수소충전소", "기타", 35.615352384855946, 129.35260296685837, 9900, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 800, 0], ["하이버스 성남사송 수소충전소", "SK", 37.4152649344543, 127.115140776434, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1466, 1], ["코하이젠 전주평화 수소충전소", "코하이젠", 35.7777866690721, 127.12230703588301, 11000, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1066, 1], ["효성 광양초남 액화수소충전소", "기타", 34.93955769211, 127.606362890691, 11000, "단독", 1, "승용/버스", "700 bar", "-", "영업마감", 1900, 0], ["성주휴게소(창원방향)수소충전소", "기타", 36.010209764034, 128.259852887224, 11000, "단독", 1, "승용", "700 bar", "-", "영업마감", 820, 0], ["하이버스 인천운서(인천공항 제2터미널) 수소충전소", "SK", 37.486587427959506, 126.412565326723, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 0, 0], ["고창 고인돌(서울방향) 수소충전소", "기타", 35.4638968619981, 126.673678675711, 10200, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 710, 0], ["하이넷 화성시청 충전소", "하이넷", 37.1990374107247, 126.830985553261, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1660, 0], ["남해군 수소충전소", "기타", 34.819857501330596, 127.884205185361, 9900, "단독", 1, "승용/버스/트럭", "800 bar", "여유", "운영중", 1790, 1], ["하이넷 음성맹동 수소충전소", "하이넷", 36.9238276268387, 127.563316118056, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1040, 0], ["당진 H2스테이션", "기타", 36.97466923775328, 126.70650967274494, 9900, "단독", 1, "승용", "700 bar", "-", "영업마감", 0, 0], ["진주 수소충전소(LPG 복합)", "기타", 35.18356089109302, 128.04005652666095, 9900, "복합", 1, "승용", "800 bar", "여유", "운영중", 890, 0], ["남동농협 수소충전소", "기타", 37.42960987501007, 126.73467409588267, 11000, "복합", 1, "승용/버스", "700 bar", "-", "영업마감", 1420, 0], ["(유)유정에너지 목포수소충전소", "기타", 34.8012380905549, 126.412831497446, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1534, 0], ["성일 수소충전소", "기타", 36.531138871192766, 127.42708068749243, 9900, "복합", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 1035, 0], ["도봉수소충전소", "기타", 37.69289183897447, 127.04426951822505, 11000, "단독", 2, "승용/버스", "700 bar", "여유", "운영중", 1300, 1], ["(JNK)수도권매립지 수소충전소", "기타", 37.5822685208825, 126.649200018336, 12210, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1493, 0], ["인천그린수소충전소", "기타", 37.438662493411506, 126.62001367383301, 9900, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 896, 1], ["보은군 현대수소충전소", "기타", 36.4963880991961, 127.73942043329902, 9900, "복합", 2, "승용", "700 bar", "여유", "운영중", 740, 1], ["하이넷 대전중촌 수소충전소", "하이넷", 36.34803061088715, 127.40569186968771, 9900, "복합", 2, "승용", "700 bar", "여유", "운영중", 992, 1], ["그린복합충전소", "기타", 35.4636936540073, 129.33409309664, 9700, "복합", 1, "승용", "700 bar", "여유", "운영중", 1460, 0], ["하이버스 고양대화 수소충전소", "SK", 37.68070828474472, 126.73909112343999, 11000, "단독", 1, "승용", "800 bar", "여유", "운영중", 1191, 1], ["전주 상림 수소충전소", "기타", 35.824810280508416, 127.07286712970101, 9900, "융합", 2, "승용", "700 bar", "여유", "운영중", 970, 0], ["하이넷 칠곡휴게소(부산방향) 수소충전소", "하이넷", 36.01959500254441, 128.42771742590347, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 920, 0], ["낭월 수소충전소", "기타", 36.26822016924363, 127.47868797638127, 10200, "단독", 2, "승용/버스", "700 bar", "여유", "운영중", 428, 0], ["춘천 동내 수소충전소", "기타", 37.82249536160119, 127.759264600692, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 970, 1], ["덕평휴게소(강릉방향) SK에너지 수소충전소", "SK", 37.24283926493669, 127.39100380286699, 10950, "단독", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 1810, 0], ["하이넷 춘천휴게소(부산방향) 수소충전소", "하이넷", 37.81381108344485, 127.76678747154871, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1680, 0], ["하이넷 김천휴게소(서울방향) 수소충전소", "하이넷", 36.13085572561451, 128.162826827977, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1720, 0], ["한강H2복합충전소", "기타", 37.581510640707656, 126.85552449392654, 11000, "복합", 1, "승용", "700 bar", "여유", "운영중", 800, 0], ["태양수소충전소", "기타", 37.49859443689607, 126.66181324449502, 11900, "복합", 1, "승용", "800 bar", "여유", "운영중", 1052, 0], ["E1 광주 오렌지 수소충전소", "기타", 35.143832321623265, 126.8170157956239, 9900, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1300, 0], ["H인천수소충전소 에코스테이션", "기타", 37.398679053944164, 126.71148794493556, 11000, "복합", 1, "승용", "700 bar", "-", "영업마감", 660, 0], ["대도하이젠 영도 수소충전소", "기타", 35.08504359161731, 129.07591368751835, 12100, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1337, 0], ["내트럭인천 수소충전소", "기타", 37.43202185121334, 126.62378431521267, 12210, "복합", 2, "승용/버스/트럭", "800 bar", "-", "영업마감", 550, 0], ["안동(춘천)휴게소 수소충전소", "기타", 36.55445717606311, 128.64499222309246, 11500, "복합", 1, "승용", "700 bar", "여유", "운영중", 1736, 0], ["영동수소충전소", "기타", 36.184052417630795, 127.77668617180599, 9900, "단독", 2, "승용/버스", "800 bar", "여유", "운영중", 770, 0], ["평택복합휴게소 수소충전소 에이치케이하이웨이", "기타", 37.04523743604848, 126.94494061362936, 10000, "단독", 2, "승용", "700 bar", "여유", "운영중", 1216, 1], ["서산시 수소충전소", "기타", 36.78251290224328, 126.49288594722748, 8600, "단독", 2, "승용/버스", "700 bar", "여유", "운영중", 1810, 1], ["석산 수소충전소", "기타", 35.32556165692472, 129.0322103768634, 9400, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 91, 0], ["양산시 증산수소충전소", "기타", 35.30317471686799, 129.010193559761, 9400, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 1030, 0], ["옥동 수소복합충전소", "기타", 35.52288825665361, 129.2911320878493, 9900, "복합", 2, "승용", "700 bar", "여유", "운영중", 1390, 1], ["안산 수소e로움 충전소", "기타", 37.296052614613394, 126.79350791661001, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1500, 0], ["창원 덕동수소충전소", "기타", 35.13442027538415, 128.56364035839005, 9400, "단독", 2, "승용/버스", "700 bar", "여유", "운영중", 969, 0], ["창원 사림수소충전소", "기타", 35.240097735882145, 128.70308232989447, 9400, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 870, 0], ["창원 창원터널수소충전소", "기타", 35.191737893554716, 128.7213253659712, 9400, "단독", 2, "승용", "700 bar", "여유", "운영중", 1540, 0], ["하이버스 이천대흥 수소충전소", "SK", 37.241790949525296, 127.477303743073, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1189, 0], ["기흥휴게소(부산방향) 수소충전소", "기타", 37.23368744145595, 127.10575979617025, 10400, "복합", 1, "버스", "700 bar", "여유", "운영중", 1590, 0], ["안성휴게소(부산방향) 수소충전소", "기타", 37.012866193413245, 127.14541502028679, 10100, "단독", 1, "승용", "700 bar", "여유", "운영중", 1500, 0], ["천안시 수소충전소", "기타", 36.81504687882963, 127.11020572814681, 9900, "단독", 2, "승용", "700 bar", "여유", "운영중", 1010, 0], ["언양 복합충전소", "기타", 35.53811373152799, 129.125488029366, 10400, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 780, 1], ["가로수 수소충전소", "기타", 36.62074528605376, 127.38686600552968, 9900, "복합", 2, "승용", "700 bar", "-", "영업마감", 1720, 0], ["충주 연수 수소충전소", "기타", 36.98875028518253, 127.94502049684525, 9900, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 1008, 0], ["하이넷 속리산휴게소(청주방향) 수소충전소", "하이넷", 36.446448694846275, 127.86927906468975, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 534, 0], ["하이넷 김포걸포 수소충전소", "하이넷", 37.64286644326959, 126.709042230255, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1486, 1], ["하이넷 강릉시청 수소충전소", "하이넷", 37.75237182154131, 128.877129521235, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1170, 0], ["삼척 교동 수소충전복합스테이션", "기타", 37.45897313573559, 129.17304764310526, 9400, "단독", 2, "승용/버스", "800 bar", "여유", "운영중", 770, 0], ["하이넷 대천휴게소(서울방향) 수소충전소", "하이넷", 36.37475399048119, 126.55725909564731, 9900, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 920, 0], ["창원 가포수소충전소", "기타", 35.1614576294702, 128.57700924601195, 9400, "단독", 2, "버스", "700 bar", "여유", "운영중", 1230, 0], ["하이넷 구미옥계 수소충전소", "하이넷", 36.15510680638684, 128.41608603720977, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 790, 1], ["하이넷 환경산업연구단지 수소충전소", "하이넷", 37.56957610578425, 126.64927525146373, 9900, "단독", 1, "승용/버스", "700 bar", "-", "영업마감", 1670, 0], ["하이넷 함평천지휴게소(목포방향) 수소충전소", "하이넷", 35.06880127608693, 126.47867972118834, 9900, "복합", 1, "승용", "700 bar", "-", "영업마감", 0, 0], ["서울특별시 양재그린카스테이션(예약제)", "기타", 37.46833238084429, 127.03449982200269, 9900, "단독", 2, "승용", "700 bar", "여유", "운영중", 1370, 0], ["춘천시 삼천동 수소충전소", "기타", 37.86856721144711, 127.692252888357, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1090, 0], ["충북 청주 도원수소충전소", "기타", 36.71216851694302, 127.53405739411237, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1770, 0], ["코하이젠 세종대평 수소충전소", "코하이젠", 36.469058983368, 127.271662620292, 11080, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1821, 0], ["서김해 IC 수소충전소", "기타", 35.2197633487972, 128.842358346623, 9900, "단독", 2, "승용/버스/트럭", "800 bar", "여유", "운영중", 870, 0], ["대진여객수소충전소", "기타", 35.2364547901794, 129.157246420621, 12100, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1783, 0], ["하이스테이션 통영수소충전소", "기타", 34.89419538137871, 128.41852967961103, 11220, "단독", 1, "버스", "800 bar", "여유", "운영중", 1340, 1], ["하이넷 장흥정남진휴게소 수소충전소", "하이넷", 34.72085244665539, 126.930095176754, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 730, 0], ["창원 대원수소충전소", "기타", 35.221129648008265, 128.64211195743857, 9400, "단독", 2, "승용/버스", "700 bar", "여유", "운영중", 792, 1], ["창원 마산자유무역지역수소충전소", "기타", 35.211238868770806, 128.58866060732208, 9400, "단독", 2, "승용", "700 bar", "여유", "운영중", 800, 1], ["하이버스 청주송절 수소충전소", "SK", 36.6569815066778, 127.449631116139, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1078, 0], ["창원 팔룡수소충전소", "기타", 35.252921369345756, 128.6051606241425, 9400, "단독", 2, "승용", "700 bar", "-", "영업마감", 0, 0], ["하이버스 구미선기 수소충전소", "SK", 36.1415340729077, 128.301314112017, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1621, 1], ["코하이젠 여수주삼 수소충전소", "코하이젠", 34.79876669839447, 127.66141801678982, 10000, "단독", 1, "승용/버스/트럭", "700 bar", "-", "영업마감", 1699, 0], ["하이넷 수원영통 수소충전소", "하이넷", 37.286556832094796, 127.078413304642, 9900, "단독", 1, "승용", "700 bar", "보통", "운영중", 1520, 2], ["하이넷 목포연산 수소충전소", "하이넷", 34.8223448771332, 126.38279919307601, 9900, "복합", 2, "승용/버스", "800 bar", "-", "영업마감", 910, 0], ["하이넷 해운대 수소충전소", "하이넷", 35.19683269337779, 129.20522712901266, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1440, 1], ["코하이젠 파주봉서 수소충전소", "코하이젠", 37.84425333891329, 126.78985182455999, 12300, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1050, 0], ["인천 경서 액화수소 자동차 충전소", "기타", 37.5562508328668, 126.63990990411202, 12210, "단독", 1, "승용/버스/트럭", "800 bar", "혼잡", "운영중", 1563, 8], ["내트럭(주) 신항사업소", "기타", 35.08719386548621, 128.799267667765, 12000, "복합", 2, "승용/버스/트럭", "800 bar", "여유", "운영중", 1530, 0], ["함덕 그린수소 충전소", "기타", 33.5253304437846, 126.677780974706, 15000, "단독", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 551, 1], ["진천IC 수소충전소", "기타", 36.8694376732701, 127.462868345632, 9900, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 1540, 1], ["효성 전주호남 액화수소 충전소", "기타", 35.8697778849791, 127.109008130417, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1290, 1], ["하이넷 동안산사사 수소충전소", "하이넷", 37.2953712833437, 126.93588412625601, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1360, 0], ["코하이젠 회천농협 수소충전소", "코하이젠", 37.85486162069397, 127.05351110340868, 12300, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1228, 0], ["평택항 수소교통복합기지", "기타", 36.97279726202261, 126.83741951371351, 9900, "단독", 2, "승용/버스/트럭", "800 bar", "여유", "운영중", 1490, 0], ["하이넷 전주송천 수소충전소", "하이넷", 35.8695765053627, 127.10739344358446, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1130, 1], ["하이버스 원주장양 수소충전소", "SK", 37.420606171600916, 127.964960749584, 11000, "단독", 1, "승용/버스", "800 bar", "혼잡", "운영중", 714, 5], ["행담도휴게소(양방향) 수소충전소", "기타", 36.945143059160706, 126.807129050488, 9900, "단독", 2, "승용/버스", "800 bar", "여유", "운영중", 1720, 0], ["하이넷 구리토평 수소충전소", "하이넷", 37.57787760136401, 127.14605748777346, 9900, "복합", 1, "승용", "700 bar", "-", "영업마감", 690, 0], ["하이버스 순천가곡 수소충전소", "SK", 34.9824720264913, 127.487291737153, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1523, 1], ["하이버스 부산노포 수소충전소", "SK", 35.2902795768666, 129.096889521991, 12100, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1393, 0], ["하이버스 영동계산 수소충전소", "SK", 36.18505605284851, 127.77116787678, 11000, "단독", 1, "승용/버스", "700 bar", "-", "영업마감", 401, 0], ["하이버스 구미공단 수소충전소", "SK", 36.0954214654733, 128.389005787028, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 0, 1], ["태화강역 수소충전소", "기타", 35.5424459509381, 129.355342485434, 9500, "단독", 1, "승용", "800 bar", "여유", "운영중", 1000, 0], ["하이버스 익산목천 수소충전소", "SK", 35.9338853928544, 126.922175687034, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1321, 0], ["하이넷 충주휴게소 수소충전소", "하이넷", 37.0209704206226, 127.83881077211699, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 1180, 0], ["하이넷 구미오태 수소충전소", "하이넷", 36.072121730462, 128.373624716956, 9900, "복합", 1, "승용/버스", "700 bar", "여유", "운영중", 960, 0], ["코하이젠 익산송학 수소충전소", "코하이젠", 35.939322871211, 126.918654227102, 11000, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 630, 1], ["E1 고양 수소버스 충전소", "기타", 37.67832038922399, 126.884884897508, 12650, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1590, 0], ["코하이젠 진주호탄 수소충전소", "코하이젠", 35.1611141235119, 128.11735875090002, 12000, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 514, 0], ["밀양시 수소충전소", "기타", 35.49515465258519, 128.731645092122, 9900, "단독", 2, "승용/버스/트럭", "800 bar", "여유", "운영중", 1300, 0], ["하이넷 안성맞춤휴게소 수소충전소", "하이넷", 36.97031593299131, 127.27457754448798, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1490, 0], ["하이스원 금사회동 수소충전소", "기타", 35.2308437209671, 129.124524395546, 12000, "단독", 1, "승용/버스", "800 bar", "-", "영업마감", 553, 0], ["린데망향수소충전소/망향휴게소(부산방향)", "기타", 36.854707655374284, 127.18048281612246, 10395, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 367, 0], ["평택 블루에너지 수소충전소", "기타", 37.05391614580897, 127.08044696115122, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1074, 0], ["논산시 수소충전소", "기타", 36.2119396308427, 127.14644650116901, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1000, 0], ["하이넷 광주매월 수소충전소", "하이넷", 35.11214225127251, 126.84025765004202, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1740, 1], ["김제하동 수소충전소", "기타", 35.8141179437535, 126.889294828043, 9900, "복합", 2, "승용/버스", "800 bar", "여유", "운영중", 1327, 0], ["청주휴게소(서울방향) 수소충전소", "기타", 36.71776223589126, 127.34713678013067, 9700, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1773, 0], ["하이버스 인천송도 수소충전소", "SK", 37.36766722046959, 126.637962204103, 11550, "단독", 1, "승용/버스", "800 bar", "보통", "운영중", 607, 2], ["하이버스 대구검단 수소충전소", "SK", 35.918373570654694, 128.621523718757, 12100, "단독", 1, "승용/버스", "800 bar", "-", "영업마감", 844, 0], ["하이버스 평택모곡 수소충전소", "SK", 37.025583169762406, 127.075823778836, 11000, "단독", 1, "승용/버스", "800 bar", "-", "영업마감", 655, 0], ["문의 수소충전소", "기타", 36.529926408127515, 127.50246013035317, 9900, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 1120, 0], ["에어프로덕츠 울산 수소충전소", "기타", 35.48350771183061, 129.35813963413236, 8900, "단독", 1, "승용", "700 bar", "여유", "운영중", 0, 0], ["하이버스 인천송도(기체) 수소충전소", "SK", 37.36794236473471, 126.63824762392102, 11550, "단독", 1, "승용/버스", "700 bar", "-", "영업마감", 1200, 0], ["평화 수소충전소", "기타", 36.945699073177146, 126.91395896341278, 9900, "복합", 2, "승용", "700 bar", "여유", "운영중", 1760, 0], ["효성 경산계림 액화수소충전소", "기타", 35.839949523393, 128.81542210676, 12100, "단독", 1, "승용/버스", "700 bar", "-", "영업마감", 1071, 0], ["하이넷 화성동탄 수소충전소", "하이넷", 37.1741929520901, 127.085292445645, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 780, 1], ["린데수소충전소/화성휴게소(목포방향)", "기타", 37.14301565114051, 126.87918795738798, 10395, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 1238, 0], ["하이넷 화성비봉 수소충전소", "하이넷", 37.2473990625128, 126.89033702402101, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1280, 0], ["하이넷 광양성황 수소충전소", "하이넷", 34.94789958567621, 127.67717572961898, 9900, "복합", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 1170, 1], ["춘천 액화 수소충전소", "기타", 37.821670015217904, 127.76117660407698, 11000, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1190, 0], ["하이넷 수원권선 수소충전소", "하이넷", 37.25628204823771, 126.97003439449901, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 760, 1], ["대전 금고 수소버스충전소", "기타", 36.462884665161695, 127.38962115586801, 10200, "단독", 2, "승용/버스/트럭", "800 bar", "여유", "운영중", 0, 0], ["화성 향남(종합경기타운 내) 수소충전소", "기타", 37.138465233565306, 126.924485773868, 9900, "단독", 2, "승용", "700 bar", "여유", "운영중", 1540, 0], ["화성송산 수소충전소", "기타", 37.216064234649096, 126.76222139379502, 10500, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 890, 0], ["하이넷 군산지곡 수소충전소", "하이넷", 35.95360335718718, 126.71614754288655, 9900, "복합", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1090, 0], ["부안 곰소 수소충전소", "기타", 35.59470572332042, 126.61599597797901, 9500, "단독", 2, "승용", "700 bar", "여유", "운영중", 1330, 0], ["오수휴게소(완주방향) 수소충전소", "기타", 35.54179433021361, 127.31177288877716, 9300, "복합", 2, "승용", "700 bar", "-", "영업마감", 1106, 0], ["전주삼천수소충전소", "기타", 35.80253131622155, 127.07962312284154, 11000, "단독", 2, "버스", "700 bar", "-", "영업마감", 1820, 0], ["부안군 수소충전소", "기타", 35.73847703376391, 126.72341733712601, 9500, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1090, 1], ["전주 색장 수소충전소", "기타", 35.787279658607495, 127.19442441680476, 9900, "복합", 1, "승용", "700 bar", "여유", "운영중", 796, 0], ["서울 강서 공영차고지 버스 수소충전소", "기타", 37.577828738662944, 126.7971778755374, 9900, "단독", 2, "버스", "700 bar", "여유", "운영중", 1129, 1], ["하이넷 경산하양 수소충전소", "하이넷", 35.9217317790133, 128.840811296061, 9900, "단독", 1, "승용", "700 bar", "-", "영업마감", 640, 0], ["코하이젠 포항장흥 수소충전소", "코하이젠", 35.9885326395254, 129.364111077741, 11900, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1269, 0], ["용인 휴게소(인천방향)수소충전소", "기타", 37.248556848521, 127.238031024061, 10900, "단독", 1, "승용/버스/트럭", "700 bar", "여유", "운영중", 1740, 0], ["횡성수소충전소", "기타", 37.47382340676089, 127.97761828466399, 9900, "단독", 2, "승용/버스/트럭", "700 bar", "여유", "운영중", 1580, 1], ["하이버스 수원고색 수소충전소", "SK", 37.23723102176031, 126.988038344665, 11550, "단독", 1, "승용/버스", "800 bar", "여유", "운영중", 1689, 0], ["서울특별시 서소문청사 수소충전소(사전 예약제)", "기타", 37.564050325721, 126.97451239126607, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1557, 1], ["안산수소교통복합기지", "기타", 37.31286138608899, 126.792874444903, 10500, "단독", 2, "승용/버스", "800 bar", "여유", "운영중", 900, 1], ["E1 오곡 수소충전소", "기타", 37.55591236890933, 126.76813089985862, 11000, "복합", 2, "승용", "700 bar", "여유", "운영중", 1560, 0], ["태백 오케이 수소충전소", "기타", 37.16465054158031, 129.030801510911, 9900, "복합", 1, "승용/버스", "800 bar", "여유", "운영중", 1260, 0], ["덕유산(하남방향) 수소충전소", "기타", 35.817305461053316, 127.64599503472147, 9300, "복합", 2, "승용", "700 bar", "여유", "운영중", 1021, 0], ["김해 수소충전소", "기타", 35.22585654627968, 128.91403829459404, 9900, "단독", 2, "승용/버스", "700 bar", "여유", "운영중", 1118, 0], ["부천 춘의 수소충전소", "기타", 37.505607656638595, 126.81812875428801, 9900, "단독", 1, "승용", "700 bar", "여유", "운영중", 1030, 0], ["단양(수소,LPG)충전소", "기타", 36.990464525944205, 128.363592994366, 9900, "복합", 2, "승용/버스", "700 bar", "여유", "운영중", 729, 0], ["속초종합경기장 수소충전소", "기타", 38.19169965392741, 128.535670491253, 9900, "단독", 1, "승용/버스", "700 bar", "여유", "운영중", 1300, 0]];
+
+const STATION_VEHICLE_COUNTS = {
+    '2025-10': {
+        '기흥휴게소(부산) 수소충전소': 31,
+        '성남 수소충전소': 21,
+        '세운산업(주)가좌 수소충전소': 18,
+        '에스케이 성남사송 수소충전소': 37,
+        '에스케이 평택모곡 수소충전소': 1,
+        '월곡수소충전소(주)': 3,
+        '인천그린 수소충전소': 6,
+        '코하이젠 안산본오 수소충전소': 24,
+        '하이넷 H국회 수소충전소': 1,
+        '하이넷 광명소하 수소충전소': 2,
+        '하이넷 에버랜드 수소충전소': 5,
+        '하이넷 인천공항T1 수소충전소': 2,
+    },
+    '2025-11': {
+        '기흥휴게소(부산) 수소충전소': 28,
+        '덕평휴게소(강릉) 수소충전소': 1,
+        '성남 수소충전소': 30,
+        '세운산업(주)가좌 수소충전소': 18,
+        '에스케이 성남사송 수소충전소': 45,
+        '에스케이 원주장양 수소충전소': 1,
+        '에스케이 인천신흥 수소충전소': 10,
+        '에스케이 평택모곡 수소충전소': 4,
+        '월곡수소충전소(주)': 3,
+        '인천그린 수소충전소': 5,
+        '코하이젠 안산본오 수소충전소': 29,
+        '하이넷 광명소하 수소충전소': 2,
+        '하이넷 에버랜드 수소충전소': 5,
+        '하이넷 인천공항T1 수소충전소': 3,
+    },
+    '2025-12': {
+        '기흥휴게소(부산) 수소충전소': 29,
+        '성남 수소충전소': 24,
+        '세운산업(주)가좌 수소충전소': 17,
+        '에스케이 성남사송 수소충전소': 46,
+        '에스케이 송도액화 수소충전소': 10,
+        '에스케이 수원고색 수소충전소': 5,
+        '에스케이 인천신흥 수소충전소': 13,
+        '에스케이 평택모곡 수소충전소': 7,
+        '월곡수소충전소(주)': 1,
+        '인천그린 수소충전소': 1,
+        '코하이젠 안산본오 수소충전소': 28,
+        '코하이젠 양주회정 수소충전소': 4,
+        '하이넷 광명소하 수소충전소': 2,
+        '하이넷 에버랜드 수소충전소': 5,
+        '하이넷 인천공항T1 수소충전소': 3,
+    },
+    '2026-01': {
+        '기흥휴게소(부산) 수소충전소': 20,
+        '덕평휴게소(강릉) 수소충전소': 1,
+        '성남 수소충전소': 26,
+        '세운산업(주)가좌 수소충전소': 18,
+        '안성맞춤(제천) 수소충전소': 1,
+        '에스케이 대구검단 수소충전소': 2,
+        '에스케이 성남사송 수소충전소': 41,
+        '에스케이 송도기체 수소충전소': 5,
+        '에스케이 송도액화 수소충전소': 14,
+        '에스케이 수원고색 수소충전소': 35,
+        '에스케이 이천대흥 수소충전소': 1,
+        '에스케이 인천신흥 수소충전소': 11,
+        '에스케이 인천운서 수소충전소': 7,
+        '에스케이 평택모곡 수소충전소': 8,
+        '월곡수소충전소(주)': 2,
+        '코하이젠 안산본오 수소충전소': 17,
+        '하이넷 광명소하 수소충전소': 2,
+        '하이넷 에버랜드 수소충전소': 5,
+        '하이넷 인천공항T1 수소충전소': 3,
+    },
+    '2026-02': {
+        '기흥휴게소(부산) 수소충전소': 9,
+        '성남 수소충전소': 18,
+        '세운산업(주)가좌 수소충전소': 13,
+        '안성맞춤(제천) 수소충전소': 1,
+        '에스케이 대구검단 수소충전소': 2,
+        '에스케이 성남사송 수소충전소': 33,
+        '에스케이 송도기체 수소충전소': 3,
+        '에스케이 송도액화 수소충전소': 17,
+        '에스케이 수원고색 수소충전소': 29,
+        '에스케이 인천신흥 수소충전소': 3,
+        '에스케이 인천운서 수소충전소': 8,
+        '에스케이 평택모곡 수소충전소': 9,
+        '월곡수소충전소(주)': 2,
+        '코하이젠 안산본오 수소충전소': 11,
+        '코하이젠 양주회정 수소충전소': 5,
+        '하이넷 광명소하 수소충전소': 2,
+        '하이넷 에버랜드 수소충전소': 6,
+        '하이넷 인천공항T1 수소충전소': 3,
+    },
+    '2026-03': {
+        '기흥휴게소(부산) 수소충전소': 16,
+        '덕평휴게소(강릉) 수소충전소': 1,
+        '성남 수소충전소': 21,
+        '세운산업(주)가좌 수소충전소': 9,
+        '에스케이 대구검단 수소충전소': 2,
+        '에스케이 성남사송 수소충전소': 38,
+        '에스케이 송도액화 수소충전소': 26,
+        '에스케이 수원고색 수소충전소': 26,
+        '에스케이 인천운서 수소충전소': 9,
+        '에스케이 평택모곡 수소충전소': 11,
+        '용인휴게소(인천) 수소충전소': 3,
+        '월곡수소충전소(주)': 1,
+        '코하이젠 안산본오 수소충전소': 14,
+        '평택모곡충전소에스케이플러그하이': 1,
+        '하이넷 광명소하 수소충전소': 2,
+        '하이넷 에버랜드 수소충전소': 9,
+        '하이넷 인천공항T1 수소충전소': 3,
+    },
+};
+
+const H2_LAYER_COLORS = { 'SK': '#f97316', '코하이젠': '#a855f7', '하이넷': '#14b8a6', '기타': '#6b7280' };
+
+const WONDER_PLANNED_STATIONS = [
+  {
+    name: '원더에너지(포곡) 예정',
+    lat: 37.2733287141202,
+    lng: 127.236903813702,
+    address: '경기도 용인시 처인구 포곡읍 삼계리 산110-12',
+    openDate: '2026년 12월',
+    shortLabel: '원더에너지(포곡) 예정'
+  }
+];
+
+const PLANNED_H2_STATIONS = [
+  {
+    name: '코하이젠 군포부곡 수소충전소',
+    operator: '코하이젠',
+    lat: 37.3298786552849,
+    lng: 126.931229744076,
+    address: '경기 군포시 부곡동 산 64-10',
+    shortStatus: '(예정)'
+  },
+  {
+    name: '코하이젠 시흥방산 수소충전소',
+    operator: '코하이젠',
+    lat: 37.430214121626,
+    lng: 126.778181069425,
+    address: '경기 시흥시 방산동 12-1',
+    shortStatus: '(예정)'
+  },
+  {
+    name: '코하이젠 용인양지 수소충전소',
+    operator: '코하이젠',
+    lat: 37.2332291566478,
+    lng: 127.294623331997,
+    address: '경기 용인시 처인구 양지리 155-5',
+    shortStatus: '(예정)'
+  }
+];
+
+let h2LayerVisible = { 'SK': false, '코하이젠': false, '하이넷': false, '기타': false };
+let h2LayerMarkers = {};
+
+function getStationOperator(name) {
+    if (name.startsWith('에스케이')) return 'SK';
+    if (name.startsWith('코하이젠')) return '코하이젠';
+    if (name.startsWith('하이넷')) return '하이넷';
+    return '기타';
+}
+
+function toggleH2Layer(op) {
+  h2LayerVisible[op] = !h2LayerVisible[op];
+  renderH2Layers();
+  scheduleVisibleLivePriceRefresh();
+  const btn = document.getElementById('h2-layer-' + op);
+  if (btn) {
+    const color = H2_LAYER_COLORS[op];
+    if (h2LayerVisible[op]) {
+      btn.style.background = color;
+      btn.style.color = 'white';
+      btn.style.borderColor = color;
+    } else {
+      btn.style.background = 'white';
+      btn.style.color = color;
+      btn.style.borderColor = color;
+    }
+  }
+
+  // Station selection toggle
+  const md = MONTHLY_DATA[currentMonth];
+  const opStations = md.charging_stations
+      .filter(s => getStationOperator(s.name) === op)
+      .map(s => s.name);
+
+  const anySelected = opStations.some(name => selectedStations.has(name));
+
+  if (anySelected) {
+      opStations.forEach(name => selectedStations.delete(name));
+  } else {
+      opStations.forEach(name => selectedStations.add(name));
+  }
+
+  // Switch to station tab and update UI
+  if (leftTab !== 'station') {
+      leftTab = 'station';
+      // Update tab button styles (same as in station click handler, lines 2019-2028)
+      document.querySelectorAll('#leftTabs button').forEach(b => {
+          b.classList.toggle('text-blue-600', b.dataset.tab === 'station');
+          b.classList.toggle('border-b-2', b.dataset.tab === 'station');
+          b.classList.toggle('border-blue-600', b.dataset.tab === 'station');
+          b.classList.toggle('font-semibold', b.dataset.tab === 'station');
+          b.classList.toggle('text-gray-400', b.dataset.tab !== 'station');
+          b.classList.toggle('font-medium', b.dataset.tab !== 'station');
+      });
+      updateFilterVisibility();
+  }
+
+  renderStationList();
+  drawStationSpokes();
+  if (selectedStations.size > 0) showMultiStationDetail();
+  else document.getElementById('detailSection').style.display = 'none';
+  updateResetButton();
+}
+
+function renderH2Layers() {
+  if (!map) { console.warn('Map not initialized'); return; }
+
+  Object.values(h2LayerMarkers).forEach(m => { if (m) map.removeLayer(m); });
+  h2LayerMarkers = {};
+
+  let addedCount = 0;
+  H2_ALL_STATIONS.forEach((s, idx) => {
+    const [name, op, lat, lng, price, stType, dispenser, vehicle, pressure, congestion, operation, ttPressure, waitVehicles] = s;
+    if (!h2LayerVisible[op]) return;
+
+    const color = H2_LAYER_COLORS[op];
+    const currentPrice = getDisplayedStationPrice(name, price);
+    const priceText = currentPrice ? Math.round(currentPrice).toLocaleString('ko-KR') + '원' : '-';
+
+    // Vehicle type simplified
+    const vehicleSimple = vehicle && (vehicle.includes('버스') || vehicle.includes('트럭')) ? '상용' : '승용';
+
+    let congColor = '#10b981';
+    if (congestion === '보통') congColor = '#f59e0b';
+    if (congestion === '혼잡') congColor = '#ef4444';
+    if (congestion === '-' || congestion === '정보없음') congColor = '#9ca3af';
+
+    // Always show the marker, even for duplicates (so user sees all layer stations)
+    const marker = L.marker([lat, lng], {
+      pane: 'h2LayerPane',
+      zIndexOffset: 500,
+      icon: L.divIcon({
+        html: `<div style="display:flex;flex-direction:column;align-items:center">
+          <div style="width:14px;height:14px;background:${color};border-radius:3px;border:2.5px solid #1f2937;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
+          <div style="width:6px;height:6px;background:${congColor};border-radius:50%;border:1.5px solid white;margin-top:-4px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+        </div>`,
+        className: 'custom-marker-bg',
+        iconSize: [18, 22],
+        iconAnchor: [9, 11]
+      })
+    }).addTo(map);
+
+    const labelHtml = `<div style="background:rgba(255,255,255,0.95);backdrop-filter:blur(4px);padding:3px 5px;border-radius:6px;font-size:9px;font-weight:600;line-height:1.4;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.15);border:1px solid ${color}40;color:${color};margin-top:7px;white-space:nowrap;">
+      <div>${priceText}</div>
+      <div style="color:#374151;font-size:8px;">${vehicleSimple}</div>
+    </div>`;
+
+    const label = L.marker([lat, lng], {
+      pane: 'h2LayerLabelPane',
+      zIndexOffset: 600,
+      icon: L.divIcon({
+        html: labelHtml,
+        className: 'custom-marker-bg',
+        iconSize: [60, 28],
+        iconAnchor: [30, -7]
+      }),
+      interactive: false
+    }).addTo(map);
+
+    h2LayerMarkers[op + '_' + idx + '_label'] = label;
+
+    const popupContent = `<div style="font-size:12px;line-height:1.6;min-width:180px">
+      <div style="font-weight:bold;font-size:13px;margin-bottom:4px;color:${color}">${name}</div>
+      <div><b>가격:</b> ${priceText}</div>
+      <div><b>혼잡:</b> <span style="color:${congColor}">${congestion}</span> · <b>운영:</b> ${operation}</div>
+      <div><b>TT압력:</b> ${ttPressure} · <b>대기:</b> ${waitVehicles}대</div>
+      <div><b>유형:</b> ${stType} · <b>차량:</b> ${vehicle || '정보없음'}</div>
+      <div><b>압력:</b> ${pressure}</div>
+    </div>`;
+
+    marker.bindPopup(popupContent);
+    marker.bindTooltip(name, { direction: 'top', offset: [0, -10] });
+
+    h2LayerMarkers[op + '_' + idx] = marker;
+    addedCount++;
+  });
+
+  PLANNED_H2_STATIONS.forEach((s, idx) => {
+    if (!h2LayerVisible[s.operator]) return;
+
+    const color = H2_LAYER_COLORS[s.operator];
+    const marker = L.marker([s.lat, s.lng], {
+      pane: 'h2LayerPane',
+      zIndexOffset: 500,
+      icon: L.divIcon({
+        html: `<div style="display:flex;flex-direction:column;align-items:center">
+          <div style="width:14px;height:14px;background:white;border-radius:3px;border:2.5px dashed ${color};box-shadow:0 2px 6px rgba(0,0,0,0.25);"></div>
+          <div style="width:6px;height:6px;background:${color};border-radius:50%;border:1.5px solid white;margin-top:-4px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+        </div>`,
+        className: 'custom-marker-bg',
+        iconSize: [18, 22],
+        iconAnchor: [9, 11]
+      })
+    }).addTo(map);
+
+    const label = L.marker([s.lat, s.lng], {
+      pane: 'h2LayerLabelPane',
+      zIndexOffset: 600,
+      icon: L.divIcon({
+        html: `<div style="background:rgba(255,255,255,0.95);backdrop-filter:blur(4px);padding:3px 6px;border-radius:6px;font-size:9px;font-weight:700;line-height:1.3;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.15);border:1px solid ${color}40;color:${color};margin-top:7px;white-space:nowrap;">${s.shortStatus}</div>`,
+        className: 'custom-marker-bg',
+        iconSize: [52, 22],
+        iconAnchor: [26, -7]
+      }),
+      interactive: false
+    }).addTo(map);
+
+    const popupContent = `<div style="font-size:12px;line-height:1.6;min-width:200px">
+      <div style="font-weight:bold;font-size:13px;margin-bottom:4px;color:${color}">${s.name} <span style="font-weight:700;color:#6b7280">(예정)</span></div>
+      <div><b>주소:</b> ${s.address}</div>
+      <div><b>상태:</b> 예정</div>
+    </div>`;
+
+    marker.bindPopup(popupContent);
+    marker.bindTooltip(`${s.name} (예정)`, { direction: 'top', offset: [0, -10] });
+
+    h2LayerMarkers[`planned_${s.operator}_${idx}`] = marker;
+    h2LayerMarkers[`planned_${s.operator}_${idx}_label`] = label;
+    addedCount++;
+  });
+
+  console.log(`[H2 Layer] Added ${addedCount} markers`);
+}
+
+function getStationApiPrice(stationName) {
+  return getDisplayedStationPrice(stationName, null);
+}
+
+function getMonthlyStationAveragePrice(stationName) {
+  const md = MONTHLY_DATA[currentMonth];
+  const station = md?.charging_stations?.find(s => s.name === stationName);
+  return station?.price_per_kg ?? null;
+}
+
+function getStationMetaByName(stationName) {
+  const currentMeta = MONTHLY_DATA[currentMonth]?.charging_stations?.find(s => s.name === stationName);
+  if (currentMeta) return currentMeta;
+  for (const month of [...MONTHS].reverse()) {
+    const found = MONTHLY_DATA[month]?.charging_stations?.find(s => s.name === stationName);
+    if (found) return found;
+  }
+  return null;
+}
+
+function getStationInfoFromApi(stationName) {
+  // Clean up our station name for matching
+  const ourClean = stationName.replace(/수소충전소/g, '').replace(/에스케이 /g, '').replace(/ /g, '');
+  
+  for (const s of H2_ALL_STATIONS) {
+    const apiName = s[0];
+    const apiClean = apiName.replace(/수소충전소/g, '').replace(/하이버스 /g, '').replace(/ /g, '');
+    
+    // Direct match or contains
+    if (apiClean === ourClean || apiClean.includes(ourClean) || ourClean.includes(apiClean)) {
+      const vehicle = s[7];
+      return {
+        price: s[4],
+        vehicle: vehicle && (vehicle.includes('버스') || vehicle.includes('트럭')) ? '상용' : '승용'
+      };
+    }
+    
+    // Special cases for name differences
+    const specialMatches = {
+      '성남사송': '성남사송',
+      '수원고색': '수원고색',
+      '인천운서': '인천운서',
+      '평택모곡': '평택모곡',
+      '대구검단': '대구검단',
+      '인천신흥': '인천신흥',
+      '이천대흥': '이천대흥',
+      '기흥휴게소(부산)': '기흥휴게소',
+      '덕평휴게소(강릉)': '덕평휴게소',
+      '세운산업(주)가좌': '가좌',
+      '안성맞춤(제천)': '안성맞춤',
+      '용인휴게소': '휴게소(인천방향)',
+      '월곡수소충전소(주)': '월곡',
+      '양주회정': '회천농협',
+      '송도액화': '인천송도',
+      '송도기체': '인천송도(기체)'
+    };
+    
+    for (const [ourPattern, apiPattern] of Object.entries(specialMatches)) {
+      if (stationName.includes(ourPattern) && apiName.includes(apiPattern)) {
+        const vehicle = s[7];
+        return {
+          price: s[4],
+          vehicle: vehicle && (vehicle.includes('버스') || vehicle.includes('트럭')) ? '상용' : '승용'
+        };
+      }
+    }
+  }
+  return null;
+}
 
 // ===== NORMALIZATION =====
 function normalizeCustomerName(name) {
@@ -814,11 +1814,12 @@ function getNormalizedDetail(month) {
 }
 
 // ===== STATE =====
-let currentMonth = '2026-02';
+let currentMonth = '2026-03';
 let selectedCustomers = new Set();
 let selectedStations = new Set();
 let leftTab = 'customer'; // 'customer' or 'station'
 let corpFilter = '전체';
+let teamFilter = '전체팀';
 let showAllLines = false;
 let map, spokeLines = [], customerMarkers = {}, stationMarkers = {}, stationLabels = [];
 let detailPieChart = null;
@@ -828,9 +1829,16 @@ function init() {
     renderMonthTabs();
     initMonthTabs();
     renderCorpFilters();
+    renderTeamFilters();
     initCorpFilters();
+    initTeamFilters();
     initMap();
     updateAll();
+    initLivePriceCrawl();
+
+    document.getElementById('livePriceRefreshBtn').addEventListener('click', () => {
+        refreshLivePricesNow();
+    });
 
     document.getElementById('leftTabs').addEventListener('click', e => {
         const btn = e.target.closest('button[data-tab]');
@@ -844,10 +1852,15 @@ function init() {
             b.classList.toggle('text-gray-400', b.dataset.tab !== leftTab);
             b.classList.toggle('font-medium', b.dataset.tab !== leftTab);
         });
-        // Show/hide corp filters (only for customer tab)
-        document.getElementById('corpFilters').style.display = leftTab === 'customer' ? '' : 'none';
+        updateFilterVisibility();
         renderLeftPanel();
     });
+}
+
+function updateFilterVisibility() {
+    const display = leftTab === 'customer' ? '' : 'none';
+    document.getElementById('corpFilters').style.display = display;
+    document.getElementById('teamFilters').style.display = display;
 }
 
 function renderLeftPanel() {
@@ -865,7 +1878,15 @@ function updateAll() {
     renderSummaryCards(md, prevMd);
     renderLeftPanel();
     updateMap();
-    if (selectedCustomers.size > 0) showCustomerDetail();
+    if (selectedCustomers.size > 0) {
+        drawSpokesMulti();
+        showCustomerDetail();
+    }
+    if (selectedStations.size > 0) {
+        drawStationSpokes();
+        showMultiStationDetail();
+    }
+    scheduleVisibleLivePriceRefresh();
 }
 
 // ===== MONTH TABS =====
@@ -880,8 +1901,6 @@ function initMonthTabs() {
         const btn = e.target.closest('[data-month]');
         if (!btn) return;
         currentMonth = btn.dataset.month;
-        selectedCustomer = null;
-        document.getElementById('detailSection').style.display = 'none';
         renderMonthTabs();
         updateAll();
     });
@@ -892,21 +1911,62 @@ function renderCorpFilters() {
     const corps = ['전체', '온버스', '알이백', '원더온'];
     const colors = { '전체': '#6B7280', '온버스': '#3B82F6', '원더온': '#10B981', '알이백': '#8B5CF6' };
     const container = document.getElementById('corpFilters');
+    container.classList.toggle('opacity-50', teamFilter !== '전체팀');
     container.innerHTML = corps.map(c =>
         `<button class="corp-btn px-2.5 py-1 rounded-full text-xs border ${c === corpFilter ? 'active' : ''}" style="color:${colors[c]};border-color:${colors[c]}${c === corpFilter ? '' : '40'}" data-corp="${c}">${c}</button>`
     ).join('');
 }
+
+function renderTeamFilters() {
+    const teams = ['전체팀', '1팀', '2팀', '3팀', '원더온'];
+    const colors = { '전체팀': '#6B7280', ...TEAM_COLORS };
+    const container = document.getElementById('teamFilters');
+    container.classList.toggle('opacity-50', corpFilter !== '전체');
+    container.innerHTML = teams.map(team =>
+        `<button class="corp-btn px-2.5 py-1 rounded-full text-xs border ${team === teamFilter ? 'active' : ''}" style="color:${colors[team]};border-color:${colors[team]}${team === teamFilter ? '' : '40'}" data-team="${team}">${team}</button>`
+    ).join('');
+}
+
 function initCorpFilters() {
     document.getElementById('corpFilters').addEventListener('click', e => {
         const btn = e.target.closest('[data-corp]');
         if (!btn) return;
         corpFilter = btn.dataset.corp;
-        selectedCustomer = null;
+        if (corpFilter !== '전체') teamFilter = '전체팀';
+        selectedCustomers.clear();
         document.getElementById('detailSection').style.display = 'none';
         renderCorpFilters();
+        renderTeamFilters();
         renderCustomerList();
         updateMap();
+        updateResetButton();
     });
+}
+
+function initTeamFilters() {
+    document.getElementById('teamFilters').addEventListener('click', e => {
+        const btn = e.target.closest('[data-team]');
+        if (!btn) return;
+        teamFilter = btn.dataset.team;
+        if (teamFilter !== '전체팀') corpFilter = '전체';
+        selectedCustomers.clear();
+        document.getElementById('detailSection').style.display = 'none';
+        renderCorpFilters();
+        renderTeamFilters();
+        renderCustomerList();
+        updateMap();
+        updateResetButton();
+    });
+}
+
+function getFilteredCustomers(customers) {
+    return corpFilter === '전체' && teamFilter === '전체팀'
+        ? customers
+        : customers.filter(c => {
+            if (corpFilter !== '전체') return c.company === corpFilter;
+            if (teamFilter !== '전체팀') return CUSTOMER_TEAM[c.name] === teamFilter;
+            return true;
+        });
 }
 
 // ===== SUMMARY CARDS =====
@@ -1001,7 +2061,7 @@ function getCustomersForMonth(month) {
 
 function renderCustomerList() {
     const customers = getCustomersForMonth(currentMonth);
-    const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+    const filtered = getFilteredCustomers(customers);
     const container = document.getElementById('customerList');
 
     // Selection clear button
@@ -1013,6 +2073,8 @@ function renderCustomerList() {
 
     container.innerHTML = clearBtn + filtered.map(c => {
         const color = CORP_COLORS[c.company] || '#6B7280';
+        const team = CUSTOMER_TEAM[c.name] || '-';
+        const teamColor = TEAM_COLORS[team] || '#666';
         const isActive = selectedCustomers.has(c.name);
         return `<div class="customer-card rounded-lg p-2.5 mb-1.5 ${isActive ? 'active' : ''}" data-customer="${c.name}" style="${isActive ? `border-left-color:${color};background:#f0f9ff` : ''}">
             <div class="flex items-center justify-between">
@@ -1020,9 +2082,13 @@ function renderCustomerList() {
                     <span class="w-3.5 h-3.5 rounded flex-shrink-0 border-2 flex items-center justify-center text-[9px]" style="border-color:${color};${isActive ? `background:${color};color:white` : ''}">${isActive ? '✓' : ''}</span>
                     <span class="text-sm font-semibold text-gray-800 truncate">${c.name}</span>
                 </div>
-                <span class="text-xs text-gray-400 flex-shrink-0">${c.vehicles}대</span>
+                <div class="flex items-center gap-1.5 ml-2 flex-shrink-0">
+                    <span class="text-[10px] px-1.5 py-0.5 rounded" style="background:${color}20;color:${color}">${c.company}</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded" style="background:${teamColor}20;color:${teamColor}">${team}</span>
+                </div>
             </div>
             <div class="flex items-center gap-3 mt-1.5 ml-5 text-xs text-gray-500">
+                <span class="font-medium text-blue-600">${c.vehicles}대</span>
                 <span class="font-medium text-gray-700">${Math.round(c.totalKg).toLocaleString('ko-KR')} kg</span>
                 <span>${c.stationCount}개소</span>
                 <span>${c.totalCount}회</span>
@@ -1072,6 +2138,14 @@ function initMap() {
         maxZoom: 19
     }).addTo(map);
 
+    map.createPane('distanceLabelPane');
+    map.getPane('distanceLabelPane').style.zIndex = 645;
+    map.createPane('h2LayerPane');
+    map.getPane('h2LayerPane').style.zIndex = 670;
+    map.createPane('h2LayerLabelPane');
+    map.getPane('h2LayerLabelPane').style.zIndex = 675;
+    map.on('moveend zoomend', scheduleVisibleLivePriceRefresh);
+
     document.getElementById('toggleAllLines').addEventListener('click', () => {
         showAllLines = !showAllLines;
         const btn = document.getElementById('toggleAllLines');
@@ -1114,15 +2188,19 @@ function updateMap() {
     const md = MONTHLY_DATA[currentMonth];
     const detail = getNormalizedDetail(currentMonth);
     const customers = getCustomersForMonth(currentMonth);
-    const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+    const filtered = getFilteredCustomers(customers);
     const filteredNames = new Set(filtered.map(c => c.name));
 
     // Station lat/lng lookup
     const stationCoords = {};
     md.charging_stations.forEach(s => { stationCoords[s.name] = { lat: s.lat, lng: s.lng }; });
+    selectedStations.forEach(name => {
+        const meta = getStationMetaByName(name);
+        if (meta && !stationCoords[name]) stationCoords[name] = { lat: meta.lat, lng: meta.lng };
+    });
 
     // Draw station markers (only stations used by filtered customers)
-    const usedStations = new Set();
+    const usedStations = new Set(selectedStations);
     filtered.forEach(c => {
         const stations = detail[c.name];
         if (stations) Object.keys(stations).forEach(s => usedStations.add(s));
@@ -1141,6 +2219,21 @@ function updateMap() {
         });
         const marker = L.marker([s.lat, s.lng], { icon: sIcon }).addTo(map);
         marker.bindTooltip(s.name.replace(' 수소충전소', ''), { direction: 'top', offset: [0, -8] });
+
+        // Traded-station marker label: selected-month average price only
+        const monthlyPrice = getMonthlyStationAveragePrice(s.name) ?? s.price_per_kg;
+        const priceText = monthlyPrice ? Math.round(monthlyPrice).toLocaleString('ko-KR') + '원' : '-';
+        const labelHtml = `<div class="station-pill" style="color:#059669;margin-top:8px;font-size:10px">${priceText}</div>`;
+        const priceLabel = L.marker([s.lat, s.lng], {
+            icon: L.divIcon({
+                html: labelHtml,
+                className: 'custom-marker-bg',
+                iconSize: [70, 24],
+                iconAnchor: [35, -7]
+            }),
+            interactive: false
+        }).addTo(map);
+        stationMarkers[s.name + '_price'] = priceLabel;
         marker.on('click', () => {
             if (showAllLines) {
                 showAllLines = false;
@@ -1167,7 +2260,7 @@ function updateMap() {
                     b.classList.toggle('text-gray-400', b.dataset.tab !== 'station');
                     b.classList.toggle('font-medium', b.dataset.tab !== 'station');
                 });
-                document.getElementById('corpFilters').style.display = 'none';
+                updateFilterVisibility();
             }
             renderStationList();
             drawStationSpokes();
@@ -1176,6 +2269,36 @@ function updateMap() {
             updateResetButton();
         });
         stationMarkers[s.name] = marker;
+    });
+
+    WONDER_PLANNED_STATIONS.forEach((s, idx) => {
+        const marker = L.marker([s.lat, s.lng], {
+            icon: L.divIcon({
+                html: `<div style="display:flex;flex-direction:column;align-items:center">
+                    <div style="width:34px;height:34px;background:linear-gradient(135deg,#ef4444,#b91c1c);border-radius:50%;border:3px solid white;box-shadow:0 0 0 4px rgba(239,68,68,0.28),0 4px 14px rgba(0,0,0,0.28);display:flex;align-items:center;justify-content:center;position:relative;">
+                        <div style="position:absolute;top:-4px;right:-4px;background:#f59e0b;color:white;border-radius:999px;padding:1px 4px;font-size:8px;font-weight:800;line-height:1;box-shadow:0 1px 3px rgba(0,0,0,0.2);">예정</div>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                </div>`,
+                className: 'custom-marker-bg',
+                iconSize: [34, 34],
+                iconAnchor: [17, 17]
+            })
+        }).addTo(map);
+        marker.bindTooltip(s.name, { direction: 'top', offset: [0, -8] });
+        marker.bindPopup(`<div style="font-size:12px;line-height:1.6;min-width:200px"><div style="font-weight:bold;font-size:13px;margin-bottom:4px;color:#059669">${s.name}</div><div><b>주소:</b> ${s.address}</div><div><b>오픈 예정:</b> ${s.openDate}</div></div>`);
+
+        const label = L.marker([s.lat, s.lng], {
+            icon: L.divIcon({
+                html: `<div style="background:linear-gradient(135deg,#10b981,#047857);color:white;margin-top:8px;font-size:10px;font-weight:800;padding:3px 8px;border-radius:999px;box-shadow:0 2px 8px rgba(16,185,129,0.35);border:2px solid white;white-space:nowrap;">${s.shortLabel}</div>`,
+                className: 'custom-marker-bg',
+                iconSize: [122, 28],
+                iconAnchor: [61, -7]
+            }),
+            interactive: false
+        }).addTo(map);
+        stationMarkers[`wonder_planned_${idx}`] = marker;
+        stationMarkers[`wonder_planned_${idx}_label`] = label;
     });
 
     // Draw customer markers
@@ -1219,7 +2342,7 @@ function updateMap() {
                     b.classList.toggle('text-gray-400', b.dataset.tab !== 'customer');
                     b.classList.toggle('font-medium', b.dataset.tab !== 'customer');
                 });
-                document.getElementById('corpFilters').style.display = '';
+                updateFilterVisibility();
             }
             renderCustomerList();
             drawSpokesMulti();
@@ -1236,6 +2359,10 @@ function updateMap() {
     }
     if (selectedCustomers.size > 0) {
         drawSpokesMulti();
+    }
+
+    if (Object.values(h2LayerVisible).some(Boolean)) {
+        renderH2Layers();
     }
 }
 
@@ -1273,6 +2400,7 @@ function drawAllSpokes(customers, detail, stationCoords) {
             line.on('mouseover', () => { line.setStyle({ opacity: 1, weight: w + 1 }); });
             line.on('mouseout', () => { line.setStyle({ opacity: 0.7, weight: w }); });
             spokeLines.push(line);
+            addDistanceLabel(info.lat, info.lng, sc.lat, sc.lng, color);
         }
     });
 }
@@ -1293,7 +2421,7 @@ function drawSpokesMulti() {
 
     if (showAllLines) {
         const customers = getCustomersForMonth(currentMonth);
-        const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+        const filtered = getFilteredCustomers(customers);
         drawAllSpokes(filtered, detail, stationCoords);
     }
 
@@ -1328,6 +2456,7 @@ function drawSpokesMulti() {
             }).addTo(map);
             spokeLines.push(line);
             bounds.push([sc.lat, sc.lng]);
+            addDistanceLabel(info.lat, info.lng, sc.lat, sc.lng, color);
 
             // Aggregate for labels
             if (!stationAgg[sName]) stationAgg[sName] = { kg: 0, lat: sc.lat, lng: sc.lng };
@@ -1342,7 +2471,7 @@ function drawSpokesMulti() {
                 html: `<div class="station-pill" style="color:#1e40af">${Math.round(agg.kg).toLocaleString('ko-KR')}kg</div>`,
                 className: 'custom-marker-bg',
                 iconSize: [80, 24],
-                iconAnchor: [40, -16]
+                iconAnchor: [40, -8]
             }),
             interactive: false
         });
@@ -1350,9 +2479,7 @@ function drawSpokesMulti() {
         stationLabels.push(label);
     }
 
-    if (bounds.length > 1) {
-        map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12 });
-    }
+    // Map auto-pan removed per user request
 }
 
 // ===== DETAIL PANEL =====
@@ -1429,7 +2556,8 @@ function showCustomerDetail() {
     });
     thead += '<th class="py-2.5 px-2 text-right font-bold text-gray-800 bg-gray-50">합계(kg)</th>';
     thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
-    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액<span class="normal-case text-[9px] text-gray-400 block">VAT포함</span></th></tr>';
+    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액<span class="normal-case text-[9px] text-gray-400 block">VAT포함</span></th>';
+    thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">평균단가<span class="normal-case text-[9px] text-gray-400 block">원/kg</span></th></tr>';
 
     // Body rows
     const grandTotal = { kg: 0, count: 0, amount: 0 };
@@ -1452,6 +2580,8 @@ function showCustomerDetail() {
         tbody += `<td class="py-2 px-2 text-right font-bold text-sm bg-gray-50 tabular-nums">${Math.round(data.total.kg).toLocaleString('ko-KR')}</td>`;
         tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${data.total.count.toLocaleString('ko-KR')}</td>`;
         tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${(data.total.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+        const unitPrice = data.total.kg > 0 ? Math.round(data.total.amount / data.total.kg) : 0;
+        tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums text-emerald-700 font-medium">${unitPrice.toLocaleString('ko-KR')}</td>`;
         tbody += '</tr>';
         grandTotal.kg += data.total.kg;
         grandTotal.count += data.total.count;
@@ -1467,6 +2597,8 @@ function showCustomerDetail() {
     tfoot += `<td class="py-2.5 px-2 text-right text-sm bg-gray-100">${Math.round(grandTotal.kg).toLocaleString('ko-KR')}</td>`;
     tfoot += `<td class="py-2.5 px-2 text-right text-sm">${grandTotal.count.toLocaleString('ko-KR')}</td>`;
     tfoot += `<td class="py-2.5 px-2 text-right text-sm">${(grandTotal.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+    const grandUnitPrice = grandTotal.kg > 0 ? Math.round(grandTotal.amount / grandTotal.kg) : 0;
+    tfoot += `<td class="py-2.5 px-2 text-right text-sm text-emerald-700 font-bold">${grandUnitPrice.toLocaleString('ko-KR')}</td>`;
     tfoot += '</tr>';
 
     document.getElementById('detailTableBody').innerHTML = tbody;
@@ -1530,8 +2662,7 @@ function showCustomerDetail() {
         }
     });
 
-    // Scroll to detail
-    document.getElementById('detailSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Scroll to detail removed per user request
 }
 
 // ===== STATION LIST =====
@@ -1542,10 +2673,13 @@ function renderStationList() {
 
     // Build station data with aggregated customer info
     const stationData = [];
+    const stationCatalog = new Map();
     md.charging_stations.forEach(s => {
+        stationCatalog.set(s.name, s);
         let totalKg = 0, totalCount = 0, totalAmount = 0, customerCount = 0;
+        let vehicleCount = (STATION_VEHICLE_COUNTS[currentMonth] && STATION_VEHICLE_COUNTS[currentMonth][s.name]) || 0;
         const customers = getCustomersForMonth(currentMonth);
-        const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+        const filtered = getFilteredCustomers(customers);
         filtered.forEach(c => {
             const stations = detail[c.name];
             if (stations && stations[s.name]) {
@@ -1553,13 +2687,35 @@ function renderStationList() {
                 totalCount += stations[s.name].count;
                 totalAmount += stations[s.name].amount;
                 customerCount++;
+                // vehicle count from STATION_VEHICLE_COUNTS
             }
         });
         if (totalKg > 0) {
-            stationData.push({ name: s.name, totalKg, totalCount, totalAmount, customerCount });
+            stationData.push({ name: s.name, totalKg, totalCount, totalAmount, customerCount, vehicleCount, price_per_kg: s.price_per_kg });
         }
     });
-    stationData.sort((a, b) => b.totalKg - a.totalKg);
+
+    selectedStations.forEach(name => {
+        if (stationData.some(s => s.name === name)) return;
+        const meta = stationCatalog.get(name) || getStationMetaByName(name);
+        if (!meta) return;
+        stationData.push({
+            name,
+            totalKg: 0,
+            totalCount: 0,
+            totalAmount: 0,
+            customerCount: 0,
+            vehicleCount: 0,
+            price_per_kg: getMonthlyStationAveragePrice(name) ?? meta.price_per_kg ?? 0,
+            isSelectedOnly: true
+        });
+    });
+    stationData.sort((a, b) => {
+        const aSelected = selectedStations.has(a.name) ? 1 : 0;
+        const bSelected = selectedStations.has(b.name) ? 1 : 0;
+        if (aSelected !== bSelected) return bSelected - aSelected;
+        return b.totalKg - a.totalKg;
+    });
 
     // Selection clear button
     const clearBtn = selectedStations.size > 0
@@ -1571,6 +2727,8 @@ function renderStationList() {
     container.innerHTML = clearBtn + stationData.map(s => {
         const isActive = selectedStations.has(s.name);
         const shortName = displayStation(s.name);
+        const listPrice = getMonthlyStationAveragePrice(s.name) ?? null;
+        const priceText = listPrice != null ? `${Math.round(listPrice).toLocaleString('ko-KR')}원/kg` : '-';
         return `<div class="customer-card rounded-lg p-2.5 mb-1.5 ${isActive ? 'active' : ''}" data-station="${s.name}" style="${isActive ? 'border-left-color:#059669;background:#f0fdf4' : ''}">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2 min-w-0">
@@ -1581,7 +2739,9 @@ function renderStationList() {
             </div>
             <div class="flex items-center gap-3 mt-1.5 ml-5 text-xs text-gray-500">
                 <span class="font-medium text-gray-700">${Math.round(s.totalKg).toLocaleString('ko-KR')} kg</span>
+                <span>${s.vehicleCount}대</span>
                 <span>${s.totalCount}회</span>
+                <span class="text-emerald-600 font-semibold">${priceText}</span>
             </div>
         </div>`;
     }).join('');
@@ -1633,7 +2793,7 @@ function drawStationSpokes() {
     md.charging_stations.forEach(s => { stationCoords[s.name] = { lat: s.lat, lng: s.lng }; });
 
     const customers = getCustomersForMonth(currentMonth);
-    const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+    const filtered = getFilteredCustomers(customers);
 
     const bounds = [];
     let allKgs = [];
@@ -1665,6 +2825,7 @@ function drawStationSpokes() {
             }).addTo(map);
             spokeLines.push(line);
             bounds.push([info.lat, info.lng]);
+            addDistanceLabel(info.lat, info.lng, sc.lat, sc.lng, color);
 
             // Customer kg label
             const label = L.marker([info.lat, info.lng], {
@@ -1672,7 +2833,7 @@ function drawStationSpokes() {
                     html: `<div class="station-pill" style="color:${color}">${Math.round(stations[sName].kg).toLocaleString('ko-KR')}kg</div>`,
                     className: 'custom-marker-bg',
                     iconSize: [80, 24],
-                    iconAnchor: [40, -16]
+iconAnchor: [40, -8]
                 }),
                 interactive: false
             });
@@ -1681,7 +2842,7 @@ function drawStationSpokes() {
         });
     }
 
-    if (bounds.length > 1) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12 });
+    // Map auto-pan removed per user request
 }
 
 // ===== MULTI STATION DETAIL =====
@@ -1691,7 +2852,7 @@ function showMultiStationDetail() {
     if (selectedStations.size === 0) return;
 
     const customers = getCustomersForMonth(currentMonth);
-    const filtered = corpFilter === '전체' ? customers : customers.filter(c => c.company === corpFilter);
+    const filtered = getFilteredCustomers(customers);
 
     // Find all customers that used any selected station
     const customerSet = new Set();
@@ -1741,6 +2902,7 @@ function showMultiStationDetail() {
         thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">충전량(kg)</th>';
         thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">횟수</th>';
         thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">금액<span class="normal-case text-[9px] text-gray-400 block">VAT포함</span></th>';
+        thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">평균단가<span class="normal-case text-[9px] text-gray-400 block">원/kg</span></th>';
         thead += '<th class="py-2.5 px-2 text-right font-semibold text-gray-600">비율</th></tr>';
 
         let tbody = '';
@@ -1757,6 +2919,8 @@ function showMultiStationDetail() {
             tbody += `<td class="py-2 px-2 text-right text-sm font-medium tabular-nums">${Math.round(u.kg).toLocaleString('ko-KR')}</td>`;
             tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${u.count.toLocaleString('ko-KR')}</td>`;
             tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${(u.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+            const uUnitPrice = u.kg > 0 ? Math.round(u.amount / u.kg) : 0;
+            tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums text-emerald-700 font-medium">${uUnitPrice.toLocaleString('ko-KR')}</td>`;
             tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${pct}%</td></tr>`;
         });
 
@@ -1765,6 +2929,8 @@ function showMultiStationDetail() {
         tfoot += `<td class="py-2.5 px-2 text-right text-sm">${Math.round(totalKg).toLocaleString('ko-KR')}</td>`;
         tfoot += `<td class="py-2.5 px-2 text-right text-sm">${totalCount.toLocaleString('ko-KR')}</td>`;
         tfoot += `<td class="py-2.5 px-2 text-right text-sm">${(totalAmount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+        const totalUnitPrice = totalKg > 0 ? Math.round(totalAmount / totalKg) : 0;
+        tfoot += `<td class="py-2.5 px-2 text-right text-sm text-emerald-700 font-bold">${totalUnitPrice.toLocaleString('ko-KR')}</td>`;
         tfoot += `<td class="py-2.5 px-2 text-right text-sm">100%</td></tr>`;
 
         const tableEl = document.getElementById('detailTableBody').closest('table');
@@ -1825,7 +2991,8 @@ function showMultiStationDetail() {
 
         const grandTotal = { kg: 0, count: 0, amount: 0 };
         const stationTotals = {};
-        stationList.forEach(sn => stationTotals[sn] = 0);
+        const stationAmounts = {};
+        stationList.forEach(sn => { stationTotals[sn] = 0; stationAmounts[sn] = 0; });
 
         let tbody = '';
         customerNames.forEach(cName => {
@@ -1843,6 +3010,7 @@ function showMultiStationDetail() {
                 const d = cStations[sn];
                 if (d && d.kg > 0) {
                     stationTotals[sn] += d.kg;
+                    stationAmounts[sn] += d.amount;
                     tbody += `<td class="py-2 px-2 text-right text-sm tabular-nums">${Math.round(d.kg).toLocaleString('ko-KR')}</td>`;
                 } else {
                     tbody += `<td class="py-2 px-2 text-right text-gray-300">-</td>`;
@@ -1863,6 +3031,17 @@ function showMultiStationDetail() {
         tfoot += `<td class="py-2.5 px-2 text-right text-sm bg-gray-100">${Math.round(grandTotal.kg).toLocaleString('ko-KR')}</td>`;
         tfoot += `<td class="py-2.5 px-2 text-right text-sm">${grandTotal.count.toLocaleString('ko-KR')}</td>`;
         tfoot += `<td class="py-2.5 px-2 text-right text-sm">${(grandTotal.amount / 10000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}만</td>`;
+        tfoot += '</tr>';
+        // Station unit prices row
+        tfoot += '<tr class="border-t border-gray-200 font-semibold bg-gray-50/50">';
+        tfoot += '<td class="py-2 px-2 text-xs text-gray-500">평균단가(원/kg)</td>';
+        stationList.forEach(sn => {
+            const stPrice = stationTotals[sn] > 0 ? Math.round(stationAmounts[sn] / stationTotals[sn]) : 0;
+            tfoot += `<td class="py-2 px-2 text-right text-xs text-emerald-600">${stPrice.toLocaleString('ko-KR')}</td>`;
+        });
+        const grandAvgPrice = grandTotal.kg > 0 ? Math.round(grandTotal.amount / grandTotal.kg) : 0;
+        tfoot += `<td class="py-2 px-2 text-right text-xs text-emerald-700 font-bold bg-gray-100">${grandAvgPrice.toLocaleString('ko-KR')}</td>`;
+        tfoot += '<td class="py-2 px-2 text-right text-xs text-gray-400" colspan="2">-</td>';
         tfoot += '</tr>';
 
         const tableEl = document.getElementById('detailTableBody').closest('table');
@@ -1919,7 +3098,7 @@ function showMultiStationDetail() {
         });
     }
 
-    document.getElementById('detailSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Scroll to detail removed per user request
 }
 
 // ===== BOOT =====

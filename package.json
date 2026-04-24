@@ -7,7 +7,7 @@
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --minify",
     "watch": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sync:hrs": "sed '/비밀번호 보호 모듈/d; /auth-gate\\.js/d' /c/Dev/active/hydrogen/hrs-dash/deploy/index.html > ./demos/hrs-dashboard.html && echo 'HRS dashboard synced (auth removed)'"
+    "sync:hrs": "cp ../hydrogen/hrs-dash/deploy/index.html ./demos/hrs-dashboard.html && cp ../hydrogen/hrs-dash/deploy/pogok.html ./demos/pogok.html && if grep -q 'auth-gate.js' ./demos/hrs-dashboard.html ./demos/pogok.html; then echo 'ERROR: auth-gate leaked - is hrs-dash on public branch?' >&2; exit 1; fi && echo 'HRS demos synced OK (from hrs-dash public branch)'"
   },
   "repository": {
     "type": "git",

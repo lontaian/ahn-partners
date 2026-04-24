@@ -1,0 +1,16 @@
+# Normalize line endings: repository stores LF, Windows working tree may be CRLF on checkout.
+# Prevents spurious diffs caused by editors saving files with CRLF.
+* text=auto eol=lf
+
+# Binary assets — never touch line endings
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.zip binary
