@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>원더에너지 용인 수소충전소 3D 조감도</title>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./node_modules/three/build/three.module.js",
+          "three/addons/": "./node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/index-Gy_I5JpA.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CKF-DRop.css">
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="HRS 메뉴">
+      <a href="../index.html">충전 네트워크</a>
+      <a href="../pogok.html">포곡 지역 분석</a>
+      <a href="./index.html" class="active">HRS 모델링</a>
+    </nav>
+    <main id="app">
+      <canvas id="viewer" aria-label="원더에너지 용인 수소충전소 3D 조감도"></canvas>
+
+      <section class="hud title-panel" aria-label="프로젝트 개요">
+        <div class="eyebrow">경기도 용인시 처인구 포곡읍 삼계리 110-12</div>
+        <h1>원더에너지 수소충전소</h1>
+        <div class="metrics">
+          <span>대지 3,703m²</span>
+          <span>연면적 735m²</span>
+          <span>최고 8.0m</span>
+        </div>
+      </section>
+
+      <section class="hud controls" aria-label="3D 보기 제어">
+        <button id="toggle-spin" class="icon-button is-active" type="button" title="자동 회전" aria-label="자동 회전">
+          <span aria-hidden="true">⟳</span>
+        </button>
+        <button id="view-top" class="icon-button" type="button" title="조감 시점" aria-label="조감 시점">
+          <span aria-hidden="true">⌂</span>
+        </button>
+        <button id="view-low" class="icon-button" type="button" title="진입 시점" aria-label="진입 시점">
+          <span aria-hidden="true">↗</span>
+        </button>
+        <button id="reset-view" class="icon-button" type="button" title="시점 초기화" aria-label="시점 초기화">
+          <span aria-hidden="true">◎</span>
+        </button>
+      </section>
+
+      <section class="hud info-panel" aria-label="선택 설비 정보">
+        <div class="info-kicker" id="info-kicker">도면 기반 모델</div>
+        <h2 id="info-title">전체 배치</h2>
+        <p id="info-body">충전동, 설비동, 사무동, 경정비동, 유틸리티, 수변전설비를 인허가도서의 치수와 시방서의 재료 정보를 기준으로 배치했습니다.</p>
+        <dl id="info-list">
+          <div><dt>기준 도면</dt><dd>A0011 배치도, A2101 충전동, A3101 설비동</dd></div>
+          <div><dt>표현 범위</dt><dd>외형, 캐노피, 설비 매스, 차량 동선, 조경, 옹벽</dd></div>
+        </dl>
+      </section>
+
+      <section class="hud legend" aria-label="범례">
+        <span><i style="--swatch:#57b8c8"></i>충전</span>
+        <span><i style="--swatch:#e8eef2"></i>건축</span>
+        <span><i style="--swatch:#f2c84b"></i>안전</span>
+        <span><i style="--swatch:#6daa68"></i>조경</span>
+        <span><i style="--swatch:#5d6570"></i>도로</span>
+      </section>
+    </main>
+
+  </body>
+</html>
