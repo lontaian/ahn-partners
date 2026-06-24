@@ -30,6 +30,15 @@
         .custom-marker-bg { background: transparent !important; border: none !important; }
         .station-pill { background: rgba(255,255,255,0.92); backdrop-filter: blur(4px); padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 700; box-shadow: 0 1px 4px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.06); white-space: nowrap; }
     </style>
+    <style>
+      .pr-st{width:16px;height:16px;border-radius:50%;background:var(--prc);border:2.5px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,.35);position:relative}
+      .pr-st::after{content:"";position:absolute;left:-5px;top:-5px;right:-5px;bottom:-5px;border-radius:50%;border:1.5px dashed var(--prc);opacity:.55}
+      .pr-co{width:24px;height:24px;border-radius:7px;background:#d97706;border:2.5px solid #fff;box-shadow:0 2px 8px rgba(217,119,6,.45);display:flex;align-items:center;justify-content:center;font-size:12px}
+      .pr-pop .pr-h{font-weight:800;font-size:13px}
+      .pr-pop .pr-sub{font-size:11px;color:#64748b;margin-top:2px}
+      .pr-pop .pr-hr{margin:5px 0;border:none;border-top:1px solid #eee}
+      .pr-pop .pr-li{font-size:11px;color:#475569;line-height:1.5}
+    </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
 
@@ -132,6 +141,7 @@
                 <button id="h2-layer-코하이젠" onclick="toggleH2Layer('코하이젠')" class="px-2 py-1 rounded-md text-xs font-medium border transition-all" style="background:white;color:#a855f7;border-color:#a855f7">코하이젠</button>
                 <button id="h2-layer-하이넷" onclick="toggleH2Layer('하이넷')" class="px-2 py-1 rounded-md text-xs font-medium border transition-all" style="background:white;color:#14b8a6;border-color:#14b8a6">하이넷</button>
                 <button id="h2-layer-기타" onclick="toggleH2Layer('기타')" class="px-2 py-1 rounded-md text-xs font-medium border transition-all" style="background:white;color:#6b7280;border-color:#6b7280">기타</button>
+                <button id="h2-layer-prospect" onclick="toggleProspectBtn()" class="px-2 py-1 rounded-md text-xs font-medium border transition-all" style="background:white;color:#d97706;border-color:#d97706">잠재고객</button>
             </div>
         </div>
     </div>
@@ -200,7 +210,9 @@ const CUSTOMER_INFO = {
     '서울대학교(시흥)': { lat: 37.340, lng: 126.736 },
     '용인대학교': { lat: 37.226332, lng: 127.168803 },
     '장안대학교': { lat: 37.213113, lng: 126.946329 },
-    '기흥,이천/하남차고지': { lat: 37.117134, lng: 127.584009 }
+    '기흥,이천/하남차고지': { lat: 37.117134, lng: 127.584009 },
+    'SK하이닉스': { lat: 37.241896, lng: 127.476752 },
+    '서울랜드': { lat: 37.433903, lng: 127.018702 }
 };
 
 const MONTHLY_DATA = {
@@ -2413,6 +2425,120 @@ function renderCustomerList() {
 }
 
 // ===== MAP =====
+// ===== 잠재고객(영업대상) 데이터: 3사 충전소 거점 + 현대차 사업장 =====
+// 출처: 통근버스영업대상_3사충전소_통합_20260519.xlsx (카카오 지오코딩)
+const PROSPECT_STATIONS = [
+    {"id": "s_양주회정", "op": "코하이젠", "name": "양주회정", "lat": 37.854799, "lng": 127.053528, "targets": ["[A] 양주테크노밸리·옥정신도시 (양주, 약 5km, 신도시 통근)", "[B] 양주 양주역 환승객 (양주, 약 3km, 주거)"], "companies": []},
+    {"id": "s_파주봉서", "op": "코하이젠", "name": "파주봉서", "lat": 37.844275, "lng": 126.789457, "targets": ["[A] LG디스플레이 파주 (파주 월롱면, 약 5km, 224대) - 수소 전환 검토 (최대 잠재)", "[A] 파주 통일동산 / 파주 출판단지 (파주, 약 7km, 출판/문화 통근)", "[B] 파주 운정신도시 (파주 운정, 약 10km, 신도시)"], "companies": []},
+    {"id": "s_안산본오", "op": "코하이젠", "name": "안산본오", "lat": 37.289913, "lng": 126.873229, "targets": ["[A] 삼성전자(수원) (수원 영통, 약 25km, 6대 / 967kg (4월)) - 기존 거래처", "[A] 서울대학교(시흥) (시흥 배곧, 약 7km, 5대 / 1,099kg (4월)) - 기존 거래처", "[A] 반월·시화국가산업단지 (안산·시흥, 약 3~5km, 12만명 / 셔틀 10노선) - 산단공", "[A] LG이노텍 안산캠퍼스 (안산 한양대학로, 약 3.5km, 수천명) - 광학솔루션", "[B] 현대그룹 의왕연구소 (의왕, 약 8.5km, 66대) - 현대그룹", "[B] 화성 기아공장 (화성, 약 22km, 429대) - 현대그룹 - 수소 전환 검토"], "companies": ["h_의왕연구소"]},
+    {"id": "s_군포부곡", "op": "코하이젠", "name": "군포부곡", "lat": 37.329879, "lng": 126.93123, "targets": ["[A] 현대그룹 의왕연구소 (의왕시, 약 8km, 66대) - 현대그룹 (위아·모비스·로템)", "[A] 반월시화국가산업단지 (안산·시흥, 약 12km, 12만명 / 셔틀 10노선)", "[B] LG이노텍 안산캠퍼스 (안산 한양대학로, 약 10km, 수천명)", "[B] LG디스플레이 안양 R&D (안양, 약 10km, 수천명)", "[C] 금정역·군포역 직장인 거점 (군포·의왕, 약 3km, 광역버스 환승)", "[C] 삼성전자 수원사업장 (수원 영통, 약 15km, 25대) - 최대 거래처"], "companies": ["h_의왕연구소"]},
+    {"id": "s_시흥방산", "op": "코하이젠", "name": "시흥방산", "lat": 37.430214, "lng": 126.778181, "targets": ["[A] 쿠팡 시흥 물류센터 (시흥 정왕동, 약 5km, 10~15대 추정) - 24시간 3교대", "[A] 반월·시화산단 시흥권 (시흥 정왕/시화, 약 3~7km, 셔틀 10노선) - 산단공", "[B] 광명 G밸리·광명역 권역 (광명 일직동, 약 10km, 오피스)", "[B] 서울대 시흥캠퍼스 (배곧) (시흥 배곧, 약 7km, 5대 (기존 거래처)) - 확대 검토", "[C] 삼성바이오로직스 송도 (인천 송도, 약 18km, 7대) - 송도액화 일부 이관", "[C] 롯데바이오로직스 송도 (인천 송도, 약 18km, 3대) - 송도 거점"], "companies": ["h_광명공장"]},
+    {"id": "s_용인양지", "op": "코하이젠", "name": "용인양지", "lat": 37.233229, "lng": 127.294623, "targets": ["[A] 삼성물산(에버랜드) (용인 처인구 포곡, 약 5km, 4대 (기존 거래처)) - 에버랜드 인접", "[A] 현대모비스 마북연구소 (용인 기흥구 마북, 약 12km, 90대) - 현대그룹", "[A] 용인대학교 (용인 처인구, 약 7km, 1대 (기존 거래처))", "에버랜드 포곡과 중복 / 구축예정 - 현재 미운영"], "companies": ["h_마북연구소"]},
+    {"id": "s_광명소하", "op": "하이넷", "name": "광명소하", "lat": 37.43856, "lng": 126.892586, "targets": ["[A] 기아 광명공장 (광명 소하동, 약 1km, 73대) - 현대차그룹 (수소 전환 검토)", "[A] 고대구로병원 (서울 구로구 구로동로 148, 약 8km, 2대 (기존 거래처)) - 4월 393kg", "[B] 광명 G밸리 / 광명역세권 (광명 일직동, 약 3km, 오피스)"], "companies": ["h_원효로", "h_광명공장"]},
+    {"id": "s_의왕왕곡", "op": "하이넷", "name": "의왕왕곡", "lat": 37.334407, "lng": 126.980363, "targets": ["[A] 현대차그룹 의왕연구소 (의왕시, 약 1km, 66대) - 현대차그룹 (위아·모비스·로템)", "[A] 현대건설/현대로템 의왕R&D (의왕시, 약 2km, 수천명)", "[B] 금정역·군포역 직장인 거점 (군포·의왕, 약 3km, 광역버스 환승)"], "companies": ["h_양재사옥", "h_의왕연구소"]},
+    {"id": "s_인천연희", "op": "하이넷", "name": "인천연희", "lat": 37.552724, "lng": 126.671875, "targets": ["[A] LG전자 인천캠퍼스 (경서동) (인천 서구 경서로 230, 약 3km, 2,500명) - 코하이젠 시트", "[A] 현대제철 인천공장 (인천 동구, 약 10km, 85대) - 현대차그룹", "[B] 청라국제도시·검단신도시 (인천 서구, 약 3~7km, 신도시)"], "companies": ["h_인천공장"]},
+    {"id": "s_에버랜드", "op": "하이넷", "name": "에버랜드", "lat": 37.293272, "lng": 127.222609, "targets": ["[A] 삼성물산(에버랜드) (용인 처인구 포곡 에버랜드로 199, 0~1km, 4대 / 932kg (4월)) - 현 최대 이용", "[A] 현대모비스 마북연구소 (용인 기흥구 마북, 약 10km, 90대) - 현대차그룹", "[A] 용인대학교 (용인 처인구 용인대학로, 약 5km, 1대 (기존 거래처))", "[B] 광역버스(용인고속관광) (용인, (거점), 3대 / 465kg (4월)) - B2G 운수사"], "companies": ["h_마북연구소"]},
+    {"id": "s_평택팽성", "op": "하이넷", "name": "평택팽성", "lat": 36.954565, "lng": 127.060686, "targets": ["[A] 버지니아 미군스쿨 (Camp Humphreys) (평택 팽성, 약 1km, 3대 (기존 거래처)) - 미군", "[A] 삼성전자(평택) - 팽성 통근 경로 (평택 고덕, 약 10km, 8대)", "[B] 평택 통복시장 / 팽성 주거 (평택 팽성, 0~3km, 주거)"], "companies": []},
+    {"id": "s_인천공항T1", "op": "하이넷", "name": "인천공항T1", "lat": 37.449898, "lng": 126.475088, "targets": ["[A] 인스파이어 엔터테인먼트 리조트 (인천 영종, 약 5km, 3대 / 1,419kg (4월)) - 현 최대 이용", "[A] 인천공항 종사자 셔틀 (인천공항, 0~3km, 수만명)", "[A] 롯데면세점 인천공항점 (인천공항, 0~3km, 1대 (기존 거래처))"], "companies": []},
+    {"id": "s_인천공항T2", "op": "하이넷", "name": "인천공항T2", "lat": 37.481326, "lng": 126.423788, "targets": ["[A] 인스파이어 엔터테인먼트 리조트 (인천 영종, 약 3km, 5대) - T1 일부 이관 가능", "[A] 인천공항 T2 종사자 셔틀 (인천공항 T2, 0~3km, 수만명)", "[C] (4월 미사용 - T1만 이용 중) - T2 신규 발굴 필요"], "companies": []},
+    {"id": "s_김포걸포", "op": "하이넷", "name": "김포걸포", "lat": 37.642904, "lng": 126.709379, "targets": ["[A] LG디스플레이 파주 (파주 월롱, 약 25km, 224대) - 수소 전환 검토 (최대 잠재)", "[A] 컬리 김포물류센터 (김포, 약 5km, 8노선 셔틀) - 사실 (현황조사)", "[A] 쿠팡 김포1캠프 (김포, 약 5km, 물류 통근)", "[B] 김포골드밸리·김포골드라인 직장인 (김포, 약 5km, 1,000명/일 추정)", "[B] 한강신도시 통근수요 (김포 운양/장기, 약 3~5km, 신도시)"], "companies": ["h_고양모터스튜디오", "h_계동사옥"]},
+    {"id": "s_환경산업연구단지", "op": "하이넷", "name": "환경산업연구단지", "lat": 37.569747, "lng": 126.645574, "targets": ["[A] LG전자 인천캠퍼스 (경서동) (인천 서구 경서로 230, 약 1km, 2,500명) - 코하이젠 시트", "[A] 현대제철 인천공장 (인천 동구, 약 12km, 85대) - 현대차그룹", "[B] 환경산업 R&D 사업장 (인천 서구 정서진로, 0~1km, 공공)"], "companies": ["h_인천공장"]},
+    {"id": "s_수원영통", "op": "하이넷", "name": "수원영통", "lat": 37.286557, "lng": 127.078413, "targets": ["[A] 삼성전자(수원) 디지털시티 (수원 영통구 삼성로 129, 약 2km, 25대) - 최대 거래처", "[A] 최선어학원(영통) (수원 영통, 약 1km, 1대 (기존 거래처))", "[A] 장안대학교 (화성 봉담, 약 12km, 1대 (기존 거래처))", "[A] 현대차 남양연구소 (화성 남양, 약 18km, 305대) - 현대차그룹", "[A] 기아 화성공장 (화성 우정, 약 25km, 429대) - 현대차그룹", "[B] 광교신도시 / 영통 주거 (수원 영통/광교, 0~3km, 고밀도 주거)"], "companies": ["h_남양연구소"]},
+    {"id": "s_동안산사사", "op": "하이넷", "name": "동안산사사", "lat": 37.295415, "lng": 126.935826, "targets": ["[A] LG이노텍 안산캠퍼스 (안산 한양대학로, 약 5km, 수천명) - 코하이젠 시트", "[A] 반월시화산단 (안산·시흥, 약 3km, 12만명 / 셔틀 10노선) - 산단공", "[B] 안산 본오/사사동 주거 (안산 상록, 0~3km, 주거)"], "companies": []},
+    {"id": "s_안성맞춤휴게소", "op": "하이넷", "name": "안성맞춤휴게소", "lat": 36.970316, "lng": 127.274578, "targets": ["양방향 접근 가능한 다른 충전소 우선 검토 권고", "평택↔제천 시외버스(대원고속) (평택터미널↔제천터미널, 고속도로 경유, 1일 1회) - 통근수요·수소버스 아님", "충북혁신도시 공공기관 통근버스(법무연수원 등 10개 기관) (진천·음성, 수도권→동쪽, 10개 기관) - 2026.01 수도권 통근버스 중단", "삼성전자 평택캠퍼스 출퇴근버스 (평택, 안성JC 경유, 720대) - 안성JC에서 경부 서울방향(서쪽)으로 분기 - 제천방향 미사용", "현대모비스 충주공장(수소연료전지 공장 / 자체 충전소 운영) (충주 대소원면 기업도시1로 47, 동쪽 종점부, 통근버스 불명) - 충주 거주자 위주, 수도권 통근 사실 미확인", "제천·단양 시멘트공장(아세아·성신·한일) (제천 송학면 / 단양 매포읍, 동쪽 종점부, 통근버스 불명) - 수도권 통근 사실 미확인"], "companies": []},
+    {"id": "s_화성동탄", "op": "하이넷", "name": "화성동탄", "lat": 37.174306, "lng": 127.085345, "targets": ["[A] 기아 화성공장 (화성 우정읍, 약 15km, 429대) - 현대차그룹 (수소 전환 검토)", "[A] 현대차 남양연구소 (화성 남양, 약 20km, 305대) - 현대차그룹", "[A] 삼성전자 화성캠퍼스 (화성 반월동, 약 7km, 수만명)", "[B] 동탄2신도시 (화성 동탄, 0~3km, 신도시 고밀도)", "[B] 동탄테크노밸리 (화성 동탄, 0~3km, 오피스)"], "companies": ["h_남양연구소", "h_화성공장"]},
+    {"id": "s_화성비봉", "op": "하이넷", "name": "화성비봉", "lat": 37.247177, "lng": 126.890201, "targets": ["[A] 기아 화성공장 (화성 우정읍, 약 10km, 429대) - 현대차그룹", "[A] 현대차 남양연구소 (화성 남양, 약 10km, 305대) - 현대차그룹", "[B] 화성 비봉/봉담 산단 (화성, 약 3~5km, 산단)"], "companies": ["h_화성공장"]},
+    {"id": "s_수원권선", "op": "하이넷", "name": "수원권선", "lat": 37.256282, "lng": 126.970034, "targets": ["[A] 삼성전자(수원) 디지털시티 (수원 영통구, 약 7km, 25대) - 최대 거래처", "[A] 기아 화성공장 (화성 우정, 약 18km, 429대) - 현대차그룹", "[B] 수원 호매실/권선 신도시 (수원 권선, 0~3km, 주거)"], "companies": []},
+    {"id": "s_구리토평", "op": "하이넷", "name": "구리토평", "lat": 37.577576, "lng": 127.146103, "targets": ["[A] 구리시청 / 남양주시청 공공기관 (구리·남양주, 약 3~7km, 공공)", "[A] 다산·별내·왕숙 신도시 통근수요 (남양주, 약 5~15km, 신도시)", "[B] 구리농수산물도매시장 / 토평지구 (구리, 약 1km, 물류)"], "companies": []},
+    {"id": "s_인천가좌", "op": "SK", "name": "인천 가좌", "lat": 37.491887, "lng": 126.651195, "targets": ["[A] 세운교통(주)·세운산업(주) (인천 서구 보도진로18번길 24-1 (가좌동), 0km (동일부지), 세운산업 29명 + 세운교통 시내버스(차고지) - 수소충전소와 동일 부지)", "[A] 현대제철 인천공장 (인천 동구, 약 7km, 85대) - 현대차그룹 통근현황", "[A] LG전자 인천캠퍼스 (경서동) (인천 서구 경서로 230, 약 4km, 2,500명) - 기존 코하이젠 시트 정보", "[B] 인천 가좌공단 (인천 서구 가좌동, 0~2km, 수십개 중소기업) - 산단공", "[B] 인천환경공단 가좌사업소 (인천 서구 중봉대로 211, 약 1.5km, 공단 전체 570명 (가좌사업소별 직원수 미확인) - 통근버스 미확인)", "[B] 한국지엠(GM) 부평공장 (인천 부평구 부평대로 233 (청천동), 약 6km, 8,056명 (2024.4) - 통근버스 사실 미확인)"], "companies": ["h_인천공장"]},
+    {"id": "s_인천경서", "op": "SK", "name": "인천 경서", "lat": 37.556251, "lng": 126.63991, "targets": ["[A] LG전자 인천캠퍼스 (경서동) (인천 서구 경서로 230, 약 1km, 2,500명)", "[A] 현대제철 인천공장 (인천 동구, 약 10km, 85대) - 현대차그룹", "[A] 하나금융타운 (하나금융그룹 청라본사) (인천 서구 청라동, 약 4km, 2,200~2,800명 (2026년 상반기 청라 본사 이전))", "[A] 인천광역시 서구청 (인천 서구 서곶로 307 (심곡동), 약 5km, 공무원 1,505명 - 통근버스 미확인)", "[B] 청라국제도시 통근수요 (인천 서구 청라, 약 5~7km, 고밀도 주거) - 공공기관/금융사", "[B] 검단신도시 (인천 서구 검단, 약 7~10km, 신도시) - 신규"], "companies": []},
+    {"id": "s_인천오류", "op": "SK", "name": "인천 오류", "lat": 37.587647, "lng": 126.605139, "targets": ["[A] LG전자 인천캠퍼스 (경서동) (인천 서구 경서로 230, 약 5km, 2,500명) - 코하이젠 시트 정보", "[A] 현대제철 인천공장 (인천 동구, 약 12km, 85대) - 현대차그룹", "[B] 검단신도시 / 검단산단 (인천 서구 검단, 약 5km, 산단+주거)", "[B] 김포 양촌일반산업단지 (김포시 양촌읍 일원, 약 8km, 산단 내 다수 기업 - 통근버스 미확인 (시내버스 90-1·4번 연계))", "[C] 학운일반산업단지 (김포시 양촌읍 학운리 881 일원, 약 9km, 산업단지 - 통근버스 미확인)"], "companies": []},
+    {"id": "s_인천신흥", "op": "SK", "name": "인천 신흥", "lat": 37.436588, "lng": 126.624068, "targets": ["[A] 인천항만공사 / 인천국제여객터미널 (인천 중구, 약 2km, 항만관련 통근) - 사실", "[A] 인천컨테이너터미널(주) (인천 중구 축항대로118번길 135, 약 1km, 통근버스 운영 확인 (사람인 복리후생 명시))", "[B] 인천지방해양수산청 (인천 중구 서해대로 393(항동7가), 약 1.5km, 정부청사 (통근버스 사실 미확인))", "[B] 인천출입국·외국인청 (인천 중구 서해대로 393(항동7가), 약 1.5km, 정부청사 (통근버스 사실 미확인))", "[B] 인천 신흥동 산단 (인천 중구, 0~2km, 중소제조)", "[C] 인천남항부두운영(주) (인천 중구 축항대로118번길 119, 약 1km, 사원수 27명 (통근버스 사실 미확인))"], "companies": []},
+    {"id": "s_인천송도", "op": "SK", "name": "인천 송도", "lat": 37.367942, "lng": 126.638248, "targets": ["[A] 삼성바이오로직스 (인천 송도바이오대로 300, 약 1km, 7대 (기존 거래처)) - 송도 클러스터", "[A] 롯데바이오로직스 (인천 송도, 약 2km, 3대 (기존 거래처))", "[A] 마크로젠 ((송도 캠퍼스), 약 1km, 2대 (기존 거래처))", "[A] 셀트리온 / 셀트리온헬스케어 (인천 송도, 약 2km, 수천명 통근) - 수소 전환 검토", "[A] 연세대학교 국제캠퍼스 (인천 연수구 송도과학로 85, 약 2km, 교직원·연구인력 수천 명 (연세사이언스파크 +1,000명 예정))", "[A] SK바이오사이언스 송도 글로벌 R&PD 센터 (인천 연수구 송도동 7공구 Sr14, 약 3.5km, 약 500명 (2026.01 입주))"], "companies": []},
+    {"id": "s_인천T2", "op": "SK", "name": "인천 T2", "lat": 37.486587, "lng": 126.412565, "targets": ["[A] 인스파이어 엔터테인먼트 리조트 (인천 영종 공항문화로 127, 약 3km, 5대 (기존 거래처)) - 최대 단일 이용", "[A] 롯데면세점 인천공항점 (인천공항, 0~3km, 1대 (기존 거래처))", "[A] 인천공항공사 / T1·T2 운영사 (인천 중구 운서동, 0~3km, 수만명 종사자) - 공항 셔틀", "[A] 파라다이스시티 (㈜파라다이스세가사미) (인천 중구 영종해안남로321번길 186(운서동), 약 1.5km, 1,800명 통근버스 운영 확인)", "[A] 스태츠칩팩코리아 (STATS ChipPAC) (인천 중구 공항로 272 자유무역지역 물류단지, 약 3.5km, 약 4,500명 24시간 3교대)", "[B] 운서·하늘도시 통근수요 (인천 중구 운서/공항신도시, 0~5km, 공항 종사자 주거)"], "companies": []},
+    {"id": "s_성남사송", "op": "SK", "name": "성남 사송", "lat": 37.415265, "lng": 127.115141, "targets": ["[A] 삼성전자(수원) → 성남사송 경유 (수원 영통구, 약 15km, 16대 / 2,035kg (4월)) - 현 최대 이용 거래처", "[A] 분당서울대병원 (성남 분당구 구미로, 약 8km, 5대 (기존 거래처))", "[A] 경복초등학교 셔틀 (서울 종로, (통근경로 거점), 10대 (기존 거래처))", "[A] 현대제철 판교사옥 (성남 판교, 약 7km, 17대) - 현대차그룹", "[B] 성남 위례신도시 / 분당구 주거 (성남 분당/위례, 약 3~8km, 고밀도 주거)", "[B] 엔씨소프트 / 카카오 판교 (성남 판교, 약 7km, IT 통근) - 수소 전환 검토 가능"], "companies": ["h_양재사옥", "h_원효로", "h_판교사옥", "h_계동사옥"]},
+    {"id": "s_고양대화", "op": "SK", "name": "고양 대화", "lat": 37.680708, "lng": 126.739091, "targets": ["[A] 현대차 고양모터스튜디오 (경기 고양시, (고양 권역), 3대) - 현대차그룹", "[A] 킨텍스 / 일산 MICE (고양 일산서구 킨텍스로, 약 2km, 대형 행사)", "[A] 일산테크노밸리 (고양 일산서구 대화동 1932-127 일원, 0~1km (대화동 인접), 260+ 기업 입주 예정 (2026년 준공·87만㎡))", "[A] 인제대학교 일산백병원 (고양 일산서구 주화로 170, 약 2~3km, 638병상 (의료진·간호 약 1,000~1,500명))", "[B] LG디스플레이 파주 (파주 월롱 (인접), 약 15km, 224대 추정) - 수소 전환 검토 (대형 잠재)", "[B] 일산서구 주거지 / 대화동 산단 (고양 일산서구, 0~3km, 주거+산단)"], "companies": ["h_고양모터스튜디오"]},
+    {"id": "s_평택모곡", "op": "SK", "name": "평택 모곡", "lat": 37.025938, "lng": 127.075403, "targets": ["[A] 삼성전자(평택) (평택 고덕 P1~P3, 약 12km, 8대 / 1,172kg (4월)) - 현 거래처", "[A] 버지니아 미군스쿨 (Camp Humphreys) (평택, 약 8km, 3대 / 353kg (4월)) - 기존 거래처", "[B] LG디지털파크 평택 (평택, 약 7km, 수천명)", "[B] 평택 BIX(브레인시티) / 고덕산단 (평택, 약 5~10km, 산단+주거)", "[B] 평택항 / 송탄 일대 (평택, 약 10km, 물류·미군)"], "companies": []},
+    {"id": "s_이천대흥", "op": "SK", "name": "이천 대흥", "lat": 37.241959, "lng": 127.47679, "targets": ["[A] SK하이닉스 이천 본사 (이천 부발읍, 약 5km, 수만명 통근) - 수소 전환 검토 (대형 잠재)", "[A] OB맥주 이천 / 하이트진로 이천 (이천 부발읍, 약 5~7km, 공장 통근)", "[B] 이천 마장프리미엄아울렛 / 신세계 (이천 마장면, 약 7km, 리테일 통근)", "[B] 이천 대월 산단 (이천 대월면, 0~3km, 중소제조)", "[C] (4월 충전 41kg, 거의 미사용 - 영업 신규 발굴 필요) - 4월 실적 미미"], "companies": []},
+    {"id": "s_수원고색", "op": "SK", "name": "수원 고색", "lat": 37.237231, "lng": 126.988038, "targets": ["[A] 삼성전자(수원) 디지털시티 (수원 영통구 삼성로 129, 약 10km, 25대 / 2,895kg (4월)) - 최대 거래처", "[A] 장안대학교 (화성 봉담, 약 7km, 1대 (기존 거래처))", "[A] 최선어학원(영통) (수원 영통, 약 8km, 1대 (기존 거래처))", "[A] 기아 화성공장 (화성 우정읍, 약 25km, 429대) - 현대차그룹 - 수소 전환 검토", "[A] 현대차 남양연구소 (화성 남양, 약 22km, 305대) - 현대차그룹 - 수소 전환 검토", "[B] 수원 권선구 / 호매실 주거 (수원 권선/호매실, 0~5km, 신도시)"], "companies": ["h_남양연구소", "h_화성공장"]},
+    {"id": "s_용인오산", "op": "SK", "name": "용인 오산", "lat": 37.330025, "lng": 127.149855, "targets": ["[A] 안성 동항·동항2 일반산업단지 (안성시 양성면 동항리/동항2리 일원, 약 5~8km, 입주 33개사 - 무료 통근버스 운행 확인 (2025.6~ 출근 2회/퇴근 2회))", "[A] 현대모비스 마북연구소 (용인 기흥구 마북, 약 8km, 90대) - 현대차그룹", "[A] 삼성물산(에버랜드) (용인 처인구 포곡, 약 3km, 4대 (기존 거래처)) - 에버랜드 인접", "[A] 용인대학교 (용인 처인구 용인대학로, 약 5km, 1대 (기존 거래처))", "[A] SK하이닉스 용인 클러스터 (원삼) (용인 처인구 원삼면, 약 10km, 신규 산단) - 300kg/hr 별도 충전소 계획", "[B] 용인 반도체클러스터 건설현장 (용인 처인구 원삼면 고당·독성·죽능리 일원, 약 2~5km, 건설근로자 최대 26,000명 - 셔틀버스 운행 확인 (거점주차장 5,000대))"], "companies": ["h_마북연구소"]},
+];
+const PROSPECT_COMPANIES = [
+    {"id": "h_양재사옥", "name": "양재사옥", "parent": "현대자동차", "loc": "서울 서초구", "buses": "71대", "lat": 37.464363, "lng": 127.042663, "near": ["s_성남사송", "s_의왕왕곡"], "near_text": "성남 사송 (~15km), 의왕왕곡 (~15km)"},
+    {"id": "h_남양연구소", "name": "남양연구소", "parent": "현대자동차", "loc": "경기 화성시 남양", "buses": "305대", "lat": 37.158784, "lng": 126.816173, "near": ["s_수원고색", "s_수원영통", "s_화성동탄"], "near_text": "수원 고색 (~22km), 화성 안녕(예정) (~10km), 수원영통 (~18km), 화성동탄 (~20km)"},
+    {"id": "h_원효로", "name": "원효로", "parent": "현대자동차", "loc": "서울 용산구", "buses": "3대", "lat": 37.534475, "lng": 126.958902, "near": ["s_성남사송", "s_광명소하"], "near_text": "성남 사송 (~25km), 광명소하 (~10km)"},
+    {"id": "h_고양모터스튜디오", "name": "고양모터스튜디오", "parent": "현대자동차", "loc": "경기 고양시", "buses": "3대", "lat": 37.666272, "lng": 126.747494, "near": ["s_고양대화", "s_김포걸포"], "near_text": "고양 대화 (~5km), 김포걸포 (~15km)"},
+    {"id": "h_광명공장", "name": "광명공장", "parent": "기아자동차", "loc": "경기 광명시", "buses": "73대", "lat": 37.438871, "lng": 126.8885, "near": ["s_광명소하", "s_시흥방산"], "near_text": "광명소하 (~1km), 시흥방산(예정) (~10km)"},
+    {"id": "h_화성공장", "name": "화성공장", "parent": "기아자동차", "loc": "경기 화성시", "buses": "429대", "lat": 37.033125, "lng": 126.778495, "near": ["s_수원고색", "s_화성동탄", "s_화성비봉"], "near_text": "수원 고색 (~25km), 화성 안녕(예정) (~8km), 화성동탄 (~15km), 화성비봉 (~10km)"},
+    {"id": "h_인천공장", "name": "인천공장", "parent": "현대제철", "loc": "인천 동구", "buses": "85대", "lat": 37.486916, "lng": 126.637711, "near": ["s_인천가좌", "s_환경산업연구단지", "s_인천연희"], "near_text": "인천 가좌 (~7km), 환경산업연구단지 (~12km), 인천연희 (~10km)"},
+    {"id": "h_판교사옥", "name": "판교사옥", "parent": "현대제철", "loc": "경기 성남시 판교", "buses": "17대", "lat": 37.406581, "lng": 127.085645, "near": ["s_성남사송"], "near_text": "성남 사송 (~7km)"},
+    {"id": "h_마북연구소", "name": "마북연구소", "parent": "현대모비스", "loc": "경기 용인시 기흥구 마북", "buses": "90대", "lat": 37.310454, "lng": 127.135935, "near": ["s_에버랜드", "s_용인오산", "s_용인양지"], "near_text": "에버랜드 (~10km), 용인 오산(예정) (~8km), 용인양지(예정) (~12km)"},
+    {"id": "h_계동사옥", "name": "계동사옥", "parent": "지분사", "loc": "서울 종로구 계동", "buses": "45대", "lat": 37.578039, "lng": 126.987384, "near": ["s_성남사송", "s_김포걸포"], "near_text": "성남 사송 (~20km), 김포걸포 (~30km)"},
+    {"id": "h_의왕연구소", "name": "의왕연구소", "parent": "지분사", "loc": "경기 의왕시", "buses": "66대", "lat": 37.325887, "lng": 126.951488, "near": ["s_의왕왕곡", "s_군포부곡", "s_안산본오"], "near_text": "의왕왕곡 (~1km), 군포부곡(예정) (~8km), 안산본오 (~8.5km)"},
+];
+let showProspect = false;
+// ===== 잠재고객 레이어 (영업대상): 3사 충전소 거점 + 현대차 사업장 =====
+// 데이터는 위 PROSPECT_STATIONS / PROSPECT_COMPANIES. 연결선은 정적 점선(앰버) - 기존 거래처 연결선과 구분.
+const PROSPECT_OP_HEX = { 'SK': '#f97316', '코하이젠': '#a855f7', '하이넷': '#14b8a6' };
+let prospectMarkers = [];
+let prospectLines = [];
+const _prStById = {};
+const _prCoById = {};
+function _prClearLines() { prospectLines.forEach(l => map.removeLayer(l)); prospectLines = []; }
+function _prDrawLinks(from, ids, lookup) {
+    _prClearLines();
+    (ids || []).forEach(id => {
+        const t = lookup[id]; if (!t) return;
+        prospectLines.push(L.polyline([from, [t.lat, t.lng]],
+            { color: '#d97706', weight: 2.5, opacity: 0.9, dashArray: '7 7', interactive: false }).addTo(map));
+    });
+}
+function renderProspects() {
+    if (prospectMarkers.length) return; // 한 번만 생성
+    PROSPECT_STATIONS.forEach(s => {
+        _prStById[s.id] = s;
+        const c = PROSPECT_OP_HEX[s.op] || '#777';
+        const icon = L.divIcon({ className: '', iconSize: [22, 22], iconAnchor: [11, 11],
+            html: `<div class="pr-st" style="--prc:${c}"></div>` });
+        const tgt = (s.targets || []).slice(0, 5).map(t => `<div class="pr-li">${t}</div>`).join('');
+        const m = L.marker([s.lat, s.lng], { icon })
+            .bindTooltip(`<b>${s.name}</b> <span style="color:#94a3b8">${s.op}</span>`, { direction: 'top', offset: [0, -11] })
+            .bindPopup(`<div class="pr-pop"><div class="pr-h" style="color:${c}">${s.name}</div>`
+                + `<div class="pr-sub">${s.op} 영업거점 · 클릭하면 주변 잠재고객 연결</div>`
+                + (tgt ? `<hr class="pr-hr">${tgt}` : '') + `</div>`)
+            .on('click', () => _prDrawLinks([s.lat, s.lng], s.companies, _prCoById));
+        if (showProspect) m.addTo(map);
+        prospectMarkers.push(m);
+    });
+    PROSPECT_COMPANIES.forEach(co => {
+        _prCoById[co.id] = co;
+        const icon = L.divIcon({ className: '', iconSize: [26, 26], iconAnchor: [13, 13],
+            html: `<div class="pr-co">🏢</div>` });
+        const m = L.marker([co.lat, co.lng], { icon })
+            .bindTooltip(`<b>${co.name}</b><br><span style="color:#94a3b8">${co.loc} · 통근버스 ${co.buses}대</span>`, { direction: 'top', offset: [0, -13] })
+            .bindPopup(`<div class="pr-pop"><div class="pr-h" style="color:#d97706">${co.name}</div>`
+                + `<div class="pr-sub">${co.parent} · ${co.loc} · 통근버스 ${co.buses}대</div>`
+                + `<hr class="pr-hr"><div class="pr-li">근접 충전소: ${co.near_text}</div>`
+                + `<div class="pr-li" style="color:#94a3b8;margin-top:3px">클릭하면 근처 충전소 연결</div></div>`)
+            .on('click', () => _prDrawLinks([co.lat, co.lng], co.near, _prStById));
+        if (showProspect) m.addTo(map);
+        prospectMarkers.push(m);
+    });
+}
+function toggleProspect(show) {
+    showProspect = show;
+    if (show && !prospectMarkers.length) renderProspects();
+    prospectMarkers.forEach(m => show ? m.addTo(map) : map.removeLayer(m));
+    if (!show) _prClearLines();
+}
+
+function toggleProspectBtn() {
+    toggleProspect(!showProspect);
+    const btn = document.getElementById('h2-layer-prospect');
+    if (showProspect) { btn.style.background = '#d97706'; btn.style.color = '#fff'; }
+    else { btn.style.background = '#fff'; btn.style.color = '#d97706'; }
+}
+
 function initMap() {
     const isMobile = L.Browser.mobile;
     map = L.map('map', { zoomControl: true, dragging: !isMobile, tap: !isMobile }).setView([37.35, 127.0], 10);
@@ -2446,6 +2572,8 @@ function initMap() {
         updateMap();
         updateResetButton();
     });
+
+    renderProspects();
 }
 
 function updateResetButton() {
