@@ -2748,7 +2748,8 @@ if (currentMonth === '2025-10') return [];
             { name: "신갈영업소", address: "용인 기흥구 기곡로 20", company: "용남고속(K1모빌리티)", type: "express_bus", h2_buses: 0, h2_confidence: "미상", lat: 37.274, lng: 127.113, road_distance_km: 18.5, road_time_min: 34, notes: "K1모빌리티 2030년 광역 300대 수소전환 MOU. 현재 보유 미확인" },
             { name: "동탄공영차고지", address: "화성시 10용사로 636", company: "KD운송그룹", type: "city_bus", h2_buses: 0, h2_confidence: "미상", lat: 37.184, lng: 127.093, road_distance_km: 20.2, road_time_min: 31, notes: "수소충전 인프라 미설치. KD MOU 대상" },
             { name: "이천영업소(이천공영차고지)", address: "이천시 이섭대천로 981-42", company: "이천시내버스", type: "city_bus", h2_buses: 7, h2_confidence: "추정", lat: 37.272, lng: 127.434, road_distance_km: 31.6, road_time_min: 39, notes: "경기 최초 광역수소버스 G2100번 7대(2024.12 5대+2025.4 2대, 추정)" },
-            { name: "SK하이닉스 이천캠퍼스", address: "이천시 부발읍 대흥리", company: "SK하이닉스 통근버스", type: "commute", h2_buses: 68, h2_confidence: "추정", lat: 37.261, lng: 127.467, road_distance_km: 36.7, road_time_min: 39, notes: "캠퍼스 내 액화수소충전소(2024.6 준공). 2024년 4대→64대 추가 목표(최대 68대 추정), 최종 450대 목표" }
+            { name: "SK하이닉스 이천캠퍼스", address: "이천시 부발읍 대흥리", company: "SK하이닉스 통근버스", type: "commute", h2_buses: 68, h2_confidence: "추정", lat: 37.261, lng: 127.467, road_distance_km: 36.7, road_time_min: 39, notes: "캠퍼스 내 액화수소충전소(2024.6 준공). 2024년 4대→64대 추가 목표(최대 68대 추정), 최종 450대 목표" },
+            { name: "원더 이천 임시차고지", address: "경기 이천 (출고·정비 임시 주박)", company: "원더에너지(자사)", type: "our_depot", h2_buses: 0, h2_confidence: "충전데이터", lat: 37.117134, lng: 127.584009, road_distance_km: 55.8, road_time_min: 52, notes: "수소버스 출고 후 거래처 투입 전 임시 주박·충전(도색/구조변경 등). 대수는 매월 충전 데이터의 '차고지' 거래처 차량수로 자동 반영" }
         ];
 
         // ===== 잠재고객(영업대상) 데이터: 3사 충전소 거점 + 현대차 사업장 =====
@@ -2919,9 +2920,15 @@ if (currentMonth === '2025-10') return [];
 
         // 버스 차고지 마커 추가
         function addDepotMarker(depot) {
-            const hasH2Bus = depot.h2_buses > 0;
-            const color = hasH2Bus ? '#06B6D4' : '#8B5CF6';
-            const borderColor = hasH2Bus ? '#0891B2' : '#7C3AED';
+            const isOur = depot.type === 'our_depot';
+            let h2cnt = depot.h2_buses;
+            if (isOur) {
+                const cg = getCustomersForMonth(currentMonth).find(c => c.name && c.name.includes('차고지'));
+                h2cnt = cg ? cg.h2_buses : 0;
+            }
+            const hasH2Bus = h2cnt > 0;
+            const color = isOur ? '#0EA5E9' : hasH2Bus ? '#06B6D4' : '#8B5CF6';
+            const borderColor = isOur ? '#0284C7' : hasH2Bus ? '#0891B2' : '#7C3AED';
 
             const icon = L.divIcon({
                 className: 'custom-marker',
@@ -2930,10 +2937,12 @@ if (currentMonth === '2025-10') return [];
                 iconAnchor: [13, 13]
             });
 
-            const typeLabel = depot.type === 'city_bus' ? '시내버스' : depot.type === 'express_bus' ? '광역버스' : depot.type === 'commute' ? '통근버스' : '전세버스';
-            const h2Badge = hasH2Bus
-                ? `<span style="background:#06B6D4;color:#fff;font-size:10px;padding:1px 5px;border-radius:3px;margin-left:5px;">H₂ ${depot.h2_buses}대${depot.h2_confidence ? ' (' + depot.h2_confidence + ')' : ''}</span>`
-                : `<span style="background:#94a3b8;color:#fff;font-size:10px;padding:1px 5px;border-radius:3px;margin-left:5px;">수소버스 미상</span>`;
+            const typeLabel = isOur ? '자사 임시차고지' : depot.type === 'city_bus' ? '시내버스' : depot.type === 'express_bus' ? '광역버스' : depot.type === 'commute' ? '통근버스' : '전세버스';
+            const h2Badge = isOur
+                ? `<span style="background:#0EA5E9;color:#fff;font-size:10px;padding:1px 5px;border-radius:3px;margin-left:5px;">자사 H₂ ${h2cnt}대 (충전데이터)</span>`
+                : hasH2Bus
+                    ? `<span style="background:#06B6D4;color:#fff;font-size:10px;padding:1px 5px;border-radius:3px;margin-left:5px;">H₂ ${h2cnt}대${depot.h2_confidence ? ' (' + depot.h2_confidence + ')' : ''}</span>`
+                    : `<span style="background:#94a3b8;color:#fff;font-size:10px;padding:1px 5px;border-radius:3px;margin-left:5px;">거래처 후보</span>`;
 
             const popupContent = `
                 <div style="min-width:200px;">
@@ -3696,13 +3705,16 @@ if (currentMonth === '2025-10') return [];
                     return sort.direction === 'asc' ? cmp : -cmp;
                 })
                 .map((d, idx) => {
+                    const isOur = d.type === 'our_depot';
+                    let h2cnt = d.h2_buses;
+                    if (isOur) { const cg = getCustomersForMonth(currentMonth).find(c => c.name && c.name.includes('차고지')); h2cnt = cg ? cg.h2_buses : 0; }
                     const straightDist = getDistanceFromStation(d.lat, d.lng);
                     const inRadius = straightDist <= currentRadius;
-                    const typeLabel = d.type === 'city_bus' ? '시내' : d.type === 'express_bus' ? '광역' : '전세';
-                    const typeColor = d.type === 'city_bus' ? 'bg-blue-100 text-blue-700' : d.type === 'express_bus' ? 'bg-purple-100 text-purple-700' : 'bg-gray-100 text-gray-700';
-                    const h2Badge = d.h2_buses > 0 ? `<span class="bg-cyan-100 text-cyan-700 px-2 py-0.5 rounded text-xs font-bold">${d.h2_buses}대</span>` : '<span class="text-gray-400 text-xs">-</span>';
+                    const typeLabel = isOur ? '자사' : d.type === 'city_bus' ? '시내' : d.type === 'express_bus' ? '광역' : d.type === 'commute' ? '통근' : '전세';
+                    const typeColor = isOur ? 'bg-sky-100 text-sky-700' : d.type === 'city_bus' ? 'bg-blue-100 text-blue-700' : d.type === 'express_bus' ? 'bg-purple-100 text-purple-700' : 'bg-gray-100 text-gray-700';
+                    const h2Badge = h2cnt > 0 ? `<span class="${isOur ? 'bg-sky-100 text-sky-700' : 'bg-cyan-100 text-cyan-700'} px-2 py-0.5 rounded text-xs font-bold">${h2cnt}대</span>` : '<span class="bg-amber-50 text-amber-600 px-2 py-0.5 rounded text-xs">거래처 후보</span>';
                     const distClass = inRadius ? 'bg-green-200 text-green-800 font-bold px-2 py-0.5 rounded' : d.road_distance_km <= 10 ? 'text-green-600 font-bold' : 'text-gray-600';
-                    const rowBg = d.h2_buses > 0 ? 'bg-cyan-50' : inRadius ? 'bg-green-50' : '';
+                    const rowBg = h2cnt > 0 ? (isOur ? 'bg-sky-50' : 'bg-cyan-50') : inRadius ? 'bg-green-50' : '';
                     return `
                         <tr class="border-b hover:bg-purple-50 data-list-item ${rowBg}">
                             <td class="px-2 py-2 text-center text-gray-400 text-xs">${idx + 1}</td>
