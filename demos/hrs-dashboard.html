@@ -2491,7 +2491,7 @@ function _prDrawLinks(from, ids, lookup) {
     (ids || []).forEach(id => {
         const t = lookup[id]; if (!t) return;
         prospectLines.push(L.polyline([from, [t.lat, t.lng]],
-            { color: '#d97706', weight: 2.5, opacity: 0.9, dashArray: '7 7', interactive: false }).addTo(map));
+            { color: '#000000', weight: 2, opacity: 1, interactive: false }).addTo(map));
     });
 }
 function renderProspects() {
@@ -2502,7 +2502,7 @@ function renderProspects() {
         const icon = L.divIcon({ className: '', iconSize: [22, 22], iconAnchor: [11, 11],
             html: `<div class="pr-st" style="--prc:${c}"></div>` });
         const tgt = (s.targets || []).slice(0, 5).map(t => `<div class="pr-li">${t}</div>`).join('');
-        const m = L.marker([s.lat, s.lng], { icon })
+        const m = L.marker([s.lat, s.lng], { icon, zIndexOffset: 1000 })
             .bindTooltip(`<b>${s.name}</b> <span style="color:#94a3b8">${s.op}</span>`, { direction: 'top', offset: [0, -11] })
             .bindPopup(`<div class="pr-pop"><div class="pr-h" style="color:${c}">${s.name}</div>`
                 + `<div class="pr-sub">${s.op} 영업거점 · 클릭하면 주변 잠재고객 연결</div>`
@@ -2515,7 +2515,7 @@ function renderProspects() {
         _prCoById[co.id] = co;
         const icon = L.divIcon({ className: '', iconSize: [26, 26], iconAnchor: [13, 13],
             html: `<div class="pr-co">🏢</div>` });
-        const m = L.marker([co.lat, co.lng], { icon })
+        const m = L.marker([co.lat, co.lng], { icon, zIndexOffset: 1000 })
             .bindTooltip(`<b>${co.name}</b><br><span style="color:#94a3b8">${co.loc} · 통근버스 ${co.buses}대</span>`, { direction: 'top', offset: [0, -13] })
             .bindPopup(`<div class="pr-pop"><div class="pr-h" style="color:#d97706">${co.name}</div>`
                 + `<div class="pr-sub">${co.parent} · ${co.loc} · 통근버스 ${co.buses}대</div>`
