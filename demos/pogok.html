@@ -303,7 +303,8 @@
       .pr-pop .pr-sub{font-size:11px;color:#64748b;margin-top:2px}
       .pr-pop .pr-hr{margin:5px 0;border:none;border-top:1px solid #eee}
       .pr-pop .pr-li{font-size:11px;color:#475569;line-height:1.5}
-      .leaflet-tooltip.pr-tip{max-width:280px;white-space:normal;padding:8px 10px;font-size:12px}
+      .pr-pop .pr-cta{font-size:10.5px;color:#94a3b8;margin-top:5px}
+      .leaflet-tooltip.pr-tip{width:250px;max-width:250px;white-space:normal;word-break:keep-all;padding:9px 11px;font-size:12px;line-height:1.55}
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
@@ -2882,8 +2883,8 @@ if (currentMonth === '2025-10') return [];
             PROSPECT_STATIONS.forEach(s => {
                 const c = PROSPECT_OP_HEX[s.op] || '#777';
                 const icon = L.divIcon({ className: '', iconSize: [22, 22], iconAnchor: [11, 11], html: `<div class="pr-st" style="--prc:${c}"></div>` });
-                const tgt = (s.targets || []).slice(0, 4).map(t => `<div class="pr-li">${t}</div>`).join('');
-                const tip = `<div class="pr-pop"><div class="pr-h" style="color:${c}">${s.name}</div><div class="pr-sub">${s.op} 영업거점 · 클릭하면 주변 잠재고객 연결</div>${tgt ? `<hr class="pr-hr">${tgt}` : ''}</div>`;
+                const tgt = (s.targets || []).slice(0, 2).map(t => { let x = t.split('(')[0].trim(); if (x.length > 26) x = x.slice(0, 26) + '...'; return `<div class="pr-li">${x}</div>`; }).join('');
+                const tip = `<div class="pr-pop"><div class="pr-h" style="color:${c}">${s.name}</div><div class="pr-sub">${s.op} 영업거점</div>${tgt}<div class="pr-cta">클릭하면 주변 잠재고객 연결</div></div>`;
                 const m = L.marker([s.lat, s.lng], { icon, zIndexOffset: 1000 })
                     .bindTooltip(tip, { direction: 'top', offset: [0, -12], opacity: 1, className: 'pr-tip' })
                     .on('click', () => _prDrawLinks([s.lat, s.lng], PROSPECT_COMPANIES));
@@ -2892,7 +2893,8 @@ if (currentMonth === '2025-10') return [];
             });
             PROSPECT_COMPANIES.forEach(co => {
                 const icon = L.divIcon({ className: '', iconSize: [26, 26], iconAnchor: [13, 13], html: `<div class="pr-co">🏢</div>` });
-                const tip = `<div class="pr-pop"><div class="pr-h" style="color:#d97706">${co.name}</div><div class="pr-sub">${co.parent} · ${co.loc} · 통근버스 ${co.buses}대</div><hr class="pr-hr"><div class="pr-li">근접 충전소: ${co.near_text}</div><div class="pr-li" style="color:#94a3b8;margin-top:3px">클릭하면 근처 충전소 연결</div></div>`;
+                const near = (co.near_text || '').replace(/\s*\([^)]*\)/g, '');
+                const tip = `<div class="pr-pop"><div class="pr-h" style="color:#d97706">${co.name}</div><div class="pr-sub">${co.parent}, ${co.loc}, 통근버스 ${co.buses}대</div><div class="pr-li">근접 충전소: ${near}</div><div class="pr-cta">클릭하면 근처 충전소 연결</div></div>`;
                 const m = L.marker([co.lat, co.lng], { icon, zIndexOffset: 1000 })
                     .bindTooltip(tip, { direction: 'top', offset: [0, -13], opacity: 1, className: 'pr-tip' })
                     .on('click', () => _prDrawLinks([co.lat, co.lng], PROSPECT_STATIONS));
