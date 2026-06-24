@@ -2481,11 +2481,12 @@ const PROSPECT_COMPANIES = [
 ];
 let showProspect = false;
 // ===== 잠재고객 레이어 (영업대상): 3사 충전소 거점 + 현대차 사업장 =====
-// hover 시 정보 툴팁(마우스 벗어나면 자동 사라짐), 클릭 시 반경 내 반대편 잠재고객을 검정 실선으로 연결.
+// hover 시 정보 툴팁(마우스 벗어나면 자동 사라짐). 마커가 지도 상단부면 툴팁을 아래로 표시해 지도 밖 넘침 방지.
 const PROSPECT_OP_HEX = { 'SK': '#f97316', '코하이젠': '#a855f7', '하이넷': '#14b8a6' };
 const PROSPECT_LINK_RADIUS_KM = 20;
 let prospectMarkers = [];
 let prospectLines = [];
+let _prTip = null;
 function _prHaversine(a, b) {
     const R = 6371, dLat = (b[0] - a[0]) * Math.PI / 180, dLng = (b[1] - a[1]) * Math.PI / 180;
     const x = Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * Math.PI / 180) * Math.cos(b[0] * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
@@ -2500,6 +2501,20 @@ function _prDrawLinks(from, targets) {
         }
     });
 }
+function _prHideTip() { if (_prTip) { map.removeLayer(_prTip); _prTip = null; } }
+function _prShowTip(latlng, html) {
+    _prHideTip();
+    const size = map.getSize();
+    const pt = map.latLngToContainerPoint(latlng);
+    // 위/아래 공간으로 방향 결정 (상단 160px 이내면 아래로), 좌우는 'left'/'right'로 보정
+    let dir, offset;
+    if (pt.y < 160) { dir = 'bottom'; offset = [0, 12]; }
+    else if (pt.x < 150) { dir = 'right'; offset = [12, 0]; }
+    else if (pt.x > size.x - 150) { dir = 'left'; offset = [-12, 0]; }
+    else { dir = 'top'; offset = [0, -10]; }
+    _prTip = L.tooltip({ direction: dir, offset: offset, opacity: 1, className: 'pr-tip' })
+        .setLatLng(latlng).setContent(html).addTo(map);
+}
 function renderProspects() {
     if (prospectMarkers.length) return;
     PROSPECT_STATIONS.forEach(s => {
@@ -2508,7 +2523,8 @@ function renderProspects() {
         const tgt = (s.targets || []).slice(0, 2).map(t => { let x = t.split('(')[0].trim(); if (x.length > 26) x = x.slice(0, 26) + '...'; return `<div class="pr-li">${x}</div>`; }).join('');
         const tip = `<div class="pr-pop"><div class="pr-h" style="color:${c}">${s.name}</div><div class="pr-sub">${s.op} 영업거점</div>${tgt}<div class="pr-cta">클릭하면 주변 잠재고객 연결</div></div>`;
         const m = L.marker([s.lat, s.lng], { icon, zIndexOffset: 1000 })
-            .bindTooltip(tip, { direction: 'top', offset: [0, -12], opacity: 1, className: 'pr-tip' })
+            .on('mouseover', () => _prShowTip([s.lat, s.lng], tip))
+            .on('mouseout', _prHideTip)
             .on('click', () => _prDrawLinks([s.lat, s.lng], PROSPECT_COMPANIES));
         if (showProspect) m.addTo(map);
         prospectMarkers.push(m);
@@ -2518,7 +2534,8 @@ function renderProspects() {
         const near = (co.near_text || '').replace(/\s*\([^)]*\)/g, '');
         const tip = `<div class="pr-pop"><div class="pr-h" style="color:#d97706">${co.name}</div><div class="pr-sub">${co.parent}, ${co.loc}, 통근버스 ${co.buses}대</div><div class="pr-li">근접 충전소: ${near}</div><div class="pr-cta">클릭하면 근처 충전소 연결</div></div>`;
         const m = L.marker([co.lat, co.lng], { icon, zIndexOffset: 1000 })
-            .bindTooltip(tip, { direction: 'top', offset: [0, -13], opacity: 1, className: 'pr-tip' })
+            .on('mouseover', () => _prShowTip([co.lat, co.lng], tip))
+            .on('mouseout', _prHideTip)
             .on('click', () => _prDrawLinks([co.lat, co.lng], PROSPECT_STATIONS));
         if (showProspect) m.addTo(map);
         prospectMarkers.push(m);
@@ -2528,7 +2545,7 @@ function toggleProspect(show) {
     showProspect = show;
     if (show && !prospectMarkers.length) renderProspects();
     prospectMarkers.forEach(m => show ? m.addTo(map) : map.removeLayer(m));
-    if (!show) _prClearLines();
+    if (!show) { _prClearLines(); _prHideTip(); }
 }
 
 function toggleProspectBtn() {
