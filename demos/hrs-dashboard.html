@@ -1539,15 +1539,46 @@ function extractKoreanTimeText(dateTimeText) {
 }
 
 // ===== 운영사 평균가(실시간 H2_ALL_STATIONS) + 전월 대비 변동(localStorage 스냅샷) =====
+// 운영사 평균 실시간 조회용 대표 충전소 (우리 충전소명; fetchLivePriceForStation이 chrstnNm으로 조회)
+const OPERATOR_SAMPLE_STATIONS = {
+  'SK': ['에스케이 성남사송 수소충전소', '에스케이 수원고색 수소충전소', '에스케이 인천신흥 수소충전소', '에스케이 이천대흥 수소충전소', '에스케이 평택모곡 수소충전소', '에스케이 인천운서 수소충전소', '에스케이 송도액화 수소충전소'],
+  '하이넷': ['하이넷 에버랜드 수소충전소', '하이넷 광명소하 수소충전소', '하이넷 인천공항T1 수소충전소'],
+  '코하이젠': ['코하이젠 안산본오 수소충전소', '코하이젠 양주회정 수소충전소', '코하이젠 창원성주 수소충전소', '코하이젠 울산명촌 수소충전소', '코하이젠 전주평화 수소충전소', '코하이젠 세종대평 수소충전소', '코하이젠 여수주삼 수소충전소', '코하이젠 파주봉서 수소충전소', '코하이젠 회천농협 수소충전소', '코하이젠 익산송학 수소충전소', '코하이젠 진주호탄 수소충전소', '코하이젠 포항장흥 수소충전소']
+};
+async function fetchOperatorSampledPrices() {
+  const all = [].concat(...Object.values(OPERATOR_SAMPLE_STATIONS));
+  await runLimited(all.map(name => async () => { await fetchLivePriceForStation(name); }), 2);
+  _renderOpAndVar();
+}
+function _stationOperator(name) {
+  const n = name || '';
+  if (n.indexOf('에스케이') >= 0 || n.indexOf('하이버스') >= 0 || n.indexOf('SK') >= 0) return 'SK';
+  if (n.indexOf('하이넷') >= 0) return '하이넷';
+  if (n.indexOf('코하이젠') >= 0) return '코하이젠';
+  return '기타';
+}
 function _h2OperatorAvg() {
+  // 1) 실시간 충전소 가격(stationPrices) 우선 - 보이는 충전소 + 운영사 대표 조회분
+  const sp = (typeof LIVE_PRICE_STATE !== 'undefined') ? (LIVE_PRICE_STATE.stationPrices || {}) : {};
   const ops = { 'SK': [], '하이넷': [], '코하이젠': [] };
+  for (const name in sp) {
+    const price = sp[name];
+    if (typeof price !== 'number' || price <= 0) continue;
+    const op = _stationOperator(name);
+    if (ops[op]) ops[op].push(price);
+  }
+  const avg = {}; let any = false;
+  for (const k in ops) { avg[k] = ops[k].length ? Math.round(ops[k].reduce((a, b) => a + b, 0) / ops[k].length) : null; if (avg[k] != null) any = true; }
+  if (any) return avg;
+  // 2) fallback: H2_ALL_STATIONS(정적 조회분, 실시간 미수집 시)
+  const ops2 = { 'SK': [], '하이넷': [], '코하이젠': [] };
   (typeof H2_ALL_STATIONS !== 'undefined' ? H2_ALL_STATIONS : []).forEach(s => {
     const op = s[1], price = s[4], oper = s[10];
-    if (ops[op] && typeof price === 'number' && price > 0 && oper === '운영중') ops[op].push(price);
+    if (ops2[op] && typeof price === 'number' && price > 0 && oper === '운영중') ops2[op].push(price);
   });
-  const avg = {};
-  for (const k in ops) avg[k] = ops[k].length ? Math.round(ops[k].reduce((a, b) => a + b, 0) / ops[k].length) : null;
-  return avg;
+  const avg2 = {};
+  for (const k in ops2) avg2[k] = ops2[k].length ? Math.round(ops2[k].reduce((a, b) => a + b, 0) / ops2[k].length) : null;
+  return avg2;
 }
 // 전월 대비 변동: 데이터 최신월(MONTHS 끝) 기준 월별 스냅샷. 같은 달 재방문 시 전월 prevVals 유지.
 function _priceVariation(curVals) {
@@ -1739,10 +1770,12 @@ async function initLivePriceCrawl() {
   if (hasTodayCache) {
     renderRegionalLivePrices();
     scheduleVisibleLivePriceRefresh(false);
+    fetchOperatorSampledPrices();
     return;
   }
   await fetchLiveRegionalPrices(false);
   scheduleVisibleLivePriceRefresh(false);
+  fetchOperatorSampledPrices();
 }
 
 // ===== ALL H2 STATIONS (from OpenAPI) =====
