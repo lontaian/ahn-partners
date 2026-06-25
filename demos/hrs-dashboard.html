@@ -133,15 +133,15 @@
             <span>실시간 가격 업데이트 중...</span>
         </div>
         <div class="grid grid-cols-3 lg:grid-cols-9 gap-2 text-center text-xs">
-            <div class="bg-orange-50 rounded-lg p-2">
+            <div class="bg-orange-50 rounded-lg p-2 cursor-pointer hover:bg-orange-100 transition-colors" onclick="showOperatorPriceModal('SK')" title="클릭하면 평균에 포함된 충전소와 실시간 가격을 봅니다">
                 <div class="text-[10px] text-orange-600 font-medium">SK</div>
                 <div class="text-sm font-bold text-orange-700"><span id="op-price-SK">-</span><span id="op-var-SK" class="text-[9px] font-normal"></span></div>
             </div>
-            <div class="bg-teal-50 rounded-lg p-2">
+            <div class="bg-teal-50 rounded-lg p-2 cursor-pointer hover:bg-teal-100 transition-colors" onclick="showOperatorPriceModal('하이넷')" title="클릭하면 평균에 포함된 충전소와 실시간 가격을 봅니다">
                 <div class="text-[10px] text-teal-600 font-medium">하이넷</div>
                 <div class="text-sm font-bold text-teal-700"><span id="op-price-하이넷">-</span><span id="op-var-하이넷" class="text-[9px] font-normal"></span></div>
             </div>
-            <div class="bg-purple-50 rounded-lg p-2">
+            <div class="bg-purple-50 rounded-lg p-2 cursor-pointer hover:bg-purple-100 transition-colors" onclick="showOperatorPriceModal('코하이젠')" title="클릭하면 평균에 포함된 충전소와 실시간 가격을 봅니다">
                 <div class="text-[10px] text-purple-600 font-medium">코하이젠</div>
                 <div class="text-sm font-bold text-purple-700"><span id="op-price-코하이젠">-</span><span id="op-var-코하이젠" class="text-[9px] font-normal"></span></div>
             </div>
@@ -1612,6 +1612,82 @@ function _renderOpAndVar() {
   ['SK', '하이넷', '코하이젠'].forEach(op => { const e = document.getElementById('op-var-' + op); if (e) e.innerHTML = _varHtml(vr['op_' + op]); });
   LIVE_PRICE_REGIONS.forEach(r => { const e = document.getElementById('regional-var-' + r); if (e) e.innerHTML = _varHtml(vr['rg_' + r]); });
 }
+
+// 운영사 카드 클릭 → 평균에 포함된 충전소 + 실시간 가격 팝업
+const OPERATOR_COLORS = { 'SK': '#c2410c', '하이넷': '#0f766e', '코하이젠': '#7e22ce' };
+function _operatorStationPrices(op) {
+  const sp = (typeof LIVE_PRICE_STATE !== 'undefined') ? (LIVE_PRICE_STATE.stationPrices || {}) : {};
+  const list = [];
+  for (const name in sp) {
+    const price = sp[name];
+    if (typeof price !== 'number' || price <= 0) continue;
+    if (_stationOperator(name) === op) list.push({ name: name, price: price });
+  }
+  list.sort((a, b) => b.price - a.price);
+  return list;
+}
+function _shortStationName(name) {
+  return String(name || '').replace(/^(에스케이|코하이젠|하이넷|SK)\s*/, '').replace(/\s*수소충전소$/, '').trim() || name;
+}
+function showOperatorPriceModal(op) {
+  _drawOperatorPriceModal(op, false);
+}
+function _drawOperatorPriceModal(op, retried) {
+  const list = _operatorStationPrices(op);
+  const loading = (!list.length && !retried);
+  const avg = list.length ? Math.round(list.reduce((s, x) => s + x.price, 0) / list.length) : null;
+  const color = OPERATOR_COLORS[op] || '#374151';
+  const emptyMsg = loading ? '실시간 가격을 불러오는 중...' : '조회된 충전소가 없습니다';
+  const rows = list.map(s => {
+    const diff = (avg != null) ? s.price - avg : 0;
+    const diffHtml = (avg != null && diff !== 0)
+      ? `<span style="font-size:10px;color:${diff > 0 ? '#dc2626' : '#2563eb'};margin-left:6px">(${diff > 0 ? '+' : ''}${diff.toLocaleString()})</span>` : '';
+    return `<tr style="border-bottom:1px solid #f1f5f9">
+      <td style="padding:7px 10px;color:#334155">${_shortStationName(s.name)}</td>
+      <td style="padding:7px 10px;text-align:right;font-weight:700;color:#0f172a;white-space:nowrap">${s.price.toLocaleString()}원${diffHtml}</td></tr>`;
+  }).join('');
+  const cacheDate = (typeof LIVE_PRICE_STATE !== 'undefined' && LIVE_PRICE_STATE.cacheDate) ? LIVE_PRICE_STATE.cacheDate : '';
+  const body = `
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #e2e8f0">
+      <div>
+        <div style="font-size:15px;font-weight:800;color:${color}">${op} 충전소 실시간 판매가</div>
+        <div style="font-size:12px;color:#64748b;margin-top:3px">평균 <b style="color:${color}">${avg != null ? avg.toLocaleString() + '원' : '-'}</b> · ${list.length}곳 기준</div>
+      </div>
+      <button onclick="closeOperatorPriceModal()" style="border:none;background:#f1f5f9;border-radius:8px;width:30px;height:30px;font-size:16px;color:#475569;cursor:pointer;line-height:1">×</button>
+    </div>
+    <div style="max-height:55vh;overflow-y:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <thead><tr style="background:#f8fafc;position:sticky;top:0">
+          <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;font-weight:600">충전소</th>
+          <th style="padding:8px 10px;text-align:right;font-size:11px;color:#64748b;font-weight:600">실시간 판매가</th>
+        </tr></thead>
+        <tbody>${rows || '<tr><td colspan="2" style="padding:18px;text-align:center;color:#94a3b8">' + emptyMsg + '</td></tr>'}</tbody>
+      </table>
+    </div>
+    <div style="padding:10px 18px;border-top:1px solid #e2e8f0;font-size:11px;color:#94a3b8">출처: 수소전담기관 h2biz.or.kr${cacheDate ? ' · ' + cacheDate + ' 기준' : ''}</div>`;
+  let overlay = document.getElementById('operatorPriceModal');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'operatorPriceModal';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.45);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeOperatorPriceModal(); });
+    document.body.appendChild(overlay);
+  }
+  overlay.innerHTML = `<div style="background:#fff;border-radius:14px;max-width:440px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,0.25);overflow:hidden" onclick="event.stopPropagation()">${body}</div>`;
+  overlay.style.display = 'flex';
+  // 아직 실시간 조회 전이면 1회 조회 후 재렌더
+  if (loading && typeof fetchOperatorSampledPrices === 'function') {
+    fetchOperatorSampledPrices().then(() => {
+      const ov = document.getElementById('operatorPriceModal');
+      if (ov && ov.style.display !== 'none') _drawOperatorPriceModal(op, true);
+    }).catch(() => {});
+  }
+}
+function closeOperatorPriceModal() {
+  const overlay = document.getElementById('operatorPriceModal');
+  if (overlay) overlay.style.display = 'none';
+}
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeOperatorPriceModal(); });
 
 function renderRegionalLivePrices() {
   LIVE_PRICE_REGIONS.forEach(region => {
