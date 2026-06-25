@@ -5,12 +5,12 @@
 @source "../demos/**/*.html";
 
 @theme {
-  --color-primary: #7C3AED;
-  --color-secondary: #10B981;
-  --color-accent: #3B82F6;
-  --color-dark: #0c0414;
-  --color-dark-card: #1c1528;
-  --color-dark-hover: #2a1f3d;
+  --color-primary: #3A5169;
+  --color-secondary: #6B7280;
+  --color-accent: #3A5169;
+  --color-dark: #111827;
+  --color-dark-card: #1f2937;
+  --color-dark-hover: #374151;
 }
 
 body {

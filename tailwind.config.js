@@ -8,12 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#7C3AED',
-        secondary: '#10B981',
-        accent: '#3B82F6',
-        dark: '#0c0414',
-        'dark-card': '#1c1528',
-        'dark-hover': '#2a1f3d'
+        primary: '#3A5169',
+        secondary: '#6B7280',
+        accent: '#3A5169',
+        dark: '#111827',
+        'dark-card': '#1f2937',
+        'dark-hover': '#374151'
       },
       fontFamily: {
         sans: ['-apple-system', 'BlinkMacSystemFont', 'Apple SD Gothic Neo', 'Malgun Gothic', 'system-ui', 'sans-serif']
