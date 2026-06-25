@@ -64,6 +64,55 @@
     </div>
 </header>
 
+<!-- SK E&S 수소버스 인센티브 협약 달성 계기판 -->
+<section class="max-w-screen-2xl mx-auto px-3 lg:px-6 pt-3" id="skIncentivePanel">
+    <div class="rounded-xl border border-gray-200 shadow-sm overflow-hidden bg-white">
+        <div class="flex flex-col lg:flex-row items-stretch">
+            <!-- 협약 개요 -->
+            <div class="flex-none lg:w-60 p-4 text-white" style="background:linear-gradient(135deg,#dc2626 0%,#ea580c 100%)">
+                <div class="text-[11px] font-semibold tracking-wide opacity-90">SK E&amp;S 수소버스 인센티브 협약</div>
+                <div class="text-xl font-extrabold mt-1 leading-tight">목표 100톤 충전</div>
+                <div class="text-[11px] opacity-90 mt-1.5">2026.03.24 ~ 09.23</div>
+                <div class="text-[11px] opacity-75 mt-0.5">SK 지정 충전소 누적 기준</div>
+            </div>
+            <!-- 진행 게이지 -->
+            <div class="flex-1 p-4">
+                <div class="flex items-end justify-between mb-2">
+                    <div>
+                        <span class="text-2xl font-extrabold text-gray-800" id="skCurTon">0</span><span class="text-sm text-gray-500 ml-0.5">톤</span>
+                        <span class="text-xs text-gray-400 ml-2"><span id="skAsOf">-</span> 기준</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-orange-600" id="skPct">0%</span><span class="text-[11px] text-gray-400 ml-1">목표 달성</span>
+                    </div>
+                </div>
+                <div class="relative h-6 bg-gray-100 rounded-full">
+                    <div class="absolute inset-y-0 left-0 rounded-full" id="skBar" style="width:0%;background:linear-gradient(90deg,#fb923c,#ea580c)"></div>
+                    <div class="absolute inset-y-0 border-l-2 border-white" style="left:71.43%"></div>
+                    <div class="absolute inset-y-0 border-l-2 border-white" style="left:85.71%"></div>
+                    <div class="absolute border-l-2 border-dashed border-gray-700 z-10" style="top:-4px;bottom:-4px;left:0%" id="skProjMark"></div>
+                </div>
+                <div class="relative h-4 mt-1 text-[10px] text-gray-400">
+                    <span class="absolute" style="left:71.43%;transform:translateX(-50%)">100톤(800원)</span>
+                    <span class="absolute" style="left:85.71%;transform:translateX(-50%)">120톤(1,000원)</span>
+                    <span class="absolute" style="left:100%;transform:translateX(-100%)">140톤(1,200원)</span>
+                </div>
+            </div>
+            <!-- 인센티브와 예상 -->
+            <div class="flex-none lg:w-52 p-4 border-t lg:border-t-0 lg:border-l border-gray-200 bg-gray-50/60">
+                <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-gray-500">현재 인센티브</span>
+                    <span class="text-[10px] text-gray-400" id="skRemain"></span>
+                </div>
+                <div class="text-lg font-bold text-gray-800 leading-tight" id="skIncentive">-</div>
+                <div class="text-[11px] text-gray-500 mt-2.5">최종 예상 (현재 추세)</div>
+                <div class="text-base font-bold text-orange-600 leading-tight"><span id="skProjTon">0</span>톤, <span id="skProjPct">0%</span></div>
+                <div class="text-[10px] text-gray-400 mt-0.5" id="skProjInc"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Summary Cards -->
 <section class="max-w-screen-2xl mx-auto px-3 lg:px-6 py-3">
     <div class="grid grid-cols-3 lg:grid-cols-5 gap-2 lg:gap-3" id="summaryCards"></div>
@@ -3530,6 +3579,64 @@ function showMultiStationDetail() {
 
 // ===== BOOT =====
 document.addEventListener('DOMContentLoaded', init);
+</script>
+<script>
+// ===== SK E&S 수소버스 인센티브 협약 계기판 =====
+// SK 지정 충전소([별첨1])에서 2026-03-24 ~ 09-23 누적 충전량 기준. 목표 100톤.
+// 3월은 부분월(3/24~31)이라 엑셀 일자별 확정값 사용. 이후 월은 MONTHLY_DATA에서 SK 충전소 합(데이터 추가 시 자동 갱신).
+const SK_INCENTIVE_CFG = {
+    targetTon: 100,
+    start: new Date('2026-03-24T00:00:00'),
+    end: new Date('2026-09-23T00:00:00'),
+    partial: { '2026-03': 4530.2 },
+    tiers: [{ min: 140, won: 1200 }, { min: 120, won: 1000 }, { min: 100, won: 800 }],
+    kw: ['성남사송', '수원고색', '평택모곡', '이천대흥', '인천신흥', '송도', '인천운서', '대구검단', '가좌', '경서', '오류', '고양대화', '장림', '청주송절', '구미선기', '원주장양', '노포', '순천가곡', '전주전미', '춘천학곡', '익산목천', '화성안녕', '용인오산', '구미공단']
+};
+function _skIsStation(name) { const n = (name || '').replace(/\s/g, ''); return SK_INCENTIVE_CFG.kw.some(k => n.includes(k)); }
+function _skTierWon(ton) { for (const t of SK_INCENTIVE_CFG.tiers) if (ton >= t.min) return t.won; return 0; }
+function calcSkIncentive() {
+    let total = 0, lastMonth = null;
+    (typeof MONTHS !== 'undefined' ? MONTHS : Object.keys(MONTHLY_DATA)).forEach(m => {
+        if (m < '2026-03' || m > '2026-09') return;
+        let kg = 0;
+        if (SK_INCENTIVE_CFG.partial[m] != null) kg = SK_INCENTIVE_CFG.partial[m];
+        else if (MONTHLY_DATA[m] && MONTHLY_DATA[m].charging_stations) MONTHLY_DATA[m].charging_stations.forEach(s => { if (_skIsStation(s.name)) kg += s.total_kg; });
+        if (kg > 0) { total += kg; lastMonth = m; }
+    });
+    let asOf = SK_INCENTIVE_CFG.start;
+    if (lastMonth) { const p = lastMonth.split('-').map(Number); asOf = new Date(p[0], p[1], 0); }
+    const day = 86400000;
+    const elapsed = Math.max(1, Math.round((Math.min(asOf, SK_INCENTIVE_CFG.end) - SK_INCENTIVE_CFG.start) / day) + 1);
+    const totalDays = Math.round((SK_INCENTIVE_CFG.end - SK_INCENTIVE_CFG.start) / day) + 1;
+    const proj = total / elapsed * totalDays;
+    const curTon = total / 1000, projTon = proj / 1000;
+    return {
+        curTon, projTon, lastMonth, asOf,
+        pct: curTon / SK_INCENTIVE_CFG.targetTon * 100,
+        projPct: projTon / SK_INCENTIVE_CFG.targetTon * 100,
+        incentive: _skTierWon(curTon) * total,
+        projIncentive: (projTon >= 100 ? _skTierWon(projTon) : 800) * proj
+    };
+}
+function renderSkIncentive() {
+    if (!document.getElementById('skIncentivePanel') || typeof MONTHLY_DATA === 'undefined') return;
+    const d = calcSkIncentive();
+    const SCALE = 140;
+    const set = (id, v) => { const e = document.getElementById(id); if (e) e.innerHTML = v; };
+    set('skCurTon', d.curTon.toFixed(1));
+    set('skAsOf', d.lastMonth ? (parseInt(d.lastMonth.split('-')[1]) + '월말') : '-');
+    set('skPct', d.pct.toFixed(1) + '%');
+    const bar = document.getElementById('skBar'); if (bar) bar.style.width = Math.min(100, d.curTon / SCALE * 100) + '%';
+    const pm = document.getElementById('skProjMark'); if (pm) pm.style.left = Math.min(100, d.projTon / SCALE * 100) + '%';
+    set('skProjTon', d.projTon.toFixed(1));
+    set('skProjPct', Math.round(d.projPct) + '%');
+    const remain = SK_INCENTIVE_CFG.targetTon - d.curTon;
+    set('skRemain', remain > 0 ? ('목표까지 ' + remain.toFixed(1) + '톤') : '목표 달성');
+    set('skIncentive', d.incentive > 0 ? (Math.round(d.incentive / 10000).toLocaleString() + '만원') : '<span class="text-gray-400 text-base">목표 달성 전</span>');
+    set('skProjInc', '100톤 도달 시 약 ' + Math.round(d.projIncentive / 10000).toLocaleString() + '만원');
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderSkIncentive);
+else renderSkIncentive();
 </script>
 </body>
 </html>
