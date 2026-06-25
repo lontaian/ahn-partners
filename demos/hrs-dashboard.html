@@ -74,6 +74,7 @@
                 <div class="text-xl font-extrabold mt-1 leading-tight">목표 100톤 충전</div>
                 <div class="text-[11px] opacity-90 mt-1.5">2026.03.24 ~ 09.23</div>
                 <div class="text-[11px] opacity-75 mt-0.5">SK 지정 충전소 누적 기준</div>
+                <div class="text-[10px] opacity-85 mt-2 leading-snug">목표 달성 시 <b>전체 물량</b>에 kg당 인센티브 적용 (구간 합산 아님)</div>
             </div>
             <!-- 진행 게이지 -->
             <div class="flex-1 p-4">
@@ -92,10 +93,10 @@
                     <div class="absolute inset-y-0 border-l-2 border-white" style="left:85.71%"></div>
                     <div class="absolute border-l-2 border-dashed border-gray-700 z-10" style="top:-4px;bottom:-4px;left:0%" id="skProjMark"></div>
                 </div>
-                <div class="relative h-4 mt-1 text-[10px] text-gray-400">
-                    <span class="absolute" style="left:71.43%;transform:translateX(-50%)">100톤(800원)</span>
-                    <span class="absolute" style="left:85.71%;transform:translateX(-50%)">120톤(1,000원)</span>
-                    <span class="absolute" style="left:100%;transform:translateX(-100%)">140톤(1,200원)</span>
+                <div class="relative h-4 mt-1 text-[9px] text-gray-400">
+                    <span class="absolute whitespace-nowrap" style="left:71.43%;transform:translateX(-50%)">100톤(800원)</span>
+                    <span class="absolute whitespace-nowrap" style="left:85.71%;transform:translateX(-50%)">120톤(1,000원)</span>
+                    <span class="absolute whitespace-nowrap" style="left:100%;transform:translateX(-100%)">140톤(1,200원)</span>
                 </div>
             </div>
             <!-- 인센티브와 예상 -->
@@ -131,30 +132,42 @@
             <span class="inline-block w-3 h-3 border-2 border-blue-200 border-t-blue-600 rounded-full animate-spin"></span>
             <span>실시간 가격 업데이트 중...</span>
         </div>
-        <div class="grid grid-cols-3 lg:grid-cols-6 gap-2 text-center text-xs">
+        <div class="grid grid-cols-3 lg:grid-cols-9 gap-2 text-center text-xs">
+            <div class="bg-orange-50 rounded-lg p-2">
+                <div class="text-[10px] text-orange-600 font-medium">SK</div>
+                <div class="text-sm font-bold text-orange-700"><span id="op-price-SK">-</span><span id="op-var-SK" class="text-[9px] font-normal"></span></div>
+            </div>
+            <div class="bg-teal-50 rounded-lg p-2">
+                <div class="text-[10px] text-teal-600 font-medium">하이넷</div>
+                <div class="text-sm font-bold text-teal-700"><span id="op-price-하이넷">-</span><span id="op-var-하이넷" class="text-[9px] font-normal"></span></div>
+            </div>
+            <div class="bg-purple-50 rounded-lg p-2">
+                <div class="text-[10px] text-purple-600 font-medium">코하이젠</div>
+                <div class="text-sm font-bold text-purple-700"><span id="op-price-코하이젠">-</span><span id="op-var-코하이젠" class="text-[9px] font-normal"></span></div>
+            </div>
             <div class="bg-gray-50 rounded-lg p-2">
                 <div class="text-[10px] text-gray-500 font-medium">전국</div>
-                <div class="text-sm font-bold text-gray-800" id="regional-price-전국">10,311원</div>
+                <div class="text-sm font-bold text-gray-800"><span id="regional-price-전국">10,311원</span><span id="regional-var-전국" class="text-[9px] font-normal"></span></div>
             </div>
             <div class="bg-blue-50 rounded-lg p-2">
                 <div class="text-[10px] text-blue-600 font-medium">서울</div>
-                <div class="text-sm font-bold text-blue-700" id="regional-price-서울">10,344원</div>
+                <div class="text-sm font-bold text-blue-700"><span id="regional-price-서울">10,344원</span><span id="regional-var-서울" class="text-[9px] font-normal"></span></div>
             </div>
             <div class="bg-indigo-50 rounded-lg p-2">
                 <div class="text-[10px] text-indigo-600 font-medium">경기</div>
-                <div class="text-sm font-bold text-indigo-700" id="regional-price-경기">10,476원</div>
+                <div class="text-sm font-bold text-indigo-700"><span id="regional-price-경기">10,476원</span><span id="regional-var-경기" class="text-[9px] font-normal"></span></div>
             </div>
             <div class="bg-cyan-50 rounded-lg p-2">
                 <div class="text-[10px] text-cyan-600 font-medium">인천</div>
-                <div class="text-sm font-bold text-cyan-700" id="regional-price-인천">11,075원</div>
+                <div class="text-sm font-bold text-cyan-700"><span id="regional-price-인천">11,075원</span><span id="regional-var-인천" class="text-[9px] font-normal"></span></div>
             </div>
-            <div class="bg-teal-50 rounded-lg p-2">
-                <div class="text-[10px] text-teal-600 font-medium">부산</div>
-                <div class="text-sm font-bold text-teal-700" id="regional-price-부산">11,375원</div>
+            <div class="bg-emerald-50 rounded-lg p-2">
+                <div class="text-[10px] text-emerald-600 font-medium">부산</div>
+                <div class="text-sm font-bold text-emerald-700"><span id="regional-price-부산">11,375원</span><span id="regional-var-부산" class="text-[9px] font-normal"></span></div>
             </div>
-            <div class="bg-orange-50 rounded-lg p-2">
-                <div class="text-[10px] text-orange-600 font-medium">제주</div>
-                <div class="text-sm font-bold text-orange-700" id="regional-price-제주">15,000원</div>
+            <div class="bg-amber-50 rounded-lg p-2">
+                <div class="text-[10px] text-amber-600 font-medium">제주</div>
+                <div class="text-sm font-bold text-amber-700"><span id="regional-price-제주">15,000원</span><span id="regional-var-제주" class="text-[9px] font-normal"></span></div>
             </div>
         </div>
     </div>
@@ -1525,12 +1538,57 @@ function extractKoreanTimeText(dateTimeText) {
   return match ? match[1] : String(dateTimeText || '');
 }
 
+// ===== 운영사 평균가(실시간 H2_ALL_STATIONS) + 전월 대비 변동(localStorage 스냅샷) =====
+function _h2OperatorAvg() {
+  const ops = { 'SK': [], '하이넷': [], '코하이젠': [] };
+  (typeof H2_ALL_STATIONS !== 'undefined' ? H2_ALL_STATIONS : []).forEach(s => {
+    const op = s[1], price = s[4], oper = s[10];
+    if (ops[op] && typeof price === 'number' && price > 0 && oper === '운영중') ops[op].push(price);
+  });
+  const avg = {};
+  for (const k in ops) avg[k] = ops[k].length ? Math.round(ops[k].reduce((a, b) => a + b, 0) / ops[k].length) : null;
+  return avg;
+}
+// 전월 대비 변동: 데이터 최신월(MONTHS 끝) 기준 월별 스냅샷. 같은 달 재방문 시 전월 prevVals 유지.
+function _priceVariation(curVals) {
+  const dataMonth = (typeof MONTHS !== 'undefined') ? MONTHS[MONTHS.length - 1] : '';
+  let snap = null; try { snap = JSON.parse(localStorage.getItem('hrsPriceSnap') || 'null'); } catch (e) {}
+  let prevVals = null;
+  if (snap && snap.month < dataMonth) prevVals = snap.vals;
+  else if (snap && snap.month === dataMonth) prevVals = snap.prevVals || null;
+  const newPrev = (snap && snap.month < dataMonth) ? snap.vals : (snap && snap.month === dataMonth ? snap.prevVals : null);
+  try { localStorage.setItem('hrsPriceSnap', JSON.stringify({ month: dataMonth, vals: curVals, prevVals: newPrev })); } catch (e) {}
+  const v = {};
+  for (const k in curVals) v[k] = (prevVals && prevVals[k] != null) ? Math.round(curVals[k] - prevVals[k]) : null;
+  return v;
+}
+function _varHtml(d) {
+  if (d == null) return '';
+  if (d > 0) return ` <span style="color:#dc2626">(+${d.toLocaleString()})</span>`;
+  if (d < 0) return ` <span style="color:#2563eb">(${d.toLocaleString()})</span>`;
+  return ` <span style="color:#9ca3af">(0)</span>`;
+}
+function _renderOpAndVar() {
+  const opAvg = _h2OperatorAvg();
+  ['SK', '하이넷', '코하이젠'].forEach(op => {
+    const pe = document.getElementById('op-price-' + op);
+    if (pe) pe.textContent = opAvg[op] != null ? opAvg[op].toLocaleString() + '원' : '-';
+  });
+  const curVals = {};
+  ['SK', '하이넷', '코하이젠'].forEach(op => { if (opAvg[op] != null) curVals['op_' + op] = opAvg[op]; });
+  LIVE_PRICE_REGIONS.forEach(r => { const v = LIVE_PRICE_STATE.regionalAvg[r]; if (v != null) curVals['rg_' + r] = Math.round(v); });
+  const vr = _priceVariation(curVals);
+  ['SK', '하이넷', '코하이젠'].forEach(op => { const e = document.getElementById('op-var-' + op); if (e) e.innerHTML = _varHtml(vr['op_' + op]); });
+  LIVE_PRICE_REGIONS.forEach(r => { const e = document.getElementById('regional-var-' + r); if (e) e.innerHTML = _varHtml(vr['rg_' + r]); });
+}
+
 function renderRegionalLivePrices() {
   LIVE_PRICE_REGIONS.forEach(region => {
     const el = document.getElementById(`regional-price-${region}`);
     const value = LIVE_PRICE_STATE.regionalAvg[region];
     if (el && value != null) el.textContent = `${Math.round(value).toLocaleString('ko-KR')}원`;
   });
+  _renderOpAndVar();
   if (LIVE_PRICE_STATE.updatedAt) {
     updateLivePriceSourceLabel(`출처: h2biz 가격정보 · ${LIVE_PRICE_STATE.cacheDate || getSeoulDateKey()} · ${extractKoreanTimeText(LIVE_PRICE_STATE.updatedAt)}`);
   } else {
@@ -3615,7 +3673,7 @@ function calcSkIncentive() {
         pct: curTon / SK_INCENTIVE_CFG.targetTon * 100,
         projPct: projTon / SK_INCENTIVE_CFG.targetTon * 100,
         incentive: _skTierWon(curTon) * total,
-        projIncentive: (projTon >= 100 ? _skTierWon(projTon) : 800) * proj
+        projIncentive: projTon >= 100 ? _skTierWon(projTon) * proj : 0
     };
 }
 function renderSkIncentive() {
@@ -3629,11 +3687,11 @@ function renderSkIncentive() {
     const bar = document.getElementById('skBar'); if (bar) bar.style.width = Math.min(100, d.curTon / SCALE * 100) + '%';
     const pm = document.getElementById('skProjMark'); if (pm) pm.style.left = Math.min(100, d.projTon / SCALE * 100) + '%';
     set('skProjTon', d.projTon.toFixed(1));
-    set('skProjPct', Math.round(d.projPct) + '%');
+    set('skProjPct', d.projPct.toFixed(1) + '%');
     const remain = SK_INCENTIVE_CFG.targetTon - d.curTon;
     set('skRemain', remain > 0 ? ('목표까지 ' + remain.toFixed(1) + '톤') : '목표 달성');
     set('skIncentive', d.incentive > 0 ? (Math.round(d.incentive / 10000).toLocaleString() + '만원') : '<span class="text-gray-400 text-base">목표 달성 전</span>');
-    set('skProjInc', '100톤 도달 시 약 ' + Math.round(d.projIncentive / 10000).toLocaleString() + '만원');
+    set('skProjInc', d.projTon >= 100 ? ('예상 전체물량 인센티브 약 ' + Math.round(d.projIncentive / 10000).toLocaleString() + '만원') : '100톤 도달 시 8,000만원 (전체물량)');
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderSkIncentive);
 else renderSkIncentive();
