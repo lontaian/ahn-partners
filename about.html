@@ -1,618 +1,1589 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <title>소개 | Ahn Partners</title>
-    <meta name="description" content="Ahn Partners - AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>소개 | Ahn Partners</title>
+  <meta name="description" content="현장 CTO 겸 COO 27년. AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
 
-    <link rel="canonical" href="https://ahn-partners.netlify.app/about.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="canonical" href="https://ahn-partners.netlify.app/about.html">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="소개 | Ahn Partners">
-    <meta property="og:description" content="Ahn Partners - AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ahn-partners.netlify.app/about.html">
-    <meta property="og:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
-    <meta property="og:site_name" content="Ahn Partners">
-    <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="소개 | Ahn Partners">
+  <meta property="og:description" content="현장 CTO 겸 COO 27년. AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ahn-partners.netlify.app/about.html">
+  <meta property="og:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
+  <meta property="og:site_name" content="Ahn Partners">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="소개 | Ahn Partners">
+  <meta name="twitter:description" content="현장 CTO 겸 COO 27년. 결정부터 실행까지.">
+  <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="소개 | Ahn Partners">
-    <meta name="twitter:description" content="Ahn Partners - AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
-    <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;700;800&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 
-    <!-- Tailwind CSS (Built) -->
-    <link rel="stylesheet" href="./dist/output.css">
-
-    <!-- Pretendard Font (Dynamic Subset) -->
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
-
-    <style>
-        body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
-        .mobile-br { display: none; }
-        @media (max-width: 767px) {
-            .mobile-br { display: block; }
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 4px;
-            width: 12px;
-            height: 12px;
-            background: #3A5169;
-            border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 0 0 3px #f9fafb;
-        }
-
-        /* SNS 사이드바 - 데스크톱 */
-        .sns-sidebar {
-            position: fixed;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 40;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .sns-sidebar a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.25rem;
-            height: 2.25rem;
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 50%;
-            color: #6b7280;
-            transition: color 0.2s, border-color 0.2s, background 0.2s;
-        }
-        .sns-sidebar a:hover {
-            color: #3A5169;
-            border-color: #3A5169;
-            background: #f0f4f8;
-        }
-        .sns-sidebar a svg {
-            width: 1rem;
-            height: 1rem;
-            fill: currentColor;
-        }
-        @media (max-width: 1023px) {
-            .sns-sidebar { top: auto; bottom: 1rem; transform: none; right: 0.5rem; gap: 0.4rem; }
-            .sns-sidebar a { width: 2rem; height: 2rem; }
-        }
-        .sns-footer-mobile { display: none; }
-    </style>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "ProfilePage",
-          "name": "소개 | Ahn Partners",
-          "url": "https://ahn-partners.netlify.app/about.html",
-          "description": "Ahn Partners - AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.",
-          "mainEntity": {
-            "@type": "Organization",
-            "name": "Ahn Partners",
-            "url": "https://ahn-partners.netlify.app",
-            "description": "자문, 강의, 개발 - 기술경영 의사결정 파트너",
-            "areaServed": {"@type": "Country", "name": "KR"},
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "contactType": "문의",
-              "url": "https://ahn-partners.netlify.app/about.html#contact",
-              "availableLanguage": "Korean"
-            }
-          }
-        }
-      ]
+  <style>
+    /* =============================================
+       CSS VARIABLES
+    ============================================= */
+    :root {
+      --bg-color: #f8f8f8;
+      --text-color: #111;
+      --text-muted: #666;
+      --surface-color: #fff;
+      --container-width: 1400px;
+      --section-padding: 10rem;
+      --font-main: 'Inter', 'Pretendard Variable', Pretendard, sans-serif;
+      --font-display: 'Playfair Display', serif;
+      --teal: #2dd4bf;
+      --amber: #f5a623;
+      --grad: linear-gradient(120deg, #2dd4bf, #f5a623);
     }
-    </script>
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* =============================================
+       CONTAINER
+    ============================================= */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+
+    /* =============================================
+       MIX BLEND MODE
+    ============================================= */
+    .mix-difference {
+      mix-blend-mode: difference;
+      color: #fff;
+    }
+
+    /* =============================================
+       REVEAL ANIMATION
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+                  transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+
+    /* =============================================
+       TYPOGRAPHY PATTERNS
+    ============================================= */
+    .word-thin {
+      font-weight: 100;
+      font-size: clamp(2rem, 7vw, 4.5rem);
+      opacity: 0.6;
+      letter-spacing: -0.05em;
+      display: inline-block;
+    }
+
+    .word-bold {
+      font-weight: 800;
+      font-size: clamp(3rem, 11vw, 8.5rem);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      display: inline-block;
+    }
+
+    .serif-italic {
+      font-family: var(--font-display);
+      font-style: italic;
+    }
+
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* =============================================
+       HEADER
+    ============================================= */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      height: 80px;
+      transition: background 0.35s, backdrop-filter 0.35s, border-color 0.35s;
+    }
+
+    .header.scrolled {
+      background: rgba(5, 5, 5, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .desktop-nav .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover {
+      opacity: 0.7;
+    }
+
+    .nav-link.active {
+      opacity: 1;
+      border-bottom: 2px solid currentColor;
+      padding-bottom: 2px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+    }
+
+    /* Mobile overlay */
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: #050505;
+      z-index: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-nav-link {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .mobile-nav-link:hover {
+      opacity: 0.6;
+    }
+
+    .mobile-nav-link.active {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 1;
+    }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #050505;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 60%, #050505);
+      pointer-events: none;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 20px;
+      max-width: var(--container-width);
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      line-height: 0.8;
+      margin-bottom: 0;
+      isolation: isolate;
+    }
+
+    .hero-title .word-thin {
+      margin-right: 15vw;
+      font-size: clamp(2.2rem, 8vw, 5.5rem);
+      mix-blend-mode: difference;
+      color: #fff;
+      opacity: 1;
+    }
+
+    .hero-title .word-bold {
+      margin-left: 10vw;
+      margin-top: -0.12em;
+      font-size: clamp(3.5rem, 12vw, 10rem);
+      mix-blend-mode: difference;
+      color: #fff;
+    }
+
+    .about-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+      text-transform: uppercase;
+      letter-spacing: 0.18rem;
+      margin-top: 2.5rem;
+      opacity: 0.9;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      opacity: 0.55;
+      z-index: 2;
+      animation: scrollBob 2s ease-in-out infinite;
+      cursor: default;
+    }
+
+    .scroll-chevrons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0px;
+    }
+
+    .scroll-chevron {
+      width: 16px;
+      height: 9px;
+      border-left: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(-45deg);
+      display: block;
+      margin-top: -3px;
+    }
+
+    .scroll-chevron:first-child { opacity: 0.5; }
+    .scroll-chevron:last-child { opacity: 1; }
+
+    @keyframes scrollBob {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* =============================================
+       PROFILE SECTION
+    ============================================= */
+    .profile-section {
+      background: #fff;
+      padding: var(--section-padding) 0;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (min-width: 768px) {
+      .profile-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .profile-img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      max-height: 600px;
+    }
+
+    .profile-image-placeholder {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      max-height: 600px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #1a1f2b 0%, #2a3444 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.12);
+      font-weight: 800;
+      font-size: 5rem;
+      letter-spacing: -0.04em;
+    }
+
+    .about-text {
+      font-size: clamp(1.6rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      font-weight: 300;
+      color: #333;
+      word-break: keep-all;
+    }
+
+    .about-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .tag-chip {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    /* =============================================
+       STATS SECTION
+    ============================================= */
+    .stats-section {
+      background: #f4f4f4;
+      padding: var(--section-padding) 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      word-break: keep-all;
+    }
+
+    .stat-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    .stats-tagline {
+      text-align: center;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+      word-break: keep-all;
+    }
+
+    /* =============================================
+       SERVICES DETAIL SECTION (dark)
+    ============================================= */
+    .thinking-section {
+      background: #1a1f2b;
+      color: #fff;
+      padding: var(--section-padding) 0;
+    }
+
+    .section-title {
+      line-height: 0.9;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .thinking-section .section-title {
+      margin-bottom: 6rem;
+    }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 2rem;
+      padding: 3rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      align-items: start;
+    }
+
+    .service-item:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .service-number {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: #cfcfcf;
+      padding-top: 0.4rem;
+    }
+
+    .service-content-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .service-title {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #cfcfcf;
+      max-width: 640px;
+      word-break: keep-all;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .service-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      border-radius: 999px;
+      color: var(--teal);
+    }
+
+    /* =============================================
+       TECH STACK SECTION
+    ============================================= */
+    .stack-section {
+      background: #fff;
+      padding: var(--section-padding) 0;
+    }
+
+    .stack-section .section-title {
+      margin-bottom: 6rem;
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    @media (min-width: 768px) {
+      .stack-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+      }
+    }
+
+    .stack-col-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .stack-category {
+      margin-bottom: 2rem;
+    }
+
+    .stack-category-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding: 3px 10px;
+      border: 1px solid rgba(45, 212, 191, 0.35);
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .stack-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack-chip {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid #e0e0e0;
+      color: #444;
+      background: #f8f8f8;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .project-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      font-size: 0.95rem;
+      color: #333;
+      word-break: keep-all;
+      line-height: 1.5;
+    }
+
+    .project-list-item:first-child {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .project-list-item::before {
+      content: "-";
+      color: var(--teal);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       CONTACT SECTION
+    ============================================= */
+    .contact-section {
+      background: #f8f8f8;
+      padding: var(--section-padding) 0;
+    }
+
+    .contact-section .section-title {
+      margin-bottom: 5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      color: #111;
+      background: #fff;
+      transition: border-color 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-input:focus {
+      border-color: #2dd4bf;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .consent-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: #f0f0f0;
+      border-radius: 8px;
+    }
+
+    .consent-master {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #111;
+    }
+
+    .consent-master input[type="checkbox"] {
+      accent-color: #2dd4bf;
+      width: 16px;
+      height: 16px;
+    }
+
+    .consent-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .consent-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #444;
+      cursor: pointer;
+    }
+
+    .consent-item input[type="checkbox"] {
+      margin-top: 2px;
+      accent-color: #2dd4bf;
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(120deg, #2dd4bf, #f5a623);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: #111;
+      color: #fff;
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-link {
+      color: #999;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #222;
+      padding-top: 1.5rem;
+      color: #555;
+      font-size: 0.8rem;
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 5rem;
+      }
+
+      .word-thin {
+        font-size: clamp(1.6rem, 6vw, 2.8rem);
+      }
+
+      .word-bold {
+        font-size: clamp(2.4rem, 10vw, 4.5rem);
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .service-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- SNS 사이드바 (데스크톱 고정) -->
-    <aside class="sns-sidebar" aria-label="SNS 링크">
-        <a href="https://www.youtube.com/@ahn_partners" target="_blank" rel="noopener" title="YouTube">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/chrisahn-intuition/" target="_blank" rel="noopener" title="LinkedIn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://www.threads.com/@crossfitwine" target="_blank" rel="noopener" title="Threads">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.689-2.044 1.567-1.67 1.54-3.875 1.501-4.373-.18-1.189-.788-2.348-1.775-3.225-.128 2.617-.76 4.886-1.885 6.716-1.197 1.944-2.913 3.027-4.986 3.143zm.274-8.663c1.665-.147 2.967-.77 3.875-1.853.944-1.124 1.394-2.688 1.345-4.65-1.199-.584-2.543-.888-3.988-.888-.12 0-.24.003-.36.008-.24.01-.484.033-.726.07a3.97 3.97 0 0 0-1.03.285c-.58.245-1.058.651-1.37 1.17-.26.434-.386.916-.375 1.415v.017c-.01.85.298 1.562.896 2.062.56.47 1.344.73 2.231.73.17 0 .34-.01.502-.03zm-.756-1.688c-.572 0-1.032-.15-1.327-.435-.273-.263-.41-.641-.398-1.115v-.017c-.007-.346.07-.672.22-.942.193-.326.497-.577.87-.727.247-.098.516-.158.812-.183.137-.01.279-.017.426-.017 1.23 0 2.334.252 3.27.741-.093 1.476-.5 2.613-1.198 3.37-.597.647-1.418.992-2.412 1.083a6.36 6.36 0 0 1-.263.01V13.65z"/></svg>
-        </a>
-        <a href="https://x.com/crossfitwine" target="_blank" rel="noopener" title="X">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-        </a>
-    </aside>
+  <!-- ============================================
+       HEADER
+  ============================================= -->
+  <header id="header" class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo mix-difference">Ahn Partners</a>
+      <nav class="desktop-nav">
+        <ul class="nav-list">
+          <li><a href="index.html#services" class="nav-link mix-difference">서비스</a></li>
+          <li><a href="index.html#projects" class="nav-link mix-difference">납품 실적</a></li>
+          <li><a href="about.html" class="nav-link mix-difference active">소개</a></li>
+          <li><a href="about.html#contact" class="nav-link mix-difference">문의</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn mix-difference" id="mobileMenuBtn" aria-label="메뉴">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="text-xl font-bold text-primary">Ahn Partners</a>
-                <div class="flex items-center gap-6">
-                    <a href="index.html" class="text-gray-700 hover:text-primary font-medium">납품 실적</a>
-                    <a href="about.html" class="text-primary font-medium">소개</a>
-                </div>
-            </div>
+  <!-- Mobile overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose" aria-label="닫기">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html#services" class="mobile-nav-link">서비스</a></li>
+      <li><a href="index.html#projects" class="mobile-nav-link">납품 실적</a></li>
+      <li><a href="about.html" class="mobile-nav-link active">소개</a></li>
+      <li><a href="about.html#contact" class="mobile-nav-link">문의</a></li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       HERO
+  ============================================= -->
+  <section id="hero" class="hero">
+    <div class="hero-bg">
+      <canvas id="hero-canvas"></canvas>
+    </div>
+    <div class="hero-content mix-difference">
+      <h1 class="hero-title">
+        <span class="word-thin">Decision</span>
+        <span class="word-bold">PARTNER</span>
+      </h1>
+      <p class="hero-subtitle">결정부터 실행까지 함께합니다</p>
+    </div>
+    <div class="scroll-indicator mix-difference">
+      <span>Scroll</span>
+      <div class="scroll-chevrons">
+        <span class="scroll-chevron"></span>
+        <span class="scroll-chevron"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROFILE
+  ============================================= -->
+  <section class="profile-section">
+    <div class="container">
+      <div class="profile-grid">
+        <div class="profile-image-col reveal">
+          <img src="images/profile/hero.png" alt="안 대표 프로필" class="profile-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="profile-image-placeholder" style="display:none">AP</div>
         </div>
-    </nav>
-
-    <main class="pt-24 pb-16">
-
-        <!-- Profile Header: full-bleed -->
-        <section class="bg-white shadow-lg overflow-hidden mb-8">
-            <!-- Hero Image: full viewport width -->
-            <div class="relative h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[32rem] bg-gradient-to-br from-primary to-blue-800">
-                <img src="images/profile/hero.png" alt="Profile" class="w-full h-full object-cover opacity-90" style="object-position: top;"
-                     onerror="this.style.display='none'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            </div>
-
-            <!-- Hero content: constrained -->
-            <div class="max-w-5xl mx-auto px-6 sm:px-8 pb-8" style="padding-top: 3.5rem;">
-                <h1 class="text-3xl font-bold text-gray-900 mb-4">Ahn Partners</h1>
-                <p class="text-xl text-primary font-medium mb-4">자문, 강의, 개발.</p>
-                <p class="text-gray-600 mb-6">
-                    AI를 어디에 쓸지, 결정부터 함께합니다. 결정한 것은 분석부터 배포까지 직접 만들어 프로덕션에 올립니다.
-                </p>
-
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">AI 전략 자문</span>
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">AX 강의</span>
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">ERP / 대시보드 / 자동화 개발</span>
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">모바일 앱</span>
-                </div>
-
-                <!-- Contact Buttons -->
-                <div class="flex flex-wrap gap-3">
-                    <a href="#contact" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        문의하기
-                    </a>
-                    <a href="index.html" class="px-4 py-2 bg-gray-100 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-200 transition flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                        납품 실적 보기
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 검증 가능한 실적: full-bleed -->
-        <section id="metrics-band-about" class="bg-gray-900 text-white mb-8">
-            <div class="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-10">
-                <!-- 히어로: 고객사 사회적 증거 -->
-                <div class="text-center mb-5">
-                    <div class="text-6xl sm:text-7xl font-bold text-white tabular-nums leading-none">
-                        <span class="count-up-about" data-target="70" data-suffix="+">0</span>
-                    </div>
-                    <div class="text-gray-400 text-sm mt-2">고객사 - 삼성, 현대, 통신 3사, 공공기관 등</div>
-                </div>
-
-                <!-- 3축: 자문, 강의, 개발 -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-0 mb-4 border-t border-white/5 pt-4">
-                    <div class="text-center px-4 py-3 sm:border-r border-white/10">
-                        <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">자문</div>
-                        <div class="text-3xl font-bold text-white tabular-nums">
-                            <span class="count-up-about" data-target="7" data-suffix="개사">0</span>
-                        </div>
-                        <div class="text-xs mt-1" style="color:#7ba7c4;">전원 투자 유치, 130억 확보</div>
-                    </div>
-                    <div class="text-center px-4 py-3 sm:border-r border-white/10 border-t sm:border-t-0 border-white/10">
-                        <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">강의</div>
-                        <div class="text-3xl font-bold text-white tabular-nums">
-                            <span class="count-up-about" data-target="52" data-suffix="건">0</span>
-                        </div>
-                        <div class="text-gray-400 text-xs mt-1">기업, 공공기관</div>
-                    </div>
-                    <div class="text-center px-4 py-3 border-t sm:border-t-0 border-white/10">
-                        <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">개발</div>
-                        <div class="text-3xl font-bold text-white tabular-nums">
-                            <span class="count-up-about" data-target="30" data-suffix="건+">0</span>
-                        </div>
-                        <div class="text-gray-400 text-xs mt-1">앱 <span class="count-up-about tabular-nums" data-target="500" data-suffix="만+">0</span> 다운로드</div>
-                    </div>
-                </div>
-
-                <!-- 차별 카피 -->
-                <p class="text-center text-gray-400 text-xs mb-2">현장 CTO 겸 COO 27년. AI로 바꾸라는 말은 누구나 합니다. 직접 만들어 돌려본 사람은 드뭅니다.</p>
-            </div>
-        </section>
-
-        <script>
-            (function() {
-                var els = document.querySelectorAll('.count-up-about');
-                var started = false;
-                function formatNum(n, comma) {
-                    return comma ? n.toLocaleString('ko-KR') : String(n);
-                }
-                function runCountUp() {
-                    if (started) return;
-                    started = true;
-                    els.forEach(function(el) {
-                        var target = parseInt(el.getAttribute('data-target'), 10);
-                        var suffix = el.getAttribute('data-suffix') || '';
-                        var comma = el.getAttribute('data-comma') === 'true';
-                        var duration = 1200;
-                        var start = null;
-                        function step(ts) {
-                            if (!start) start = ts;
-                            var progress = Math.min((ts - start) / duration, 1);
-                            var eased = 1 - Math.pow(1 - progress, 3);
-                            var current = Math.floor(eased * target);
-                            el.textContent = formatNum(current, comma) + suffix;
-                            if (progress < 1) requestAnimationFrame(step);
-                            else el.textContent = formatNum(target, comma) + suffix;
-                        }
-                        requestAnimationFrame(step);
-                    });
-                }
-                var band = document.getElementById('metrics-band-about');
-                if ('IntersectionObserver' in window) {
-                    var observer = new IntersectionObserver(function(entries) {
-                        if (entries[0].isIntersecting) { runCountUp(); observer.disconnect(); }
-                    }, { threshold: 0.2 });
-                    observer.observe(band);
-                } else { runCountUp(); }
-            })();
-        </script>
-
-        <!-- Content sections: max-w-6xl -->
-        <div class="max-w-6xl mx-auto px-4">
-
-            <!-- 서비스 -->
-            <section class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-                    </span>
-                    서비스
-                </h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                        <h3 class="font-bold text-gray-900 mb-2">자문</h3>
-                        <p class="text-gray-600 text-sm">어디에 AI를 쓸지, 무엇을 먼저 할지, 결정을 함께 내리는 기술경영 파트너입니다. 정부 R&D 과제 심사 위원, 벤처 투자 자문 위원으로 활동하고 있습니다.</p>
-                    </div>
-                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                        <h3 class="font-bold text-gray-900 mb-2">강의</h3>
-                        <p class="text-gray-600 text-sm">비개발 임원이 AX를 스스로 판단하고 주도하도록 설계된 강의입니다. 삼성, 현대, 통신 3사 등 대기업과 공공기관에서 52건 진행했습니다.</p>
-                    </div>
-                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                        <h3 class="font-bold text-gray-900 mb-2">개발</h3>
-                        <p class="text-gray-600 text-sm">정한 것은 직접 만듭니다. 분석부터 배포까지, 실제 운영되는 시스템으로. ERP, 데이터 대시보드, 노선 최적화, 자동화 시스템을 30건 이상 납품했습니다. 앱 누적 다운로드 500만+.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 기술 스택 + 수행 프로젝트 -->
-            <div class="grid md:grid-cols-5 gap-6 mb-8 items-start">
-                <!-- 기술 스택 (40%) -->
-                <section class="md:col-span-2 bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                        </span>
-                        기술 스택
-                    </h2>
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Frontend</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-gray-900 text-white rounded-full text-sm">Next.js</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">React</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">TypeScript</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Tailwind CSS</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Backend</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Python</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">FastAPI</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Node.js</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Database & Infra</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">PostgreSQL</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">MySQL</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Supabase</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">AWS</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Docker</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">데이터 시각화 & GIS</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Chart.js</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">MapLibre GL</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Kakao Maps</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 수행 프로젝트 (60%) -->
-                <section class="md:col-span-3 bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        </span>
-                        수행 프로젝트
-                    </h2>
-                    <div class="relative border-l-2 border-gray-200 pl-6 space-y-8">
-                        <div class="timeline-item relative">
-                            <h3 class="font-bold text-gray-900 mb-1">운송 그룹 ERP 시스템</h3>
-                            <p class="text-gray-600 text-sm">
-                                3개 법인 통합 관리 - 차량 431대, 기사 368명, 비용기록 4,700+건<br>
-                                <span class="text-gray-500">Next.js 14, Prisma, PostgreSQL, OAuth 2.0</span>
-                            </p>
-                        </div>
-                        <div class="timeline-item relative">
-                            <h3 class="font-bold text-gray-900 mb-1">물류 노선 최적화 시스템</h3>
-                            <p class="text-gray-600 text-sm">
-                                69개 거점, 1,556개 노선 자동 배정 - Hungarian Algorithm 적용<br>
-                                <span class="text-gray-500">Python, NetworkX, OSRM</span>
-                            </p>
-                        </div>
-                        <div class="timeline-item relative">
-                            <h3 class="font-bold text-gray-900 mb-1">GIS 기반 노선 편집기</h3>
-                            <p class="text-gray-600 text-sm">
-                                드래그앤드롭 노선 설계, 실시간 경로 계산, 검증 리포트<br>
-                                <span class="text-gray-500">MapLibre GL, JavaScript, OSRM, Python</span>
-                            </p>
-                        </div>
-                        <div class="timeline-item relative">
-                            <h3 class="font-bold text-gray-900 mb-1">인터랙티브 데이터 대시보드</h3>
-                            <p class="text-gray-600 text-sm">
-                                고객 분석, BEP 시뮬레이션, 월별 트렌드 - 실시간 필터링<br>
-                                <span class="text-gray-500">Chart.js, Leaflet, Tailwind CSS</span>
-                            </p>
-                        </div>
-                        <div class="timeline-item relative">
-                            <h3 class="font-bold text-gray-900 mb-1">모바일 앱 서비스 (iOS/Android)</h3>
-                            <p class="text-gray-600 text-sm">
-                                스토어 등록, 운영 - 누적 <strong class="text-gray-700">500만+ 다운로드</strong> 달성
-                            </p>
-                        </div>
-                        <div class="timeline-item relative">
-                            <h3 class="font-bold text-gray-900 mb-1">대기업 B2B 서비스</h3>
-                            <p class="text-gray-600 text-sm">국내 통신 3사를 고객으로 서비스 개발 및 운영</p>
-                        </div>
-                        <div class="timeline-item relative">
-                            <h3 class="font-bold text-gray-900 mb-1">대규모 프로젝트 수행</h3>
-                            <p class="text-gray-600 text-sm">30억+ 규모 프로젝트 수주부터 납품까지 완료</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Contact Form -->
-            <section id="contact" class="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                    </span>
-                    문의하기
-                </h2>
-                <p class="text-sm text-gray-500 mb-6 -mt-3">영업일 기준 1-2일 안에 대표가 직접 회신드립니다.</p>
-
-                <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="max-w-2xl">
-                    <input type="hidden" name="form-name" value="contact">
-                    <p class="hidden">
-                        <label>Don't fill this out: <input name="bot-field"></label>
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">이름</label>
-                            <input type="text" name="name" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">이메일</label>
-                            <input type="email" name="email" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">휴대폰 번호</label>
-                            <input type="tel" id="phone-input" name="phone" required inputmode="numeric"
-                                   placeholder="010-1234-5678" maxlength="13"
-                                   pattern="01[0-9]-\d{3,4}-\d{4}"
-                                   title="휴대폰 번호를 010-1234-5678 형식으로 입력해 주세요"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">문의 유형</label>
-                            <select name="subject"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
-                                <option value="">선택해 주세요</option>
-                                <option value="자문">자문 - AI 전략, 기술경영 의사결정</option>
-                                <option value="강의">강의 - AX 교육, 임원 대상 강의</option>
-                                <option value="개발">개발 - ERP, 대시보드, 자동화, 앱</option>
-                                <option value="기타">기타</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">문의 내용</label>
-                        <textarea name="message" rows="4" required
-                                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
-                    </div>
-                    <div class="mb-6">
-                        <label class="flex items-center gap-2 text-sm font-semibold text-gray-900 cursor-pointer border border-gray-300 rounded-lg px-4 py-3 mb-2 bg-gray-50 hover:bg-gray-100 transition">
-                            <input type="checkbox" id="consent-all" class="shrink-0 w-4 h-4 accent-primary">
-                            <span>모두 동의합니다 (개인정보 수집 및 이용, 뉴스레터 수신)</span>
-                        </label>
-                        <p class="text-xs text-gray-500 leading-relaxed bg-gray-50 border border-gray-200 rounded-lg p-3 mb-2">
-                            수집 항목: 이름, 이메일, 휴대폰 번호. 수집 목적: 문의 응대와 회신. 보유 기간: 문의 처리 완료 후 1년 이내 파기.
-                        </p>
-                        <div class="space-y-2 pl-1">
-                            <label class="flex items-start gap-2 text-sm text-gray-700 cursor-pointer">
-                                <input type="checkbox" name="privacy-consent" value="동의" required class="mt-1 shrink-0 accent-primary">
-                                <span>개인정보 수집 및 이용에 동의합니다. <span class="text-primary font-medium">(필수)</span></span>
-                            </label>
-                            <label class="flex items-start gap-2 text-sm text-gray-700 cursor-pointer">
-                                <input type="checkbox" name="marketing-consent" value="동의" class="mt-1 shrink-0 accent-primary">
-                                <span>자문 인사이트 뉴스레터와 소식 메일 수신에 동의합니다. <span class="text-gray-400">(선택)</span></span>
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" id="submit-btn"
-                            class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:opacity-90 transition">
-                        문의 보내기
-                    </button>
-                </form>
-
-                <!-- 뉴스레터 선택 동의 유도 모달 -->
-                <div id="newsletter-nudge" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 px-4" role="dialog" aria-modal="true" aria-labelledby="nudge-title">
-                    <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6">
-                        <h3 id="nudge-title" class="text-lg font-bold text-gray-900 mb-2">이 메일링리스트, 안 받으시겠어요?</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-5">선택 동의를 하지 않고 보내면 자문 인사이트 뉴스레터를 받아 보실 수 없습니다. 한 달에 두 번, 광고가 아니라 현장에서 내린 AX 결정과 실제 사례만 정리해 보내드립니다.</p>
-                        <div class="flex flex-col gap-2">
-                            <button type="button" id="nudge-accept"
-                                    class="w-full px-4 py-2.5 bg-primary text-white font-medium rounded-lg hover:opacity-90 transition">네, 뉴스레터도 받을게요</button>
-                            <button type="button" id="nudge-decline"
-                                    class="w-full px-4 py-2.5 text-gray-500 text-sm hover:text-gray-700 transition">아니요, 문의만 보낼게요</button>
-                        </div>
-                    </div>
-                </div>
-
-                <script>
-                    // 휴대폰 번호 입력 중 하이픈 자동 삽입 (010-1234-5678)
-                    (function () {
-                        const phone = document.getElementById('phone-input');
-                        if (!phone) return;
-                        function formatPhone(value) {
-                            const d = value.replace(/\D/g, '').slice(0, 11);
-                            if (d.length < 4) return d;
-                            if (d.length < 8) return d.slice(0, 3) + '-' + d.slice(3);
-                            if (d.length < 11) return d.slice(0, 3) + '-' + d.slice(3, 6) + '-' + d.slice(6);
-                            return d.slice(0, 3) + '-' + d.slice(3, 7) + '-' + d.slice(7);
-                        }
-                        phone.addEventListener('input', function () {
-                            phone.value = formatPhone(phone.value);
-                        });
-                    })();
-
-                    // 모두 동의 마스터 체크박스: 한 번에 개인정보와 뉴스레터 모두 동의
-                    (function () {
-                        const all = document.getElementById('consent-all');
-                        const form = document.getElementById('contact-form');
-                        if (!all || !form) return;
-                        const privacy = form.querySelector('[name="privacy-consent"]');
-                        const marketing = form.querySelector('[name="marketing-consent"]');
-                        all.addEventListener('change', function () {
-                            privacy.checked = all.checked;
-                            marketing.checked = all.checked;
-                        });
-                        function sync() { all.checked = privacy.checked && marketing.checked; }
-                        privacy.addEventListener('change', sync);
-                        marketing.addEventListener('change', sync);
-                    })();
-
-                    const contactForm = document.getElementById('contact-form');
-                    const nudge = document.getElementById('newsletter-nudge');
-
-                    function showNudge() {
-                        nudge.classList.remove('hidden');
-                        nudge.classList.add('flex');
-                    }
-                    function hideNudge() {
-                        nudge.classList.add('hidden');
-                        nudge.classList.remove('flex');
-                    }
-
-                    async function submitForm(form) {
-                        const btn = document.getElementById('submit-btn');
-                        btn.textContent = '전송 중...';
-                        btn.disabled = true;
-                        try {
-                            const response = await fetch('/', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                                body: new URLSearchParams(new FormData(form)).toString()
-                            });
-                            if (response.ok) {
-                                window.location.href = '/success.html';
-                            } else {
-                                throw new Error('Form submission failed');
-                            }
-                        } catch (error) {
-                            alert('메시지 전송에 실패했습니다. 다시 시도해주세요.');
-                            btn.textContent = '문의 보내기';
-                            btn.disabled = false;
-                        }
-                    }
-
-                    contactForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        const form = e.target;
-                        const marketing = form.querySelector('[name="marketing-consent"]');
-                        // 선택 동의 미체크 시 1회만 뉴스레터 수신을 권유
-                        if (marketing && !marketing.checked && !form.dataset.nudged) {
-                            form.dataset.nudged = '1';
-                            showNudge();
-                            return;
-                        }
-                        submitForm(form);
-                    });
-
-                    document.getElementById('nudge-accept').addEventListener('click', function() {
-                        contactForm.querySelector('[name="marketing-consent"]').checked = true;
-                        hideNudge();
-                        submitForm(contactForm);
-                    });
-                    document.getElementById('nudge-decline').addEventListener('click', function() {
-                        hideNudge();
-                        submitForm(contactForm);
-                    });
-                    // 배경 클릭 또는 ESC는 닫기만 (전송하지 않음, 직접 체크 후 다시 보내도록)
-                    nudge.addEventListener('click', function(e) {
-                        if (e.target === nudge) hideNudge();
-                    });
-                    document.addEventListener('keydown', function(e) {
-                        if (e.key === 'Escape' && !nudge.classList.contains('hidden')) hideNudge();
-                    });
-                </script>
-            </section>
-
+        <div class="profile-text-col">
+          <span class="about-label reveal" style="color:var(--text-muted)">PROFILE</span>
+          <h2 class="about-text reveal d1">
+            결정한 것은 분석부터 배포까지<br>직접 만들어 프로덕션에 올립니다.
+          </h2>
+          <p class="about-description reveal d2" style="color:#555;margin-top:2rem">
+            자문, 강의, 개발을 한 곳에서. 현장 CTO 겸 COO 27년의 경험으로 AI 전환 결정부터 실행까지 함께합니다.
+          </p>
+          <div class="reveal d3" style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:8px">
+            <span class="tag-chip">AI 전략 자문</span>
+            <span class="tag-chip">AX 강의</span>
+            <span class="tag-chip">ERP / 대시보드 / 자동화 개발</span>
+            <span class="tag-chip">모바일 앱</span>
+          </div>
         </div>
-    </main>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-400 mb-3">Ahn Partners - 자문, 강의, 개발</p>
-            <div class="flex justify-center gap-6 mb-4">
-                <a href="#contact" class="text-gray-400 hover:text-white">문의</a>
-                <a href="index.html" class="text-gray-400 hover:text-white">납품 실적</a>
-                <a href="https://www.youtube.com/@ahn_partners" target="_blank" rel="noopener" class="text-gray-400 hover:text-white">YouTube</a>
-            </div>
-            <!-- 모바일 SNS 바 -->
-            <div class="sns-footer-mobile justify-center gap-5 mb-4">
-                <a href="https://www.youtube.com/@ahn_partners" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 text-xs">YouTube</a>
-                <a href="https://www.linkedin.com/in/chrisahn-intuition/" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 text-xs">LinkedIn</a>
-                <a href="https://www.threads.com/@crossfitwine" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 text-xs">Threads</a>
-                <a href="https://x.com/crossfitwine" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 text-xs">X</a>
-            </div>
-            <p class="text-gray-500 text-sm">&copy; 2026 Ahn Partners. All rights reserved.</p>
+  <!-- ============================================
+       STATS
+  ============================================= -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number" data-target="70" data-suffix="+">0</div>
+          <div class="stat-label">고객사</div>
+          <div class="stat-desc">삼성, 현대, 통신 3사, 공공기관 등</div>
         </div>
-    </footer>
+        <div class="stat-item reveal d1">
+          <div class="stat-number" data-target="7" data-suffix="개사">0</div>
+          <div class="stat-label">자문</div>
+          <div class="stat-desc">전원 투자 유치, 130억 확보</div>
+        </div>
+        <div class="stat-item reveal d2">
+          <div class="stat-number" data-target="52" data-suffix="건">0</div>
+          <div class="stat-label">강의</div>
+          <div class="stat-desc">기업, 공공기관</div>
+        </div>
+        <div class="stat-item reveal d3">
+          <div class="stat-number" data-target="30" data-suffix="+">0</div>
+          <div class="stat-label">개발 납품</div>
+          <div class="stat-desc">앱 누적 500만 이상 다운로드</div>
+        </div>
+      </div>
+      <p class="stats-tagline reveal">
+        현장 CTO 겸 COO 27년. AI로 바꾸라는 말은 누구나 합니다. 직접 만들어 돌려본 사람은 드뭅니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SERVICES DETAIL (dark)
+  ============================================= -->
+  <section id="services" class="thinking-section">
+    <div class="container">
+      <h2 class="section-title reveal" style="margin-bottom:6rem">
+        <span class="word-thin" style="color:#fff">Our</span>
+        <span class="word-bold" style="color:#fff">SERVICES</span>
+      </h2>
+      <div class="service-list">
+        <div class="service-item reveal">
+          <div class="service-number">01</div>
+          <div class="service-content-inner">
+            <h3 class="service-title"><span class="grad-text">자문</span></h3>
+            <p class="service-desc">
+              어디에 AI를 쓸지, 무엇을 먼저 할지, 결정을 함께 내리는 기술경영 파트너입니다. 정부 R&amp;D 과제 심사 위원, 벤처 투자 자문 위원으로 활동하고 있습니다.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">업무 분석</span>
+              <span class="service-tag">AI 로드맵</span>
+              <span class="service-tag">ROI 설계</span>
+              <span class="service-tag">의사결정 지원</span>
+              <span class="service-tag">R&amp;D 심사</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-item reveal d1">
+          <div class="service-number">02</div>
+          <div class="service-content-inner">
+            <h3 class="service-title"><span class="grad-text">강의</span></h3>
+            <p class="service-desc">
+              비개발 임원이 AI 전환(AX)을 스스로 판단하고 주도하도록 설계된 강의입니다. 삼성, 현대, 통신 3사 등 대기업과 공공기관에서 52건 진행했습니다.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">맞춤 커리큘럼</span>
+              <span class="service-tag">실무 중심</span>
+              <span class="service-tag">C레벨 강의</span>
+              <span class="service-tag">팀별 워크숍</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-item reveal d2">
+          <div class="service-number">03</div>
+          <div class="service-content-inner">
+            <h3 class="service-title"><span class="grad-text">개발</span></h3>
+            <p class="service-desc">
+              정한 것은 직접 만듭니다. 분석부터 배포까지, 실제 운영되는 시스템으로. ERP, 데이터 대시보드, 노선 최적화, 자동화 시스템을 30건 이상 납품했습니다. 앱 누적 500만 이상 다운로드.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">풀스택 개발</span>
+              <span class="service-tag">데이터 파이프라인</span>
+              <span class="service-tag">자동화</span>
+              <span class="service-tag">운영 가능 시스템</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TECH STACK
+  ============================================= -->
+  <section class="stack-section">
+    <div class="container">
+      <h2 class="section-title reveal" style="margin-bottom:6rem">
+        <span class="word-thin">Tech</span>
+        <span class="word-bold">STACK</span>
+      </h2>
+      <div class="stack-grid">
+        <div class="reveal">
+          <p class="stack-col-title">기술 스택</p>
+
+          <div class="stack-category">
+            <div class="stack-category-label">Frontend</div>
+            <div class="stack-chips">
+              <span class="stack-chip">Next.js</span>
+              <span class="stack-chip">React</span>
+              <span class="stack-chip">TypeScript</span>
+              <span class="stack-chip">Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="stack-category">
+            <div class="stack-category-label">Backend</div>
+            <div class="stack-chips">
+              <span class="stack-chip">Python</span>
+              <span class="stack-chip">FastAPI</span>
+              <span class="stack-chip">Node.js</span>
+            </div>
+          </div>
+
+          <div class="stack-category">
+            <div class="stack-category-label">Database &amp; Infra</div>
+            <div class="stack-chips">
+              <span class="stack-chip">PostgreSQL</span>
+              <span class="stack-chip">MySQL</span>
+              <span class="stack-chip">Supabase</span>
+              <span class="stack-chip">AWS</span>
+              <span class="stack-chip">Docker</span>
+            </div>
+          </div>
+
+          <div class="stack-category">
+            <div class="stack-category-label">데이터 시각화 &amp; GIS</div>
+            <div class="stack-chips">
+              <span class="stack-chip">Chart.js</span>
+              <span class="stack-chip">MapLibre GL</span>
+              <span class="stack-chip">Kakao Maps</span>
+              <span class="stack-chip">Leaflet.js</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal d1">
+          <p class="stack-col-title">수행 프로젝트</p>
+          <ul class="project-list">
+            <li class="project-list-item">운송 그룹 ERP 시스템 (3개 법인 통합)</li>
+            <li class="project-list-item">물류 노선 최적화 시스템</li>
+            <li class="project-list-item">GIS 기반 노선 편집기</li>
+            <li class="project-list-item">인터랙티브 데이터 대시보드</li>
+            <li class="project-list-item">모바일 앱 서비스 500만 이상 다운로드</li>
+            <li class="project-list-item">대기업 B2B 서비스 통신 3사</li>
+            <li class="project-list-item">30억 이상 규모 프로젝트</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONTACT FORM
+  ============================================= -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:5rem">
+        <h2 class="section-title">
+          <span class="word-thin">Let's</span>
+          <span class="word-bold">CONNECT</span>
+        </h2>
+      </div>
+
+      <div style="max-width:680px;margin:0 auto">
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none"><label>Bot field: <input name="bot-field"></label></p>
+
+          <div class="form-group">
+            <label class="form-label" for="inputName">이름 *</label>
+            <input type="text" id="inputName" name="name" class="form-input" required placeholder="홍길동">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="inputEmail">이메일 *</label>
+            <input type="email" id="inputEmail" name="email" class="form-input" required placeholder="email@company.com">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phoneInput">휴대폰</label>
+            <input type="tel" id="phoneInput" name="phone" class="form-input" placeholder="010-0000-0000">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="inputType">문의 유형 *</label>
+            <select id="inputType" name="inquiry_type" class="form-input" required>
+              <option value="">선택해주세요</option>
+              <option value="자문">AI 전략 자문</option>
+              <option value="강의">AX 강의</option>
+              <option value="개발">시스템 개발</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="inputMessage">문의 내용 *</label>
+            <textarea id="inputMessage" name="message" class="form-input form-textarea" required rows="5" placeholder="문의 내용을 입력해주세요."></textarea>
+          </div>
+
+          <!-- Privacy consent -->
+          <div class="consent-section">
+            <label class="consent-master">
+              <input type="checkbox" id="consentAll">
+              <span>모두 동의</span>
+            </label>
+            <div class="consent-items">
+              <label class="consent-item">
+                <input type="checkbox" id="consentPrivacy" name="consent_privacy" required>
+                <span>[필수] 개인정보 수집 및 이용에 동의합니다.</span>
+              </label>
+              <label class="consent-item">
+                <input type="checkbox" id="consentNewsletter" name="consent_newsletter">
+                <span>[선택] AI 전환 관련 뉴스레터 수신에 동의합니다.</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">문의 보내기</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+  ============================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo" style="color:#fff;margin-bottom:0.5rem">Ahn Partners</div>
+          <div class="footer-brand-desc">AI 전환, 결정부터 실행까지</div>
+        </div>
+        <div class="footer-links">
+          <a href="about.html#contact" class="footer-link">문의</a>
+          <a href="index.html" class="footer-link">홈</a>
+          <a href="https://www.youtube.com/@ahn_partners" class="footer-link" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.linkedin.com/in/chrisahn-intuition/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.threads.com/@crossfitwine" class="footer-link" target="_blank" rel="noopener">Threads</a>
+          <a href="https://x.com/crossfitwine" class="footer-link" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Ahn Partners
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       NEWSLETTER MODAL
+  ============================================= -->
+  <div id="newsletterModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;padding:1rem">
+    <div style="background:#fff;border-radius:12px;padding:2.5rem;max-width:420px;width:100%;text-align:center">
+      <h3 style="font-size:1.3rem;font-weight:700;color:#111;margin-bottom:1rem;word-break:keep-all">뉴스레터를 구독하시겠어요?</h3>
+      <p style="font-size:0.9rem;color:#555;line-height:1.6;margin-bottom:2rem;word-break:keep-all">AI 전환 관련 인사이트와 사례를 정기적으로 보내드립니다. 언제든지 구독을 취소할 수 있습니다.</p>
+      <div style="display:flex;gap:1rem;justify-content:center">
+        <button id="newsletterDecline" style="padding:12px 24px;border:1.5px solid #ddd;border-radius:8px;background:#fff;color:#555;font-size:0.9rem;cursor:pointer;font-family:inherit">괜찮습니다</button>
+        <button id="newsletterAccept" style="padding:12px 24px;border:none;border-radius:8px;background:linear-gradient(120deg,#2dd4bf,#f5a623);color:#fff;font-size:0.9rem;font-weight:700;cursor:pointer;font-family:inherit">구독할게요</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    // ===== LENIS SMOOTH SCROLL =====
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // ===== HEADER SCROLL =====
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // ===== MOBILE MENU =====
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(function(link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // ===== HERO CANVAS METABALL GOO =====
+    const heroCanvas = document.getElementById('hero-canvas');
+    const ctx = heroCanvas.getContext('2d');
+    const blobs = [];
+
+    function resizeCanvas() {
+      heroCanvas.width = window.innerWidth;
+      heroCanvas.height = document.getElementById('hero').offsetHeight || window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    function Blob(x, y, vx, vy) {
+      this.x = x;
+      this.y = y;
+      this.vx = vx * 0.4;
+      this.vy = vy * 0.4;
+      this.radius = 80 + Math.random() * 120;
+      this.life = 1.0;
+      this.decay = 0.003 + Math.random() * 0.004;
+      this.hue = Math.random() > 0.5 ? 'teal' : 'white';
+    }
+
+    Blob.prototype.update = function() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vx *= 0.98;
+      this.vy *= 0.98;
+      this.life -= this.decay;
+    };
+
+    Blob.prototype.draw = function(ctx) {
+      if (this.life <= 0) return;
+      var grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+      if (this.hue === 'teal') {
+        grad.addColorStop(0, 'rgba(45,212,191,' + (this.life * 0.9) + ')');
+        grad.addColorStop(1, 'rgba(45,212,191,0)');
+      } else {
+        grad.addColorStop(0, 'rgba(220,220,220,' + (this.life * 0.7) + ')');
+        grad.addColorStop(1, 'rgba(220,220,220,0)');
+      }
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    };
+
+    var lastX = -1000, lastY = -1000, lastBlobTime = 0;
+
+    document.getElementById('hero').addEventListener('mousemove', function(e) {
+      var now = Date.now();
+      var dx = e.clientX - lastX;
+      var dy = e.clientY - lastY;
+      var speed = Math.sqrt(dx * dx + dy * dy);
+      if (speed > 5 && now - lastBlobTime > 30) {
+        blobs.push(new Blob(
+          e.clientX,
+          e.clientY,
+          dx * 0.3 + (Math.random() - 0.5) * 4,
+          dy * 0.3 + (Math.random() - 0.5) * 4
+        ));
+        if (blobs.length > 60) blobs.shift();
+        lastX = e.clientX;
+        lastY = e.clientY;
+        lastBlobTime = now;
+      }
+    });
+
+    heroCanvas.style.filter = 'blur(30px) contrast(20)';
+
+    function animateBlobs() {
+      ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+      for (var i = blobs.length - 1; i >= 0; i--) {
+        blobs[i].update();
+        blobs[i].draw(ctx);
+        if (blobs[i].life <= 0) blobs.splice(i, 1);
+      }
+      requestAnimationFrame(animateBlobs);
+    }
+    animateBlobs();
+
+    // Mobile: auto-floating blobs
+    if (window.matchMedia('(pointer:coarse)').matches) {
+      setInterval(function() {
+        var x = Math.random() * heroCanvas.width;
+        var y = Math.random() * heroCanvas.height;
+        blobs.push(new Blob(x, y, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2));
+        if (blobs.length > 30) blobs.shift();
+      }, 400);
+    }
+
+    // ===== REVEAL INTERSECTION OBSERVER =====
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    // ===== COUNTUP =====
+    function animateCount(el, target, suffix) {
+      var duration = 1800;
+      var start = performance.now();
+
+      function step(now) {
+        var elapsed = now - start;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(target * eased);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    var countObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.dataset.target, 10);
+          var suffix = el.dataset.suffix || '';
+          animateCount(el, target, suffix);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.stat-number[data-target]').forEach(function(el) {
+      countObserver.observe(el);
+    });
+
+    // ===== ANCHOR SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -80 });
+        }
+      });
+    });
+
+    // ===== PHONE AUTO-FORMAT =====
+    document.getElementById('phoneInput').addEventListener('input', function(e) {
+      var v = e.target.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
+      if (v.length >= 8) {
+        v = v.slice(0, 3) + '-' + v.slice(3, 7) + '-' + v.slice(7);
+      } else if (v.length >= 4) {
+        v = v.slice(0, 3) + '-' + v.slice(3);
+      }
+      e.target.value = v;
+    });
+
+    // ===== CONSENT CHECKBOXES =====
+    var consentAll = document.getElementById('consentAll');
+    var consentPrivacy = document.getElementById('consentPrivacy');
+    var consentNewsletter = document.getElementById('consentNewsletter');
+
+    consentAll.addEventListener('change', function() {
+      consentPrivacy.checked = this.checked;
+      consentNewsletter.checked = this.checked;
+    });
+
+    [consentPrivacy, consentNewsletter].forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        consentAll.checked = consentPrivacy.checked && consentNewsletter.checked;
+      });
+    });
+
+    // ===== FORM SUBMIT WITH NEWSLETTER MODAL =====
+    var newsletterModalShown = false;
+    var newsletterModal = document.getElementById('newsletterModal');
+    var contactForm = document.getElementById('contactForm');
+    var submitBtn = document.getElementById('submitBtn');
+
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      if (!consentPrivacy.checked) {
+        alert('개인정보 수집 및 이용에 동의해주세요.');
+        return;
+      }
+
+      if (!consentNewsletter.checked && !newsletterModalShown) {
+        newsletterModalShown = true;
+        newsletterModal.style.display = 'flex';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '전송 중...';
+
+      var formData = new FormData(contactForm);
+      try {
+        var res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+        if (res.ok) {
+          window.location.href = '/success.html';
+        } else {
+          throw new Error('서버 오류');
+        }
+      } catch (err) {
+        alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '문의 보내기';
+      }
+    });
+
+    document.getElementById('newsletterDecline').addEventListener('click', function() {
+      newsletterModal.style.display = 'none';
+      contactForm.dispatchEvent(new Event('submit'));
+    });
+
+    document.getElementById('newsletterAccept').addEventListener('click', function() {
+      consentNewsletter.checked = true;
+      consentAll.checked = consentPrivacy.checked && consentNewsletter.checked;
+      newsletterModal.style.display = 'none';
+      contactForm.dispatchEvent(new Event('submit'));
+    });
+  </script>
 </body>
 </html>

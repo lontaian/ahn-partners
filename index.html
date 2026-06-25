@@ -1,810 +1,2692 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahn Partners | 자문, 강의, 개발</title>
-    <meta name="description" content="AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발. 기술경영 의사결정 파트너.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahn Partners | AI 전환 자문, 강의, 개발</title>
+  <meta name="description" content="AI 전환, 결정부터 실행까지. AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="canonical" href="https://ahn-partners.netlify.app/">
 
-    <link rel="canonical" href="https://ahn-partners.netlify.app/">
+  <meta property="og:title" content="Ahn Partners | AI 전환 자문, 강의, 개발">
+  <meta property="og:description" content="AI 전환, 결정부터 실행까지. AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ahn-partners.netlify.app/">
+  <meta property="og:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
+  <meta property="og:site_name" content="Ahn Partners">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ahn Partners | AI 전환 자문, 강의, 개발">
+  <meta name="twitter:description" content="AI 전환, 결정부터 실행까지.">
+  <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Ahn Partners | 자문, 강의, 개발">
-    <meta property="og:description" content="AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ahn-partners.netlify.app/">
-    <meta property="og:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
-    <meta property="og:site_name" content="Ahn Partners">
-    <meta property="og:locale" content="ko_KR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;700;800&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ahn Partners | 자문, 강의, 개발">
-    <meta name="twitter:description" content="AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
-    <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
-
-    <!-- Tailwind CSS (Built) -->
-    <link rel="stylesheet" href="./dist/output.css">
-
-    <!-- Pretendard Font (Dynamic Subset) -->
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
-
-    <style>
-        body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
-        @media (max-width: 639px) {
-            .hero-mobile-br { display: block !important; }
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-        }
-        .card-hover:hover .card-image {
-            transform: scale(1.05);
-        }
-        .card-image {
-            transition: transform 0.3s ease;
-            filter: saturate(0.5);
-        }
-        .card-content {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-        .card-description {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            min-height: 2.5rem;
-        }
-        .card-buttons {
-            margin-top: auto;
-        }
-        .tech-badge {
-            @apply px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-700;
-        }
-        .category-badge {
-            @apply px-3 py-1 text-xs font-medium rounded-full;
-        }
-        /* 접수 중 배지 - 초록 점 glow */
-        @keyframes live-pulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(107, 114, 128, 0.7);
-                opacity: 1;
-            }
-            50% {
-                box-shadow: 0 0 8px 4px rgba(107, 114, 128, 0.3);
-                opacity: 0.6;
-            }
-        }
-        .live-dot {
-            animation: live-pulse 1.5s ease-in-out infinite;
-        }
-        /* 히어로 진입 애니메이션 */
-        @keyframes fade-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-animate { animation: fade-up 0.6s ease-out both; }
-        .hero-animate-delay-1 { animation: fade-up 0.6s ease-out 0.15s both; }
-        .hero-animate-delay-2 { animation: fade-up 0.6s ease-out 0.3s both; }
-        .hero-animate-delay-3 { animation: fade-up 0.6s ease-out 0.45s both; }
-        .hero-animate-delay-4 { animation: fade-up 0.6s ease-out 0.6s both; }
-
-        /* SNS 사이드바 - 데스크톱 */
-        .sns-sidebar {
-            position: fixed;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 40;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .sns-sidebar a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.25rem;
-            height: 2.25rem;
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 50%;
-            color: #6b7280;
-            transition: color 0.2s, border-color 0.2s, background 0.2s;
-        }
-        .sns-sidebar a:hover {
-            color: #3A5169;
-            border-color: #3A5169;
-            background: #f0f4f8;
-        }
-        .sns-sidebar a svg {
-            width: 1rem;
-            height: 1rem;
-            fill: currentColor;
-        }
-        /* 모바일에서도 상시 노출: 하단 우측에 작게 고정 */
-        @media (max-width: 1023px) {
-            .sns-sidebar { top: auto; bottom: 1rem; transform: none; right: 0.5rem; gap: 0.4rem; }
-            .sns-sidebar a { width: 2rem; height: 2rem; }
-        }
-        .sns-footer-mobile { display: none; }
-
-        /* 큐레이션: 더 보기 전 비큐레이션 카드 숨김 */
-        #projects-grid:not(.show-all) article:not([data-curated="1"]) {
-            display: none !important;
-        }
-        /* 필터가 활성화되면 show-all처럼 동작 (필터 탭이 직접 display 제어) */
-
-        /* 모바일 터치 타깃 44px */
-        @media (max-width: 1023px) {
-            .filter-btn { min-height: 44px; padding-top: 0.625rem; padding-bottom: 0.625rem; }
-            .branch-btn { min-height: 44px; display: inline-flex; align-items: center; }
-            .sns-sidebar a { min-width: 44px; min-height: 44px; }
-        }
-    </style>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "name": "Ahn Partners",
-          "url": "https://ahn-partners.netlify.app",
-          "logo": "https://ahn-partners.netlify.app/favicon.png",
-          "description": "AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.",
-          "areaServed": {
-            "@type": "Country",
-            "name": "KR"
-          },
-          "knowsAbout": ["AI 전략 자문", "AX 교육", "웹 애플리케이션 개발", "ERP 시스템", "데이터 대시보드", "노선 최적화", "자동화 시스템"],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "서비스",
-            "itemListElement": [
-              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AI 전략 자문"}},
-              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AX 강의 / 교육"}},
-              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "시스템 개발 (ERP, 대시보드, 자동화)"}}
-            ]
-          }
-        },
-        {
-          "@type": "WebSite",
-          "name": "Ahn Partners",
-          "url": "https://ahn-partners.netlify.app",
-          "inLanguage": "ko-KR"
-        },
-        {
-          "@type": "CollectionPage",
-          "name": "납품 실적",
-          "url": "https://ahn-partners.netlify.app/",
-          "description": "Ahn Partners 납품 실적. ERP, 대시보드, 노선 최적화, 자동화 시스템 등 30건 이상.",
-          "isPartOf": {
-            "@type": "WebSite",
-            "url": "https://ahn-partners.netlify.app"
-          }
-        }
-      ]
+  <style>
+    /* =============================================
+       CSS VARIABLES
+    ============================================= */
+    :root {
+      --bg-color: #f8f8f8;
+      --text-color: #111;
+      --text-muted: #666;
+      --surface-color: #fff;
+      --container-width: 1400px;
+      --section-padding: 10rem;
+      --font-main: 'Inter', 'Pretendard Variable', Pretendard, sans-serif;
+      --font-display: 'Playfair Display', serif;
+      --teal: #2dd4bf;
+      --amber: #f5a623;
+      --grad: linear-gradient(120deg, #2dd4bf, #f5a623);
     }
-    </script>
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* =============================================
+       CONTAINER
+    ============================================= */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    /* =============================================
+       MIX BLEND MODE
+    ============================================= */
+    .mix-difference {
+      mix-blend-mode: difference;
+      color: #fff;
+    }
+
+    /* =============================================
+       REVEAL ANIMATION
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+                  transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+
+    /* =============================================
+       TYPOGRAPHY PATTERNS
+    ============================================= */
+    .word-thin {
+      font-weight: 100;
+      font-size: clamp(2rem, 7vw, 4.5rem);
+      opacity: 0.6;
+      letter-spacing: -0.05em;
+      display: inline-block;
+    }
+
+    .word-bold {
+      font-weight: 800;
+      font-size: clamp(3rem, 11vw, 8.5rem);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      display: inline-block;
+    }
+
+    .serif-italic {
+      font-family: var(--font-display);
+      font-style: italic;
+    }
+
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-header {
+      margin-bottom: 10rem;
+    }
+
+    /* =============================================
+       HEADER
+    ============================================= */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      height: 80px;
+      transition: background 0.35s, backdrop-filter 0.35s, border-color 0.35s;
+    }
+
+    .header.scrolled {
+      background: rgba(5, 5, 5, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .desktop-nav .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover {
+      opacity: 0.7;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+    }
+
+    /* Mobile overlay */
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: #050505;
+      z-index: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-nav-link {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .mobile-nav-link:hover {
+      opacity: 0.6;
+    }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #050505;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 60%, #050505);
+      pointer-events: none;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 20px;
+      max-width: var(--container-width);
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      line-height: 0.8;
+      margin-bottom: 0;
+      isolation: isolate;
+    }
+
+    .hero-title .word-thin {
+      margin-right: 15vw;
+      font-size: clamp(2.2rem, 8vw, 5.5rem);
+      mix-blend-mode: difference;
+      color: #fff;
+      opacity: 1;
+    }
+
+    .hero-title .word-bold {
+      margin-left: 10vw;
+      margin-top: -0.12em;
+      font-size: clamp(3.5rem, 12vw, 10rem);
+      mix-blend-mode: difference;
+      color: #fff;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+      text-transform: uppercase;
+      letter-spacing: 0.18rem;
+      margin-top: 2.5rem;
+      opacity: 0.9;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      opacity: 0.55;
+      z-index: 2;
+      animation: scrollBob 2s ease-in-out infinite;
+      cursor: default;
+    }
+
+    .scroll-chevrons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0px;
+    }
+
+    .scroll-chevron {
+      width: 16px;
+      height: 9px;
+      border-left: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(-45deg);
+      display: block;
+      margin-top: -3px;
+    }
+
+    .scroll-chevron:first-child {
+      opacity: 0.5;
+    }
+
+    .scroll-chevron:last-child {
+      opacity: 1;
+    }
+
+    @keyframes scrollBob {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* =============================================
+       INTRO / ABOUT SECTION
+    ============================================= */
+    .about {
+      background: var(--surface-color);
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: var(--section-padding) 0;
+    }
+
+    .about-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      line-height: 0.9;
+      margin-bottom: 0;
+      word-break: keep-all;
+    }
+
+    .word-us {
+      font-weight: 800;
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      letter-spacing: -0.02em;
+      display: block;
+      word-break: keep-all;
+    }
+
+    .about-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 800px;
+      word-break: keep-all;
+      margin-top: 3rem;
+    }
+
+    /* =============================================
+       STATS SECTION
+    ============================================= */
+    .stats-section {
+      background: #f4f4f4;
+      padding: var(--section-padding) 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      word-break: keep-all;
+    }
+
+    .stat-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    .stats-tagline {
+      text-align: center;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+      word-break: keep-all;
+    }
+
+    /* =============================================
+       SERVICES / THINKING SECTION
+    ============================================= */
+    .thinking-section {
+      background: #1a1f2b;
+      color: #fff;
+      padding: var(--section-padding) 0;
+    }
+
+    .thinking-section .section-title {
+      margin-bottom: 6rem;
+    }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 2rem;
+      padding: 3rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      align-items: start;
+    }
+
+    .service-item:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .service-number {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: #cfcfcf;
+      padding-top: 0.4rem;
+    }
+
+    .service-content-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .service-title {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .service-title .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .service-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #cfcfcf;
+      max-width: 600px;
+      word-break: keep-all;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .service-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      border-radius: 999px;
+      color: var(--teal);
+    }
+
+    /* =============================================
+       CASES CAROUSEL
+    ============================================= */
+    .cases-section {
+      background: var(--bg-color);
+      padding: var(--section-padding) 0;
+      overflow: hidden;
+    }
+
+    .cases-section .section-title {
+      margin-bottom: 4rem;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      position: relative;
+    }
+
+    .case-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.65s ease;
+      pointer-events: none;
+    }
+
+    .case-card.active {
+      opacity: 1;
+      pointer-events: all;
+      position: relative;
+    }
+
+    .case-card-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .case-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .case-title {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      word-break: keep-all;
+    }
+
+    .case-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      word-break: keep-all;
+    }
+
+    .case-visual {
+      aspect-ratio: 4/3;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 케이스 비주얼 공통 도트 그리드 */
+    .case-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px);
+      background-size: 20px 20px;
+      z-index: 1;
+    }
+
+    .case-visual-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      z-index: 0;
+    }
+
+    .case-visual-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .case-visual-label {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.4rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 100;
+      font-size: clamp(3rem, 5vw, 5rem);
+      letter-spacing: -0.06em;
+      color: rgba(255,255,255,0.07);
+      z-index: 3;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 3rem;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ddd;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: var(--teal);
+      transform: scale(1.3);
+    }
+
+    /* =============================================
+       PROJECTS SECTION
+    ============================================= */
+    .projects {
+      background: var(--bg-color);
+      padding: var(--section-padding) 0;
+    }
+
+    .projects .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+
+    .word-selected {
+      display: block;
+      font-weight: 100;
+      font-size: clamp(2.5rem, 8vw, 8vw);
+      opacity: 0.6;
+      letter-spacing: -0.05em;
+    }
+
+    .word-works {
+      display: block;
+      font-weight: 800;
+      font-size: clamp(3.5rem, 12vw, 12vw);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.85;
+    }
+
+    .project-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Category filter */
+    .category-filter-container {
+      position: sticky;
+      top: 80px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      margin: 0 auto 3rem;
+      background: rgba(248, 248, 248, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 50px;
+      padding: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      border: 1px solid transparent;
+      user-select: none;
+    }
+
+    .filter-chip[data-cat="ALL"] {
+      background: var(--text-color);
+      color: #fff;
+    }
+
+    .filter-chip[data-cat="ALL"].inactive {
+      background: transparent;
+      color: var(--text-color);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .filter-chip[data-cat="웹앱"] {
+      background: #0d9488;
+      color: #fff;
+      border-color: #0d9488;
+    }
+
+    .filter-chip[data-cat="웹앱"].inactive {
+      background: transparent;
+      color: #0d9488;
+      border-color: #0d9488;
+    }
+
+    .filter-chip[data-cat="자동화"] {
+      background: #b45309;
+      color: #fff;
+      border-color: #b45309;
+    }
+
+    .filter-chip[data-cat="자동화"].inactive {
+      background: transparent;
+      color: #b45309;
+      border-color: #b45309;
+    }
+
+    .filter-chip[data-cat="분석"] {
+      background: #6d28d9;
+      color: #fff;
+      border-color: #6d28d9;
+    }
+
+    .filter-chip[data-cat="분석"].inactive {
+      background: transparent;
+      color: #6d28d9;
+      border-color: #6d28d9;
+    }
+
+    .filter-chip[data-cat="플랫폼"] {
+      background: #1d4ed8;
+      color: #fff;
+      border-color: #1d4ed8;
+    }
+
+    .filter-chip[data-cat="플랫폼"].inactive {
+      background: transparent;
+      color: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+
+    /* Mobile chips */
+    @media (max-width: 768px) {
+      .filter-chip:not([data-cat="ALL"]) {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border-radius: 50%;
+      }
+
+      .filter-chip:not([data-cat="ALL"]) .chip-text {
+        display: none;
+      }
+
+      .filter-chip:not([data-cat="ALL"])::before {
+        content: attr(data-initial);
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .filter-chip[data-cat="ALL"] {
+        padding: 8px 16px;
+      }
+    }
+
+    /* Project grid */
+    .project-grid-3col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    /* Work card */
+    .work-card {
+      background: var(--surface-color);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .work-card:hover {
+        background: #272926;
+        transform: translateY(-4px);
+      }
+
+      .work-card:hover .work-title,
+      .work-card:hover .work-feature-item {
+        color: #fff;
+      }
+
+      .work-card:hover .work-links a {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .work-card:hover .work-links a:first-child {
+        color: var(--teal);
+      }
+    }
+
+    .work-image-wrapper {
+      aspect-ratio: 1.8 / 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Card abstract visual */
+    .work-image-placeholder {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 도트 그리드 패턴 (전 카드 공통) */
+    .work-image-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+      background-size: 22px 22px;
+      z-index: 1;
+      transition: transform 0.6s ease;
+    }
+
+    .work-card:hover .work-image-placeholder::before {
+      transform: scale(1.06);
+    }
+
+    /* 카드 번호 */
+    .card-num {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 1.2rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 100;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      line-height: 1;
+      color: rgba(255,255,255,0.08);
+      letter-spacing: -0.06em;
+      z-index: 2;
+      user-select: none;
+      transition: color 0.4s;
+    }
+
+    .work-card:hover .card-num {
+      color: rgba(255,255,255,0.14);
+    }
+
+    /* 카테고리 워드마크 */
+    .card-wordmark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(0.65rem, 1.2vw, 1rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      z-index: 2;
+      white-space: nowrap;
+      transition: color 0.4s, letter-spacing 0.4s;
+    }
+
+    .work-card:hover .card-wordmark {
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.28em;
+    }
+
+    /* 글로우 오버레이 */
+    .card-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.45;
+      z-index: 0;
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .work-card:hover .card-glow {
+      opacity: 0.7;
+      transform: scale(1.15);
+    }
+
+    /* 카테고리별 배경 + 글로우 색상 */
+    .card-bg-webapp {
+      background: linear-gradient(135deg, #071e22 0%, #0b2d35 50%, #091520 100%);
+    }
+    .card-bg-webapp .card-glow {
+      background: radial-gradient(circle, #2dd4bf 0%, transparent 70%);
+      width: 160px; height: 160px;
+      top: -20px; left: -20px;
+    }
+
+    .card-bg-erp {
+      background: linear-gradient(135deg, #070d1c 0%, #0c1a38 50%, #0a1020 100%);
+    }
+    .card-bg-erp .card-glow {
+      background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+      width: 180px; height: 180px;
+      top: -30px; right: -10px; left: auto;
+    }
+
+    .card-bg-auto {
+      background: linear-gradient(135deg, #130c02 0%, #271700 50%, #1a0e00 100%);
+    }
+    .card-bg-auto .card-glow {
+      background: radial-gradient(circle, #f5a623 0%, transparent 70%);
+      width: 150px; height: 150px;
+      top: -10px; right: -20px; left: auto;
+    }
+
+    .card-bg-analysis {
+      background: linear-gradient(135deg, #0d0520 0%, #1a0833 50%, #0e0520 100%);
+    }
+    .card-bg-analysis .card-glow {
+      background: radial-gradient(circle, #a78bfa 0%, transparent 70%);
+      width: 160px; height: 160px;
+      top: -20px; left: 10px;
+    }
+
+    .card-bg-platform {
+      background: linear-gradient(135deg, #050e28 0%, #0c1d4a 50%, #060d20 100%);
+    }
+    .card-bg-platform .card-glow {
+      background: radial-gradient(circle, #60a5fa 0%, transparent 70%);
+      width: 160px; height: 160px;
+      top: -20px; right: 0; left: auto;
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.3s;
+    }
+
+    .work-card:hover .work-overlay {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .work-info {
+      padding: 1.5rem;
+    }
+
+    .work-header-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .work-category-chip {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .work-category-chip[data-cat="웹앱"] { background: rgba(13,148,136,0.12); color: #0d9488; }
+    .work-category-chip[data-cat="자동화"] { background: rgba(180,83,9,0.12); color: #b45309; }
+    .work-category-chip[data-cat="분석"] { background: rgba(109,40,217,0.12); color: #6d28d9; }
+    .work-category-chip[data-cat="플랫폼"] { background: rgba(29,78,216,0.12); color: #1d4ed8; }
+
+    .work-featured-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--grad);
+      color: #111;
+    }
+
+    .work-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--text-color);
+      margin-bottom: 0.6rem;
+      word-break: keep-all;
+      transition: color 0.3s;
+    }
+
+    .work-feature-list {
+      margin-bottom: 1rem;
+    }
+
+    .work-feature-item {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      word-break: keep-all;
+      transition: color 0.3s;
+    }
+
+    .work-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .work-tag-chip {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      color: var(--text-muted);
+    }
+
+    .work-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .work-link {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-color);
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .work-link-primary {
+      color: var(--teal);
+    }
+
+    /* Hidden cards */
+    .work-card.hidden {
+      display: none;
+    }
+
+    /* Show more button */
+    .show-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 36px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: var(--text-color);
+      color: #fff;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .show-more-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    /* =============================================
+       PROCESS SECTION
+    ============================================= */
+    .process-section {
+      background: var(--bg-color);
+      padding: var(--section-padding) 0;
+    }
+
+    .process-title {
+      margin-bottom: 6rem;
+    }
+
+    .process-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .process-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      align-items: start;
+    }
+
+    .process-item:first-child {
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .process-num {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      padding-top: 0.3rem;
+    }
+
+    .process-content {}
+
+    .process-step-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+      word-break: keep-all;
+    }
+
+    .process-step-desc {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      word-break: keep-all;
+      max-width: 600px;
+    }
+
+    .process-cta {
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: var(--grad);
+      color: #111;
+      transition: filter 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+    }
+
+    /* =============================================
+       CONTACT SECTION
+    ============================================= */
+    .contact {
+      position: relative;
+      background: var(--surface-color);
+      padding: var(--section-padding) 0;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .contact-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 15vw;
+      font-weight: 800;
+      opacity: 0.05;
+      white-space: nowrap;
+      letter-spacing: -0.04em;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .contact-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .contact-label {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      word-break: keep-all;
+      line-height: 1.7;
+    }
+
+    .contact-email {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      transition: color 0.2s;
+      word-break: keep-all;
+    }
+
+    .contact-email:hover {
+      color: var(--teal);
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: #111;
+      color: #fff;
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-link {
+      color: #999;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #222;
+      padding-top: 1.5rem;
+      color: #555;
+      font-size: 0.8rem;
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 5rem;
+      }
+
+      .word-thin {
+        font-size: clamp(1.6rem, 6vw, 2.8rem);
+        opacity: 0.6;
+      }
+
+      .word-bold {
+        font-size: clamp(2.4rem, 10vw, 4.5rem);
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .hero-title .word-thin {
+        margin-right: 5vw;
+      }
+
+      .hero-title .word-bold {
+        margin-left: 5vw;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .service-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .case-card-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .projects .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .process-item {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .project-grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .project-grid-3col {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body>
 
-    <!-- SNS 사이드바 (데스크톱 고정) -->
-    <aside class="sns-sidebar" aria-label="SNS 링크">
-        <a href="https://www.youtube.com/@ahn_partners" target="_blank" rel="noopener" title="YouTube">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/chrisahn-intuition/" target="_blank" rel="noopener" title="LinkedIn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://www.threads.com/@crossfitwine" target="_blank" rel="noopener" title="Threads">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.689-2.044 1.567-1.67 1.54-3.875 1.501-4.373-.18-1.189-.788-2.348-1.775-3.225-.128 2.617-.76 4.886-1.885 6.716-1.197 1.944-2.913 3.027-4.986 3.143zm.274-8.663c1.665-.147 2.967-.77 3.875-1.853.944-1.124 1.394-2.688 1.345-4.65-1.199-.584-2.543-.888-3.988-.888-.12 0-.24.003-.36.008-.24.01-.484.033-.726.07a3.97 3.97 0 0 0-1.03.285c-.58.245-1.058.651-1.37 1.17-.26.434-.386.916-.375 1.415v.017c-.01.85.298 1.562.896 2.062.56.47 1.344.73 2.231.73.17 0 .34-.01.502-.03zm-.756-1.688c-.572 0-1.032-.15-1.327-.435-.273-.263-.41-.641-.398-1.115v-.017c-.007-.346.07-.672.22-.942.193-.326.497-.577.87-.727.247-.098.516-.158.812-.183.137-.01.279-.017.426-.017 1.23 0 2.334.252 3.27.741-.093 1.476-.5 2.613-1.198 3.37-.597.647-1.418.992-2.412 1.083a6.36 6.36 0 0 1-.263.01V13.65z"/></svg>
-        </a>
-        <a href="https://x.com/crossfitwine" target="_blank" rel="noopener" title="X">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-        </a>
-    </aside>
+  <!-- ============================================
+       HEADER
+  ============================================= -->
+  <header id="header" class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo mix-difference">Ahn Partners</a>
+      <nav class="desktop-nav">
+        <ul class="nav-list">
+          <li><a href="#services" class="nav-link mix-difference">서비스</a></li>
+          <li><a href="#projects" class="nav-link mix-difference">납품 실적</a></li>
+          <li><a href="about.html" class="nav-link mix-difference">소개</a></li>
+          <li><a href="about.html#contact" class="nav-link mix-difference">문의</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn mix-difference" id="mobileMenuBtn" aria-label="메뉴">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="text-xl font-bold text-primary">Ahn Partners</a>
-                <div class="flex items-center gap-6">
-                    <a href="index.html" class="text-gray-700 hover:text-primary font-medium">납품 실적</a>
-                    <a href="about.html" class="text-gray-700 hover:text-primary font-medium">소개</a>
-                </div>
-            </div>
+  <!-- Mobile overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose" aria-label="닫기">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <ul class="mobile-nav-list">
+      <li><a href="#services" class="mobile-nav-link">서비스</a></li>
+      <li><a href="#projects" class="mobile-nav-link">납품 실적</a></li>
+      <li><a href="about.html" class="mobile-nav-link">소개</a></li>
+      <li><a href="about.html#contact" class="mobile-nav-link">문의</a></li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       HERO
+  ============================================= -->
+  <section id="hero" class="hero">
+    <div class="hero-bg">
+      <canvas id="hero-canvas"></canvas>
+    </div>
+    <div class="hero-content mix-difference">
+      <h1 class="hero-title">
+        <span class="word-thin">Technology</span>
+        <span class="word-bold">ADVISORY</span>
+      </h1>
+      <p class="hero-subtitle">AI 전환, 결정부터 실행까지</p>
+    </div>
+    <div class="scroll-indicator mix-difference">
+      <span>Scroll</span>
+      <div class="scroll-chevrons">
+        <span class="scroll-chevron"></span>
+        <span class="scroll-chevron"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       INTRO
+  ============================================= -->
+  <section id="intro" class="about">
+    <div class="container">
+      <span class="about-label reveal">INTRO</span>
+      <h2 class="section-title reveal d1" style="margin-bottom:4rem">
+        <span class="word-thin" style="font-size:clamp(1.8rem,5vw,4rem);display:block;margin-bottom:0.5rem">AI를 도입했는데,</span>
+        <span class="word-us">왜 매출은 <em class="serif-italic" style="font-size:1.18em;background:linear-gradient(120deg,#f43f5e,#3b82f6);-webkit-background-clip:text;background-clip:text;color:transparent">그대로</em>일까요?</span>
+      </h2>
+      <p class="about-description reveal d2">
+        도구가 아니라 <strong class="grad-text" style="font-weight:800;font-size:1.35em">결정</strong>이 회사를 바꿉니다. 어디에 AI를 쓸지, 무엇을 먼저 할지 함께 정합니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       STATS
+  ============================================= -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number" data-target="70" data-suffix="+">0</div>
+          <div class="stat-label">고객사</div>
+          <div class="stat-desc">다양한 산업군에 걸친 자문 및 프로젝트 납품</div>
         </div>
-    </nav>
+        <div class="stat-item reveal d1">
+          <div class="stat-number" data-target="7" data-suffix="개사">0</div>
+          <div class="stat-label">상시 자문</div>
+          <div class="stat-desc">리테이너 계약 기반 지속 자문 중인 기업 수</div>
+        </div>
+        <div class="stat-item reveal d2">
+          <div class="stat-number" data-target="52" data-suffix="건">0</div>
+          <div class="stat-label">강의</div>
+          <div class="stat-desc">기업 임직원 대상 AI 전환 강의 및 워크숍</div>
+        </div>
+        <div class="stat-item reveal d3">
+          <div class="stat-number" data-target="30" data-suffix="+">0</div>
+          <div class="stat-label">개발 납품</div>
+          <div class="stat-desc">실제 운영 중인 시스템 및 도구 납품 건수</div>
+        </div>
+      </div>
+      <p class="stats-tagline reveal">
+        AI로 바꾸라는 말은 누구나 하지만, 직접 실행하고 성과를 이룬 사람은 드뭅니다.
+      </p>
+    </div>
+  </section>
 
-    <!-- Hero Section - Dark Premium Theme -->
-    <header class="pt-32 pb-20 px-4 bg-dark text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10"></div>
-
-        <div class="max-w-7xl mx-auto text-center relative z-10">
-            <!-- Badge -->
-            <div class="inline-flex items-center gap-2 bg-dark-card rounded-full px-4 py-2 mb-8 hero-animate">
-                <span class="rounded-full live-dot" style="width:10px;height:10px;background:#6B7280;display:inline-block;"></span>
-                <span class="text-sm text-gray-300">기술경영 자문</span>
-            </div>
-
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight hero-animate-delay-1">
-                보고서도 AI, 메일도 AI.<br>
-                <span class="text-primary" style="color:#7ba7c4;">그런데 매출은 작년 그대로입니다.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4 hero-animate-delay-2">
-                도구가 아니라 결정이 회사를 바꿉니다.<br>
-                어디에 AI를 쓸지, 무엇을 먼저 할지, 함께 정합니다.
+  <!-- ============================================
+       SERVICES
+  ============================================= -->
+  <section id="services" class="thinking-section">
+    <div class="container">
+      <h2 class="section-title reveal" style="margin-bottom:6rem">
+        <span class="word-thin" style="color:#fff">Our</span>
+        <span class="word-bold" style="color:#fff">SERVICES</span>
+      </h2>
+      <div class="service-list">
+        <div class="service-item reveal">
+          <div class="service-number">01</div>
+          <div class="service-content-inner">
+            <h3 class="service-title"><span class="grad-text">AI 전략 자문</span></h3>
+            <p class="service-desc">
+              무엇을 먼저 해야 하는지 결정하는 것이 가장 어렵습니다. 업무 흐름 분석부터 우선순위 수립, ROI 설계까지 함께 합니다. 외부 컨설턴트가 아니라 안쪽에서 함께 생각하는 파트너입니다.
             </p>
-
-            <!-- CTA Buttons -->
-            <div class="mt-8 flex flex-wrap justify-center gap-4 hero-animate-delay-3">
-                <a href="about.html#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:opacity-90 hover:scale-105 rounded-full text-white transition-all duration-300 group">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                    <span class="font-medium">자문 시작하기</span>
-                </a>
-                <a href="about.html" class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border-2 border-white/40 rounded-full text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
-                    <span class="font-medium">소개 보기</span>
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
+            <div class="service-tags">
+              <span class="service-tag">업무 분석</span>
+              <span class="service-tag">AI 로드맵</span>
+              <span class="service-tag">ROI 설계</span>
+              <span class="service-tag">의사결정 지원</span>
             </div>
-
-            <div class="mt-6 flex flex-wrap justify-center gap-3 hero-animate-delay-4">
-                <span class="px-4 py-2 bg-dark-card border border-white/10 rounded-full text-sm text-gray-200">정부 R&D 과제 심사 위원</span>
-                <span class="px-4 py-2 bg-dark-card border border-white/10 rounded-full text-sm text-gray-200">벤처 투자 자문 위원</span>
-                <span class="px-4 py-2 bg-dark-card border border-white/10 rounded-full text-sm text-gray-200">정부 정책 자금 자문</span>
-                <span class="px-4 py-2 bg-dark-card border border-white/10 rounded-full text-sm text-gray-200">개발 납품 30건+</span>
+          </div>
+        </div>
+        <div class="service-item reveal d1">
+          <div class="service-number">02</div>
+          <div class="service-content-inner">
+            <h3 class="service-title"><span class="grad-text">AX 강의 및 워크숍</span></h3>
+            <p class="service-desc">
+              C레벨부터 실무자까지, 직군별 맞춤 AI 전환 교육을 제공합니다. 이론이 아닌 실제 업무에 바로 쓸 수 있는 도구와 방법론 중심으로 설계합니다. 기업 맞춤 커리큘럼으로 한 번에 끝냅니다.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">맞춤 커리큘럼</span>
+              <span class="service-tag">실무 중심</span>
+              <span class="service-tag">C레벨 강의</span>
+              <span class="service-tag">팀별 워크숍</span>
             </div>
+          </div>
         </div>
-    </header>
-
-    <!-- 분기 버튼 3개 -->
-    <div class="bg-dark border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap justify-center gap-3">
-            <a href="#service-consulting" class="branch-btn px-5 py-2 bg-dark-card border border-white/10 text-gray-300 text-sm rounded-full hover:border-primary hover:text-white transition-all duration-200">AI 전략을 함께 세우고 싶다</a>
-            <a href="#service-training" class="branch-btn px-5 py-2 bg-dark-card border border-white/10 text-gray-300 text-sm rounded-full hover:border-primary hover:text-white transition-all duration-200">팀에게 AI를 가르치고 싶다</a>
-            <a href="#projects-grid" class="branch-btn px-5 py-2 bg-dark-card border border-white/10 text-gray-300 text-sm rounded-full hover:border-primary hover:text-white transition-all duration-200">이미 결정했다, 만들 사람이 필요하다</a>
+        <div class="service-item reveal d2">
+          <div class="service-number">03</div>
+          <div class="service-content-inner">
+            <h3 class="service-title"><span class="grad-text">시스템 개발 납품</span></h3>
+            <p class="service-desc">
+              기획서로 끝나지 않습니다. 분석부터 설계, 개발, 배포까지 실제로 운영되는 시스템을 납품합니다. 웹앱, 자동화 파이프라인, 데이터 대시보드 모두 직접 만들어 넘겨드립니다.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">풀스택 개발</span>
+              <span class="service-tag">데이터 파이프라인</span>
+              <span class="service-tag">자동화</span>
+              <span class="service-tag">운영 가능 시스템</span>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </section>
 
-    <!-- 카운트업 메트릭 밴드 -->
-    <div id="metrics-band" class="bg-dark-card border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 py-6">
+  <!-- ============================================
+       CASES CAROUSEL
+  ============================================= -->
+  <section class="cases-section">
+    <div class="container">
+      <h2 class="section-title reveal" style="margin-bottom:4rem">
+        <span class="word-thin" style="display:block;font-size:clamp(1.8rem,5.5vw,4rem)">CASE</span>
+        <span class="word-bold" style="font-size:clamp(2.8rem,8vw,6.5rem)">STUDIES</span>
+      </h2>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack">
 
-            <!-- 히어로: 고객사 사회적 증거 -->
-            <div class="text-center mb-5">
-                <div class="text-6xl sm:text-7xl font-bold text-white tabular-nums leading-none">
-                    <span class="count-up" data-target="70" data-suffix="+">0</span>
-                </div>
-                <div class="text-gray-400 text-sm mt-2">고객사 - 삼성, 현대, 통신 3사, 공공기관 등</div>
+          <div class="case-card active" data-index="0">
+            <div class="case-card-inner">
+              <div>
+                <div class="case-tag">운송 플랫폼</div>
+                <h3 class="case-title">431대 차량, 368명 기사를 하나의 ERP로</h3>
+                <p class="case-desc">
+                  3개 법인이 따로 관리하던 차량, 기사, 비용 데이터를 단일 시스템으로 통합했습니다. 4,700건 이상의 비용 기록을 실시간으로 추적하고, 담당자별 권한을 세분화해 운영합니다.
+                </p>
+              </div>
+              <div class="case-visual" style="background:linear-gradient(135deg,#071e22 0%,#0b2d35 60%,#091520 100%)">
+                <div class="case-visual-glow" style="background:radial-gradient(circle,#2dd4bf,transparent 70%);width:220px;height:220px;top:-40px;left:-30px"></div>
+                <svg class="case-visual-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" opacity="0.28">
+                  <!-- ERP 구조: 3개 법인 박스 -> 중앙 ERP -->
+                  <rect x="20" y="30" width="90" height="44" rx="6" fill="none" stroke="#2dd4bf" stroke-width="1.4"/>
+                  <rect x="155" y="30" width="90" height="44" rx="6" fill="none" stroke="#2dd4bf" stroke-width="1.4"/>
+                  <rect x="290" y="30" width="90" height="44" rx="6" fill="none" stroke="#2dd4bf" stroke-width="1.4"/>
+                  <!-- labels -->
+                  <text x="65" y="57" text-anchor="middle" font-size="9" fill="#2dd4bf" font-family="Inter" letter-spacing="1">법인 A</text>
+                  <text x="200" y="57" text-anchor="middle" font-size="9" fill="#2dd4bf" font-family="Inter" letter-spacing="1">법인 B</text>
+                  <text x="335" y="57" text-anchor="middle" font-size="9" fill="#2dd4bf" font-family="Inter" letter-spacing="1">법인 C</text>
+                  <!-- lines down to central ERP -->
+                  <line x1="65" y1="74" x2="65" y2="130" stroke="#2dd4bf" stroke-width="1"/>
+                  <line x1="200" y1="74" x2="200" y2="130" stroke="#2dd4bf" stroke-width="1"/>
+                  <line x1="335" y1="74" x2="335" y2="130" stroke="#2dd4bf" stroke-width="1"/>
+                  <line x1="65" y1="130" x2="335" y2="130" stroke="#2dd4bf" stroke-width="1"/>
+                  <line x1="200" y1="130" x2="200" y2="148" stroke="#2dd4bf" stroke-width="1.4"/>
+                  <!-- central ERP -->
+                  <rect x="110" y="148" width="180" height="52" rx="8" fill="#2dd4bf" fill-opacity="0.12" stroke="#2dd4bf" stroke-width="1.8"/>
+                  <text x="200" y="179" text-anchor="middle" font-size="10" fill="#2dd4bf" font-family="Inter" font-weight="700" letter-spacing="2">FLEET ERP</text>
+                  <!-- data rows below -->
+                  <rect x="30" y="226" width="100" height="8" rx="3" fill="#2dd4bf" fill-opacity="0.18"/>
+                  <rect x="30" y="242" width="75" height="8" rx="3" fill="#2dd4bf" fill-opacity="0.12"/>
+                  <rect x="150" y="226" width="100" height="8" rx="3" fill="#2dd4bf" fill-opacity="0.18"/>
+                  <rect x="150" y="242" width="60" height="8" rx="3" fill="#2dd4bf" fill-opacity="0.12"/>
+                  <rect x="270" y="226" width="100" height="8" rx="3" fill="#2dd4bf" fill-opacity="0.18"/>
+                  <rect x="270" y="242" width="80" height="8" rx="3" fill="#2dd4bf" fill-opacity="0.12"/>
+                </svg>
+                <span class="case-visual-label">FMS</span>
+              </div>
             </div>
+          </div>
 
-            <!-- 3축: 자문, 강의, 개발 -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-0 mb-4 border-t border-white/5 pt-4">
-                <div class="text-center px-4 py-3 sm:border-r border-white/10">
-                    <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">자문</div>
-                    <div class="text-3xl font-bold text-white tabular-nums">
-                        <span class="count-up" data-target="7" data-suffix="개사">0</span>
-                    </div>
-                    <div class="text-xs mt-1" style="color:#7ba7c4;">전원 투자 유치, 130억 확보</div>
-                </div>
-                <div class="text-center px-4 py-3 sm:border-r border-white/10 border-t sm:border-t-0 border-white/10">
-                    <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">강의</div>
-                    <div class="text-3xl font-bold text-white tabular-nums">
-                        <span class="count-up" data-target="52" data-suffix="건">0</span>
-                    </div>
-                    <div class="text-gray-400 text-xs mt-1">기업, 공공기관</div>
-                </div>
-                <div class="text-center px-4 py-3 border-t sm:border-t-0 border-white/10">
-                    <div class="text-xs text-gray-500 uppercase tracking-widest mb-1">개발</div>
-                    <div class="text-3xl font-bold text-white tabular-nums">
-                        <span class="count-up" data-target="30" data-suffix="건+">0</span>
-                    </div>
-                    <div class="text-gray-400 text-xs mt-1">앱 <span class="count-up tabular-nums" data-target="500" data-suffix="만+">0</span> 다운로드</div>
-                </div>
+          <div class="case-card" data-index="1">
+            <div class="case-card-inner">
+              <div>
+                <div class="case-tag">공공 교통</div>
+                <h3 class="case-title">서울시 셔틀버스 노선을 드래그 한 번으로</h3>
+                <p class="case-desc">
+                  서울시 중구 공무원이 직접 셔틀버스 노선을 설계할 수 있는 웹 에디터를 만들었습니다. OSRM 경로 최적화와 실시간 검증으로 현장에서 바로 사용합니다.
+                </p>
+              </div>
+              <div class="case-visual" style="background:linear-gradient(135deg,#070d1c 0%,#0c1a38 60%,#0a1020 100%)">
+                <div class="case-visual-glow" style="background:radial-gradient(circle,#6366f1,transparent 70%);width:200px;height:200px;top:-20px;right:-20px"></div>
+                <svg class="case-visual-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" opacity="0.30">
+                  <!-- 서울 지도 노선 추상: 정류장 노드 + 경로 -->
+                  <circle cx="80" cy="80" r="7" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                  <circle cx="160" cy="50" r="7" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                  <circle cx="240" cy="100" r="7" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                  <circle cx="320" cy="60" r="7" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                  <circle cx="120" cy="170" r="7" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                  <circle cx="220" cy="200" r="7" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                  <circle cx="340" cy="190" r="7" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                  <circle cx="60" cy="230" r="5" fill="none" stroke="#818cf8" stroke-width="1"/>
+                  <circle cx="290" cy="255" r="5" fill="none" stroke="#818cf8" stroke-width="1"/>
+                  <!-- 노선 A: 굵게 -->
+                  <polyline points="80,80 160,50 240,100 320,60" fill="none" stroke="#818cf8" stroke-width="2"/>
+                  <!-- 노선 B: 점선 -->
+                  <polyline points="120,170 220,200 340,190" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="6 3"/>
+                  <!-- 연결 수직 -->
+                  <line x1="160" y1="50" x2="120" y2="170" stroke="#818cf8" stroke-width="0.8" opacity="0.4"/>
+                  <line x1="240" y1="100" x2="220" y2="200" stroke="#818cf8" stroke-width="0.8" opacity="0.4"/>
+                  <line x1="80" y1="80" x2="60" y2="230" stroke="#818cf8" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.3"/>
+                  <line x1="320" y1="60" x2="340" y2="190" stroke="#818cf8" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.3"/>
+                  <!-- active 정류장 -->
+                  <circle cx="240" cy="100" r="12" fill="#818cf8" fill-opacity="0.18"/>
+                  <circle cx="220" cy="200" r="12" fill="#818cf8" fill-opacity="0.18"/>
+                </svg>
+                <span class="case-visual-label">ROUTE</span>
+              </div>
             </div>
+          </div>
 
-            <!-- 차별 카피 -->
-            <p class="text-center text-gray-400 text-xs mb-4">현장 CTO 겸 COO 27년. AI로 바꾸라는 말은 누구나 합니다. 직접 만들어 돌려본 사람은 드뭅니다.</p>
-
-            <!-- 배지 -->
-            <div class="flex flex-wrap justify-center gap-2 pt-3 border-t border-white/5">
-                <span class="px-3 py-1 bg-dark border border-white/10 rounded-full text-xs text-gray-300">정부 R&D 과제 심사 위원</span>
-                <span class="px-3 py-1 bg-dark border border-white/10 rounded-full text-xs text-gray-300">벤처 투자 자문 위원</span>
-                <span class="px-3 py-1 bg-dark border border-white/10 rounded-full text-xs text-gray-300">TIPS</span>
+          <div class="case-card" data-index="2">
+            <div class="case-card-inner">
+              <div>
+                <div class="case-tag">물류 최적화</div>
+                <h3 class="case-title">쿠팡 FC 41개, 셔틀 노선 자동 생성</h3>
+                <p class="case-desc">
+                  Hungarian Algorithm 기반 노선 매칭 엔진으로 1,556개 노선을 자동 생성합니다. 기사 배정, 시간표, 정류장 4,274개를 지도 위에서 실시간으로 확인합니다.
+                </p>
+              </div>
+              <div class="case-visual" style="background:linear-gradient(135deg,#130c02 0%,#271700 60%,#1a0e00 100%)">
+                <div class="case-visual-glow" style="background:radial-gradient(circle,#f5a623,transparent 70%);width:180px;height:180px;top:-30px;right:-10px"></div>
+                <svg class="case-visual-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" opacity="0.28">
+                  <!-- 41개 FC 물류 허브 추상: 중앙 허브 + 방사형 -->
+                  <circle cx="200" cy="148" r="22" fill="#f5a623" fill-opacity="0.15" stroke="#f5a623" stroke-width="1.8"/>
+                  <text x="200" y="153" text-anchor="middle" font-size="8" fill="#f5a623" font-family="Inter" font-weight="700" letter-spacing="1">HUB</text>
+                  <!-- spoke warehouses 8개 -->
+                  <circle cx="200" cy="55" r="6" fill="none" stroke="#f5a623" stroke-width="1.2"/><line x1="200" y1="126" x2="200" y2="61" stroke="#f5a623" stroke-width="0.9"/>
+                  <circle cx="283" cy="82" r="6" fill="none" stroke="#f5a623" stroke-width="1.2"/><line x1="216" y1="133" x2="277" y2="86" stroke="#f5a623" stroke-width="0.9"/>
+                  <circle cx="330" cy="160" r="6" fill="none" stroke="#f5a623" stroke-width="1.2"/><line x1="222" y1="148" x2="324" y2="160" stroke="#f5a623" stroke-width="0.9"/>
+                  <circle cx="283" cy="230" r="6" fill="none" stroke="#f5a623" stroke-width="1.2"/><line x1="216" y1="163" x2="277" y2="226" stroke="#f5a623" stroke-width="0.9"/>
+                  <circle cx="200" cy="248" r="6" fill="none" stroke="#f5a623" stroke-width="1.2"/><line x1="200" y1="170" x2="200" y2="242" stroke="#f5a623" stroke-width="0.9"/>
+                  <circle cx="117" cy="230" r="6" fill="none" stroke="#f5a623" stroke-width="1.2"/><line x1="184" y1="163" x2="123" y2="226" stroke="#f5a623" stroke-width="0.9"/>
+                  <circle cx="70" cy="160" r="6" fill="none" stroke="#f5a623" stroke-width="1.2"/><line x1="178" y1="148" x2="76" y2="160" stroke="#f5a623" stroke-width="0.9"/>
+                  <circle cx="117" cy="82" r="6" fill="none" stroke="#f5a623" stroke-width="1.2"/><line x1="184" y1="133" x2="123" y2="86" stroke="#f5a623" stroke-width="0.9"/>
+                  <!-- outer ring small stops -->
+                  <circle cx="200" cy="28" r="3" fill="#f5a623" fill-opacity="0.4"/>
+                  <circle cx="350" cy="100" r="3" fill="#f5a623" fill-opacity="0.4"/>
+                  <circle cx="360" cy="220" r="3" fill="#f5a623" fill-opacity="0.4"/>
+                  <circle cx="40" cy="100" r="3" fill="#f5a623" fill-opacity="0.4"/>
+                  <circle cx="40" cy="220" r="3" fill="#f5a623" fill-opacity="0.4"/>
+                  <line x1="200" y1="49" x2="200" y2="28" stroke="#f5a623" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.4"/>
+                  <line x1="289" y1="79" x2="350" y2="100" stroke="#f5a623" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.4"/>
+                </svg>
+                <span class="case-visual-label">FC</span>
+              </div>
             </div>
+          </div>
+
+          <div class="case-card" data-index="3">
+            <div class="case-card-inner">
+              <div>
+                <div class="case-tag">에너지</div>
+                <h3 class="case-title">수소충전소 네트워크를 지도 한 장으로</h3>
+                <p class="case-desc">
+                  거래처와 충전소 간 거리 기반 연결을 지도에 시각화했습니다. 복수 거래처 비교, 법인별 필터, 월별 추이 분석을 인센티브 대시보드와 함께 제공합니다.
+                </p>
+              </div>
+              <div class="case-visual" style="background:linear-gradient(135deg,#0d0520 0%,#1a0833 60%,#0e0520 100%)">
+                <div class="case-visual-glow" style="background:radial-gradient(circle,#a78bfa,transparent 70%);width:190px;height:190px;top:-30px;left:-20px"></div>
+                <svg class="case-visual-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" opacity="0.30">
+                  <!-- 수소충전소 지도 + 차트 -->
+                  <!-- 지도 영역 (왼쪽 60%) -->
+                  <rect x="15" y="15" width="220" height="200" rx="6" fill="none" stroke="#a78bfa" stroke-width="0.7" stroke-dasharray="5 3"/>
+                  <!-- 충전소 위치 -->
+                  <circle cx="70" cy="70" r="7" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                  <circle cx="140" cy="55" r="7" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                  <circle cx="80" cy="150" r="7" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                  <circle cx="190" cy="110" r="7" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                  <circle cx="160" cy="175" r="7" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                  <!-- 거래처 -->
+                  <rect x="50" y="110" width="12" height="12" rx="2" fill="#f5a623" fill-opacity="0.6"/>
+                  <rect x="120" y="130" width="12" height="12" rx="2" fill="#f5a623" fill-opacity="0.6"/>
+                  <!-- 거리 연결선 -->
+                  <line x1="56" y1="116" x2="70" y2="70" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                  <line x1="56" y1="116" x2="80" y2="150" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                  <line x1="126" y1="136" x2="140" y2="55" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                  <line x1="126" y1="136" x2="160" y2="175" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                  <line x1="126" y1="136" x2="190" y2="110" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                  <!-- 차트 (오른쪽) -->
+                  <line x1="255" y1="240" x2="390" y2="240" stroke="#a78bfa" stroke-width="0.8"/>
+                  <line x1="255" y1="50" x2="255" y2="240" stroke="#a78bfa" stroke-width="0.8"/>
+                  <rect x="265" y="180" width="18" height="60" rx="2" fill="#a78bfa" fill-opacity="0.30"/>
+                  <rect x="292" y="155" width="18" height="85" rx="2" fill="#a78bfa" fill-opacity="0.35"/>
+                  <rect x="319" y="120" width="18" height="120" rx="2" fill="#a78bfa" fill-opacity="0.45"/>
+                  <rect x="346" y="135" width="18" height="105" rx="2" fill="#a78bfa" fill-opacity="0.40"/>
+                  <rect x="373" y="100" width="18" height="140" rx="2" fill="#a78bfa" fill-opacity="0.55"/>
+                  <!-- trend line -->
+                  <polyline points="274,210 301,185 328,145 355,158 382,118" fill="none" stroke="#f5a623" stroke-width="1.5"/>
+                </svg>
+                <span class="case-visual-label">HRS</span>
+              </div>
+            </div>
+          </div>
+
         </div>
+      </div>
+      <div class="carousel-indicators" id="carouselIndicators">
+        <button class="carousel-dot active" data-dot="0"></button>
+        <button class="carousel-dot" data-dot="1"></button>
+        <button class="carousel-dot" data-dot="2"></button>
+        <button class="carousel-dot" data-dot="3"></button>
+      </div>
     </div>
+  </section>
 
-    <!-- 사례 -->
-    <div class="bg-gray-100 border-b">
-        <div class="max-w-7xl mx-auto px-4 py-5">
-            <div class="flex flex-col sm:flex-row sm:items-start gap-3">
-                <span class="text-xs font-semibold tracking-widest text-gray-400 uppercase whitespace-nowrap pt-0.5">사례</span>
-                <p class="text-gray-700 text-sm leading-relaxed">운송 3개 법인의 배차와 비용을 통합한 ERP를 요구사항 분석부터 프로덕션 배포까지 4주 만에 올렸습니다. 지금도 실운영 중입니다.</p>
+  <!-- ============================================
+       PROJECTS
+  ============================================= -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">
+          <span class="word-selected">Selected</span>
+          <span class="word-works">WORKS</span>
+        </h2>
+        <span class="project-count">/ 10</span>
+      </div>
+
+      <div class="category-filter-container" id="filterBar">
+        <div class="filter-chip" data-cat="ALL" data-initial="ALL">ALL</div>
+        <div class="filter-chip inactive" data-cat="웹앱" data-initial="W"><span class="chip-text">웹앱</span></div>
+        <div class="filter-chip inactive" data-cat="자동화" data-initial="A"><span class="chip-text">자동화</span></div>
+        <div class="filter-chip inactive" data-cat="분석" data-initial="D"><span class="chip-text">분석</span></div>
+        <div class="filter-chip inactive" data-cat="플랫폼" data-initial="P"><span class="chip-text">플랫폼</span></div>
+      </div>
+
+      <div class="project-grid-3col" id="projectGrid">
+
+        <!-- Card 1: 내편 중구버스 노선 편집기 -->
+        <div class="work-card" data-category="웹앱" onclick="location.href='projects/junggubus.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-webapp">
+              <div class="card-glow"></div>
+              <svg class="card-svg-lines" viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.18;z-index:1">
+                <circle cx="60" cy="50" r="5" fill="#2dd4bf"/>
+                <circle cx="150" cy="90" r="5" fill="#2dd4bf"/>
+                <circle cx="260" cy="40" r="5" fill="#2dd4bf"/>
+                <circle cx="200" cy="140" r="5" fill="#2dd4bf"/>
+                <circle cx="90" cy="155" r="4" fill="#2dd4bf"/>
+                <circle cx="310" cy="120" r="4" fill="#2dd4bf"/>
+                <line x1="60" y1="50" x2="150" y2="90" stroke="#2dd4bf" stroke-width="1.2"/>
+                <line x1="150" y1="90" x2="260" y2="40" stroke="#2dd4bf" stroke-width="1.2"/>
+                <line x1="150" y1="90" x2="200" y2="140" stroke="#2dd4bf" stroke-width="1.2"/>
+                <line x1="60" y1="50" x2="90" y2="155" stroke="#2dd4bf" stroke-width="0.8" stroke-dasharray="4 3"/>
+                <line x1="260" y1="40" x2="310" y2="120" stroke="#2dd4bf" stroke-width="0.8" stroke-dasharray="4 3"/>
+                <line x1="200" y1="140" x2="310" y2="120" stroke="#2dd4bf" stroke-width="1"/>
+              </svg>
+              <span class="card-wordmark">Route Editor</span>
+              <span class="card-num">01</span>
             </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="웹앱">웹앱</span>
+            </div>
+            <h4 class="work-title">내편 중구버스 노선 편집기</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">서울시 중구 셔틀버스 노선 설계 웹 에디터. 드래그앤드롭, OSRM 경로 최적화, 실시간 검증.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">MapLibre GL</span>
+              <span class="work-tag-chip">JavaScript</span>
+              <span class="work-tag-chip">OSRM</span>
+            </div>
+            <div class="work-links">
+              <a href="demos/junggubus-editor.html" class="work-link" onclick="event.stopPropagation()">Editor</a>
+              <a href="demos/junggubus-viewer.html" class="work-link" onclick="event.stopPropagation()">Viewer</a>
+            </div>
+          </div>
         </div>
+
+        <!-- Card 2: 운송 ERP (FMS) — Featured -->
+        <div class="work-card" data-category="웹앱" data-featured="true" onclick="location.href='projects/fms.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-erp">
+              <div class="card-glow"></div>
+              <svg class="card-svg-lines" viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15;z-index:1">
+                <rect x="30" y="30" width="80" height="40" rx="4" fill="none" stroke="#60a5fa" stroke-width="1.2"/>
+                <rect x="130" y="30" width="80" height="40" rx="4" fill="none" stroke="#60a5fa" stroke-width="1.2"/>
+                <rect x="230" y="30" width="80" height="40" rx="4" fill="none" stroke="#60a5fa" stroke-width="1.2"/>
+                <rect x="30" y="110" width="280" height="50" rx="4" fill="none" stroke="#60a5fa" stroke-width="0.8" stroke-dasharray="5 3"/>
+                <line x1="70" y1="70" x2="70" y2="110" stroke="#60a5fa" stroke-width="1"/>
+                <line x1="170" y1="70" x2="170" y2="110" stroke="#60a5fa" stroke-width="1"/>
+                <line x1="270" y1="70" x2="270" y2="110" stroke="#60a5fa" stroke-width="1"/>
+              </svg>
+              <span class="card-wordmark">Fleet Management System</span>
+              <span class="card-num">02</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="웹앱">웹앱</span>
+              <span class="work-featured-badge">Featured</span>
+            </div>
+            <h4 class="work-title">운송 ERP (FMS)</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">3개 법인 통합 ERP. 431대 차량, 368명 기사, 4,700건 이상 비용기록을 관리하는 프로덕션 시스템.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">Next.js 14</span>
+              <span class="work-tag-chip">Prisma</span>
+              <span class="work-tag-chip">PostgreSQL</span>
+            </div>
+            <div class="work-links">
+              <a href="https://fms-readonly-sigma.vercel.app/" class="work-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">Live Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: 노선 프레젠테이션 뷰어 -->
+        <div class="work-card" data-category="웹앱" onclick="location.href='projects/pt-reports.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-webapp">
+              <div class="card-glow" style="background:radial-gradient(circle,#14b8a6 0%,transparent 70%);width:140px;height:140px;top:-10px;right:-10px;left:auto"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;z-index:1">
+                <polyline points="20,160 80,100 140,130 200,60 260,90 320,30" fill="none" stroke="#2dd4bf" stroke-width="2"/>
+                <polyline points="20,160 80,120 140,145 200,90 260,115 320,65" fill="none" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="5 3" opacity="0.5"/>
+                <circle cx="80" cy="100" r="4" fill="#2dd4bf"/>
+                <circle cx="200" cy="60" r="4" fill="#2dd4bf"/>
+                <circle cx="320" cy="30" r="4" fill="#2dd4bf"/>
+              </svg>
+              <span class="card-wordmark">Presentation Viewer</span>
+              <span class="card-num">03</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="웹앱">웹앱</span>
+            </div>
+            <h4 class="work-title">노선 프레젠테이션 뷰어</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">버스 노선 비교, 시간표, 히트맵 시각화. 서울시 공무원 보고용 인터랙티브 뷰어.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">Leaflet.js</span>
+              <span class="work-tag-chip">Kakao API</span>
+            </div>
+            <div class="work-links">
+              <a href="demos/pt-reports/index.html" class="work-link" onclick="event.stopPropagation()">Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: 중구 셔틀버스 관리 시스템 -->
+        <div class="work-card" data-category="웹앱" onclick="location.href='projects/junggu-shuttle.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-erp">
+              <div class="card-glow" style="background:radial-gradient(circle,#818cf8 0%,transparent 70%);width:150px;height:150px;bottom:0;left:50%;transform:translateX(-50%);top:auto"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.18;z-index:1">
+                <rect x="15" y="20" width="310" height="150" rx="6" fill="none" stroke="#818cf8" stroke-width="0.8" stroke-dasharray="6 3"/>
+                <line x1="15" y1="65" x2="325" y2="65" stroke="#818cf8" stroke-width="0.8"/>
+                <line x1="15" y1="110" x2="325" y2="110" stroke="#818cf8" stroke-width="0.8" stroke-dasharray="3 2"/>
+                <line x1="115" y1="20" x2="115" y2="170" stroke="#818cf8" stroke-width="0.8"/>
+                <line x1="225" y1="20" x2="225" y2="170" stroke="#818cf8" stroke-width="0.8"/>
+                <rect x="25" y="28" width="75" height="28" rx="3" fill="#818cf8" fill-opacity="0.2"/>
+                <rect x="125" y="28" width="85" height="28" rx="3" fill="#818cf8" fill-opacity="0.1"/>
+              </svg>
+              <span class="card-wordmark">Transit Management</span>
+              <span class="card-num">04</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="웹앱">웹앱</span>
+            </div>
+            <h4 class="work-title">중구 셔틀버스 관리 시스템</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">풀스택 교통 관리 플랫폼. 배치 작업, 버전 히스토리, 노선 비교 기능.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">FastAPI</span>
+              <span class="work-tag-chip">PostgreSQL</span>
+              <span class="work-tag-chip">Mapbox GL</span>
+            </div>
+            <div class="work-links"></div>
+          </div>
+        </div>
+
+        <!-- Card 5: 쿠팡 FC 노선 빌더 -->
+        <div class="work-card" data-category="웹앱" onclick="location.href='projects/route-builder.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-webapp">
+              <div class="card-glow" style="background:radial-gradient(circle,#f5a623 0%,transparent 70%);width:130px;height:130px;bottom:-20px;right:-10px;left:auto;top:auto"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;z-index:1">
+                <!-- warehouse dots scattered -->
+                <circle cx="50" cy="40" r="3" fill="#f5a623"/>
+                <circle cx="100" cy="80" r="3" fill="#2dd4bf"/>
+                <circle cx="180" cy="30" r="3" fill="#f5a623"/>
+                <circle cx="240" cy="100" r="3" fill="#2dd4bf"/>
+                <circle cx="290" cy="50" r="3" fill="#f5a623"/>
+                <circle cx="140" cy="150" r="3" fill="#2dd4bf"/>
+                <circle cx="70" cy="140" r="3" fill="#f5a623"/>
+                <circle cx="310" cy="160" r="3" fill="#2dd4bf"/>
+                <circle cx="200" cy="160" r="3" fill="#f5a623"/>
+                <!-- connections -->
+                <line x1="50" y1="40" x2="100" y2="80" stroke="#2dd4bf" stroke-width="0.9"/>
+                <line x1="100" y1="80" x2="180" y2="30" stroke="#2dd4bf" stroke-width="0.9"/>
+                <line x1="180" y1="30" x2="290" y2="50" stroke="#2dd4bf" stroke-width="0.9"/>
+                <line x1="100" y1="80" x2="140" y2="150" stroke="#f5a623" stroke-width="0.9" stroke-dasharray="3 2"/>
+                <line x1="240" y1="100" x2="310" y2="160" stroke="#f5a623" stroke-width="0.9" stroke-dasharray="3 2"/>
+                <line x1="140" y1="150" x2="200" y2="160" stroke="#2dd4bf" stroke-width="0.9"/>
+                <line x1="240" y1="100" x2="200" y2="160" stroke="#2dd4bf" stroke-width="0.7" stroke-dasharray="2 3"/>
+              </svg>
+              <span class="card-wordmark">Coupang FC Route Builder</span>
+              <span class="card-num">05</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="웹앱">웹앱</span>
+            </div>
+            <h4 class="work-title">쿠팡 FC 노선 빌더</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">쿠팡 물류센터 셔틀버스 노선 생성 시스템. 41개 FC, 4,274개 정류장, Docker OSRM.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">Flask</span>
+              <span class="work-tag-chip">Leaflet.js</span>
+              <span class="work-tag-chip">Docker</span>
+            </div>
+            <div class="work-links">
+              <a href="https://route-builder.onrender.com" class="work-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">Live Demo</a>
+              <a href="demos/coupang-route.html" class="work-link" onclick="event.stopPropagation()">Output</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: 3단계 노선 최적화 파이프라인 -->
+        <div class="work-card" data-category="자동화" onclick="location.href='projects/route-optimizer.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-auto">
+              <div class="card-glow"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.22;z-index:1">
+                <!-- pipeline stages -->
+                <rect x="20" y="75" width="70" height="40" rx="20" fill="none" stroke="#f5a623" stroke-width="1.5"/>
+                <rect x="135" y="75" width="70" height="40" rx="20" fill="none" stroke="#f5a623" stroke-width="1.5"/>
+                <rect x="250" y="75" width="70" height="40" rx="20" fill="none" stroke="#f5a623" stroke-width="1.5"/>
+                <line x1="90" y1="95" x2="135" y2="95" stroke="#f5a623" stroke-width="1.5"/>
+                <line x1="205" y1="95" x2="250" y2="95" stroke="#f5a623" stroke-width="1.5"/>
+                <!-- arrowheads -->
+                <polygon points="132,91 135,95 132,99" fill="#f5a623"/>
+                <polygon points="247,91 250,95 247,99" fill="#f5a623"/>
+                <!-- labels -->
+                <text x="55" y="99" text-anchor="middle" font-size="9" fill="#f5a623" font-family="Inter" letter-spacing="0.5">INPUT</text>
+                <text x="170" y="99" text-anchor="middle" font-size="9" fill="#f5a623" font-family="Inter" letter-spacing="0.5">MATCH</text>
+                <text x="285" y="99" text-anchor="middle" font-size="9" fill="#f5a623" font-family="Inter" letter-spacing="0.5">OUTPUT</text>
+                <!-- small nodes above/below -->
+                <circle cx="55" cy="45" r="3" fill="#f5a623" opacity="0.5"/>
+                <circle cx="170" cy="45" r="3" fill="#f5a623" opacity="0.5"/>
+                <circle cx="285" cy="45" r="3" fill="#f5a623" opacity="0.5"/>
+                <circle cx="55" cy="145" r="3" fill="#f5a623" opacity="0.3"/>
+                <circle cx="285" cy="145" r="3" fill="#f5a623" opacity="0.3"/>
+              </svg>
+              <span class="card-wordmark">Route Optimization Pipeline</span>
+              <span class="card-num">06</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="자동화">자동화</span>
+            </div>
+            <h4 class="work-title">3단계 노선 최적화 파이프라인</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">Hungarian Algorithm 기반 노선 매칭. 18개 지역, 69개 FC, 1,556개 노선 처리.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">Python</span>
+              <span class="work-tag-chip">NetworkX</span>
+            </div>
+            <div class="work-links"></div>
+          </div>
+        </div>
+
+        <!-- Card 7: 수소버스 충전 네트워크 대시보드 (hidden initially) -->
+        <div class="work-card hidden" data-category="분석" onclick="location.href='projects/hydrogen-infra.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-analysis">
+              <div class="card-glow"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.22;z-index:1">
+                <!-- map area outline -->
+                <rect x="20" y="20" width="200" height="150" rx="4" fill="none" stroke="#a78bfa" stroke-width="0.8"/>
+                <!-- station dots on map -->
+                <circle cx="60" cy="60" r="5" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                <circle cx="120" cy="80" r="5" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                <circle cx="80" cy="130" r="5" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                <circle cx="170" cy="50" r="5" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                <circle cx="155" cy="140" r="5" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                <line x1="60" y1="60" x2="120" y2="80" stroke="#a78bfa" stroke-width="1"/>
+                <line x1="120" y1="80" x2="80" y2="130" stroke="#a78bfa" stroke-width="1"/>
+                <line x1="120" y1="80" x2="170" y2="50" stroke="#a78bfa" stroke-width="1"/>
+                <line x1="170" y1="50" x2="155" y2="140" stroke="#a78bfa" stroke-width="0.8" stroke-dasharray="3 2"/>
+                <!-- chart bars on right -->
+                <rect x="240" y="130" width="14" height="40" rx="2" fill="#a78bfa" fill-opacity="0.4"/>
+                <rect x="260" y="110" width="14" height="60" rx="2" fill="#a78bfa" fill-opacity="0.4"/>
+                <rect x="280" y="90" width="14" height="80" rx="2" fill="#a78bfa" fill-opacity="0.6"/>
+                <rect x="300" y="100" width="14" height="70" rx="2" fill="#a78bfa" fill-opacity="0.4"/>
+                <line x1="235" y1="170" x2="320" y2="170" stroke="#a78bfa" stroke-width="0.8"/>
+              </svg>
+              <span class="card-wordmark">HRS Network Dashboard</span>
+              <span class="card-num">07</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="분석">분석</span>
+            </div>
+            <h4 class="work-title">수소버스 충전 네트워크 대시보드</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">거래처와 충전소 네트워크를 지도에 시각화. 복수 거래처 비교, 법인별 필터, 월별 추이 분석.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">Leaflet</span>
+              <span class="work-tag-chip">Chart.js</span>
+            </div>
+            <div class="work-links">
+              <a href="demos/hrs-dashboard.html" class="work-link" onclick="event.stopPropagation()">Network</a>
+              <a href="demos/pogok.html" class="work-link" onclick="event.stopPropagation()">Pogok</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8: 일버스 (hidden initially) -->
+        <div class="work-card hidden" data-category="웹앱" onclick="location.href='projects/1bus.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-webapp">
+              <div class="card-glow" style="background:radial-gradient(circle,#2dd4bf 0%,transparent 70%);width:120px;height:120px;bottom:-10px;left:30px;top:auto"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.18;z-index:1">
+                <!-- bus icon abstracted -->
+                <rect x="80" y="55" width="180" height="90" rx="12" fill="none" stroke="#2dd4bf" stroke-width="1.5"/>
+                <rect x="90" y="70" width="50" height="35" rx="3" fill="#2dd4bf" fill-opacity="0.15"/>
+                <rect x="150" y="70" width="50" height="35" rx="3" fill="#2dd4bf" fill-opacity="0.15"/>
+                <rect x="210" y="70" width="40" height="35" rx="3" fill="#2dd4bf" fill-opacity="0.15"/>
+                <circle cx="115" cy="155" r="10" fill="none" stroke="#2dd4bf" stroke-width="1.5"/>
+                <circle cx="225" cy="155" r="10" fill="none" stroke="#2dd4bf" stroke-width="1.5"/>
+                <line x1="80" y1="145" x2="260" y2="145" stroke="#2dd4bf" stroke-width="1"/>
+              </svg>
+              <span class="card-wordmark">1-Bus Platform</span>
+              <span class="card-num">08</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="웹앱">웹앱</span>
+            </div>
+            <h4 class="work-title">일버스 (1-bus.com)</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">운송 종합 플랫폼. 견적 요청, 기사 구인구직, 차량매매를 노코드로 빠르게 구축.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">아임웹</span>
+              <span class="work-tag-chip">노코드</span>
+              <span class="work-tag-chip">MVP</span>
+            </div>
+            <div class="work-links">
+              <a href="https://1-bus.com" class="work-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">Website</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 9: 계약 관리 자동화 (hidden initially) -->
+        <div class="work-card hidden" data-category="분석" onclick="location.href='projects/bizno.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-analysis">
+              <div class="card-glow" style="background:radial-gradient(circle,#c4b5fd 0%,transparent 70%);width:130px;height:130px;top:10px;right:10px;left:auto"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;z-index:1">
+                <!-- document lines -->
+                <rect x="60" y="20" width="130" height="160" rx="5" fill="none" stroke="#c4b5fd" stroke-width="1.2"/>
+                <line x1="75" y1="50" x2="175" y2="50" stroke="#c4b5fd" stroke-width="1"/>
+                <line x1="75" y1="70" x2="175" y2="70" stroke="#c4b5fd" stroke-width="1"/>
+                <line x1="75" y1="90" x2="155" y2="90" stroke="#c4b5fd" stroke-width="1"/>
+                <line x1="75" y1="110" x2="175" y2="110" stroke="#c4b5fd" stroke-width="0.7" stroke-dasharray="3 2"/>
+                <line x1="75" y1="130" x2="145" y2="130" stroke="#c4b5fd" stroke-width="0.7" stroke-dasharray="3 2"/>
+                <!-- diff indicator -->
+                <rect x="165" y="60" width="6" height="100" rx="2" fill="#c4b5fd" fill-opacity="0.3"/>
+                <rect x="176" y="85" width="6" height="50" rx="2" fill="#c4b5fd" fill-opacity="0.5"/>
+                <!-- change marks -->
+                <circle cx="180" cy="70" r="4" fill="#f5a623" fill-opacity="0.6"/>
+                <circle cx="180" cy="90" r="4" fill="#f5a623" fill-opacity="0.6"/>
+              </svg>
+              <span class="card-wordmark">Contract Analysis</span>
+              <span class="card-num">09</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="분석">분석</span>
+            </div>
+            <h4 class="work-title">계약 관리 자동화</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">정부 조달 계약 문서 분석 및 수정 추적 시스템.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">Python</span>
+              <span class="work-tag-chip">Document Analysis</span>
+            </div>
+            <div class="work-links"></div>
+          </div>
+        </div>
+
+        <!-- Card 10: OnBus 운송 플랫폼 (hidden initially) -->
+        <div class="work-card hidden" data-category="플랫폼" onclick="location.href='projects/onbus-platform.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-platform">
+              <div class="card-glow"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;z-index:1">
+                <!-- platform layers -->
+                <ellipse cx="170" cy="155" rx="130" ry="18" fill="none" stroke="#60a5fa" stroke-width="1"/>
+                <ellipse cx="170" cy="110" rx="100" ry="14" fill="none" stroke="#60a5fa" stroke-width="1"/>
+                <ellipse cx="170" cy="70" rx="70" ry="10" fill="none" stroke="#60a5fa" stroke-width="1"/>
+                <line x1="70" y1="155" x2="100" y2="110" stroke="#60a5fa" stroke-width="0.8"/>
+                <line x1="270" y1="155" x2="240" y2="110" stroke="#60a5fa" stroke-width="0.8"/>
+                <line x1="100" y1="110" x2="120" y2="70" stroke="#60a5fa" stroke-width="0.8" stroke-dasharray="3 2"/>
+                <line x1="240" y1="110" x2="220" y2="70" stroke="#60a5fa" stroke-width="0.8" stroke-dasharray="3 2"/>
+                <!-- top cap -->
+                <circle cx="170" cy="42" r="12" fill="none" stroke="#60a5fa" stroke-width="1.2"/>
+                <line x1="170" y1="60" x2="170" y2="70" stroke="#60a5fa" stroke-width="1"/>
+              </svg>
+              <span class="card-wordmark">OnBus Platform</span>
+              <span class="card-num">10</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="플랫폼">플랫폼</span>
+            </div>
+            <h4 class="work-title">OnBus 운송 플랫폼</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">원더셔틀, 캐치락 SaaS 연동 운송 플랫폼 기술 문서.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">Platform Design</span>
+              <span class="work-tag-chip">SaaS</span>
+            </div>
+            <div class="work-links"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:4rem">
+        <button id="showMoreBtn" class="show-more-btn">더 보기</button>
+      </div>
     </div>
+  </section>
 
-    <!-- 서비스 섹션 -->
-    <section class="bg-white border-b">
-        <div class="max-w-7xl mx-auto px-4 pt-5 pb-2">
-            <p class="text-gray-500 text-sm leading-relaxed border-l-2 border-primary/40 pl-3 mb-4">대부분의 자문사는 전략을 내놓고 떠납니다. 대부분의 개발사는 받은 스펙대로 만들고 끝냅니다. 우리는 어디에 AI를 쓸지 정하는 단계부터 그것이 실제로 돌아가는 시스템이 될 때까지 함께합니다. 강의는 그 과정에서 조직 스스로 판단하는 힘을 키우는 단계입니다.</p>
+  <!-- ============================================
+       PROCESS
+  ============================================= -->
+  <section class="process-section">
+    <div class="container">
+      <h2 class="section-title process-title reveal">
+        <span class="word-thin" style="font-size:clamp(1.8rem,5vw,3.8rem);display:block">How to</span>
+        <span class="word-bold" style="font-size:clamp(2.8rem,8vw,6.5rem)">START</span>
+      </h2>
+      <div class="process-list">
+        <div class="process-item reveal">
+          <div class="process-num">01</div>
+          <div class="process-content">
+            <h3 class="process-step-title">첫 미팅 (무료)</h3>
+            <p class="process-step-desc">
+              현황을 공유해 주세요. 어디서 막혔는지, 무엇이 필요한지 30-60분 안에 파악합니다. 이 단계에서는 어떤 비용도 발생하지 않습니다.
+            </p>
+          </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 pb-6">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div id="service-consulting" class="flex flex-col gap-1">
-                    <span class="text-xs font-semibold tracking-widest text-gray-400 uppercase">자문</span>
-                    <p class="text-gray-800 text-sm leading-snug">어디에 AI를 쓸지, 무엇을 먼저 할지, 결정을 함께 내리는 기술경영 파트너입니다.</p>
-                </div>
-                <div id="service-training" class="flex flex-col gap-1">
-                    <span class="text-xs font-semibold tracking-widest text-gray-400 uppercase">강의</span>
-                    <p class="text-gray-800 text-sm leading-snug">비개발 임원이 AI 전환(AX)을 스스로 판단하고 주도하도록 설계된 강의입니다.</p>
-                </div>
-                <div id="service-dev" class="flex flex-col gap-1">
-                    <span class="text-xs font-semibold tracking-widest text-gray-400 uppercase">개발</span>
-                    <p class="text-gray-800 text-sm leading-snug">정한 것은 직접 만듭니다. 분석부터 배포까지, 실제 운영되는 시스템으로. ERP, 데이터 대시보드, 노선 최적화, 자동화 시스템을 30건 이상 납품했습니다.</p>
-                </div>
-            </div>
+        <div class="process-item reveal d1">
+          <div class="process-num">02</div>
+          <div class="process-content">
+            <h3 class="process-step-title">진단 및 제안</h3>
+            <p class="process-step-desc">
+              업무 흐름과 데이터를 분석하고, 어떤 AI 도구 또는 시스템이 실질적인 효과를 낼 수 있는지 구체적인 제안서를 드립니다.
+            </p>
+          </div>
         </div>
-    </section>
-
-    <!-- Filter Tabs -->
-    <div class="sticky top-16 bg-white border-b z-40">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center gap-1 py-3 overflow-x-auto">
-                <span class="text-xs text-gray-400 mr-2 whitespace-nowrap">납품 실적</span>
-                <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-primary text-white" data-filter="all">
-                    전체 (10)
-                </button>
-                <button onclick="filterProjects('webapp')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="webapp">
-                    웹앱 (6)
-                </button>
-                <button onclick="filterProjects('automation')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="automation">
-                    자동화 (1)
-                </button>
-                <button onclick="filterProjects('analysis')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="analysis">
-                    분석 (2)
-                </button>
-                <button onclick="filterProjects('platform')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="platform">
-                    플랫폼 (1)
-                </button>
-            </div>
+        <div class="process-item reveal d2">
+          <div class="process-num">03</div>
+          <div class="process-content">
+            <h3 class="process-step-title">실행 및 납품</h3>
+            <p class="process-step-desc">
+              자문에서 그치지 않습니다. 직접 만들고 운영 가능한 상태로 넘겨드립니다. 납품 후 운영 안정화까지 함께합니다.
+            </p>
+          </div>
         </div>
+      </div>
+      <div class="process-cta reveal">
+        <a href="about.html#contact" class="btn-primary">지금 시작하기</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Projects Grid -->
-    <main class="max-w-7xl mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+  <!-- ============================================
+       CONTACT CTA
+  ============================================= -->
+  <section class="contact">
+    <div class="contact-bg-text">CONTACT</div>
+    <div class="contact-content">
+      <p class="contact-label">어디서 시작할지 모르겠어도 괜찮습니다.</p>
+      <div style="margin-top:2rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap">
+        <a href="about.html#contact" class="contact-email">자문 시작하기</a>
+        <a href="about.html" class="contact-email">소개 보기</a>
+      </div>
+    </div>
+  </section>
 
-            <!-- Project 1: Junggubus -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="webapp" data-curated="1">
-                <a href="projects/junggubus.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">Web App</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">노선 편집기</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">Web App</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">내편 중구버스 노선 편집기</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">서울시 중구 셔틀버스 노선 설계 웹 에디터. 드래그앤드롭, OSRM 경로 최적화, 실시간 검증 지원.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">MapLibre GL</span>
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">OSRM</span>
-                        <span class="tech-badge">Python</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/junggubus.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                        <a href="demos/junggubus-editor.html" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Editor</a>
-                        <a href="demos/junggubus-viewer.html" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Viewer</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project: FMS ERP (Featured) -->
-            <article class="card-hover bg-gray-50 rounded-xl shadow-lg ring-2 ring-gray-400 ring-offset-2 relative" data-category="webapp" data-curated="1">
-                <span class="absolute -top-2 -left-2 px-3 py-1.5 bg-gray-700 text-white text-xs font-bold rounded-full" style="z-index: 10;">Featured</span>
-                <a href="projects/fms.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">ERP / Web App</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">운송 ERP (FMS)</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-200 text-gray-800">ERP</span>
-                        <span class="category-badge bg-gray-100 text-gray-700">Web App</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">운송 ERP (FMS)</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">3개 법인 통합 ERP. 431대 차량, 368명 기사, 4,700+ 비용기록을 관리하는 프로덕션 시스템.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">Next.js 14</span>
-                        <span class="tech-badge">Prisma</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">OAuth 2.0</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/fms.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition font-medium">Details</a>
-                        <a href="https://fms-readonly-sigma.vercel.app/" target="_blank" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition font-medium">Live Demo</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 2: PT Reports -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="webapp">
-                <a href="projects/pt-reports.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">Web App</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">노선 프레젠테이션 뷰어</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">Web App</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">노선 프레젠테이션 뷰어</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">버스 노선 비교, 시간표, 히트맵 시각화. 서울시 공무원 보고용 인터랙티브 뷰어.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">Leaflet.js</span>
-                        <span class="tech-badge">Kakao API</span>
-                        <span class="tech-badge">HTML/CSS</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/pt-reports.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                        <a href="demos/pt-reports/index.html" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Demo</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 3: 중구 Shuttle -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="webapp">
-                <a href="projects/junggu-shuttle.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">Web App</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">중구 셔틀버스 관리 시스템</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">Web App</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">중구 셔틀버스 관리 시스템</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">Full-stack 교통 관리 플랫폼. 배치 작업, 버전 히스토리, 노선 비교 기능.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">FastAPI</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">Mapbox GL</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/junggu-shuttle.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 5: newline (Route Builder) -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="webapp" data-curated="1">
-                <a href="projects/route-builder.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">Web App</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">쿠팡 FC 노선 빌더</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">Web App</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">쿠팡 FC 노선 빌더 v1.0</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">쿠팡 물류센터(FC) 셔틀버스 노선 생성 시스템. 41개 FC, 4,274개 정류장, Docker OSRM.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">Flask</span>
-                        <span class="tech-badge">Leaflet.js</span>
-                        <span class="tech-badge">Docker</span>
-                        <span class="tech-badge">OSRM</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/route-builder.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                        <a href="https://route-builder.onrender.com" target="_blank" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Live Demo</a>
-                        <a href="demos/coupang-route.html" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Output</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 6: C 0813 (Route Optimizer) -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="automation" data-curated="1">
-                <a href="projects/route-optimizer.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">자동화</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">3단계 노선 최적화</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">자동화</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">3단계 노선 최적화 파이프라인</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">Hungarian Algorithm 기반 노선 매칭. 18개 지역, 69개 FC, 1,556개 노선 처리.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">NetworkX</span>
-                        <span class="tech-badge">Hungarian Algo</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/route-optimizer.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 7: 수소 (Hydrogen Infrastructure) -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="analysis" data-curated="1">
-                <a href="projects/hydrogen-infra.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">분석</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">수소버스 충전 네트워크 대시보드</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">분석</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">수소버스 충전 네트워크 대시보드</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">수소버스 운영사의 거래처-충전소 충전 네트워크를 지도 위에 시각화. 복수 거래처 비교, 법인별 필터, 월별 추이 분석.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">Leaflet</span>
-                        <span class="tech-badge">Chart.js</span>
-                        <span class="tech-badge">Tailwind</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/hydrogen-infra.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                        <a href="demos/hrs-dashboard.html" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Network</a>
-                        <a href="demos/pogok.html" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Pogok</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 8: 일버스 (1-bus.com) -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="webapp">
-                <a href="projects/1bus.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">Web Platform</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">일버스 (1-bus.com)</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">Web Platform</span>
-                        <span class="category-badge bg-gray-100 text-gray-600">MVP</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">일버스 (1-bus.com)</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">운송 종합 플랫폼. 견적 요청, 기사 구인/구직, 차량매매를 노코드로 빠르게 구축.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">아임웹</span>
-                        <span class="tech-badge">노코드</span>
-                        <span class="tech-badge">MVP</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/1bus.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                        <a href="https://1-bus.com" target="_blank" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Website</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 9: Bizno -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="analysis" data-curated="1">
-                <a href="projects/bizno.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">분석</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">계약 관리 자동화</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">분석</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">계약 관리 자동화</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">정부 조달 계약 문서 분석 및 수정 추적 시스템.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Document Analysis</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/bizno.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 10: OnBus Platform -->
-            <article class="card-hover bg-white rounded-xl shadow-md overflow-hidden" data-category="platform">
-                <a href="projects/onbus-platform.html" class="card-thumb-link block aspect-video overflow-hidden rounded-t-xl" style="background:#111827;">
-                    <div class="w-full h-full flex flex-col justify-end p-4" style="background:linear-gradient(160deg,#1f2937 60%,#1a2a3a);">
-                        <span class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#6b7280;">플랫폼</span>
-                        <span class="text-base font-bold leading-snug" style="color:#f3f4f6;">OnBus 운송 플랫폼</span>
-                    </div>
-                </a>
-                <div class="p-6 card-content">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="category-badge bg-gray-100 text-gray-700">플랫폼</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">OnBus 운송 플랫폼</h3>
-                    <p class="text-gray-600 text-sm mb-4 card-description">원더셔틀, 캐치락 SaaS 연동 운송 플랫폼 기술 문서.</p>
-                    <div class="flex flex-wrap gap-1 mb-4">
-                        <span class="tech-badge">Platform Design</span>
-                        <span class="tech-badge">SaaS</span>
-                    </div>
-                    <div class="flex gap-2 card-buttons">
-                        <a href="projects/onbus-platform.html" class="flex-1 text-center px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition">Details</a>
-                    </div>
-                </div>
-            </article>
-
+  <!-- ============================================
+       FOOTER
+  ============================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo" style="color:#fff;margin-bottom:0.5rem">Ahn Partners</div>
+          <div class="footer-brand-desc">AI 전환, 결정부터 실행까지</div>
         </div>
-
-        <!-- 더 보기 버튼 -->
-        <div id="show-more-wrap" class="text-center mt-6">
-            <button id="show-more-btn" onclick="showAllProjects()" class="px-6 py-2 border border-gray-300 text-gray-600 text-sm rounded-full hover:border-primary hover:text-primary transition-all duration-200">
-                전체 프로젝트 보기 (10건)
-            </button>
+        <div class="footer-links">
+          <a href="about.html#contact" class="footer-link">문의</a>
+          <a href="about.html" class="footer-link">소개</a>
+          <a href="https://www.youtube.com/@ahn_partners" class="footer-link" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.linkedin.com/in/chrisahn-intuition/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.threads.com/@crossfitwine" class="footer-link" target="_blank" rel="noopener">Threads</a>
+          <a href="https://x.com/crossfitwine" class="footer-link" target="_blank" rel="noopener">X</a>
         </div>
-    </main>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Ahn Partners
+      </div>
+    </div>
+  </footer>
 
-    <!-- 의뢰 프로세스 3단계 -->
-    <section class="bg-gray-50 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 py-8">
-            <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase text-center mb-5">이렇게 시작합니다</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
-                <div class="px-6 py-4 text-center">
-                    <span class="block text-primary font-bold text-sm mb-1">1</span>
-                    <p class="text-gray-700 text-sm font-medium">30분 온라인 킥오프</p>
-                    <p class="text-gray-500 text-xs mt-1">현황과 목표를 함께 정합니다.</p>
-                </div>
-                <div class="px-6 py-4 text-center">
-                    <span class="block text-primary font-bold text-sm mb-1">2</span>
-                    <p class="text-gray-700 text-sm font-medium">방향 제안</p>
-                    <p class="text-gray-500 text-xs mt-1">우선순위와 접근 방식을 제시합니다.</p>
-                </div>
-                <div class="px-6 py-4 text-center">
-                    <span class="block text-primary font-bold text-sm mb-1">3</span>
-                    <p class="text-gray-700 text-sm font-medium">월단위 자문 또는 프로젝트 진행</p>
-                    <p class="text-gray-500 text-xs mt-1">합의한 방식으로 진행합니다.</p>
-                </div>
-            </div>
-            <div class="text-center mt-5">
-                <a href="about.html#contact" class="inline-block px-6 py-2 bg-primary text-white text-sm rounded-full hover:opacity-90 transition-opacity">문의하기</a>
-            </div>
-        </div>
-    </section>
+  <!-- ============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    // ===== LENIS SMOOTH SCROLL =====
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-400 mb-3">Ahn Partners - 자문, 강의, 개발</p>
-            <div class="flex justify-center gap-6 mb-4">
-                <a href="about.html#contact" class="text-gray-400 hover:text-white">문의</a>
-                <a href="about.html" class="text-gray-400 hover:text-white">소개</a>
-                <a href="https://www.youtube.com/@ahn_partners" target="_blank" rel="noopener" class="text-gray-400 hover:text-white">YouTube</a>
-            </div>
-            <!-- 모바일 SNS 바 -->
-            <div class="sns-footer-mobile justify-center gap-5 mb-4">
-                <a href="https://www.youtube.com/@ahn_partners" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 text-xs">YouTube</a>
-                <a href="https://www.linkedin.com/in/chrisahn-intuition/" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 text-xs">LinkedIn</a>
-                <a href="https://www.threads.com/@crossfitwine" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 text-xs">Threads</a>
-                <a href="https://x.com/crossfitwine" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 text-xs">X</a>
-            </div>
-            <p class="text-gray-500 text-sm">&copy; 2026 Ahn Partners. All rights reserved.</p>
-        </div>
-    </footer>
+    // ===== HEADER SCROLL =====
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }, { passive: true });
 
-    <!-- Count-up Script -->
-    <script>
-        (function() {
-            var els = document.querySelectorAll('.count-up');
-            var started = false;
+    // ===== MOBILE MENU =====
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-            function formatNum(n, comma) {
-                if (comma) return n.toLocaleString('ko-KR');
-                return String(n);
-            }
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-            function runCountUp() {
-                if (started) return;
-                started = true;
-                els.forEach(function(el) {
-                    var target = parseInt(el.getAttribute('data-target'), 10);
-                    var suffix = el.getAttribute('data-suffix') || '';
-                    var comma = el.getAttribute('data-comma') === 'true';
-                    var duration = 1200;
-                    var start = null;
-                    function step(ts) {
-                        if (!start) start = ts;
-                        var progress = Math.min((ts - start) / duration, 1);
-                        var eased = 1 - Math.pow(1 - progress, 3);
-                        var current = Math.floor(eased * target);
-                        el.textContent = formatNum(current, comma) + suffix;
-                        if (progress < 1) requestAnimationFrame(step);
-                        else el.textContent = formatNum(target, comma) + suffix;
-                    }
-                    requestAnimationFrame(step);
-                });
-            }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-            var band = document.getElementById('metrics-band');
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) {
-                        runCountUp();
-                        observer.disconnect();
-                    }
-                }, { threshold: 0.2 });
-                observer.observe(band);
-            } else {
-                runCountUp();
-            }
-        })();
-    </script>
+    mobileMenuBtn.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-    <!-- Filter Script -->
-    <script>
-        function filterProjects(category) {
-            const grid = document.getElementById('projects-grid');
-            const cards = document.querySelectorAll('#projects-grid article');
-            const buttons = document.querySelectorAll('.filter-btn');
-            const showMoreWrap = document.getElementById('show-more-wrap');
+    // ===== HERO CANVAS METABALL GOO =====
+    const heroCanvas = document.getElementById('hero-canvas');
+    const ctx = heroCanvas.getContext('2d');
+    const blobs = [];
 
-            // Update button styles
-            buttons.forEach(btn => {
-                if (btn.dataset.filter === category) {
-                    btn.classList.remove('bg-gray-100', 'text-gray-700');
-                    btn.classList.add('bg-primary', 'text-white');
-                } else {
-                    btn.classList.remove('bg-primary', 'text-white');
-                    btn.classList.add('bg-gray-100', 'text-gray-700');
-                }
-            });
+    function resizeCanvas() {
+      heroCanvas.width = window.innerWidth;
+      heroCanvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
 
-            if (category === 'all') {
-                // 전체 탭: 큐레이션 상태로 복귀 (show-all 제거, 인라인 스타일 초기화)
-                grid.classList.remove('show-all');
-                cards.forEach(card => { card.style.display = ''; });
-                if (showMoreWrap) showMoreWrap.style.display = '';
-            } else {
-                // 특정 필터: show-all 강제, 해당 카테고리만 표시
-                grid.classList.add('show-all');
-                cards.forEach(card => {
-                    card.style.display = (card.dataset.category === category) ? 'block' : 'none';
-                });
-                if (showMoreWrap) showMoreWrap.style.display = 'none';
-            }
+    class Blob {
+      constructor(x, y, vx, vy) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx * 0.4;
+        this.vy = vy * 0.4;
+        this.radius = 80 + Math.random() * 120;
+        this.life = 1.0;
+        this.decay = 0.003 + Math.random() * 0.004;
+        this.hue = Math.random() > 0.5 ? 'teal' : 'white';
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= 0.98;
+        this.vy *= 0.98;
+        this.life -= this.decay;
+      }
+
+      draw(ctx) {
+        if (this.life <= 0) return;
+        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+        if (this.hue === 'teal') {
+          grad.addColorStop(0, `rgba(45,212,191,${this.life * 0.9})`);
+          grad.addColorStop(1, 'rgba(45,212,191,0)');
+        } else {
+          grad.addColorStop(0, `rgba(220,220,220,${this.life * 0.7})`);
+          grad.addColorStop(1, 'rgba(220,220,220,0)');
         }
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      }
+    }
 
-        function showAllProjects() {
-            const grid = document.getElementById('projects-grid');
-            const cards = document.querySelectorAll('#projects-grid article');
-            const showMoreWrap = document.getElementById('show-more-wrap');
-            grid.classList.add('show-all');
-            cards.forEach(card => { card.style.display = ''; });
-            if (showMoreWrap) showMoreWrap.style.display = 'none';
+    let lastX = -1000, lastY = -1000, lastBlobTime = 0;
+
+    document.getElementById('hero').addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      const speed = Math.sqrt(dx * dx + dy * dy);
+      if (speed > 5 && now - lastBlobTime > 30) {
+        blobs.push(new Blob(
+          e.clientX,
+          e.clientY,
+          dx * 0.3 + (Math.random() - 0.5) * 4,
+          dy * 0.3 + (Math.random() - 0.5) * 4
+        ));
+        if (blobs.length > 60) blobs.shift();
+        lastX = e.clientX;
+        lastY = e.clientY;
+        lastBlobTime = now;
+      }
+    });
+
+    // Apply goo CSS filter
+    heroCanvas.style.filter = 'blur(30px) contrast(20)';
+
+    function animateBlobs() {
+      ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+      for (let i = blobs.length - 1; i >= 0; i--) {
+        blobs[i].update();
+        blobs[i].draw(ctx);
+        if (blobs[i].life <= 0) blobs.splice(i, 1);
+      }
+      requestAnimationFrame(animateBlobs);
+    }
+    animateBlobs();
+
+    // Mobile: auto-floating blobs
+    if (window.matchMedia('(pointer:coarse)').matches) {
+      setInterval(() => {
+        const x = Math.random() * heroCanvas.width;
+        const y = Math.random() * heroCanvas.height;
+        blobs.push(new Blob(x, y, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2));
+        if (blobs.length > 30) blobs.shift();
+      }, 400);
+    }
+
+    // ===== REVEAL INTERSECTION OBSERVER =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
         }
-    </script>
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ===== COUNTUP =====
+    function animateCount(el, target, suffix) {
+      const duration = 1800;
+      const start = performance.now();
+      const startVal = 0;
+
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(startVal + (target - startVal) * eased);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target, 10);
+          const suffix = el.dataset.suffix || '';
+          animateCount(el, target, suffix);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.stat-number[data-target]').forEach(el => countObserver.observe(el));
+
+    // ===== CASES CAROUSEL =====
+    (function initCarousel() {
+      const track = document.getElementById('carouselTrack');
+      if (!track) return;
+
+      const cards = Array.from(track.querySelectorAll('.case-card'));
+      const dots = Array.from(document.querySelectorAll('.carousel-dot'));
+      if (!cards.length) return;
+
+      let current = 0;
+      let timer = null;
+
+      // Ensure all non-active cards are position:absolute, active is relative
+      // This keeps track height = active card height
+      function setCarouselHeight() {
+        let maxH = 0;
+        cards.forEach(card => {
+          const prev = card.style.cssText;
+          card.style.position = 'relative';
+          card.style.opacity = '1';
+          card.style.pointerEvents = 'none';
+          card.style.display = 'flex';
+          maxH = Math.max(maxH, card.offsetHeight);
+          card.style.cssText = prev;
+        });
+        if (maxH > 0) track.style.minHeight = maxH + 'px';
+      }
+
+      function showCard(index) {
+        cards[current].classList.remove('active');
+        if (dots[current]) dots[current].classList.remove('active');
+        current = ((index % cards.length) + cards.length) % cards.length;
+        cards[current].classList.add('active');
+        if (dots[current]) dots[current].classList.add('active');
+      }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => {
+          showCard(current + 1);
+        }, 4500);
+      }
+
+      // Init: ensure only first card is active
+      cards.forEach((card, i) => {
+        card.classList.toggle('active', i === 0);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === 0);
+      });
+
+      // Measure height after layout
+      requestAnimationFrame(() => {
+        setCarouselHeight();
+        window.addEventListener('resize', setCarouselHeight);
+      });
+
+      // Dot click
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          showCard(parseInt(dot.dataset.dot, 10));
+          startTimer();
+        });
+      });
+
+      // Hover pause
+      track.addEventListener('mouseenter', () => clearInterval(timer));
+      track.addEventListener('mouseleave', startTimer);
+
+      startTimer();
+    })();
+
+    // ===== CATEGORY FILTER =====
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const projectCards = document.querySelectorAll('.work-card');
+    let currentFilter = 'ALL';
+    let showingAll = false;
+
+    function applyFilter(cat) {
+      currentFilter = cat;
+      let visibleCount = 0;
+
+      filterChips.forEach(chip => {
+        if (chip.dataset.cat === cat) {
+          chip.classList.remove('inactive');
+        } else {
+          chip.classList.add('inactive');
+        }
+      });
+
+      projectCards.forEach((card, i) => {
+        const cardCat = card.dataset.category;
+        const matches = cat === 'ALL' || cardCat === cat;
+
+        if (matches) {
+          visibleCount++;
+          if (cat !== 'ALL') {
+            card.classList.remove('hidden');
+            card.style.display = '';
+          } else {
+            if (visibleCount <= 6 && !showingAll) {
+              card.classList.add('hidden');
+              card.style.display = 'none';
+              // first 6 visible
+            }
+          }
+        } else {
+          card.classList.add('hidden');
+          card.style.display = 'none';
+        }
+      });
+
+      // Re-apply show-more logic for ALL
+      if (cat === 'ALL') {
+        let shown = 0;
+        projectCards.forEach(card => {
+          if (!showingAll) {
+            if (shown < 6) {
+              card.classList.remove('hidden');
+              card.style.display = '';
+              shown++;
+            } else {
+              card.classList.add('hidden');
+              card.style.display = 'none';
+            }
+          } else {
+            card.classList.remove('hidden');
+            card.style.display = '';
+          }
+        });
+        document.getElementById('showMoreBtn').style.display = showingAll ? 'none' : '';
+      } else {
+        document.getElementById('showMoreBtn').style.display = 'none';
+      }
+    }
+
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        showingAll = false;
+        applyFilter(chip.dataset.cat);
+      });
+    });
+
+    // Initial state: show first 6
+    applyFilter('ALL');
+
+    // Show more
+    document.getElementById('showMoreBtn').addEventListener('click', () => {
+      showingAll = true;
+      applyFilter(currentFilter);
+    });
+
+    // ===== ANCHOR SMOOTH SCROLL FOR NAV LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -80 });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
