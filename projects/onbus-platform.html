@@ -3,225 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
+    <title>통합 운송 플랫폼 | Ahn Partners</title>
+    <meta name="description" content="자체 셔틀 플랫폼, 외부 배차 SaaS SaaS 기반 통합 운송 플랫폼 아키텍처 설계. 기업 셔틀, 지자체 공공버스 앱(성동구, 노원구, 중구, 관악구) 운영.">
+    <link rel="canonical" href="https://ahn-partners.netlify.app/projects/onbus-platform.html">
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="apple-touch-icon" href="../favicon.png">
-    <link rel="canonical" href="https://ahn-partners.netlify.app/projects/onbus-platform.html">
-    <title>OnBus 운송 플랫폼 - SaaS 기반 통합 운송 아키텍처 | Ahn Partners</title>
-    <meta name="description" content="원더셔틀, 캐치락 SaaS 기반 통합 운송 플랫폼 아키텍처 설계. 기업 셔틀, 지자체 공공버스 앱(성동구, 노원구, 중구, 관악구) 운영.">
-    <!-- Open Graph -->
-    <meta property="og:title" content="OnBus 운송 플랫폼 - SaaS 기반 통합 운송 아키텍처 | Ahn Partners">
-    <meta property="og:description" content="원더셔틀, 캐치락 SaaS 기반 통합 운송 플랫폼 아키텍처 설계. 기업 셔틀, 지자체 공공버스 앱(성동구, 노원구, 중구, 관악구) 운영.">
+    <meta property="og:title" content="통합 운송 플랫폼 | Ahn Partners">
+    <meta property="og:description" content="자체 셔틀 플랫폼, 외부 배차 SaaS SaaS 기반 통합 운송 플랫폼 아키텍처 설계. 기업 셔틀, 지자체 공공버스 앱(성동구, 노원구, 중구, 관악구) 운영.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://ahn-partners.netlify.app/projects/onbus-platform.html">
-    <meta property="og:image" content="https://ahn-partners.netlify.app/images/projects/onbus/main.png">
     <meta property="og:site_name" content="Ahn Partners">
     <meta property="og:locale" content="ko_KR">
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="OnBus 운송 플랫폼 - SaaS 기반 통합 운송 아키텍처 | Ahn Partners">
-    <meta name="twitter:description" content="원더셔틀, 캐치락 SaaS 기반 통합 운송 플랫폼 아키텍처 설계. 기업 셔틀, 지자체 공공버스 앱(성동구, 노원구, 중구, 관악구) 운영.">
-    <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/projects/onbus/main.png">
-    <link rel="stylesheet" href="../dist/output.css">
-
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
-    </style>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="통합 운송 플랫폼 | Ahn Partners">
+    <meta name="twitter:description" content="자체 셔틀 플랫폼, 외부 배차 SaaS SaaS 기반 통합 운송 플랫폼 아키텍처 설계. 기업 셔틀, 지자체 공공버스 앱(성동구, 노원구, 중구, 관악구) 운영.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "SoftwareApplication",
+      "name": "통합 운송 플랫폼",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "자체 셔틀 플랫폼, 외부 배차 SaaS SaaS 기반 통합 운송 플랫폼 아키텍처 설계. 기업 셔틀, 지자체 공공버스 앱(성동구, 노원구, 중구, 관악구) 운영.",
+      "url": "https://ahn-partners.netlify.app/projects/onbus-platform.html",
+      "author": {
+        "@type": "Organization",
+        "name": "Ahn Partners",
+        "url": "https://ahn-partners.netlify.app"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "SoftwareApplication",
-          "name": "OnBus 운송 플랫폼",
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "Web",
-          "description": "원더셔틀, 캐치락 SaaS 기반 통합 운송 플랫폼 아키텍처 설계. 기업 셔틀, 지자체 공공버스 앱(성동구, 노원구, 중구, 관악구) 운영.",
-          "url": "https://ahn-partners.netlify.app/projects/onbus-platform.html",
-          "image": "https://ahn-partners.netlify.app/images/projects/onbus/main.png",
-          "author": {
-            "@type": "Organization",
-            "name": "Ahn Partners",
-            "url": "https://ahn-partners.netlify.app"
-          }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://ahn-partners.netlify.app/"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "홈",
-              "item": "https://ahn-partners.netlify.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "수행 실적",
-              "item": "https://ahn-partners.netlify.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "OnBus 운송 플랫폼",
-              "item": "https://ahn-partners.netlify.app/projects/onbus-platform.html"
-            }
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Projects",
+          "item": "https://ahn-partners.netlify.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "통합 운송 플랫폼",
+          "item": "https://ahn-partners.netlify.app/projects/onbus-platform.html"
         }
       ]
     }
+  ]
+}
     </script>
+    <style>
+    :root {
+      --paper: #fafafa; --surface: #ffffff;
+      --ink: #101014; --ink-soft: #3f3f46; --muted: #6b6b74;
+      --line: #e4e4e7; --line-strong: #d4d4d8;
+      --accent: #2dd4bf; --accent-deep: #0d9488; --accent-soft: #99f6e4;
+      --band-ink: #101014; --band-text: #fafafa; --band-muted: #a1a1aa;
+      --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-display: 'Playfair Display', 'Pretendard Variable', Pretendard, serif;
+      --font-mono: 'JetBrains Mono', 'Pretendard Variable', monospace;
+      --container: 1100px;
+      --section-y: clamp(3.5rem, 7vw, 6rem);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--paper); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+    .mono { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      * { animation: none !important; transition: none !important; }
+    }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(17, 17, 20, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-brand { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.22em; display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; color: #ffffff; }
+    .nav-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); }
+    .nav-links a { font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.82); display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.25rem; }
+    .nav-links a:hover { color: #ffffff; }
+
+    .case-hero { padding: calc(64px + clamp(2.5rem, 5vw, 4rem)) 0 var(--section-y); }
+    .crumbs { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; color: var(--muted); margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }
+    .crumbs a { color: var(--muted); min-height: 44px; display: inline-flex; align-items: center; }
+    .crumbs a:hover { color: var(--accent); }
+    .crumbs .sep { color: var(--line-strong); }
+    .crumbs .here { color: var(--ink-soft); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    .case-tag { color: var(--accent); display: block; margin-bottom: 1.1rem; }
+    .case-title { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.12; word-break: keep-all; }
+    .case-sub { margin-top: 1rem; font-size: clamp(1rem, 1.8vw, 1.15rem); color: var(--muted); word-break: keep-all; max-width: 540px; }
+    .meta-chips { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .meta-chip { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 0.85rem; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-soft); background: var(--surface); }
+    .hero-actions { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1.5rem; font-size: 0.93rem; font-weight: 700; border-radius: 8px; transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-solid { background: var(--ink); color: var(--paper); }
+    .btn-solid:hover { background: var(--accent-deep); }
+    .btn-ghost { border: 1px solid var(--line-strong); color: var(--ink); background: var(--surface); }
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    .case-visual { aspect-ratio: 4 / 3; border-radius: 16px; background: linear-gradient(135deg, #0c0f1d 0%, #101625 55%, #0a0c14 100%); position: relative; overflow: hidden; }
+    .case-visual::before { content: ''; position: absolute; inset: 0; z-index: 1; background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 18px 18px; }
+    .case-visual .glow { position: absolute; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, var(--accent), transparent 70%); opacity: 0.5; filter: blur(50px); top: -50px; left: -40px; }
+    .case-visual svg { position: absolute; inset: 10%; width: 80%; height: 80%; z-index: 2; opacity: 0.85; }
+    .case-visual .visual-label { position: absolute; right: 16px; bottom: 12px; z-index: 3; font-family: var(--font-mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.42); }
+    .case-visual .stroke { stroke: var(--accent-soft); fill: none; stroke-width: 1.4; }
+    .case-visual .stroke-thin { stroke: var(--accent-soft); fill: none; stroke-width: 1; opacity: 0.7; }
+    .case-visual .fill-soft { fill: var(--accent-soft); opacity: 0.16; }
+    .case-visual .fill-dot { fill: var(--accent-soft); }
+    .case-visual .svg-label { fill: var(--accent-soft); font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; }
+
+    .meta-table { margin-top: 1.8rem; border-top: 1px solid var(--line); }
+    .meta-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.65rem 0; border-bottom: 1px solid var(--line); }
+    .meta-key { color: var(--muted); }
+    .meta-val { font-size: 0.9rem; font-weight: 600; color: var(--ink-soft); text-align: right; word-break: keep-all; }
+
+    .metrics { background: var(--band-ink); color: var(--band-text); padding: clamp(2.8rem, 5vw, 4rem) 0; position: relative; overflow: hidden; }
+    .metrics::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px); background-size: 22px 22px; }
+    .metrics-grid { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.8rem 1.2rem; }
+    .metric { border-left: 1px solid rgba(255,255,255,0.14); padding-left: 1rem; }
+    .metric-value { font-family: var(--font-mono); font-size: clamp(1.4rem, 2.8vw, 2rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .metric-label { margin-top: 0.4rem; font-size: 0.8rem; color: var(--band-muted); word-break: keep-all; }
+
+    .section { padding: var(--section-y) 0; }
+    .rule-top { border-top: 1px solid var(--line); }
+    .section-eyebrow { color: var(--accent); display: block; margin-bottom: 1rem; }
+    .section-title { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; line-height: 1.08; }
+    .lead { margin-top: 1.6rem; color: var(--ink-soft); font-size: 1.02rem; max-width: 700px; word-break: keep-all; }
+    .lead p { margin-bottom: 1.1rem; }
+    .lead p:last-child { margin-bottom: 0; }
+
+    .comp-grid { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 3rem; }
+    .comp { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 1rem; }
+    .comp-num { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--accent); padding-top: 0.2rem; }
+    .comp-title { font-weight: 750; font-size: 1rem; letter-spacing: -0.01em; }
+    .comp-desc { margin-top: 0.3rem; color: var(--muted); font-size: 0.9rem; word-break: keep-all; }
+
+    .steps { margin-top: 2rem; display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .step { padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+    .step-head { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .step-num { color: var(--accent); }
+    .step-phase { font-weight: 750; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .step-period { color: var(--muted); margin-left: auto; }
+    .step-desc { margin-top: 0.5rem; color: var(--muted); font-size: 0.92rem; word-break: keep-all; max-width: 720px; }
+
+    .chips { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.04em; padding: 0.5rem 0.85rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--ink-soft); }
+
+    .pn { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .pn a { border: 1px solid var(--line); border-radius: 14px; padding: 1.3rem 1.5rem; background: var(--surface); transition: border-color 0.2s, transform 0.2s; display: block; }
+    .pn a:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .pn .dir { color: var(--muted); display: block; margin-bottom: 0.5rem; }
+    .pn .pn-title { font-weight: 750; letter-spacing: -0.01em; word-break: keep-all; }
+    .pn .next { text-align: right; }
+    .pn .spacer { visibility: hidden; }
+
+    .footer { padding: 3rem 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .footer-tag { color: var(--muted); font-size: 0.9rem; }
+    .footer-links { display: flex; gap: 1.6rem; }
+    .footer-links a { font-size: 0.88rem; font-weight: 600; color: var(--ink-soft); display: inline-flex; align-items: center; min-height: 44px; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { width: 100%; color: var(--muted); font-size: 0.8rem; font-family: var(--font-mono); letter-spacing: 0.06em; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .comp-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .pn { grid-template-columns: 1fr; }
+      .pn .next { text-align: left; }
+    }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            <a href="../index.html" class="text-xl font-bold text-primary">Ahn Partners</a>
-            <div class="flex gap-6">
-                <a href="../index.html" class="text-gray-700 hover:text-primary">수행 실적</a>
-                <a href="../about.html" class="text-gray-700 hover:text-primary">회사 소개</a>
-            </div>
+<body>
+
+    <nav class="nav" aria-label="주 메뉴">
+      <div class="container nav-inner">
+        <a href="../index.html" class="nav-brand"><img src="../images/logo/ap-wordmark-web.png" alt="Ahn Partners" style="height:20px;width:auto;display:block"></a>
+        <div class="nav-links">
+          <a href="../index.html">홈</a>
+          <a href="../about.html">소개</a>
+          <a href="../about.html#contact">문의</a>
         </div>
+      </div>
     </nav>
 
-    <main class="pt-24 pb-16 max-w-5xl mx-auto px-4">
-        <a href="../index.html" class="inline-flex items-center gap-2 text-gray-600 hover:text-primary mb-6">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            Back to Projects
-        </a>
-
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
-            <div class="aspect-video bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white">
-                <div class="text-center">
-                    <div class="text-6xl mb-4">🚍</div>
-                    <h2 class="text-2xl font-bold">OnBus Platform</h2>
-                    <p class="text-orange-200">WonderShuttle + CatchLoc SaaS</p>
-                </div>
-            </div>
-            <div class="p-8">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">Platform</span>
-                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Architecture</span>
-                </div>
-                <h1 class="text-3xl font-bold text-gray-900 mb-4">OnBus 운송 플랫폼</h1>
-                <p class="text-xl text-gray-600">원더셔틀, 캐치락 SaaS 기반 운송 플랫폼 아키텍처 설계.</p>
-            </div>
+    <header class="case-hero">
+      <div class="container">
+        <div class="crumbs mono">
+          <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+          <a href="../index.html">Projects</a><span class="sep" aria-hidden="true">/</span>
+          <span class="here">PLATFORM</span>
         </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="md:col-span-2 space-y-8">
-                <section class="bg-white rounded-2xl shadow-lg p-8">
-                    <h2 class="text-2xl font-bold mb-6">Platform Components</h2>
-                    <div class="space-y-4">
-                        <div class="p-4 bg-orange-50 rounded-xl">
-                            <h3 class="font-bold text-orange-900">원더셔틀 관리자 앱</h3>
-                            <p class="text-orange-700 text-sm">셔틀 운영사용 관리 대시보드</p>
-                        </div>
-                        <div class="p-4 bg-amber-50 rounded-xl">
-                            <h3 class="font-bold text-amber-900">원더셔틀 사용자 앱</h3>
-                            <p class="text-amber-700 text-sm">승객용 모바일 애플리케이션</p>
-                        </div>
-                        <div class="p-4 bg-yellow-50 rounded-xl">
-                            <h3 class="font-bold text-yellow-900">지자체 공공버스 앱</h3>
-                            <p class="text-yellow-700 text-sm">성동구, 노원구, 중구, 관악구 등 지자체별 운영</p>
-                        </div>
-                        <div class="p-4 bg-lime-50 rounded-xl">
-                            <h3 class="font-bold text-lime-900">캐치락 SaaS</h3>
-                            <p class="text-lime-700 text-sm">실시간 위치 추적 및 물류 관리 솔루션</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="bg-white rounded-2xl shadow-lg p-8">
-                    <h2 class="text-2xl font-bold mb-6">Overview</h2>
-                    <div class="prose text-gray-600">
-                        <p class="mb-4">OnBus 플랫폼은 원더셔틀 기반의 통합 운송 솔루션으로, 기업 셔틀과 지자체 공공버스를 위한 아키텍처를 설계했습니다.</p>
-                        <p class="mb-4">캐치락 SaaS와 연동하여 실시간 위치 추적, 배차 관리, 승객 알림 등의 기능을 제공합니다.</p>
-                        <p>현재 다수의 지자체에서 공공버스 앱으로 운영되고 있습니다.</p>
-                    </div>
-                </section>
-            </div>
-            <div class="space-y-6">
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <h3 class="font-bold mb-4">Deliverables</h3>
-                    <ul class="text-sm text-gray-700 space-y-3">
-                        <li class="flex items-center gap-2">
-                            <span>원더셔틀 관리자 앱</span>
-                            <a href="https://play.google.com/store/apps/details?id=com.spacosa.android.catchloc.locator" target="_blank" class="text-gray-400 hover:text-green-600" title="Google Play">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span>원더셔틀 사용자 앱</span>
-                            <a href="https://apps.apple.com/app/id1636246223" target="_blank" class="text-gray-400 hover:text-gray-600" title="App Store">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.spacosa.android.catchloc.wonderbus" target="_blank" class="text-gray-400 hover:text-green-600" title="Google Play">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span>성동구 성공버스 앱</span>
-                            <a href="https://apps.apple.com/app/id6742437788" target="_blank" class="text-gray-400 hover:text-gray-600" title="App Store">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.spacosa.android.catchloc.publicbus" target="_blank" class="text-gray-400 hover:text-green-600" title="Google Play">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span>노원구 행복버스 앱</span>
-                            <a href="https://apps.apple.com/kr/app/id6747174215" target="_blank" class="text-gray-400 hover:text-gray-600" title="App Store">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.spacosa.android.catchloc.publicshuttle" target="_blank" class="text-gray-400 hover:text-green-600" title="Google Play">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span>내편 중구버스 앱</span>
-                            <a href="https://apps.apple.com/app/id6748937906" target="_blank" class="text-gray-400 hover:text-gray-600" title="App Store">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.spacosa.android.catchloc.publicshuttlejg" target="_blank" class="text-gray-400 hover:text-green-600" title="Google Play">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span>관악구 강감찬버스 앱</span>
-                            <a href="https://apps.apple.com/kr/app/id6755586644" target="_blank" class="text-gray-400 hover:text-gray-600" title="App Store">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.spacosa.android.catchloc.publicshuttlegwanakgu" target="_blank" class="text-gray-400 hover:text-green-600" title="Google Play">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span>캐치락 SaaS</span>
-                            <a href="https://www.catchloc.com/" target="_blank" class="text-primary hover:underline text-xs font-medium">링크</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <h3 class="font-bold mb-4">Role</h3>
-                    <p class="text-gray-600 text-sm">Platform Architect</p>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <h3 class="font-bold mb-4">Tech Stack</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Mobile App</span>
-                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">SaaS</span>
-                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Real-time GPS</span>
-                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">API Integration</span>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-grid">
+          <div>
+            <span class="mono case-tag reveal">Platform</span>
+            <h1 class="case-title reveal">통합 운송 플랫폼</h1>
+            <p class="case-sub reveal">자체 셔틀 플랫폼, 외부 배차 SaaS SaaS 기반 통합 운송 플랫폼 아키텍처 설계</p>
+            <div class="meta-chips reveal"><span class="meta-chip">Platform</span><span class="meta-chip">Architecture</span></div>
+            <div class="hero-actions reveal">
+          <a href="https://play.google.com/store/apps/details?id=com.spacosa.android.catchloc.locator" target="_blank" rel="noopener" class="btn btn-solid">자체 셔틀 플랫폼 관리자 앱 (Google Play)</a>
+          <a href="https://apps.apple.com/app/id1636246223" target="_blank" rel="noopener" class="btn btn-ghost">자체 셔틀 플랫폼 사용자 앱 (App Store)</a>
+          <a href="https://apps.apple.com/app/id6742437788" target="_blank" rel="noopener" class="btn btn-ghost">성동구 성공버스 (App Store)</a>
+          <a href="https://apps.apple.com/kr/app/id6747174215" target="_blank" rel="noopener" class="btn btn-ghost">노원구 행복버스 (App Store)</a>
+          <a href="https://apps.apple.com/app/id6748937906" target="_blank" rel="noopener" class="btn btn-ghost">내편 중구버스 (App Store)</a>
+          <a href="https://apps.apple.com/kr/app/id6755586644" target="_blank" rel="noopener" class="btn btn-ghost">관악구 강감찬버스 (App Store)</a>
+          <a href="https://www.catchloc.com/" target="_blank" rel="noopener" class="btn btn-ghost">외부 배차 SaaS SaaS</a>
         </div>
+          </div>
+          <div class="reveal">
+            <div class="case-visual">
+              <div class="glow"></div>
+              <svg viewBox="0 0 400 250" aria-hidden="true">
+    <rect class="stroke" x="120" y="40" width="160" height="34" rx="6"/>
+    <rect class="stroke-thin" x="90" y="98" width="100" height="34" rx="6"/>
+    <rect class="stroke-thin" x="210" y="98" width="100" height="34" rx="6"/>
+    <rect class="fill-soft" x="70" y="156" width="260" height="40" rx="8"/>
+    <rect class="stroke" x="70" y="156" width="260" height="40" rx="8"/>
+    <line class="stroke-thin" x1="160" y1="74" x2="140" y2="98"/>
+    <line class="stroke-thin" x1="240" y1="74" x2="260" y2="98"/>
+    <line class="stroke-thin" x1="140" y1="132" x2="160" y2="156"/>
+    <line class="stroke-thin" x1="260" y1="132" x2="240" y2="156"/>
+    <text class="svg-label" x="200" y="181" text-anchor="middle" font-size="10" font-weight="600">PLATFORM</text>
+              </svg>
+              <span class="visual-label">PLATFORM</span>
+            </div>
+            <div class="meta-table">
+          <div class="meta-row"><span class="mono meta-key">Role</span><span class="meta-val">Platform Architect</span></div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <span class="mono section-eyebrow reveal">Overview</span>
+          <h2 class="section-title reveal">문제와 해결</h2>
+          <div class="lead reveal">
+          <p>통합 운송 플랫폼 플랫폼은 자체 셔틀 플랫폼 기반의 통합 운송 솔루션으로, 기업 셔틀과 지자체 공공버스를 위한 아키텍처를 설계했습니다.</p>
+          <p>외부 배차 SaaS SaaS와 연동하여 실시간 위치 추적, 배차 관리, 승객 알림 등의 기능을 제공합니다.</p>
+          <p>현재 다수의 지자체에서 공공버스 앱으로 운영되고 있습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section rule-top">
+        <div class="container">
+          <span class="mono section-eyebrow reveal">Features</span>
+          <h2 class="section-title reveal">주요 기능</h2>
+          <div class="comp-grid reveal">
+          <div class="comp"><span class="comp-num">01</span><div><div class="comp-title">자체 셔틀 플랫폼 관리자 앱</div><p class="comp-desc">셔틀 운영사용 관리 대시보드</p></div></div>
+          <div class="comp"><span class="comp-num">02</span><div><div class="comp-title">자체 셔틀 플랫폼 사용자 앱</div><p class="comp-desc">승객용 모바일 애플리케이션</p></div></div>
+          <div class="comp"><span class="comp-num">03</span><div><div class="comp-title">지자체 공공버스 앱</div><p class="comp-desc">성동구, 노원구, 중구, 관악구 등 지자체별 운영</p></div></div>
+          <div class="comp"><span class="comp-num">04</span><div><div class="comp-title">외부 배차 SaaS SaaS</div><p class="comp-desc">실시간 위치 추적 및 물류 관리 솔루션</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      
+
+      <section class="section rule-top">
+        <div class="container">
+          <span class="mono section-eyebrow reveal">Stack</span>
+          <h2 class="section-title reveal">기술 스택</h2>
+          <div class="chips reveal"><span class="chip">Mobile App</span><span class="chip">SaaS</span><span class="chip">Real-time GPS</span><span class="chip">API Integration</span></div>
+        </div>
+      </section>
+
+      <section class="section rule-top">
+        <div class="container pn">
+          <a href="bizno.html"><span class="mono dir">Previous</span><span class="pn-title">계약 관리 자동화</span></a>
+          <a href="rural-mobility.html" class="next"><span class="mono dir">Next</span><span class="pn-title">농촌 모빌리티 정부 제안</span></a>
+        </div>
+      </section>
     </main>
 
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-500 text-sm">&copy; 2026 Ahn Partners. All rights reserved.</p>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="footer-tag">AI 전환, 결정부터 실행까지</span>
+        <div class="footer-links">
+          <a href="../index.html">홈</a>
+          <a href="../about.html">소개</a>
+          <a href="../about.html#contact">문의</a>
         </div>
+        <span class="footer-copy">(C) 2026 AHN PARTNERS. ALL RIGHTS RESERVED.</span>
+      </div>
     </footer>
+
+    <script>
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      } else {
+        var ro = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+          });
+        }, { threshold: 0.12 });
+        reveals.forEach(function (el) { ro.observe(el); });
+      }
+    })();
+    </script>
 </body>
 </html>

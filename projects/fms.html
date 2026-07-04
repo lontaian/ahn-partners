@@ -3,489 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
+    <title>운송 ERP (FMS) | Ahn Partners</title>
+    <meta name="description" content="3개 법인 통합 운송 ERP. 431대 차량, 368명 기사, 4,700+ 비용기록을 관리하는 프로덕션 시스템. Next.js 14, Prisma, PostgreSQL 기반. 4주 개발. 라이브 데모 제공.">
+    <link rel="canonical" href="https://ahn-partners.netlify.app/projects/fms.html">
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="apple-touch-icon" href="../favicon.png">
-    <link rel="canonical" href="https://ahn-partners.netlify.app/projects/fms.html">
-    <title>운송 ERP (FMS) - 3개 법인 통합 차량관리시스템 | Ahn Partners</title>
-    <meta name="description" content="3개 법인 통합 운송 ERP. 431대 차량, 368명 기사, 4,700+ 비용기록을 관리하는 프로덕션 시스템. Next.js 14, Prisma, PostgreSQL 기반. 4주 개발. 라이브 데모 제공.">
-    <!-- Open Graph -->
-    <meta property="og:title" content="운송 ERP (FMS) - 3개 법인 통합 차량관리시스템 | Ahn Partners">
+    <meta property="og:title" content="운송 ERP (FMS) | Ahn Partners">
     <meta property="og:description" content="3개 법인 통합 운송 ERP. 431대 차량, 368명 기사, 4,700+ 비용기록을 관리하는 프로덕션 시스템. Next.js 14, Prisma, PostgreSQL 기반. 4주 개발. 라이브 데모 제공.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://ahn-partners.netlify.app/projects/fms.html">
-    <meta property="og:image" content="https://ahn-partners.netlify.app/images/projects/fms/main.png">
     <meta property="og:site_name" content="Ahn Partners">
     <meta property="og:locale" content="ko_KR">
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="운송 ERP (FMS) - 3개 법인 통합 차량관리시스템 | Ahn Partners">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="운송 ERP (FMS) | Ahn Partners">
     <meta name="twitter:description" content="3개 법인 통합 운송 ERP. 431대 차량, 368명 기사, 4,700+ 비용기록을 관리하는 프로덕션 시스템. Next.js 14, Prisma, PostgreSQL 기반. 4주 개발. 라이브 데모 제공.">
-    <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/projects/fms/main.png">
-    <link rel="stylesheet" href="../dist/output.css">
-
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; }
-        .stat-card {
-            @apply bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100;
-        }
-        .stat-icon {
-            @apply text-3xl mb-2;
-        }
-        .stat-value {
-            @apply text-2xl font-bold text-gray-900;
-        }
-        .stat-label {
-            @apply text-sm text-gray-500;
-        }
-        .feature-card {
-            @apply p-4 bg-gray-50 rounded-xl;
-        }
-        .timeline-item {
-            @apply relative pl-8 pb-8 border-l-2 border-purple-200;
-        }
-        .timeline-item:last-child {
-            @apply border-l-0;
-        }
-        .timeline-dot {
-            @apply absolute left-0 top-0 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "SoftwareApplication",
+      "name": "운송 ERP (FMS)",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "3개 법인 통합 운송 ERP. 431대 차량, 368명 기사, 4,700+ 비용기록을 관리하는 프로덕션 시스템. Next.js 14, Prisma, PostgreSQL 기반. 4주 개발. 라이브 데모 제공.",
+      "url": "https://ahn-partners.netlify.app/projects/fms.html",
+      "author": {
+        "@type": "Organization",
+        "name": "Ahn Partners",
+        "url": "https://ahn-partners.netlify.app"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "SoftwareApplication",
-          "name": "운송 ERP (FMS)",
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "Web",
-          "description": "3개 법인 통합 운송 ERP. 431대 차량, 368명 기사, 4,700+ 비용기록을 관리하는 프로덕션 시스템. Next.js 14, Prisma, PostgreSQL 기반. 4주 개발. 라이브 데모 제공.",
-          "url": "https://ahn-partners.netlify.app/projects/fms.html",
-          "image": "https://ahn-partners.netlify.app/images/projects/fms/main.png",
-          "author": {
-            "@type": "Organization",
-            "name": "Ahn Partners",
-            "url": "https://ahn-partners.netlify.app"
-          }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://ahn-partners.netlify.app/"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "홈",
-              "item": "https://ahn-partners.netlify.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "수행 실적",
-              "item": "https://ahn-partners.netlify.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "운송 ERP (FMS)",
-              "item": "https://ahn-partners.netlify.app/projects/fms.html"
-            }
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Projects",
+          "item": "https://ahn-partners.netlify.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "운송 ERP (FMS)",
+          "item": "https://ahn-partners.netlify.app/projects/fms.html"
         }
       ]
     }
+  ]
+}
     </script>
+    <style>
+    :root {
+      --paper: #fafafa; --surface: #ffffff;
+      --ink: #101014; --ink-soft: #3f3f46; --muted: #6b6b74;
+      --line: #e4e4e7; --line-strong: #d4d4d8;
+      --accent: #2dd4bf; --accent-deep: #0d9488; --accent-soft: #99f6e4;
+      --band-ink: #101014; --band-text: #fafafa; --band-muted: #a1a1aa;
+      --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-display: 'Playfair Display', 'Pretendard Variable', Pretendard, serif;
+      --font-mono: 'JetBrains Mono', 'Pretendard Variable', monospace;
+      --container: 1100px;
+      --section-y: clamp(3.5rem, 7vw, 6rem);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--paper); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+    .mono { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      * { animation: none !important; transition: none !important; }
+    }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(17, 17, 20, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-brand { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.22em; display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; color: #ffffff; }
+    .nav-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); }
+    .nav-links a { font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.82); display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.25rem; }
+    .nav-links a:hover { color: #ffffff; }
+
+    .case-hero { padding: calc(64px + clamp(2.5rem, 5vw, 4rem)) 0 var(--section-y); }
+    .crumbs { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; color: var(--muted); margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }
+    .crumbs a { color: var(--muted); min-height: 44px; display: inline-flex; align-items: center; }
+    .crumbs a:hover { color: var(--accent); }
+    .crumbs .sep { color: var(--line-strong); }
+    .crumbs .here { color: var(--ink-soft); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    .case-tag { color: var(--accent); display: block; margin-bottom: 1.1rem; }
+    .case-title { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.12; word-break: keep-all; }
+    .case-sub { margin-top: 1rem; font-size: clamp(1rem, 1.8vw, 1.15rem); color: var(--muted); word-break: keep-all; max-width: 540px; }
+    .meta-chips { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .meta-chip { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 0.85rem; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-soft); background: var(--surface); }
+    .hero-actions { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1.5rem; font-size: 0.93rem; font-weight: 700; border-radius: 8px; transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-solid { background: var(--ink); color: var(--paper); }
+    .btn-solid:hover { background: var(--accent-deep); }
+    .btn-ghost { border: 1px solid var(--line-strong); color: var(--ink); background: var(--surface); }
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    .case-visual { aspect-ratio: 4 / 3; border-radius: 16px; background: linear-gradient(135deg, #0c0f1d 0%, #101625 55%, #0a0c14 100%); position: relative; overflow: hidden; }
+    .case-visual::before { content: ''; position: absolute; inset: 0; z-index: 1; background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 18px 18px; }
+    .case-visual .glow { position: absolute; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, var(--accent), transparent 70%); opacity: 0.5; filter: blur(50px); top: -50px; left: -40px; }
+    .case-visual svg { position: absolute; inset: 10%; width: 80%; height: 80%; z-index: 2; opacity: 0.85; }
+    .case-visual .visual-label { position: absolute; right: 16px; bottom: 12px; z-index: 3; font-family: var(--font-mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.42); }
+    .case-visual .stroke { stroke: var(--accent-soft); fill: none; stroke-width: 1.4; }
+    .case-visual .stroke-thin { stroke: var(--accent-soft); fill: none; stroke-width: 1; opacity: 0.7; }
+    .case-visual .fill-soft { fill: var(--accent-soft); opacity: 0.16; }
+    .case-visual .fill-dot { fill: var(--accent-soft); }
+    .case-visual .svg-label { fill: var(--accent-soft); font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; }
+
+    .meta-table { margin-top: 1.8rem; border-top: 1px solid var(--line); }
+    .meta-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.65rem 0; border-bottom: 1px solid var(--line); }
+    .meta-key { color: var(--muted); }
+    .meta-val { font-size: 0.9rem; font-weight: 600; color: var(--ink-soft); text-align: right; word-break: keep-all; }
+
+    .metrics { background: var(--band-ink); color: var(--band-text); padding: clamp(2.8rem, 5vw, 4rem) 0; position: relative; overflow: hidden; }
+    .metrics::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px); background-size: 22px 22px; }
+    .metrics-grid { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.8rem 1.2rem; }
+    .metric { border-left: 1px solid rgba(255,255,255,0.14); padding-left: 1rem; }
+    .metric-value { font-family: var(--font-mono); font-size: clamp(1.4rem, 2.8vw, 2rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .metric-label { margin-top: 0.4rem; font-size: 0.8rem; color: var(--band-muted); word-break: keep-all; }
+
+    .section { padding: var(--section-y) 0; }
+    .rule-top { border-top: 1px solid var(--line); }
+    .section-eyebrow { color: var(--accent); display: block; margin-bottom: 1rem; }
+    .section-title { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; line-height: 1.08; }
+    .lead { margin-top: 1.6rem; color: var(--ink-soft); font-size: 1.02rem; max-width: 700px; word-break: keep-all; }
+    .lead p { margin-bottom: 1.1rem; }
+    .lead p:last-child { margin-bottom: 0; }
+
+    .comp-grid { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 3rem; }
+    .comp { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 1rem; }
+    .comp-num { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--accent); padding-top: 0.2rem; }
+    .comp-title { font-weight: 750; font-size: 1rem; letter-spacing: -0.01em; }
+    .comp-desc { margin-top: 0.3rem; color: var(--muted); font-size: 0.9rem; word-break: keep-all; }
+
+    .steps { margin-top: 2rem; display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .step { padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+    .step-head { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .step-num { color: var(--accent); }
+    .step-phase { font-weight: 750; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .step-period { color: var(--muted); margin-left: auto; }
+    .step-desc { margin-top: 0.5rem; color: var(--muted); font-size: 0.92rem; word-break: keep-all; max-width: 720px; }
+
+    .chips { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.04em; padding: 0.5rem 0.85rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--ink-soft); }
+
+    .pn { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .pn a { border: 1px solid var(--line); border-radius: 14px; padding: 1.3rem 1.5rem; background: var(--surface); transition: border-color 0.2s, transform 0.2s; display: block; }
+    .pn a:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .pn .dir { color: var(--muted); display: block; margin-bottom: 0.5rem; }
+    .pn .pn-title { font-weight: 750; letter-spacing: -0.01em; word-break: keep-all; }
+    .pn .next { text-align: right; }
+    .pn .spacer { visibility: hidden; }
+
+    .footer { padding: 3rem 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .footer-tag { color: var(--muted); font-size: 0.9rem; }
+    .footer-links { display: flex; gap: 1.6rem; }
+    .footer-links a { font-size: 0.88rem; font-weight: 600; color: var(--ink-soft); display: inline-flex; align-items: center; min-height: 44px; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { width: 100%; color: var(--muted); font-size: 0.8rem; font-family: var(--font-mono); letter-spacing: 0.06em; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .comp-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .pn { grid-template-columns: 1fr; }
+      .pn .next { text-align: left; }
+    }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="../index.html" class="text-xl font-bold text-primary">Ahn Partners</a>
-                <div class="flex items-center gap-6">
-                    <a href="../index.html" class="text-gray-700 hover:text-primary font-medium">수행 실적</a>
-                    <a href="../about.html" class="text-gray-700 hover:text-primary font-medium">회사 소개</a>
-                </div>
-            </div>
+<body>
+
+    <nav class="nav" aria-label="주 메뉴">
+      <div class="container nav-inner">
+        <a href="../index.html" class="nav-brand"><img src="../images/logo/ap-wordmark-web.png" alt="Ahn Partners" style="height:20px;width:auto;display:block"></a>
+        <div class="nav-links">
+          <a href="../index.html">홈</a>
+          <a href="../about.html">소개</a>
+          <a href="../about.html#contact">문의</a>
         </div>
+      </div>
     </nav>
 
-    <main class="pt-24 pb-16">
-        <div class="max-w-5xl mx-auto px-4">
-
-            <!-- Back Button -->
-            <a href="../index.html" class="inline-flex items-center gap-2 text-gray-600 hover:text-primary mb-6">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                Back to Projects
-            </a>
-
-            <!-- Hero Section -->
-            <div class="bg-gradient-to-br from-purple-600 to-indigo-800 rounded-2xl shadow-lg overflow-hidden mb-8">
-                <div class="p-8 md:p-12">
-                    <div class="flex flex-wrap items-center gap-3 mb-4">
-                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium">ERP</span>
-                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium">Production</span>
-                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium">4주 개발</span>
-                        <span class="px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse">NEW</span>
-                    </div>
-                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">운송 ERP (FMS)</h1>
-                    <p class="text-xl text-purple-100 mb-6">
-                        원더모빌리티 그룹 3개 법인 통합 차량관리시스템
-                    </p>
-                    <a href="https://fms-readonly-sigma.vercel.app/" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-purple-700 rounded-lg hover:bg-purple-50 transition font-medium">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        Live Demo (Readonly)
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-
-                <!-- Main Content -->
-                <div class="md:col-span-2 space-y-8">
-
-                    <!-- Overview -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
-                        <p class="text-gray-600 mb-4">
-                            중소 운송 업체는 ERP 도입이 어렵습니다.
-                            업무 프로세스가 체계화되지 않아 "무엇이 필요한지"조차 설명하기 어렵기 때문입니다.
-                        </p>
-                        <p class="text-gray-600 mb-4">
-                            이 프로젝트는 현업 담당자 인터뷰, 회의 녹음 분석, 18개 엑셀 파일 역분석을 통해
-                            요구사항을 직접 도출하고, <strong>4주 만에 프로덕션 수준의 ERP</strong>를 완성했습니다.
-                        </p>
-                        <p class="text-gray-600">
-                            실시간 데이터 입력, 엑셀 임포트/익스포트, 리포트 생성 등
-                            완전한 CRUD 기능이 구현되어 있으며,
-                            포트폴리오용 데모는 데이터 보호를 위해 읽기 전용(Readonly)으로 제공됩니다.
-                        </p>
-                    </section>
-
-                    <!-- Data Scale -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">실운영 데이터 규모</h2>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <div class="stat-card">
-                                <div class="stat-icon">🚌</div>
-                                <div class="stat-value">431</div>
-                                <div class="stat-label">차량</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">👤</div>
-                                <div class="stat-value">368</div>
-                                <div class="stat-label">기사</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">🏢</div>
-                                <div class="stat-value">152</div>
-                                <div class="stat-label">거래처</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">🔧</div>
-                                <div class="stat-value">4,724</div>
-                                <div class="stat-label">정비기록</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">📋</div>
-                                <div class="stat-value">2,391</div>
-                                <div class="stat-label">과태료</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">📊</div>
-                                <div class="stat-value">704</div>
-                                <div class="stat-label">배정이력</div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Features -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">주요 기능</h2>
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div class="feature-card">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-2">대시보드</h3>
-                                <p class="text-gray-600 text-sm">실시간 통계, 차트, 멀티탭 뷰</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-2">차량 관리</h3>
-                                <p class="text-gray-600 text-sm">생애주기, 감가상각, 금융정보</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-2">기사 관리</h3>
-                                <p class="text-gray-600 text-sm">배정이력, 급여, 성과 추적</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-2">거래처 관리</h3>
-                                <p class="text-gray-600 text-sm">계약정보, 서비스유형, 팀/담당자</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-2">비용 추적</h3>
-                                <p class="text-gray-600 text-sm">정비비, 과태료, 사고비용, 유류비</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-2">배차 관리</h3>
-                                <p class="text-gray-600 text-sm">노선별 배차, 일일 운행 현황</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-2">급여 관리</h3>
-                                <p class="text-gray-600 text-sm">수당/공제 항목, 기사별 급여 계산</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-2">GPS 이상감지</h3>
-                                <p class="text-gray-600 text-sm">운행 이상 모니터링, 이벤트 로그</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Development Process -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">개발 프로세스 (4주)</h2>
-                        <div class="space-y-0">
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="mb-1">
-                                    <span class="text-sm font-bold text-purple-600">Week 1</span>
-                                    <h3 class="font-bold text-gray-900">현업 분석</h3>
-                                </div>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• 담당자 인터뷰 및 회의 녹음 분석</li>
-                                    <li>• 18개 엑셀 파일 구조 역분석</li>
-                                    <li>• 요구사항 도출 및 우선순위 설정</li>
-                                </ul>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="mb-1">
-                                    <span class="text-sm font-bold text-purple-600">Week 2</span>
-                                    <h3 class="font-bold text-gray-900">설계</h3>
-                                </div>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• DB 스키마 설계 (25+ 테이블, 818 lines)</li>
-                                    <li>• 46개 거래처명 퍼지 매칭 테이블</li>
-                                    <li>• API 엔드포인트 설계 (30+ routes)</li>
-                                </ul>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="mb-1">
-                                    <span class="text-sm font-bold text-purple-600">Week 3</span>
-                                    <h3 class="font-bold text-gray-900">핵심 개발</h3>
-                                </div>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• Next.js 14 App Router 구조</li>
-                                    <li>• Prisma ORM + PostgreSQL (Supabase)</li>
-                                    <li>• OAuth 2.0 (Google, Kakao) + 승인 워크플로우</li>
-                                    <li>• 다중 엑셀 ETL 파이프라인</li>
-                                </ul>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="mb-1">
-                                    <span class="text-sm font-bold text-purple-600">Week 4</span>
-                                    <h3 class="font-bold text-gray-900">완성 및 배포</h3>
-                                </div>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• 16+ 페이지 UI 구현</li>
-                                    <li>• E2E 테스트 (Playwright)</li>
-                                    <li>• Vercel 배포 (readonly 모드)</li>
-                                    <li>• 문서화</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Architecture -->
-                    <section class="bg-white rounded-2xl shadow-lg p-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">기술 아키텍처</h2>
-                        <div class="flex justify-center">
-                            <img src="../images/projects/fms/architecture.jpg"
-                                 alt="FMS 기술 아키텍처 - Frontend, Backend, Database"
-                                 class="rounded-xl max-w-full"
-                                 loading="lazy">
-                        </div>
-                    </section>
-
-                </div>
-
-                <!-- Sidebar -->
-                <div class="space-y-6">
-
-                    <!-- Project Info -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h3 class="font-bold text-gray-900 mb-4">Project Info</h3>
-                        <dl class="space-y-3 text-sm">
-                            <div class="flex justify-between">
-                                <dt class="text-gray-500">Status</dt>
-                                <dd class="font-medium text-green-600">Production</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-gray-500">Demo</dt>
-                                <dd class="font-medium text-amber-600">Readonly</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-gray-500">Development</dt>
-                                <dd class="font-medium">4 Weeks</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-gray-500">Client</dt>
-                                <dd class="font-medium">원더모빌리티 그룹</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-gray-500">Scale</dt>
-                                <dd class="font-medium">3개 법인 통합</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-gray-500">Data</dt>
-                                <dd class="font-medium">실운영 데이터</dd>
-                            </div>
-                        </dl>
-                    </div>
-
-                    <!-- Tech Stack -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h3 class="font-bold text-gray-900 mb-4">Tech Stack</h3>
-                        <div class="space-y-3">
-                            <div>
-                                <p class="text-xs text-gray-500 uppercase mb-2">Frontend</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">Next.js 14</span>
-                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">React 18</span>
-                                    <span class="px-2 py-1 bg-cyan-100 text-cyan-800 rounded text-xs">Tailwind CSS</span>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500 uppercase mb-2">Backend</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Prisma ORM</span>
-                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">PostgreSQL</span>
-                                    <span class="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs">Supabase</span>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500 uppercase mb-2">Auth & Tools</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">NextAuth.js v5</span>
-                                    <span class="px-2 py-1 bg-indigo-100 text-indigo-800 rounded text-xs">OAuth 2.0</span>
-                                    <span class="px-2 py-1 bg-pink-100 text-pink-800 rounded text-xs">SWR</span>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500 uppercase mb-2">Visualization</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs">Recharts</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">TypeScript</span>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500 uppercase mb-2">Testing</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Playwright</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Data Sources -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h3 class="font-bold text-gray-900 mb-4">Data Sources</h3>
-                        <ul class="text-sm text-gray-600 space-y-2">
-                            <li class="flex items-center gap-2">
-                                <span class="text-green-500">📊</span>
-                                18개 엑셀 파일 분석
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-blue-500">🎤</span>
-                                현업 인터뷰 녹음
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-purple-500">📝</span>
-                                회의록 분석
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Links -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h3 class="font-bold text-gray-900 mb-4">Links</h3>
-                        <div class="space-y-2">
-                            <a href="https://fms-readonly-sigma.vercel.app/" target="_blank" class="flex items-center gap-2 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                View Live Demo (Readonly)
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Readonly Notice -->
-                    <div class="bg-amber-50 rounded-2xl shadow-lg p-5 border border-amber-200">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-xl">🔒</span>
-                            <h3 class="font-bold text-amber-800 text-sm">Readonly Demo</h3>
-                        </div>
-                        <p class="text-amber-700 text-xs mb-3">
-                            실제 운영 데이터 보호를 위해 읽기 전용으로 제공됩니다.
-                        </p>
-                        <ul class="text-amber-700 text-xs space-y-1">
-                            <li>✅ 실시간 CRUD</li>
-                            <li>✅ 엑셀 임포트/익스포트</li>
-                            <li>✅ 관리자 승인 워크플로우</li>
-                        </ul>
-                        <p class="text-amber-600 text-xs mt-3 italic">
-                            ↑ 실제 시스템에 구현됨
-                        </p>
-                    </div>
-
-                    <!-- Related Projects -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h3 class="font-bold text-gray-900 mb-4">Related Projects</h3>
-                        <div class="space-y-3">
-                            <a href="1bus.html" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                                <p class="font-medium text-gray-900">일버스 (1-bus.com)</p>
-                                <p class="text-sm text-gray-500">운송 종합 플랫폼</p>
-                            </a>
-                            <a href="onbus-platform.html" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                                <p class="font-medium text-gray-900">OnBus 운송 플랫폼</p>
-                                <p class="text-sm text-gray-500">SaaS 연동 운송 플랫폼</p>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
+    <header class="case-hero">
+      <div class="container">
+        <div class="crumbs mono">
+          <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+          <a href="../index.html">Projects</a><span class="sep" aria-hidden="true">/</span>
+          <span class="here">FMS</span>
         </div>
+        <div class="hero-grid">
+          <div>
+            <span class="mono case-tag reveal">Web App</span>
+            <h1 class="case-title reveal">운송 ERP (FMS)</h1>
+            <p class="case-sub reveal">모빌리티 그룹 3개 법인 통합 차량관리시스템</p>
+            <div class="meta-chips reveal"><span class="meta-chip">ERP</span><span class="meta-chip">Production</span><span class="meta-chip">4주 개발</span></div>
+            <div class="hero-actions reveal">
+          <a href="https://fms-readonly-sigma.vercel.app/" target="_blank" rel="noopener" class="btn btn-solid">Live Demo (Readonly)</a>
+        </div>
+          </div>
+          <div class="reveal">
+            <div class="case-visual">
+              <div class="glow"></div>
+              <svg viewBox="0 0 400 250" aria-hidden="true">
+    <rect class="stroke" x="30" y="24" width="86" height="40" rx="6"/>
+    <rect class="stroke" x="157" y="24" width="86" height="40" rx="6"/>
+    <rect class="stroke" x="284" y="24" width="86" height="40" rx="6"/>
+    <line class="stroke-thin" x1="73" y1="64" x2="73" y2="106"/>
+    <line class="stroke-thin" x1="200" y1="64" x2="200" y2="106"/>
+    <line class="stroke-thin" x1="327" y1="64" x2="327" y2="106"/>
+    <line class="stroke-thin" x1="73" y1="106" x2="327" y2="106"/>
+    <line class="stroke" x1="200" y1="106" x2="200" y2="126"/>
+    <rect class="fill-soft" x="110" y="126" width="180" height="50" rx="8"/>
+    <rect class="stroke" x="110" y="126" width="180" height="50" rx="8"/>
+    <text class="svg-label" x="200" y="156" text-anchor="middle" font-size="11" font-weight="600">FLEET ERP</text>
+    <rect class="fill-soft" x="40" y="200" width="92" height="9" rx="3"/>
+    <rect class="fill-soft" x="154" y="200" width="92" height="9" rx="3"/>
+    <rect class="fill-soft" x="268" y="200" width="92" height="9" rx="3"/>
+              </svg>
+              <span class="visual-label">FMS</span>
+            </div>
+            <div class="meta-table">
+          <div class="meta-row"><span class="mono meta-key">Status</span><span class="meta-val">Production</span></div>
+          <div class="meta-row"><span class="mono meta-key">Demo</span><span class="meta-val">Readonly</span></div>
+          <div class="meta-row"><span class="mono meta-key">Development</span><span class="meta-val">4 Weeks</span></div>
+          <div class="meta-row"><span class="mono meta-key">Client</span><span class="meta-val">모빌리티 그룹</span></div>
+          <div class="meta-row"><span class="mono meta-key">Scale</span><span class="meta-val">3개 법인 통합</span></div>
+          <div class="meta-row"><span class="mono meta-key">Data</span><span class="meta-val">실운영 데이터</span></div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="metrics" aria-label="핵심 지표">
+      <div class="container metrics-grid">
+        <div class="metric"><div class="metric-value">431</div><div class="metric-label">차량</div></div>
+        <div class="metric"><div class="metric-value">368</div><div class="metric-label">기사</div></div>
+        <div class="metric"><div class="metric-value">152</div><div class="metric-label">거래처</div></div>
+        <div class="metric"><div class="metric-value">4,724</div><div class="metric-label">정비기록</div></div>
+        <div class="metric"><div class="metric-value">2,391</div><div class="metric-label">과태료</div></div>
+        <div class="metric"><div class="metric-value">704</div><div class="metric-label">배정이력</div></div>
+      </div>
+    </section>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <span class="mono section-eyebrow reveal">Overview</span>
+          <h2 class="section-title reveal">문제와 해결</h2>
+          <div class="lead reveal">
+          <p>중소 운송 업체는 ERP 도입이 어렵습니다. 업무 프로세스가 체계화되지 않아 &quot;무엇이 필요한지&quot;조차 설명하기 어렵기 때문입니다.</p>
+          <p>이 프로젝트는 현업 담당자 인터뷰, 회의 녹음 분석, 18개 엑셀 파일 역분석을 통해 요구사항을 직접 도출하고, 4주 만에 프로덕션 수준의 ERP를 완성했습니다.</p>
+          <p>실시간 데이터 입력, 엑셀 임포트/익스포트, 리포트 생성 등 완전한 CRUD 기능이 구현되어 있으며, 포트폴리오용 데모는 데이터 보호를 위해 읽기 전용(Readonly)으로 제공됩니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section rule-top">
+        <div class="container">
+          <span class="mono section-eyebrow reveal">Features</span>
+          <h2 class="section-title reveal">주요 기능</h2>
+          <div class="comp-grid reveal">
+          <div class="comp"><span class="comp-num">01</span><div><div class="comp-title">대시보드</div><p class="comp-desc">실시간 통계, 차트, 멀티탭 뷰</p></div></div>
+          <div class="comp"><span class="comp-num">02</span><div><div class="comp-title">차량 관리</div><p class="comp-desc">생애주기, 감가상각, 금융정보</p></div></div>
+          <div class="comp"><span class="comp-num">03</span><div><div class="comp-title">기사 관리</div><p class="comp-desc">배정이력, 급여, 성과 추적</p></div></div>
+          <div class="comp"><span class="comp-num">04</span><div><div class="comp-title">거래처 관리</div><p class="comp-desc">계약정보, 서비스유형, 팀/담당자</p></div></div>
+          <div class="comp"><span class="comp-num">05</span><div><div class="comp-title">비용 추적</div><p class="comp-desc">정비비, 과태료, 사고비용, 유류비</p></div></div>
+          <div class="comp"><span class="comp-num">06</span><div><div class="comp-title">배차 관리</div><p class="comp-desc">노선별 배차, 일일 운행 현황</p></div></div>
+          <div class="comp"><span class="comp-num">07</span><div><div class="comp-title">급여 관리</div><p class="comp-desc">수당/공제 항목, 기사별 급여 계산</p></div></div>
+          <div class="comp"><span class="comp-num">08</span><div><div class="comp-title">GPS 이상감지</div><p class="comp-desc">운행 이상 모니터링, 이벤트 로그</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section rule-top">
+        <div class="container">
+          <span class="mono section-eyebrow reveal">Process</span>
+          <h2 class="section-title reveal">개발 프로세스 (4주)</h2>
+          <div class="steps reveal">
+          <div class="step"><div class="step-head"><span class="mono step-num">01</span><span class="step-phase">현업 분석</span><span class="mono step-period">Week 1</span></div><p class="step-desc">담당자 인터뷰 및 회의 녹음 분석, 18개 엑셀 파일 구조 역분석, 요구사항 도출 및 우선순위 설정</p></div>
+          <div class="step"><div class="step-head"><span class="mono step-num">02</span><span class="step-phase">설계</span><span class="mono step-period">Week 2</span></div><p class="step-desc">DB 스키마 설계 (25+ 테이블, 818 lines), 46개 거래처명 퍼지 매칭 테이블, API 엔드포인트 설계 (30+ routes)</p></div>
+          <div class="step"><div class="step-head"><span class="mono step-num">03</span><span class="step-phase">핵심 개발</span><span class="mono step-period">Week 3</span></div><p class="step-desc">Next.js 14 App Router 구조, Prisma ORM + PostgreSQL (Supabase), OAuth 2.0 (Google, Kakao) + 승인 워크플로우, 다중 엑셀 ETL 파이프라인</p></div>
+          <div class="step"><div class="step-head"><span class="mono step-num">04</span><span class="step-phase">완성 및 배포</span><span class="mono step-period">Week 4</span></div><p class="step-desc">16+ 페이지 UI 구현, E2E 테스트 (Playwright), Vercel 배포 (readonly 모드), 문서화</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section rule-top">
+        <div class="container">
+          <span class="mono section-eyebrow reveal">Stack</span>
+          <h2 class="section-title reveal">기술 스택</h2>
+          <div class="chips reveal"><span class="chip">Next.js 14</span><span class="chip">React 18</span><span class="chip">Tailwind CSS</span><span class="chip">Prisma ORM</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span><span class="chip">NextAuth.js v5</span><span class="chip">OAuth 2.0</span><span class="chip">SWR</span><span class="chip">Recharts</span><span class="chip">TypeScript</span><span class="chip">Playwright</span></div>
+        </div>
+      </section>
+
+      <section class="section rule-top">
+        <div class="container pn">
+          <span class="spacer"></span>
+          <a href="junggubus.html" class="next"><span class="mono dir">Next</span><span class="pn-title">내편 중구버스 노선 편집기</span></a>
+        </div>
+      </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-500 text-sm">&copy; 2026 Ahn Partners. All rights reserved.</p>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="footer-tag">AI 전환, 결정부터 실행까지</span>
+        <div class="footer-links">
+          <a href="../index.html">홈</a>
+          <a href="../about.html">소개</a>
+          <a href="../about.html#contact">문의</a>
         </div>
+        <span class="footer-copy">(C) 2026 AHN PARTNERS. ALL RIGHTS RESERVED.</span>
+      </div>
     </footer>
+
+    <script>
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      } else {
+        var ro = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+          });
+        }, { threshold: 0.12 });
+        reveals.forEach(function (el) { ro.observe(el); });
+      }
+    })();
+    </script>
 </body>
 </html>
