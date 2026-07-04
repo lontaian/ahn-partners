@@ -1274,6 +1274,81 @@
     }
 
     /* =============================================
+       NEWSLETTER SECTION
+    ============================================= */
+    .newsletter-section {
+      background: #111;
+      color: #fff;
+      padding: var(--section-padding) 0;
+      overflow: hidden;
+    }
+
+    .newsletter-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .newsletter-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-title {
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      margin-bottom: 1.5rem;
+      word-break: keep-all;
+    }
+
+    .newsletter-desc {
+      max-width: 620px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .newsletter-direct-link {
+      display: inline-flex;
+      margin-top: 2rem;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .newsletter-direct-link:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .newsletter-frame-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 28px;
+      padding: 14px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .newsletter-frame-card iframe {
+      display: block;
+      width: 100%;
+      min-height: 560px;
+      border: 0;
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    /* =============================================
        CONTACT SECTION
     ============================================= */
     .contact {
@@ -1432,6 +1507,19 @@
       .process-item {
         grid-template-columns: 1fr;
         gap: 0.75rem;
+      }
+
+      .newsletter-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-frame-card {
+        padding: 8px;
+        border-radius: 20px;
+      }
+
+      .newsletter-frame-card iframe {
+        min-height: 600px;
       }
 
       .footer-top {
@@ -2313,6 +2401,31 @@
   </section>
 
   <!-- ============================================
+       NEWSLETTER
+  ============================================= -->
+  <section id="newsletter" class="newsletter-section">
+    <div class="container newsletter-wrap">
+      <div class="newsletter-copy reveal">
+        <p class="newsletter-eyebrow">Newsletter</p>
+        <h2 class="newsletter-title">Ahn's Newsletter</h2>
+        <p class="newsletter-desc">
+          AI 전환, 기술경영, 신사업 실행에 관한 짧고 밀도 있는 인사이트를 보내드립니다.
+          이름은 선택 사항이며 이메일만으로 구독할 수 있습니다.
+        </p>
+        <a class="newsletter-direct-link" href="https://public.relate.so/p/forms/am3zqwdmfoso1uzl" target="_blank" rel="noopener">
+          새 창에서 구독하기
+        </a>
+      </div>
+      <div class="newsletter-frame-card reveal d1">
+        <iframe
+          src="https://public.relate.so/p/forms/am3zqwdmfoso1uzl"
+          title="Ahn's Newsletter 구독"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
        CONTACT CTA
   ============================================= -->
   <section class="contact">
@@ -2337,6 +2450,7 @@
           <div class="footer-brand-desc">AI 전환, 결정부터 실행까지</div>
         </div>
         <div class="footer-links">
+          <a href="#newsletter" class="footer-link">뉴스레터</a>
           <a href="about.html#contact" class="footer-link">문의</a>
           <a href="about.html" class="footer-link">소개</a>
           <a href="https://www.youtube.com/@ahn_partners" class="footer-link" target="_blank" rel="noopener">YouTube</a>
