@@ -1,5 +1,5 @@
 # Ahn Partners - robots.txt
-# https://ahn-partners.netlify.app
+# https://ahn-partners.net
 
 # Search Engine Crawlers
 User-agent: Googlebot
@@ -48,4 +48,4 @@ Disallow: /src/
 Disallow: /dist/
 
 # Sitemap
-Sitemap: https://ahn-partners.netlify.app/sitemap.xml
+Sitemap: https://ahn-partners.net/sitemap.xml

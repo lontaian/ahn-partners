@@ -9,19 +9,19 @@
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="canonical" href="https://ahn-partners.netlify.app/about.html">
+  <link rel="canonical" href="https://ahn-partners.net/about.html">
 
   <meta property="og:title" content="소개 | Ahn Partners">
   <meta property="og:description" content="현장 CTO 겸 COO 27년. AI 전략 자문, AX 강의, 분석부터 배포까지 운영되는 시스템 개발.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ahn-partners.netlify.app/about.html">
-  <meta property="og:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
+  <meta property="og:url" content="https://ahn-partners.net/about.html">
+  <meta property="og:image" content="https://ahn-partners.net/images/og-image.jpg">
   <meta property="og:site_name" content="Ahn Partners">
   <meta property="og:locale" content="ko_KR">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="소개 | Ahn Partners">
   <meta name="twitter:description" content="현장 CTO 겸 COO 27년. 결정부터 실행까지.">
-  <meta name="twitter:image" content="https://ahn-partners.netlify.app/images/og-image.jpg">
+  <meta name="twitter:image" content="https://ahn-partners.net/images/og-image.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -961,7 +961,7 @@
           <li><a href="index.html#services" class="nav-link mix-difference">서비스</a></li>
           <li><a href="index.html#projects" class="nav-link mix-difference">수행 실적</a></li>
           <li><a href="about.html" class="nav-link mix-difference active">소개</a></li>
-          <li><a href="index.html#newsletter" class="nav-link mix-difference">뉴스레터</a></li>
+          <li><a href="newsletter.html" class="nav-link mix-difference">뉴스레터</a></li>
           <li><a href="about.html#contact" class="nav-link mix-difference">문의</a></li>
         </ul>
       </nav>
@@ -987,7 +987,7 @@
       <li><a href="index.html#services" class="mobile-nav-link">서비스</a></li>
       <li><a href="index.html#projects" class="mobile-nav-link">수행 실적</a></li>
       <li><a href="about.html" class="mobile-nav-link active">소개</a></li>
-      <li><a href="index.html#newsletter" class="mobile-nav-link">뉴스레터</a></li>
+      <li><a href="newsletter.html" class="mobile-nav-link">뉴스레터</a></li>
       <li><a href="about.html#contact" class="mobile-nav-link">문의</a></li>
     </ul>
   </div>
@@ -1220,7 +1220,7 @@
       </div>
 
       <div style="max-width:680px;margin:0 auto">
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+        <form name="contact" method="POST" action="/success.html" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
           <input type="hidden" name="form-name" value="contact">
           <p style="display:none"><label>Bot field: <input name="bot-field"></label></p>
 
@@ -1563,7 +1563,7 @@
 
       var formData = new FormData(contactForm);
       try {
-        var res = await fetch('/', {
+        var res = await fetch('/about.html', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams(formData).toString()

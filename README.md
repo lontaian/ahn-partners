@@ -1,6 +1,12 @@
 # ahn-partners
 
-An Partners 회사 사이트 — https://ahn-partners.netlify.app
+An Partners 회사 사이트 — https://ahn-partners.net
+
+## 주요 URL
+- 공식 사이트: https://ahn-partners.net
+- Netlify 기본 주소: https://ahn-partners.netlify.app
+- 뉴스레터 신청: https://ahn-partners.net/newsletter
+- 문의: https://ahn-partners.net/contact
 
 ## 배포
 - `master` push → Netlify 자동 재배포

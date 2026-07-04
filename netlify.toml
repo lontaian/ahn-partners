@@ -56,3 +56,13 @@
   from = "/demo/sd-ad"
   to = "/demos/sd-ad/index.html"
   status = 200
+[[redirects]]
+  from = "/newsletter"
+  to = "/newsletter.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/about.html#contact"
+  status = 301
+
