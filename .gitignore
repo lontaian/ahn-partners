@@ -27,3 +27,6 @@ _design-archive/
 design-demos/
 dsense-css.txt
 dsense-dom.html
+
+# Local exports with subscriber/contact PII
+exports/
