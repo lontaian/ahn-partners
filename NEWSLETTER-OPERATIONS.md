@@ -78,6 +78,49 @@ npm run newsletter:status
 - `sync-spread`: pending을 Spread에 반영
 - 두 번째 `status`: `spreadPending: 0` 확인
 
+
+## 로컬 관리자 웹
+
+터미널에서 명령을 계속 붙잡고 있을 필요가 없도록 로컬 관리자 웹을 제공한다.
+
+### 시작
+
+```bash
+npm run newsletter:admin:start
+```
+
+출력되는 URL을 브라우저에서 열면 관리자 화면이 뜬다. 예:
+
+```text
+http://127.0.0.1:3467/?token=...
+```
+
+토큰은 `.netlify/newsletter-admin-token`에 로컬 저장된다. 이 파일은 외부에 공유하지 않는다.
+
+### 기능
+
+관리자 화면에서 할 수 있는 일:
+
+- Netlify Forms 제출 수 확인
+- 실제 구독 대상 수 확인
+- Spread 동기화 완료/대기 수 확인
+- 최근 제출 확인
+- `지금 Spread 동기화` 버튼으로 즉시 반영
+- 서버가 켜져 있는 동안 10분마다 자동 동기화
+
+### 상태 확인/종료
+
+```bash
+npm run newsletter:admin:status
+npm run newsletter:admin:stop
+```
+
+관리자 서버는 백그라운드로 실행된다. 로그는 `/tmp/ahn-newsletter-admin.out` 및 `exports/newsletter-admin.log`에 남는다.
+
+### 브라우저 세션
+
+관리자 서버와 동기화 스크립트는 자동으로 CDP 브라우저(`http://127.0.0.1:9222`)를 확인하고, 죽어 있으면 `.browser-profile`로 다시 띄운다. 단, Spread/Relate 로그인이 만료되면 사용자가 한 번 Google 로그인을 다시 해야 한다.
+
 ## 자동화 root cause와 현재 처리
 
 ### 왜 Netlify 제출 직후 Spread 서버리스 자동 등록이 아직 완전하지 않은가
