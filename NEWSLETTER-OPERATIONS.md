@@ -360,3 +360,28 @@ DKIM DNS: 3mmfdklq3jsouvqujdbj73wee5x5eyh2._domainkey.ahn-partners.net 정상
 3. 첫 실제 발송은 소수의 신뢰 수신자에게 보내고, 받은편지함 도착/열람/답장을 유도한다.
 4. 한 번에 대량 발송하지 말고 10명 이하 → 20명 이하 → 50명 이하로 천천히 늘린다.
 5. 본문 하단에 발신자/수신거부/문의 정보를 명확히 넣는다.
+
+### 수신거부/발신자 정보 확인 결과
+
+동일 원본 메일의 HTML 본문을 디코딩해 확인했다.
+
+확인 결과:
+
+```text
+본문 unsubscribe 링크: 있음
+링크 도메인: https://api.relate.so/p/unsubscribe/...
+문의 주소: hello@ahn-partners.net 있음
+List-Unsubscribe 헤더: 없음
+```
+
+의미:
+
+- 사용자가 메일 본문 하단에서 수신거부할 수 있는 링크는 존재한다.
+- 다만 Gmail/메일 클라이언트 상단의 네이티브 원클릭 수신거부 UI에 쓰이는 `List-Unsubscribe` 헤더는 현재 원본에 없다.
+- 현재 규모에서는 치명적 문제는 아니지만, 향후 발송량이 커지면 Spread/Relate가 `List-Unsubscribe` / one-click unsubscribe 헤더를 지원하는지 확인해야 한다.
+
+운영 권장:
+
+1. 모든 캠페인 본문 하단에 Spread 자동 unsubscribe 링크가 남아 있는지 발송 전 확인한다.
+2. 하단에 `문의: hello@ahn-partners.net`을 유지한다.
+3. 대량 발송 전에 테스트 메일 원본에서 `List-Unsubscribe` 헤더가 생기는지 재확인한다.
