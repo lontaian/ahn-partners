@@ -232,3 +232,131 @@ Remember/Gmail 주소록은 Relate CRM 연락처로 가져올 수 있다. 다만
 - `Ahn's Newsletter` 발송 리스트에 자동 추가: 금지
 - 뉴스레터 수신은 `/newsletter`에서 명시적으로 동의한 사람만 추가
 
+
+## 자동 실행 예약 작업
+
+상시 로컬 서버를 띄우지 않고도 Windows 작업 스케줄러로 하루 1회 자동 동기화한다.
+
+등록된 작업:
+
+```text
+AhnPartnersNewsletterSyncDaily
+```
+
+현재 설정:
+
+```text
+매일 09:00
+C:\dev\active\ahn-partners\newsletter-sync-scheduled.cmd
+```
+
+스케줄러 전용 실행 파일은 `pause` 없이 종료되며 로그를 남긴다.
+
+```text
+exports\newsletter-scheduled.log
+```
+
+수동 확인:
+
+```cmd
+schtasks /Query /FO LIST /TN AhnPartnersNewsletterSyncDaily
+```
+
+로그온 시 실행 작업 `AhnPartnersNewsletterSyncOnLogon`은 현재 Windows 권한 거부로 등록되지 않았다. 일일 09:00 작업은 정상 등록되어 있다.
+
+## 발신 인증/스팸함 진단
+
+Spread 화면 기준 `ahn-partners.net` 발신자 도메인은 `인증됨` 상태다.
+확인 URL:
+
+```text
+https://app.spread.so/spread/ahn-partners/settings/domains
+```
+
+공식 Spread 문서상 커스텀 도메인 발송에는 MX, SPF/DMARC, DKIM 레코드 설정과 인증이 필요하며, CNAME은 DNS Only로 둬야 한다.
+
+현재 DNS 진단 명령:
+
+```cmd
+cd /d C:\dev\active\ahn-partners
+npm run newsletter:auth
+```
+
+현재 확인된 핵심 DNS 상태:
+
+```text
+MX: mx1.forwardemail.net, mx2.forwardemail.net
+SPF: v=spf1 include:spf.forwardemail.net -all
+DMARC: v=DMARC1; p=reject; pct=100; rua=mailto:dmarc-...@forwardemail.net;
+envelope MX: feedback-smtp.us-west-1.amazonses.com
+envelope SPF: v=spf1 include:amazonses.com ~all
+Spread UI: ahn-partners.net 인증됨
+```
+
+즉 현재 남은 스팸함 이슈는 단순히 “도메인 인증 미완료”로 보이지 않는다. 다음 판정은 Gmail 원본 헤더가 필요하다.
+
+Gmail 원본 헤더를 파일로 저장한 뒤 아래처럼 실행한다.
+
+```cmd
+npm run newsletter:auth -- --header=exports\gmail-original-header.txt
+```
+
+확인할 항목:
+
+- SPF pass/fail
+- DKIM pass/fail
+- DMARC pass/fail
+- DKIM `d=` 도메인
+- DKIM `s=` selector
+- Return-Path
+- mailed-by / signed-by
+
+판정 기준:
+
+1. SPF/DKIM/DMARC 중 fail이 있으면 Spread 발신 DNS 또는 alignment 문제다.
+2. 모두 pass인데 스팸함이면 신규 도메인 평판, 발송량 워밍업, 본문/링크/수신자 반응 문제다.
+3. Gmail 검색 기준 현재 스팸함에서 `ahn-partners.net`, `newsletter@ahn-partners.net`, `Ahn Partners` 테스트 메일은 자동 검색되지 않았다. 메일이 남아 있으면 Gmail UI에서 원본 보기를 열어 헤더를 저장해야 한다.
+
+
+### 2026-07-05 Gmail 원본 헤더 판정 결과
+
+받은편지함으로 이동된 테스트 메일에서 원본 헤더를 확인했다.
+
+대상 메일:
+
+```text
+From: Ahn's Newsletter <newsletter@ahn-partners.net>
+Subject: [TEST] Ahn Partners 뉴스레터 발송 설정 확인
+Return-Path: ...@envelope.ahn-partners.net
+발송 인프라: Amazon SES us-west-1
+```
+
+진단 명령:
+
+```cmd
+npm run newsletter:auth -- --header=exports\gmail-original-ahn-newsletter.txt
+```
+
+결과:
+
+```text
+SPF: PASS
+DKIM: PASS, d=ahn-partners.net, s=3mmfdklq3jsouvqujdbj73wee5x5eyh2
+DMARC: PASS, header.from=ahn-partners.net, p=REJECT
+Return-Path: envelope.ahn-partners.net
+DKIM DNS: 3mmfdklq3jsouvqujdbj73wee5x5eyh2._domainkey.ahn-partners.net 정상
+```
+
+결론:
+
+- DNS/SPF/DKIM/DMARC 인증 문제는 아니다.
+- Spread 커스텀 발신 도메인 설정도 UI에서 `인증됨`이다.
+- Gmail 스팸함 이동 원인은 인증 실패가 아니라 신규 도메인/신규 발신자 평판, 테스트성 제목(`[TEST]` 반복), 짧은 본문, Gmail 사용자 학습 이슈로 보는 것이 맞다.
+
+조치:
+
+1. 테스트 메일을 스팸함에서 받은편지함으로 옮긴 상태는 Gmail에 정상 신호를 준다.
+2. 다음 발송부터 제목의 `[TEST]` 반복을 제거한다.
+3. 첫 실제 발송은 소수의 신뢰 수신자에게 보내고, 받은편지함 도착/열람/답장을 유도한다.
+4. 한 번에 대량 발송하지 말고 10명 이하 → 20명 이하 → 50명 이하로 천천히 늘린다.
+5. 본문 하단에 발신자/수신거부/문의 정보를 명확히 넣는다.

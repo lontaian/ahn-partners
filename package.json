@@ -17,7 +17,8 @@
     "newsletter:admin:start": "node scripts/newsletter-admin-control.mjs start",
     "newsletter:admin:status": "node scripts/newsletter-admin-control.mjs status",
     "newsletter:admin:stop": "node scripts/newsletter-admin-control.mjs stop",
-    "newsletter:run": "node scripts/newsletter-run-once.mjs"
+    "newsletter:run": "node scripts/newsletter-run-once.mjs",
+    "newsletter:auth": "node scripts/check-newsletter-auth.mjs"
   },
   "repository": {
     "type": "git",
