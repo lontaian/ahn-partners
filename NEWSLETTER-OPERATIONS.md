@@ -11,6 +11,33 @@ Ahn Partners의 외부 구독 URL은 다음이다.
 웹 폼 제출은 Netlify Forms에 먼저 저장된다. 이후 Spread 반영 상태는 로컬 운영 명령으로 확인/동기화한다.
 
 
+
+## Windows 더블클릭 실행
+
+명령어를 기억할 필요 없이 아래 파일을 Windows 탐색기에서 더블클릭한다.
+
+```text
+뉴스레터_동기화_더블클릭.cmd
+```
+
+같은 파일의 영문 이름도 있다.
+
+```text
+newsletter-sync-double-click.cmd
+```
+
+더블클릭하면 새 콘솔 창이 열리고 다음을 자동 실행한다.
+
+1. WSL에서 `/mnt/c/dev/active/ahn-partners`로 이동
+2. Node/NPM 환경 로드
+3. `npm run newsletter:run` 실행
+4. Netlify 제출 확인
+5. Spread `Newsletter Subscribers` 동기화
+6. 최종 결과 출력
+7. Enter를 누를 때까지 창 유지
+
+평소에는 이 파일만 더블클릭하면 된다.
+
 ## 단발 실행 방식
 
 상시 로컬 서버를 띄우지 않으려면 아래 명령만 사용한다.
