@@ -138,6 +138,22 @@
             body: encode(formData)
           });
           if (!res.ok) throw new Error('submit failed');
+
+          try {
+            await fetch('/.netlify/functions/newsletter-subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: formData.get('email') || '',
+                name: formData.get('name') || '',
+                consent_newsletter: formData.get('consent_newsletter') || '',
+                source: 'newsletter_form'
+              })
+            });
+          } catch (syncError) {
+            console.warn('Newsletter sync delayed', syncError);
+          }
+
           form.reset();
           message.className = 'form-message success';
           message.textContent = '신청되었습니다. 감사합니다.';
