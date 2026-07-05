@@ -10,6 +10,35 @@ Ahn Partners의 외부 구독 URL은 다음이다.
 
 웹 폼 제출은 Netlify Forms에 먼저 저장된다. 이후 Spread 반영 상태는 로컬 운영 명령으로 확인/동기화한다.
 
+
+## 단발 실행 방식
+
+상시 로컬 서버를 띄우지 않으려면 아래 명령만 사용한다.
+
+```bash
+npm run newsletter:run
+```
+
+이 명령은 한 번 실행될 때만 리소스를 사용하고 종료된다.
+
+동작 순서:
+
+1. CDP 브라우저(`http://127.0.0.1:9222`)가 살아 있는지 확인한다.
+2. 죽어 있으면 `.browser-profile`로 브라우저를 자동 실행한다.
+3. Netlify Forms 현재 상태를 확인한다.
+4. Spread `Newsletter Subscribers` 리스트에 pending 구독자를 반영한다.
+5. 최종 상태를 다시 확인한다.
+6. `spreadPending: 0`이면 완료로 출력하고 종료한다.
+
+평소 운영은 이 명령 하나만 기억하면 된다.
+
+```bash
+cd /mnt/c/dev/active/ahn-partners
+npm run newsletter:run
+```
+
+Spread/Relate 로그인 세션이 만료된 경우에는 브라우저에서 Google 로그인을 한 번 다시 한 뒤 같은 명령을 재실행한다.
+
 ## 새 신청이 들어왔는지 아는 방법
 
 ### 1. 이메일 알림
@@ -81,7 +110,7 @@ npm run newsletter:status
 
 ## 로컬 관리자 웹
 
-터미널에서 명령을 계속 붙잡고 있을 필요가 없도록 로컬 관리자 웹을 제공한다.
+필요할 때만 시각적으로 보고 싶으면 로컬 관리자 웹을 사용할 수 있다. 기본 운영은 단발 실행 방식이다.
 
 ### 시작
 

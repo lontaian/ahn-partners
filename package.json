@@ -16,7 +16,8 @@
     "newsletter:ensure-browser": "node scripts/ensure-cdp-browser.mjs",
     "newsletter:admin:start": "node scripts/newsletter-admin-control.mjs start",
     "newsletter:admin:status": "node scripts/newsletter-admin-control.mjs status",
-    "newsletter:admin:stop": "node scripts/newsletter-admin-control.mjs stop"
+    "newsletter:admin:stop": "node scripts/newsletter-admin-control.mjs stop",
+    "newsletter:run": "node scripts/newsletter-run-once.mjs"
   },
   "repository": {
     "type": "git",
