@@ -6,6 +6,8 @@ import { promisify } from 'node:util';
 import http from 'node:http';
 
 const execFileAsync = promisify(execFile);
+const IS_WINDOWS = process.platform === 'win32';
+const NPM = IS_WINDOWS ? 'npm.cmd' : 'npm';
 const CDP = process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222';
 const LIST_URL = process.env.SPREAD_LIST_URL || 'https://app.spread.so/spread/ahn-partners/lists/O7Udbj';
 const STATE_PATH = process.env.NEWSLETTER_SYNC_STATE || 'exports/newsletter-spread-sync.json';
@@ -81,7 +83,15 @@ function parseCsvLine(line) {
 }
 
 async function loadSubscribers() {
-  await execFileAsync('npm', ['run', 'newsletter:export'], { cwd: process.cwd(), maxBuffer: 1024 * 1024 * 10 });
+  if (IS_WINDOWS) {
+    await execFileAsync(process.env.ComSpec || 'cmd.exe', ['/d', '/s', '/c', 'npm.cmd run newsletter:export'], {
+      cwd: process.cwd(),
+      maxBuffer: 1024 * 1024 * 10,
+      windowsHide: true,
+    });
+  } else {
+    await execFileAsync(NPM, ['run', 'newsletter:export'], { cwd: process.cwd(), maxBuffer: 1024 * 1024 * 10 });
+  }
   const csv = await fs.readFile(CSV_PATH, 'utf8');
   const lines = csv.split(/\r?\n/).filter(Boolean);
   if (lines.length < 2) return [];

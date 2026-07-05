@@ -2,15 +2,45 @@
 setlocal
 chcp 65001 >nul
 title Ahn's Newsletter Sync
+cd /d "%~dp0"
 
 echo ===============================================
 echo Ahn's Newsletter Sync
 echo ===============================================
 echo.
-echo Netlify 신청 확인 후 Spread Newsletter Subscribers 동기화를 실행합니다.
-echo 완료 후 이 창은 자동으로 닫히지 않습니다.
+echo Runs with Windows Node/NPM. WSL is not used.
+echo It checks Netlify newsletter/contact forms and syncs Spread.
+echo This window stays open after completion.
 echo.
 
-wsl.exe bash -lc "cd /mnt/c/dev/active/ahn-partners && if [ -s ~/.nvm/nvm.sh ]; then . ~/.nvm/nvm.sh; fi; npm run newsletter:run; status=\$?; echo; if [ \$status -eq 0 ]; then echo '[OK] Newsletter sync complete.'; else echo '[ERROR] Newsletter sync failed. Check login/session and run again.'; fi; echo; read -r -p 'Press Enter to close this window...' _; exit \$status"
+where node >nul 2>nul
+if errorlevel 1 (
+  echo [ERROR] Windows Node.js was not found.
+  echo Install Node.js or check PATH.
+  echo.
+  pause
+  exit /b 1
+)
 
-endlocal
+where npm >nul 2>nul
+if errorlevel 1 (
+  echo [ERROR] Windows npm was not found.
+  echo Install Node.js/npm or check PATH.
+  echo.
+  pause
+  exit /b 1
+)
+
+call npm run newsletter:run
+set STATUS=%ERRORLEVEL%
+echo.
+if "%STATUS%"=="0" (
+  echo [OK] Newsletter sync complete.
+) else (
+  echo [ERROR] Newsletter sync failed.
+  echo Spread/Relate login may be expired, or Windows Chrome/Edge may not be found.
+  echo If needed, set CHROME_PATH to chrome.exe or msedge.exe.
+)
+echo.
+pause
+exit /b %STATUS%

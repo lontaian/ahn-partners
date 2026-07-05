@@ -3,6 +3,9 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
+const IS_WINDOWS = process.platform === 'win32';
+const NPX = IS_WINDOWS ? 'npx.cmd' : 'npx';
+
 const args = new Set(process.argv.slice(2));
 const includeTests = args.has('--include-tests');
 const outArg = process.argv.find((arg) => arg.startsWith('--out='));
@@ -19,10 +22,18 @@ function readSiteId() {
 }
 
 function netlifyApi(method, data) {
-  const output = execFileSync('npx', ['netlify', 'api', method, '--data', JSON.stringify(data)], {
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-  });
+  const json = JSON.stringify(data);
+  const output = IS_WINDOWS
+    ? execFileSync(process.env.ComSpec || 'cmd.exe', ['/d', '/s', '/c', `npx.cmd netlify api ${method} --data %NETLIFY_API_DATA%`], {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'pipe'],
+        windowsHide: true,
+        env: { ...process.env, NETLIFY_API_DATA: json.replaceAll('"', '\\"') },
+      })
+    : execFileSync(NPX, ['netlify', 'api', method, '--data', json], {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
   return JSON.parse(output);
 }
 

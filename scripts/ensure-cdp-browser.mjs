@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { tmpdir } from 'node:os';
 import http from 'node:http';
 
 const CDP_HOST = process.env.CDP_HOST || '127.0.0.1';
 const CDP_PORT = Number(process.env.CDP_PORT || 9222);
 const CDP = `http://${CDP_HOST}:${CDP_PORT}`;
 const DEFAULT_URL = process.env.CDP_START_URL || 'https://app.spread.so/spread/ahn-partners/lists/O7Udbj';
-const PROFILE = process.env.BROWSER_PROFILE || '/mnt/c/dev/client/personal/jobagent/.browser-profile';
-const PID_FILE = process.env.CDP_PID_FILE || '/tmp/ahn-partners-cdp-browser.pid';
-const LOG_FILE = process.env.CDP_LOG_FILE || '/tmp/ahn-partners-cdp-browser.log';
+const PROFILE = process.env.BROWSER_PROFILE || (process.platform === 'win32' ? 'C:\\dev\\client\\personal\\jobagent\\.browser-profile' : '/mnt/c/dev/client/personal/jobagent/.browser-profile');
+const DEFAULT_TMP = process.platform === 'win32' ? tmpdir() : '/tmp';
+const PID_FILE = process.env.CDP_PID_FILE || join(DEFAULT_TMP, 'ahn-partners-cdp-browser.pid');
+const LOG_FILE = process.env.CDP_LOG_FILE || join(DEFAULT_TMP, 'ahn-partners-cdp-browser.log');
 
 function fetchJson(url, timeoutMs = 2500) {
   return new Promise((resolve, reject) => {
@@ -48,15 +50,25 @@ function newestPlaywrightChrome() {
 }
 
 function resolveChrome() {
-  const candidates = [
+  const win = process.platform === 'win32';
+  const candidates = win ? [
+    process.env.CHROME_PATH,
+    `${process.env.LOCALAPPDATA || ''}\\Google\\Chrome\\Application\\chrome.exe`,
+    `${process.env.ProgramFiles || ''}\\Google\\Chrome\\Application\\chrome.exe`,
+    `${process.env['ProgramFiles(x86)'] || ''}\\Google\\Chrome\\Application\\chrome.exe`,
+    `${process.env.LOCALAPPDATA || ''}\\Chromium\\Application\\chrome.exe`,
+    `${process.env.ProgramFiles || ''}\\Microsoft\\Edge\\Application\\msedge.exe`,
+    `${process.env['ProgramFiles(x86)'] || ''}\\Microsoft\\Edge\\Application\\msedge.exe`,
+  ] : [
     process.env.CHROME_PATH,
     newestPlaywrightChrome(),
     '/usr/bin/google-chrome',
     '/usr/bin/chromium',
     '/usr/bin/chromium-browser',
-  ].filter(Boolean);
-  const found = candidates.find((candidate) => existsSync(candidate));
-  if (!found) throw new Error('Chromium/Chrome 실행 파일을 찾지 못했습니다. CHROME_PATH를 지정하세요.');
+  ];
+  const filtered = candidates.filter(Boolean);
+  const found = filtered.find((candidate) => existsSync(candidate));
+  if (!found) throw new Error(`Chromium/Chrome/Edge 실행 파일을 찾지 못했습니다. CHROME_PATH를 지정하세요. 후보: ${filtered.join(', ')}`);
   return found;
 }
 
@@ -77,6 +89,8 @@ async function main() {
     '--disable-dev-shm-usage',
     DEFAULT_URL,
   ];
+  mkdirSync(dirname(LOG_FILE), { recursive: true });
+  mkdirSync(dirname(PID_FILE), { recursive: true });
   const out = await import('node:fs').then((fs) => fs.openSync(LOG_FILE, 'a'));
   const child = spawn(chrome, args, { detached: true, stdio: ['ignore', out, out] });
   child.unref();

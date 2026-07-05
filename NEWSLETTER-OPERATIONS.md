@@ -28,15 +28,15 @@ newsletter-sync-double-click.cmd
 
 더블클릭하면 새 콘솔 창이 열리고 다음을 자동 실행한다.
 
-1. WSL에서 `/mnt/c/dev/active/ahn-partners`로 이동
-2. Node/NPM 환경 로드
+1. Windows에서 이 폴더로 이동
+2. Windows Node/NPM 확인
 3. `npm run newsletter:run` 실행
 4. Netlify 제출 확인
 5. Spread `Newsletter Subscribers` 동기화
 6. 최종 결과 출력
 7. Enter를 누를 때까지 창 유지
 
-평소에는 이 파일만 더블클릭하면 된다.
+평소에는 이 파일만 더블클릭하면 된다. WSL은 사용하지 않는다.
 
 ## 단발 실행 방식
 
@@ -59,8 +59,10 @@ npm run newsletter:run
 
 평소 운영은 이 명령 하나만 기억하면 된다.
 
-```bash
-cd /mnt/c/dev/active/ahn-partners
+Windows CMD에서 직접 실행할 때는 다음과 같다.
+
+```cmd
+cd /d C:\dev\active\ahn-partners
 npm run newsletter:run
 ```
 
@@ -123,8 +125,8 @@ npm run newsletter:sync-spread
 
 권장 루틴:
 
-```bash
-cd /mnt/c/dev/active/ahn-partners
+```cmd
+cd /d C:\dev\active\ahn-partners
 npm run newsletter:status
 npm run newsletter:sync-spread
 npm run newsletter:status
