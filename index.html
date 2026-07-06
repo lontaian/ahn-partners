@@ -453,6 +453,42 @@
       word-break: keep-all;
     }
 
+    .section-title-korean {
+      font-family: 'Pretendard Variable', Pretendard, var(--font-main);
+      font-weight: 900;
+      line-height: 0.98;
+      letter-spacing: -0.015em;
+      word-break: keep-all;
+    }
+
+    .section-title-korean .intro-line {
+      display: block;
+      margin-bottom: 0.55rem;
+      font-size: clamp(2rem, 5.2vw, 4.25rem);
+      font-weight: 900;
+      letter-spacing: -0.015em;
+    }
+
+    .section-title-korean .intro-main {
+      display: block;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      letter-spacing: -0.015em;
+      word-break: keep-all;
+    }
+
+    .section-title-korean .intro-highlight {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 1.14em;
+      letter-spacing: -0.005em;
+      background: linear-gradient(120deg, #d42d42, #235cf5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
     .about-description {
       font-size: 1.1rem;
       line-height: 1.8;
@@ -1730,9 +1766,9 @@
   <section id="intro" class="about">
     <div class="container">
       <span class="about-label reveal">INTRO</span>
-      <h2 class="section-title reveal d1" style="margin-bottom:4rem">
-        <span class="word-thin" style="font-size:clamp(1.8rem,5vw,4rem);display:block;margin-bottom:0.5rem">AI를 도입했는데,</span>
-        <span class="word-us">왜 매출은 <em class="serif-italic" style="font-size:1.18em;background:linear-gradient(120deg,#f43f5e,#3b82f6);-webkit-background-clip:text;background-clip:text;color:transparent">그대로</em>일까요?</span>
+      <h2 class="section-title section-title-korean reveal d1" style="margin-bottom:4rem">
+        <span class="intro-line">AI를 도입했는데,</span>
+        <span class="intro-main">왜 매출은 <em class="intro-highlight">그대로</em>일까요?</span>
       </h2>
       <p class="about-description reveal d2">
         도구가 아니라 <strong class="grad-text" style="font-weight:800;font-size:1.35em">결정</strong>이 회사를 바꿉니다. 어디에 AI를 쓸지, 무엇을 먼저 할지 함께 정합니다.
