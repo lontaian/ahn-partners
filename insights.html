@@ -35,39 +35,57 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
   <style>
     :root{--bg:#f8f8f8;--text:#111;--muted:#666;--surface:#fff;--teal:#2dd4bf;--amber:#f5a623;--grad:linear-gradient(120deg,#2dd4bf,#f5a623);--font:'Inter','Pretendard Variable',Pretendard,sans-serif;--display:'Playfair Display',serif}
-    *{box-sizing:border-box;margin:0;padding:0} body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased} a{color:inherit;text-decoration:none}.container{max-width:1120px;margin:0 auto;padding:0 20px}
-    .header{position:sticky;top:0;z-index:10;background:rgba(248,248,248,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.06)}.header-inner{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:.65rem;font-weight:800;letter-spacing:-.02em}.brand img{height:28px;width:auto}.nav{display:flex;gap:1.5rem;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#222}.nav a:hover,.nav a.active{color:#0f766e}
+    html{scroll-behavior:smooth;scrollbar-width:none}html::-webkit-scrollbar{display:none}
+    *{box-sizing:border-box;margin:0;padding:0} body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased} a{color:inherit;text-decoration:none} img{display:block;max-width:100%} ul{list-style:none} button{background:none;border:0;font-family:inherit;cursor:pointer}.container{max-width:1120px;margin:0 auto;padding:0 20px}.header .container,.footer .container{max-width:1400px;padding-left:20px!important;padding-right:20px!important}.mix-difference{mix-blend-mode:difference;color:#fff}
+    .header{position:fixed;top:0;left:0;right:0;z-index:500;height:80px;background:rgba(5,5,5,.75);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);transition:background .35s,backdrop-filter .35s,border-color .35s}.header.scrolled{background:rgba(5,5,5,.75);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}.header-inner{height:80px;display:flex;align-items:center;justify-content:space-between}.logo{font-family:Inter,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.01em}.header .logo{display:inline-flex;align-items:center;gap:.5rem}.logo-mark{height:30px;width:auto}.logo-wordmark{height:22px;width:auto}.footer-wordmark{height:26px;width:auto;margin-bottom:.5rem}.desktop-nav .nav-list{display:flex;align-items:center;gap:2.5rem}.nav-link{font-family:Inter,sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s}.nav-link:hover{opacity:.7}.nav-link.active{opacity:1;border-bottom:2px solid currentColor;padding-bottom:2px}.mobile-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;padding:0}.mobile-menu-overlay{position:fixed;inset:0;background:#050505;z-index:600;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}.mobile-menu-overlay.open{opacity:1;pointer-events:all}.mobile-menu-close{position:absolute;top:24px;right:24px;color:#fff;width:40px;height:40px;display:flex;align-items:center;justify-content:center}.mobile-nav-list{display:flex;flex-direction:column;align-items:center;gap:2.5rem}.mobile-nav-link{color:#fff;font-size:1.8rem;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;transition:opacity .2s}.mobile-nav-link:hover{opacity:.6}.mobile-nav-link.active{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:1}
     .hero{padding:7rem 0 4rem}.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#0f766e;margin-bottom:1.5rem}.title{font-family:'Pretendard Variable',Pretendard,var(--font);font-size:clamp(3.4rem,10vw,7.4rem);line-height:.94;letter-spacing:-.015em;font-weight:900;word-break:keep-all}.title strong{display:block;font-weight:900;letter-spacing:-.015em}.title em{font-family:inherit;font-style:normal;font-weight:900;letter-spacing:-.005em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:780px;margin-top:2rem;font-size:clamp(1.05rem,2vw,1.35rem);color:#333;word-break:keep-all}.actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:1rem 1.35rem;font-weight:800;border:1px solid #111}.btn-primary{background:#111;color:#fff}.btn-secondary{background:#fff;color:#111}.btn:hover{transform:translateY(-2px)}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;padding:0 0 6rem}.card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:28px;padding:2rem;min-height:280px;box-shadow:0 24px 80px rgba(0,0,0,.08);display:flex;flex-direction:column;justify-content:space-between}.card-kicker{font-size:.76rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#0f766e}.card h2{margin-top:1rem;font-size:1.55rem;line-height:1.2;letter-spacing:-.04em}.card p{margin-top:1rem;color:#555;word-break:keep-all}.card-link{margin-top:2rem;display:inline-flex;font-weight:900;text-decoration:underline;text-underline-offset:4px}.note{margin:0 0 5rem;background:#111;color:#fff;border-radius:28px;padding:2rem}.note h2{font-size:1.8rem;letter-spacing:-.04em}.note p{margin-top:.85rem;color:rgba(255,255,255,.72);word-break:keep-all}.footer{padding:2rem 0 3rem;border-top:1px solid rgba(0,0,0,.08);color:#666;font-size:.92rem}.footer-row{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}.footer a{text-decoration:underline;text-underline-offset:3px}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}.nav{gap:.9rem;font-size:.74rem}.hero{padding:5rem 0 3rem}.card{min-height:auto}}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;padding:0 0 6rem}.card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:28px;padding:2rem;min-height:280px;box-shadow:0 24px 80px rgba(0,0,0,.08);display:flex;flex-direction:column;justify-content:space-between}.card-kicker{font-size:.76rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#0f766e}.card h2{margin-top:1rem;font-size:1.55rem;line-height:1.2;letter-spacing:-.04em}.card p{margin-top:1rem;color:#555;word-break:keep-all}.card-link{margin-top:2rem;display:inline-flex;font-weight:900;text-decoration:underline;text-underline-offset:4px}.note{margin:0 0 5rem;background:#111;color:#fff;border-radius:28px;padding:2rem;text-align:center}.note h2{font-size:1.8rem;letter-spacing:-.04em}.note p{max-width:760px;margin:.85rem auto 0;color:rgba(255,255,255,.72);word-break:keep-all}.footer{background:#111;color:#fff;padding:4rem 0 2rem}.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;margin-bottom:3rem}.footer-brand-desc{font-size:.9rem;color:#666}.footer-links{display:flex;gap:2rem;flex-wrap:wrap;align-items:center}.footer-link{color:#999;font-size:.85rem;transition:color .2s}.footer-link:hover{color:#fff}.footer-bottom{border-top:1px solid #222;padding-top:1.5rem;color:#555;font-size:.8rem}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.hero{padding:5rem 0 3rem}.card{min-height:auto}}@media(max-width:768px){.desktop-nav{display:none}.mobile-menu-btn{display:flex}.footer-top{flex-direction:column}.footer-links{gap:1rem}}
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"CollectionPage","name":"Insights | Ahn Partners","url":"https://ahn-partners.net/insights.html","description":"AI 전환, 기술경영, 신사업 실행에 관한 Ahn Partners 인사이트 허브입니다.","isPartOf":{"@type":"WebSite","name":"Ahn Partners","url":"https://ahn-partners.net/"}}
   </script>
 </head>
 <body>
-  <header class="header">
+  <header id="header" class="header">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Ahn Partners 홈">
-        <img src="images/logo/ap-mark.png" alt="" aria-hidden="true">
-        <span>Ahn Partners</span>
-      </a>
-      <nav class="nav" aria-label="주요 메뉴">
-        <a href="/">Home</a>
-        <a href="/about.html">About</a>
-        <a class="active" href="/insights.html">Insights</a>
-        <a href="/newsletter">Newsletter</a>
-        <a href="/about.html#contact">Contact</a>
+      <a href="index.html" class="logo"><img src="images/logo/ap-mark.png" class="logo-mark" alt=""><img src="images/logo/ap-wordmark-web.png" class="logo-wordmark" alt="Ahn Partners"></a>
+      <nav class="desktop-nav">
+        <ul class="nav-list">
+          <li><a href="index.html#services" class="nav-link mix-difference">서비스</a></li>
+          <li><a href="index.html#projects" class="nav-link mix-difference">수행 실적</a></li>
+          <li><a href="about.html" class="nav-link mix-difference">소개</a></li>
+          <li><a href="insights.html" class="nav-link mix-difference active">인사이트</a></li>
+          <li><a href="newsletter.html" class="nav-link mix-difference">뉴스레터</a></li>
+          <li><a href="about.html#contact" class="nav-link mix-difference">문의</a></li>
+        </ul>
       </nav>
+      <button class="mobile-menu-btn mix-difference" id="mobileMenuBtn" aria-label="메뉴">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </header>
+
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose" aria-label="닫기">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html#services" class="mobile-nav-link">서비스</a></li>
+      <li><a href="index.html#projects" class="mobile-nav-link">수행 실적</a></li>
+      <li><a href="about.html" class="mobile-nav-link">소개</a></li>
+      <li><a href="insights.html" class="mobile-nav-link active">인사이트</a></li>
+      <li><a href="newsletter.html" class="mobile-nav-link">뉴스레터</a></li>
+      <li><a href="about.html#contact" class="mobile-nav-link">문의</a></li>
+    </ul>
+  </div>
 
   <main>
     <section class="hero">
       <div class="container">
         <p class="eyebrow">Insights</p>
         <h1 class="title">AI 전환을 <strong><em>실행</em>의 언어로</strong></h1>
-        <p class="lead">도구 소개보다 중요한 것은 조직의 의사결정, 데이터 흐름, 운영 구조입니다. Ahn Partners의 글과 영상은 AI를 실제 매출과 운영 시스템으로 바꾸는 방법을 다룹니다.</p>
+        <p class="lead">도구 소개보다 중요한 것은 조직의 의사결정, 데이터 흐름, 운영 구조입니다. Ahn&nbsp;Partners의 글과 영상은 AI를 실제 매출과 운영 시스템으로 바꾸는 방법을 다룹니다.</p>
         <div class="actions">
           <a class="btn btn-primary" href="/newsletter">뉴스레터 구독하기</a>
           <a class="btn btn-secondary" href="https://www.youtube.com/@ahn_partners" target="_blank" rel="noopener">YouTube 보기</a>
@@ -109,10 +127,44 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer-row">
-      <span>&copy; 2026 Ahn Partners</span>
-      <span><a href="/about.html#contact">문의하기</a></span>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="images/logo/ap-wordmark-web.png" class="footer-wordmark" alt="Ahn Partners">
+          <div class="footer-brand-desc">AI 전환, 결정부터 실행까지</div>
+        </div>
+        <div class="footer-links">
+          <a href="insights.html" class="footer-link">인사이트</a>
+          <a href="newsletter.html" class="footer-link">뉴스레터</a>
+          <a href="about.html#contact" class="footer-link">문의</a>
+          <a href="about.html" class="footer-link">소개</a>
+          <a href="https://www.youtube.com/@ahn_partners" class="footer-link" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.linkedin.com/in/chrisahn-intuition/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.threads.com/@ahn_partners" class="footer-link" target="_blank" rel="noopener">Threads</a>
+          <a href="https://x.com/ahn_partners" class="footer-link" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Ahn&nbsp;Partners
+      </div>
     </div>
   </footer>
+  <script>
+    (function(){
+      var header = document.getElementById('header');
+      var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
+      var mobileClose = document.getElementById('mobileClose');
+      var mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      function updateHeader(){ if (window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled'); }
+      function openMenu(){ mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function closeMenu(){ mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
+      mobileMenuBtn.addEventListener('click', openMenu);
+      mobileClose.addEventListener('click', closeMenu);
+      mobileLinks.forEach(function(link){ link.addEventListener('click', closeMenu); });
+    })();
+  </script>
 </body>
 </html>
