@@ -33,6 +33,11 @@
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
+  for = "/insights/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
   for = "/robots.txt"
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
@@ -65,7 +70,16 @@
   status = 200
 
 [[redirects]]
+  from = "/insights"
+  to = "/insights.html"
+  status = 200
+
+[[redirects]]
+  from = "/insights/:slug"
+  to = "/insights/:slug.html"
+  status = 200
+
+[[redirects]]
   from = "/contact"
   to = "/about.html#contact"
   status = 301
-
