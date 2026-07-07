@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Ahn's Executive Brief 템플릿</title>
+<!--
+  Ahn's Executive Brief 이메일 템플릿.
+  사용법: 이 파일을 복사해 briefs/NNN-슬러그.html로 저장하고 [[ ]] 자리를 채운다.
+  - [[NO]] 호수, [[DATE]] 발행일(예: 2026.07.08)
+  - [[HOOK_QUESTION]] 한 줄 판단 질문
+  - [[TITLE]] 이번 주 판단 제목
+  - [[BODY_P1]] [[BODY_P2]] [[BODY_P3]] 핵심 문단(블로그 복붙 금지, 재작성)
+  - [[Q1]] [[Q2]] [[Q3]] 체크 질문
+  - [[ARTICLE_URL]] 전문 링크, [[ARTICLE_LABEL]] 버튼 문구
+  - [[NOTE1_URL]] [[NOTE1_TEXT]] / [[NOTE2_URL]] [[NOTE2_TEXT]] 짧은 노트 2개
+  Spread에 붙여넣을 때는 body 안쪽 최상위 table부터 복사한다.
+  수신거부 링크는 Spread가 하단에 자동 삽입하는 것을 확인 후 발송한다.
+-->
+</head>
+<body style="margin:0;padding:0;background-color:#f2f2f0;">
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">[[HOOK_QUESTION]]</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f0;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;">
+          <!-- 헤더 -->
+          <tr>
+            <td style="background-color:#050505;border-radius:20px 20px 0 0;padding:26px 36px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:20px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;">Ahn Partners</td>
+                  <td align="right" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#2dd4bf;letter-spacing:3px;">EXECUTIVE&nbsp;BRIEF</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- 포인트 라인 -->
+          <tr><td style="height:4px;background-color:#2dd4bf;background-image:linear-gradient(90deg,#2dd4bf,#f5a623);font-size:0;line-height:0;">&nbsp;</td></tr>
+          <!-- 본문 카드 -->
+          <tr>
+            <td style="background-color:#ffffff;padding:36px;">
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#888888;letter-spacing:2px;">NO. [[NO]] &nbsp;|&nbsp; [[DATE]]</p>
+              <p style="margin:18px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15px;line-height:1.7;color:#0f766e;font-weight:700;word-break:keep-all;">[[HOOK_QUESTION]]</p>
+              <h1 style="margin:14px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:27px;line-height:1.32;color:#111111;font-weight:800;letter-spacing:-0.5px;word-break:keep-all;">[[TITLE]]</h1>
+              <p style="margin:22px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15.5px;line-height:1.85;color:#333333;word-break:keep-all;">[[BODY_P1]]</p>
+              <p style="margin:16px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15.5px;line-height:1.85;color:#333333;word-break:keep-all;">[[BODY_P2]]</p>
+              <p style="margin:16px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15.5px;line-height:1.85;color:#333333;word-break:keep-all;">[[BODY_P3]]</p>
+              <!-- 체크 질문 -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;">
+                <tr>
+                  <td style="background-color:#f0fbf9;border-left:4px solid #2dd4bf;border-radius:0 14px 14px 0;padding:20px 24px;">
+                    <p style="margin:0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#0f766e;letter-spacing:2px;">CHECK</p>
+                    <p style="margin:12px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14.5px;line-height:1.8;color:#333333;word-break:keep-all;">- [[Q1]]<br>- [[Q2]]<br>- [[Q3]]</p>
+                  </td>
+                </tr>
+              </table>
+              <!-- CTA -->
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:30px auto 0;">
+                <tr>
+                  <td style="background-color:#111111;border-radius:999px;">
+                    <a href="[[ARTICLE_URL]]" style="display:inline-block;padding:14px 34px;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;">[[ARTICLE_LABEL]]</a>
+                  </td>
+                </tr>
+              </table>
+              <!-- 짧은 노트 -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:34px;border-top:1px solid #eeeeee;">
+                <tr>
+                  <td style="padding-top:22px;">
+                    <p style="margin:0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#888888;letter-spacing:2px;">SHORT NOTES</p>
+                    <p style="margin:12px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14px;line-height:1.8;color:#555555;word-break:keep-all;">- <a href="[[NOTE1_URL]]" style="color:#0f766e;text-decoration:underline;">[[NOTE1_TEXT]]</a><br>- <a href="[[NOTE2_URL]]" style="color:#0f766e;text-decoration:underline;">[[NOTE2_TEXT]]</a></p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:30px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14.5px;line-height:1.8;color:#555555;word-break:keep-all;">읽어 주셔서 고맙습니다. 답장 주시면 다음 브리프 주제에 반영하겠습니다.<br>안병선 드림</p>
+            </td>
+          </tr>
+          <!-- 푸터 -->
+          <tr>
+            <td style="background-color:#111111;border-radius:0 0 20px 20px;padding:24px 36px;">
+              <p style="margin:0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:12px;line-height:1.8;color:#9ca3af;word-break:keep-all;">
+                Ahn's Executive Brief는 <a href="https://ahn-partners.net/newsletter" style="color:#2dd4bf;text-decoration:underline;">ahn-partners.net/newsletter</a>에서 직접 구독을 신청하신 분께만 보냅니다.<br>
+                문의: <a href="mailto:hello@ahn-partners.net" style="color:#9ca3af;text-decoration:underline;">hello@ahn-partners.net</a> &nbsp;|&nbsp; 전체 인사이트: <a href="https://ahn-partners.net/insights" style="color:#9ca3af;text-decoration:underline;">ahn-partners.net/insights</a><br>
+                수신을 원치 않으시면 메일 하단의 수신거부 링크를 눌러 주세요.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
