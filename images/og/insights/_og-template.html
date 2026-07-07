@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>OG Template</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    position:relative;
+    background:#050505;
+    font-family:'Pretendard Variable',Pretendard,sans-serif;
+    color:#fff;
+  }
+  .dots{
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.5px);
+    background-size:34px 34px;
+    background-position:12px 12px;
+  }
+  .glow-teal{
+    position:absolute;top:-260px;left:-200px;width:760px;height:640px;
+    background:radial-gradient(closest-side,rgba(45,212,191,.55),rgba(45,212,191,0));
+  }
+  .glow-amber{
+    position:absolute;bottom:-300px;right:-220px;width:720px;height:620px;
+    background:radial-gradient(closest-side,rgba(245,158,11,.38),rgba(245,158,11,0));
+  }
+  .frame{position:absolute;inset:0;padding:64px 76px;display:flex;flex-direction:column}
+  .top{display:flex;justify-content:space-between;align-items:center}
+  .brand{font-family:Inter,sans-serif;font-weight:800;font-size:30px;letter-spacing:-.01em}
+  .category{font-family:Inter,sans-serif;font-weight:700;font-size:22px;letter-spacing:.28em;color:#2dd4bf;text-transform:uppercase}
+  .mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:20px}
+  .title{font-weight:800;font-size:78px;line-height:1.22;letter-spacing:-.02em;word-break:keep-all;white-space:pre-line}
+  .subtitle{margin-top:30px;font-weight:500;font-size:30px;color:#8fe6d8;word-break:keep-all}
+  .bottom{display:flex;justify-content:space-between;align-items:center}
+  .url{font-family:Inter,sans-serif;font-weight:700;font-size:24px;color:#9ca3af}
+  .pill{
+    font-family:Inter,sans-serif;font-weight:700;font-size:24px;color:#0b0b0b;
+    padding:14px 30px;border-radius:999px;
+    background:linear-gradient(90deg,#2dd4bf,#f59e0b);
+  }
+</style>
+</head>
+<body>
+  <div class="dots"></div>
+  <div class="glow-teal"></div>
+  <div class="glow-amber"></div>
+  <div class="frame">
+    <div class="top">
+      <div class="brand">Ahn Partners</div>
+      <div class="category" id="cat">AI STRATEGY</div>
+    </div>
+    <div class="mid">
+      <div class="title" id="title">제목</div>
+      <div class="subtitle" id="sub">부제</div>
+    </div>
+    <div class="bottom">
+      <div class="url">ahn-partners.net/insights</div>
+      <div class="pill">Full Insight</div>
+    </div>
+  </div>
+<script>
+  const p = new URLSearchParams(location.search);
+  document.getElementById('cat').textContent = p.get('c') || 'INSIGHT';
+  document.getElementById('title').textContent = (p.get('t') || '').replace(/\|/g, '\n');
+  document.getElementById('sub').textContent = p.get('s') || '';
+</script>
+</body>
+</html>
