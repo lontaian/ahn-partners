@@ -10,7 +10,7 @@ const AUDIENCES = {
   subscribers: '6b75513b-6845-4eed-818f-d02caea5c20f', // Newsletter Subscribers (자발 신청)
   gmail: 'd08db842-4a4c-459a-bba6-397d03b93ab3', // Gmail Contacts (동의 지인)
 };
-const FROM = '안병선 (Ahn Partners) <hello@ahn-partners.net>';
+const FROM = 'Chris Ahn (Ahn Partners) <hello@ahn-partners.net>';
 const REPLY_TO = 'hello@ahn-partners.net';
 
 const args = process.argv.slice(2);
