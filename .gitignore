@@ -30,3 +30,7 @@ dsense-dom.html
 
 # Local exports with subscriber/contact PII
 exports/
+
+# Secrets
+.env
+.env.*
