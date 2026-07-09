@@ -10,8 +10,11 @@ window.INSIGHT_POSTS = [
   { slug: 'data-that-pays', topic: '데이터 의사결정', title: '쌓이는 데이터와 돈이 되는 데이터는 다릅니다' },
   { slug: 'erp-in-house-lessons', topic: '운영 시스템', title: '패키지 ERP를 버리고 직접 만들며 배운 것' },
   { slug: 'outsourced-system-neglect', topic: '운영 시스템', title: '외주로 만든 시스템이 1년 뒤 방치되는 이유' },
+  { slug: 'promotion-trap', topic: '조직과 사람', title: '일 잘하는 사람을 승진시키면 두 번 잃습니다' },
+  { slug: 'quiet-exit', topic: '조직과 사람', title: '에이스는 퇴사 통보 전에 먼저 조용해집니다' },
   { slug: 'ax-education-design', topic: 'AX 교육', title: 'AX 교육을 업무 전환으로 설계하는 법' },
   { slug: 'executive-vibe-coding', topic: 'AX 교육', title: '임원이 직접 만들어 본 뒤에야 보이는 것들' },
+  { slug: 'safe-failure', topic: 'AX 교육', title: '잘 크는 주니어는 일찍 틀려본 주니어입니다' },
   { slug: 'hydrogen-new-business-execution', topic: '신사업 실행', title: '100억 수소충전소에서 배운 신사업 실행의 순서' },
   { slug: 'first-customer-first', topic: '신사업 실행', title: '투자자보다 첫 고객이 먼저입니다' },
   { slug: 'table-note-service-operations', topic: '테이블 노트', title: '좋은 식당은 운영이 보입니다' }

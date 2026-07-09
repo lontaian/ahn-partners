@@ -29,6 +29,9 @@ const POSTS = [
   { slug: 'hydrogen-new-business-execution', c: 'NEW BUSINESS', t: '100억 수소충전소에서 배운|신사업 실행의 순서', s: '기술 검토는 2할이었습니다. 죽는 조건부터 목록으로 써야 합니다.' },
   { slug: 'first-customer-first', c: 'NEW BUSINESS', t: '투자자보다|첫 고객이 먼저입니다', s: '첫 고객 이전의 매출 전망은 가설이고, 이후는 기록입니다.' },
   { slug: 'table-note-service-operations', c: 'TABLE NOTE', t: '좋은 식당은|운영이 보입니다', s: '좋은 서비스는 직원의 감각이 아니라 운영 설계에서 나옵니다.', g: 'TABLE NOTE' },
+  { slug: 'promotion-trap', c: 'PEOPLE & ORG', t: '일 잘하는 사람을 승진시키면|두 번 잃습니다', s: '최고의 실무자를 잃고, 나쁜 관리자를 얻습니다.' },
+  { slug: 'quiet-exit', c: 'PEOPLE & ORG', t: '에이스는 퇴사 통보 전에|먼저 조용해집니다', s: '사직서는 마지막 신호입니다. 붙잡을 시점은 몇 달 앞에 있습니다.' },
+  { slug: 'safe-failure', c: 'AX EDUCATION', t: '잘 크는 주니어는|일찍 틀려본 주니어입니다', s: '성장은 강의장이 아니라 안전하게 틀릴 수 있는 일터에서 일어납니다.' },
 ];
 
 const only = process.argv.slice(2);
