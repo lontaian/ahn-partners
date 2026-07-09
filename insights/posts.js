@@ -1,6 +1,7 @@
 // Insights 글 매니페스트. 배열 순서가 추천 읽기 순서이며 글 하단 이전/다음 내비게이션에 쓰인다.
 // 새 글을 추가하면 여기에도 한 줄 추가한다(주제 짝끼리 인접 배치).
 window.INSIGHT_POSTS = [
+  { slug: 'silent-shelving', topic: 'AI 전략', title: 'AI 도입 프로젝트 열에 아홉은 성과 없이 끝납니다' },
   { slug: 'ai-executive-misconception', topic: 'AI 전략', title: 'AI 전환에서 경영진이 가장 많이 하는 착각' },
   { slug: 'ai-strategy-execution', topic: 'AI 전략', title: 'AI 전략이 실행되지 않는 이유' },
   { slug: 'workflow-analysis-before-ai', topic: '업무 분석', title: 'AI 도입 전 먼저 봐야 할 업무 병목 지도' },
