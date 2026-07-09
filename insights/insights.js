@@ -1,5 +1,5 @@
 (function(){
-  window.__INSIGHTS_JS_V = 3;
+  window.__INSIGHTS_JS_V = 4;
   var header = document.getElementById('header');
   var mobileMenuBtn = document.getElementById('mobileMenuBtn');
   var mobileMenu = document.getElementById('mobileMenu');
@@ -42,6 +42,11 @@
   // 글 상세: 읽기 진행 바 + 이전/다음 내비게이션
   var postBody = document.querySelector('.post-body');
   if (postBody) {
+    // v3: 컨테이너 가이드선(container-lines 스킬). CSS가 데스크톱 한정으로 표시
+    var guides = document.createElement('div');
+    guides.className = 'container-guides';
+    guides.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(guides);
     var bar = document.createElement('div');
     bar.className = 'read-progress';
     bar.setAttribute('aria-hidden', 'true');
@@ -77,6 +82,31 @@
     }
   }
 
+  // 공유 버튼 아이콘화 (v2): 텍스트 pill을 공식 브랜드 글리프 SVG로 교체
+  var SHARE_ICONS = {
+    copy: { label: '링크 복사', svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>' },
+    kakao: { label: '카카오톡으로 공유', svg: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.87 5.33 4.68 6.75-.15.52-.96 3.33-.99 3.55 0 0-.02.17.09.23.11.06.24.01.24.01.32-.04 3.66-2.39 4.24-2.8.57.08 1.15.13 1.74.13 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>' },
+    native: { label: '공유', svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>' },
+    linkedin: { label: 'LinkedIn으로 공유', svg: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>' },
+    x: { label: 'X로 공유', svg: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' }
+  };
+  document.querySelectorAll('.share-row [data-share]').forEach(function(btn){
+    var type = btn.getAttribute('data-share');
+    // 기기 공유 버튼 제거(2026-07-08 사용자 결정): 링크 복사와 구분이 안 되는 유사 아이콘 중복. 카카오/LinkedIn/X/복사 4종으로 절제
+    if (type === 'native') { btn.remove(); return; }
+    var icon = SHARE_ICONS[type];
+    if (icon) { btn.innerHTML = icon.svg; btn.setAttribute('aria-label', icon.label); btn.setAttribute('title', icon.label); }
+  });
+  var toastEl = null;
+  function showToast(message){
+    if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'share-toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
+    toastEl.textContent = message;
+    toastEl.classList.add('show');
+    window.clearTimeout(toastEl._t);
+    toastEl._t = window.setTimeout(function(){ toastEl.classList.remove('show'); }, 1800);
+  }
+  window.__insightsToast = showToast;
+
   var shareButtons = document.querySelectorAll('[data-share]');
   if (!shareButtons.length) return;
 
@@ -89,10 +119,9 @@
   var pageUrl = document.querySelector('link[rel="canonical"]') ? document.querySelector('link[rel="canonical"]').href : window.location.href;
 
   function setCopied(button, label){
-    var previous = button.textContent;
     button.classList.add('copied');
-    button.textContent = label || '링크가 복사되었습니다';
-    window.setTimeout(function(){ button.classList.remove('copied'); button.textContent = previous; }, 1800);
+    if (window.__insightsToast) window.__insightsToast(label || '링크가 복사되었습니다');
+    window.setTimeout(function(){ button.classList.remove('copied'); }, 1800);
   }
 
   async function copyUrl(button){

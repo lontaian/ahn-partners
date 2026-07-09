@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap');
 :root{--bg:#f8f8f8;--text:#111;--muted:#666;--surface:#fff;--section-dark:#111;--deep:#1a1f2b;--teal:#2dd4bf;--teal-dark:#0f766e;--amber:#f5a623;--grad:linear-gradient(120deg,#2dd4bf,#f5a623);--font:'Inter','Pretendard Variable',Pretendard,sans-serif;--display:'Playfair Display',serif;--container:1120px;--chrome:1400px;--header-h:80px}
 html{scroll-behavior:smooth;scrollbar-width:none}html::-webkit-scrollbar{display:none}*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}ul{list-style:none}button{background:none;border:0;font-family:inherit;cursor:pointer}.container{max-width:var(--container);margin:0 auto;padding:0 20px}.header .container,.footer .container{max-width:var(--chrome);padding-left:20px;padding-right:20px}.mix-difference{mix-blend-mode:difference;color:#fff}
 .header{position:fixed;top:0;left:0;right:0;z-index:500;height:80px;background:rgba(5,5,5,.75);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);transition:background .35s,backdrop-filter .35s,border-color .35s}.header.scrolled{background:rgba(5,5,5,.82)}.header-inner{height:80px;display:flex;align-items:center;justify-content:space-between}.logo{font-family:Inter,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.01em}.header .logo{display:inline-flex;align-items:center;gap:.5rem}.logo-mark{height:30px;width:auto}.logo-wordmark{height:22px;width:auto}.footer-wordmark{height:26px;width:auto;margin-bottom:.5rem}.desktop-nav .nav-list{display:flex;align-items:center;gap:2.5rem}.nav-link{font-family:Inter,sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s}.nav-link:hover{opacity:.7}.nav-link.active{opacity:1;border-bottom:2px solid currentColor;padding-bottom:2px}.mobile-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;padding:0}.mobile-menu-overlay{position:fixed;inset:0;background:#050505;z-index:600;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}.mobile-menu-overlay.open{opacity:1;pointer-events:all}.mobile-menu-close{position:absolute;top:24px;right:24px;color:#fff;width:40px;height:40px;display:flex;align-items:center;justify-content:center}.mobile-nav-list{display:flex;flex-direction:column;align-items:center;gap:2.5rem}.mobile-nav-link{color:#fff;font-size:1.8rem;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;transition:opacity .2s}.mobile-nav-link:hover{opacity:.6}.mobile-nav-link.active{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:1}
@@ -33,3 +34,91 @@ html{scroll-behavior:smooth;scrollbar-width:none}html::-webkit-scrollbar{display
 .post-steps .n{flex:0 0 32px;height:32px;border-radius:999px;background:#111;color:#2dd4bf;font-weight:900;font-size:.95rem;display:flex;align-items:center;justify-content:center}
 .post-steps .step-body{line-height:1.7;color:#333;word-break:keep-all}
 @media(max-width:640px){.post-stats{grid-template-columns:1fr}.post-compare{font-size:.88rem}.post-compare th,.post-compare td{padding:.7rem .8rem}}
+
+/* ===== v2 디자인 시스템 (2026-07-08): 프로 편집물 타이포, AI 티 제거 ===== */
+.post-layout{grid-template-columns:minmax(0,680px) minmax(200px,1fr)}
+.post-body{box-shadow:none;border:none;background:transparent;padding:0}
+.post-body p{font-size:18px;line-height:1.8;color:#1a1a1a;margin-top:1.5em}
+.post-body li{font-size:18px;line-height:1.8;color:#1a1a1a}
+.post-body h2{font-family:'Noto Serif KR',serif;font-size:26px;font-weight:700;line-height:1.35;letter-spacing:-.01em;margin-top:3em;margin-bottom:.2em;text-wrap:balance}
+.post-body h3{font-family:'Noto Serif KR',serif;font-size:21px;font-weight:600;line-height:1.4;margin-top:2em}
+.post-body blockquote{margin-top:1.8em;border-left:3px solid #0f766e;background:none;border-radius:0;padding:.2em 0 .2em 1.2em;color:#444;font-size:18px;line-height:1.8}
+.post-title{font-family:'Noto Serif KR',serif;font-weight:700;letter-spacing:-.02em;line-height:1.18;font-size:clamp(2rem,5vw,2.9rem)}
+.post-dek{font-size:19px;line-height:1.75;color:#444}
+.post-stats{gap:0;border:1px solid #e5e5e2;border-radius:8px;overflow:hidden}
+.post-stat{background:#fff;border:none;border-radius:0;padding:1.1rem 1.2rem}
+.post-stat + .post-stat{border-left:1px solid #e5e5e2}
+.post-stat .num{background:none;-webkit-background-clip:initial;background-clip:initial;color:#111;-webkit-text-fill-color:#111;font-size:1.7rem}
+.post-stat .label{color:#666}
+.post-compare{border-radius:8px;font-size:16px}
+.post-compare th{background:#111;font-weight:700}
+.post-compare td{line-height:1.7}
+.post-steps li{background:#fff;border:1px solid #e5e5e2;border-radius:8px}
+.post-steps .n{background:#0f766e;color:#fff;border-radius:6px}
+.post-steps .step-body{font-size:17px}
+.read-progress{background:#0f766e;height:2px}
+.post-figure{margin:2.2em 0 0}
+.post-figure svg{width:100%;height:auto;display:block}
+.post-figure figcaption{margin-top:.7em;font-size:14px;color:#777;line-height:1.6}
+.post-refs{margin-top:3.5em;padding-top:1.4em;border-top:1px solid #e5e5e2}
+.post-refs h2{font-size:16px;font-family:inherit;font-weight:800;letter-spacing:.04em;color:#666;margin-top:0}
+.post-refs ol{margin-top:1em;padding-left:1.2rem}
+.post-refs li{font-size:15px;line-height:1.7;color:#555;margin-top:.5em}
+.post-refs a{text-decoration:underline;text-underline-offset:3px;color:#0f766e}
+.post-body a{color:#0f766e;text-decoration:underline;text-underline-offset:3px}
+/* 공유: 텍스트 pill 제거, 아이콘 행 (insights.js가 렌더) */
+.share-row{gap:.4rem;margin-top:1.6rem}
+.share-button{width:40px;height:40px;padding:0;border-radius:8px;border:1px solid #e0e0dd;background:#fff;color:#333;display:inline-flex;align-items:center;justify-content:center}
+.share-button:hover,.share-button:focus{background:#111;border-color:#111;color:#fff;transform:none}
+.share-button svg{width:18px;height:18px;display:block}
+.share-toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(8px);background:#111;color:#fff;font-size:14px;font-weight:700;padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:3000}
+.share-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.post-nav-card,.insight-card,.featured-copy,.series-card,.newsletter-note{border-radius:10px}
+.aside-card{border-radius:10px}
+.btn{border-radius:6px}
+@media(max-width:640px){.post-stats{grid-template-columns:1fr}.post-stat + .post-stat{border-left:none;border-top:1px solid #e5e5e2}.post-body p,.post-body li{font-size:17px}}
+
+/* v2 모바일 복구: v2 데스크톱 오버라이드가 기존 미디어쿼리를 덮는 문제 수정 */
+@media(max-width:900px){.post-layout{grid-template-columns:1fr}.post-aside{position:static}}
+@media(max-width:768px){.share-button{flex:0 0 40px;width:40px;height:40px}}
+
+/* v2 계층 블록: 핵심 요약(standfirst)과 용어 정의 */
+.post-tldr{margin-top:2.4em;padding:1.4em 0;border-top:2px solid #111;border-bottom:1px solid #e5e5e2}
+.post-tldr .kicker{font-size:13px;font-weight:800;letter-spacing:.14em;color:#0f766e;text-transform:uppercase}
+.post-tldr ul{margin:0.9em 0 0;padding-left:1.1rem}
+.post-tldr li{font-size:17px;line-height:1.75;color:#1a1a1a;margin-top:.55em}
+.post-tldr li strong{font-weight:800}
+.post-term{margin-top:2.4em;padding:1.3em 1.5em;background:#fafaf7;border:1px solid #e8e8e4;border-radius:8px}
+.post-term .term-word{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:#111}
+.post-term .term-en{font-size:14px;color:#888;font-weight:600;margin-left:.5em}
+.post-term p{margin-top:.6em;font-size:16px;line-height:1.75;color:#444}
+
+/* ===== v3 (2026-07-08): MengTo Skills 반영. minimalist-ui(웜 모노크롬), number-details(섹션 번호), container-lines(가이드선), beautiful-shadows(층위 그림자), editorial-tech(모노 유틸 라벨) ===== */
+:root{--mono:'SF Mono','Cascadia Mono',ui-monospace,'Roboto Mono',monospace;--shadow-sm:0px 2px 3px -1px rgba(0,0,0,.1),0px 1px 0px 0px rgba(25,28,33,.02),0px 0px 0px 1px rgba(25,28,33,.08);--shadow-md:0px 0px 0px 1px rgba(0,0,0,.06),0px 1px 1px -.5px rgba(0,0,0,.06),0px 3px 3px -1.5px rgba(0,0,0,.06),0px 6px 6px -3px rgba(0,0,0,.06),0px 12px 12px -6px rgba(0,0,0,.06),0px 24px 24px -12px rgba(0,0,0,.06)}
+/* 웜 페이퍼 캔버스: 차가운 회색 대신 본지 톤 */
+body{background:#fbfbfa}
+.topic-strip{background:rgba(251,251,250,.86)}
+/* 섹션 번호: 본문 h2 위 저대비 모노 01 02 03 (참고 자료 제외) */
+.post-body{counter-reset:section}
+.post-body h2::before{counter-increment:section;content:counter(section,decimal-leading-zero);display:block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;color:#b8b8b0;margin-bottom:.55em}
+.post-refs h2::before{content:none}
+/* 컨테이너 가이드선: 본문 컬럼 좌우 1px, 데스크톱 한정 (insights.js가 .container-guides 주입) */
+.container-guides{position:fixed;inset:0;pointer-events:none;z-index:0}
+.container-guides::before,.container-guides::after{content:"";position:absolute;top:0;bottom:0;width:1px;background:rgba(24,24,27,.07)}
+.container-guides::before{left:max(20px,calc((100vw - var(--container))/2))}
+.container-guides::after{right:max(20px,calc((100vw - var(--container))/2))}
+@media(max-width:1200px){.container-guides{display:none}}
+/* 층위 그림자: 과장된 24px 80px 그림자를 정밀한 중립 레이어드로 교체 */
+.featured-copy,.insight-card,.series-card,.newsletter-note,.post-nav-card{box-shadow:var(--shadow-md);border:1px solid #eaeaea}
+.post-term,.post-stats,.post-compare{box-shadow:var(--shadow-sm);border:none}
+.post-stat + .post-stat{border-left:1px solid #eaeaea}
+.post-steps li{border:1px solid #eaeaea}
+/* 모노 유틸 라벨: 키커와 메타를 기술적 저대비 라벨로 */
+.post-tldr .kicker,.card-kicker,.post-nav-kicker,.eyebrow{font-family:var(--mono);font-weight:600}
+.post-refs h2{font-family:var(--mono);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+.post-meta{color:#787774;font-weight:600;font-size:.86rem}
+.post-stat .label{color:#787774}
+/* AI 티 그라데이션 제거: 허브 타이틀과 모바일 메뉴 활성 링크 */
+.title em{background:none;-webkit-background-clip:initial;background-clip:initial;color:#0f766e;-webkit-text-fill-color:#0f766e}
+.mobile-nav-link.active{background:none;-webkit-background-clip:initial;background-clip:initial;color:#2dd4bf}
+@media(max-width:640px){.post-stat + .post-stat{border-left:none;border-top:1px solid #eaeaea}}
