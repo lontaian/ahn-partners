@@ -25,10 +25,13 @@ if (!file || !subject || !campaign) { console.error('필수: --file --subject --
 let html = fs.readFileSync(file, 'utf8');
 
 // UTM 부착: ahn-partners.net 링크 전부 (mailto와 unsubscribe 제외)
-html = html.replace(/href="(https:\/\/ahn-partners\.net[^"]*)"/g, (m, url) => {
+// 링크별 구분 측정: 앵커에 data-uc="라벨"을 달면 utm_content로 부착된다 (read-full, note-1, footer-subscribe 등)
+html = html.replace(/<a\b([^>]*?)href="(https:\/\/ahn-partners\.net[^"]*)"([^>]*)>/g, (m, pre, url, post) => {
   if (url.includes('utm_')) return m;
+  const uc = (pre + post).match(/data-uc="([a-z0-9-]+)"/);
   const sep = url.includes('?') ? '&' : '?';
-  return `href="${url}${sep}utm_source=brief&utm_medium=email&utm_campaign=${campaign}"`;
+  const content = uc ? `&utm_content=${uc[1]}` : '';
+  return `<a${pre}href="${url}${sep}utm_source=brief&utm_medium=email&utm_campaign=${campaign}${content}"${post}>`;
 });
 
 const headers = { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' };

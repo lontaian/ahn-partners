@@ -1,59 +1,48 @@
 # Ahn Partners
 
-> 기획부터 납품까지, 책임지고 완수하는 전문 개발 파트너
+> AI 전환을 결정부터 실행까지 책임지는 기술경영 자문. AX 강의와 컨설팅, 그리고 시스템 개발까지 한 사람이 잇는다.
 
 ## 회사 소개
 
-Ahn Partners는 웹앱, 모바일 앱, 관리시스템(ERP), 대시보드, AI 자동화 개발을 전문으로 하는 외주 개발 파트너입니다. 요구사항 분석부터 설계, 개발, 배포, 운영 가이드까지 전 과정을 책임지고 납품합니다. 기획서가 없어도, 아이디어 단계부터 함께할 수 있습니다.
+Ahn Partners는 기술경영(CTO/COO) 실무 경험을 바탕으로 기업의 AI 전환(AX)을 돕습니다. 세 가지를 합니다.
+- AX 강의와 임원 교육: 도구 사용법이 아니라 판단 기준을 다루는 교육
+- AI 전환 컨설팅: 착수 품의서의 종료 조건 설계부터 업무 병목 분석, 실행 단위 정의까지
+- 시스템 개발: ERP, 대시보드, AI 자동화. 431대 차량 운영 ERP를 직접 구축해 10년 운영한 경험
 
-## 의뢰 가능 분야
+대표 Chris Ahn은 수소충전소(100억 규모) 신사업, 자체 ERP 개발, 사내 AI 도구 개발을 직접 실행한 기술경영자입니다.
 
-- **업무 관리시스템 (ERP/백오피스)**: 차량·인사·비용·재고 등 업무 데이터 통합 관리. 실제 431대 차량 운영 ERP를 4주 만에 구축한 경험.
-- **대시보드/데이터 시각화**: Chart.js, Recharts 기반 인터랙티브 대시보드. BEP 시뮬레이션, 고객 분석, 트렌드 모니터링.
-- **웹앱/웹서비스**: Next.js + PostgreSQL 기반 풀스택 웹 애플리케이션. OAuth 인증, CRUD, 엑셀 연동, 반응형 UI.
-- **GIS/지도 기반 시스템**: MapLibre GL, Leaflet, Kakao Maps 기반 노선 편집기, 위치 기반 분석 도구.
-- **모바일 앱 (iOS/Android)**: 기획부터 스토어 등록·운영까지. 누적 100만+ 다운로드 앱 출시 경험.
-- **AI 자동화/API 연동**: ChatGPT·Claude 등 AI API 연동, 반복 업무 자동화, AI 챗봇 구축.
+## Insights (기술경영 블로그)
 
-## 기술 스택
+경영진을 위한 AI 전환과 조직 운영 통찰. 각 글은 검증된 출처와 1차 경험을 근거로 하며, 핵심 요약과 용어 정의를 갖춘 보고서 형식입니다.
 
-- Frontend: Next.js, React, TypeScript, Tailwind CSS
-- Backend: Python, FastAPI, Node.js
-- Database & Infra: PostgreSQL, MySQL, Supabase, AWS, Docker
-- 데이터 시각화 & GIS: Chart.js, Recharts, MapLibre GL, Leaflet, Kakao Maps
+- [AI 도입 프로젝트 열에 아홉은 성과 없이 끝납니다](https://ahn-partners.net/insights/silent-shelving.html): 기술이 부족해서가 아닙니다. 끝을 정하지 않고 시작하기 때문입니다. MIT, S&P, McKinsey 조사로 확인했습니다.
+- [AI 전환에서 경영진이 가장 많이 하는 착각](https://ahn-partners.net/insights/ai-executive-misconception.html): 도구를 고르기 전에 먼저 물어야 할 게 있습니다. 어떤 판단이 느리고 어떤 판단이 반복되는지입니다. AI 전환을 제대로 시작하는 순서를 정리했습니다.
+- [반복 업무보다 예외 업무가 진짜 비용입니다](https://ahn-partners.net/insights/exception-work-first.html): 자동화 설계를 반복 업무 목록에서 시작하면 예외 처리 비용이 처음부터 빠집니다. ERP를 직접 만들고 운영하며 확인한 순서입니다.
+- [대시보드는 늘어나는데 결정은 그대로인 이유](https://ahn-partners.net/insights/dashboard-decision-gap.html): 대시보드 화면이 늘어도 결정이 바뀌지 않는 이유가 있습니다. 지표에 주인, 주기, 임계값, 행동이 붙어야 작동합니다. 차량 관제센터를 직접 운영하며 배운 지표 설계를 정리했습니다.
+- [쌓이는 데이터와 돈이 되는 데이터는 다릅니다](https://ahn-partners.net/insights/data-that-pays.html): 결정에 연결되지 않은 데이터는 쌓이는 순간부터 고정비입니다. 차량 운행 데이터를 직접 모으고 줄이며 배운 수집 기준을 공유합니다.
+- [패키지 ERP를 버리고 직접 만들며 배운 것](https://ahn-partners.net/insights/erp-in-house-lessons.html): 화면 열 개를 만드는 동안 처음으로 글로 쓰인 업무 규칙 백 개가 있었습니다. 코드보다 그 문서가 더 오래가는 자산이 됐습니다. 자체 ERP를 직접 만들어 10년 넘게 운영하며 배운 것입니다.
+- [외주로 만든 시스템이 1년 뒤 방치되는 이유](https://ahn-partners.net/insights/outsourced-system-neglect.html): 외주 시스템이 방치되는 건 개발 품질 문제가 아닙니다. 소유권이 없어서입니다. 직접 만든 ERP를 10년 운영하며 확인한 차이입니다.
+- [임원이 직접 만들어 본 뒤에야 보이는 것들](https://ahn-partners.net/insights/executive-vibe-coding.html): AI 도구를 직접 만들어 보면 견적서와 벤더의 말이 다르게 들립니다. 바이브코딩으로 사내 도구를 만들며 바뀐 세 가지 판단 기준을 씁니다.
+- [100억 수소충전소에서 배운 신사업 실행의 순서](https://ahn-partners.net/insights/hydrogen-new-business-execution.html): 기술 검토는 전체 일의 2할이었습니다. 100억 수소충전소 사업을 직접 추진하며 확인한 것입니다. 죽는 조건을 먼저 쓰지 않으면 신사업 계획은 낙관론의 나열입니다.
+- [투자자보다 첫 고객이 먼저입니다](https://ahn-partners.net/insights/first-customer-first.html): 투자는 검증 수단이 아니라 증폭 수단입니다. 팔리는 것을 확인한 뒤에 받아야 성장이 커집니다. 신사업 실행 현장에서 확인한 순서입니다.
+- [좋은 식당은 운영이 보입니다](https://ahn-partners.net/insights/table-note-service-operations.html): 잔이 비기 전에 누군가 와 있는 집이 있습니다. 좋은 서비스는 직원의 감각에서 나오지 않습니다. 레스토랑 테이블에서 관찰한 운영 설계 이야기입니다.
+- [AI 전략이 실행되지 않는 이유](https://ahn-partners.net/insights/ai-strategy-execution.html): AI 전략이 도입 프로젝트 단계에서 멈추는 이유. 도구보다 먼저 정해야 할 실행 단위 4가지와 첫 과제에서 4주 안에 현장 숫자를 만드는 방법입니다.
+- [AI 도입 전 먼저 봐야 할 업무 병목 지도](https://ahn-partners.net/insights/workflow-analysis-before-ai.html): 반복 횟수로 AI 후보를 골라도 전체 납기는 줄지 않습니다. 시간이 새는 곳은 대기 구간입니다. 업무 병목 지도를 먼저 그려야 적합한 후보와 운영 기준이 제자리를 찾습니다.
+- [AX 교육을 업무 전환으로 설계하는 법](https://ahn-partners.net/insights/ax-education-design.html): AX 교육이 만족도 조사로 끝나는 이유와, 교육 다음 주에 팀의 일하는 방식이 실제로 바뀌도록 설계하는 네 단계입니다.
 
-## 검증 가능한 실적
+전체 목록: https://ahn-partners.net/insights.html
+RSS: https://ahn-partners.net/feed.xml
 
-- 라이브 데모 5개 제공 (직접 동작 확인 가능)
-- 시스템 구축 납품 10건 이상
-- ERP 실운영 차량 431대, 기사 368명, 비용기록 4,700+건
-- 노선 최적화 처리 1,556개 (Hungarian Algorithm)
-- 앱 스토어 누적 다운로드 100만+
-- 누적 프로젝트 규모 30억 원 이상
+## Ahn's Newsletter
 
-## 주요 프로젝트
+주 2회(화, 목) 발행하는 이메일 뉴스레터. 그 주의 인사이트를 임원 보고서 형식으로 요약합니다.
+구독: https://ahn-partners.net/newsletter.html
 
-- [운송 ERP (FMS)](https://ahn-partners.net/projects/fms.html): 3개 법인 통합 차량관리시스템. Next.js 14, Prisma, PostgreSQL. [Live Demo](https://fms-readonly-sigma.vercel.app/)
-- [중구버스 노선 편집기](https://ahn-partners.net/projects/junggubus.html): 서울시 중구 셔틀버스 노선 설계 웹 에디터. MapLibre GL, OSRM.
-- [노선 최적화 파이프라인](https://ahn-partners.net/projects/route-optimizer.html): Hungarian Algorithm 기반 69개 FC, 1,556개 노선 최적화.
-- [FC 셔틀 노선 빌더](https://ahn-partners.net/projects/route-builder.html): 41개 물류센터, 4,274개 정류장 커버. Flask, Leaflet.js. [Live Demo](https://route-builder.onrender.com)
-- [중구 셔틀버스 관리 시스템](https://ahn-partners.net/projects/junggu-shuttle.html): Full-stack 교통 관리 플랫폼. FastAPI, PostgreSQL, Mapbox GL.
-- [노선 프레젠테이션 뷰어](https://ahn-partners.net/projects/pt-reports.html): 서울시 공무원 보고용 인터랙티브 뷰어. Leaflet.js, Kakao API.
-- [수소충전소 분석 대시보드](https://ahn-partners.net/projects/hydrogen-infra.html): 고객 분석, BEP 시뮬레이션, 월별 트렌드. Chart.js, Leaflet.
-- [일버스 (1-bus.com)](https://ahn-partners.net/projects/1bus.html): 전세버스 업계 종합 플랫폼. 견적 요청, 기사 구인/구직, 차량매매.
-- [계약 관리 자동화](https://ahn-partners.net/projects/bizno.html): 정부 조달 계약 문서 분석 및 수정 추적. Python, pdfplumber.
-- [OnBus 운송 플랫폼](https://ahn-partners.net/projects/onbus-platform.html): 원더셔틀, 캐치락 SaaS 연동 운송 플랫폼 아키텍처.
-- [농촌 모빌리티 정부 제안](https://ahn-partners.net/projects/rural-mobility.html): DRT 서비스 정부 제안서. 4개 부처별 맞춤 제안.
+## 연락
 
-## 개발 프로세스
-
-1. **요구사항 분석**: 기획서, 엑셀, 구두 설명 — 어떤 형태든 정리
-2. **화면 설계 + 기술 스펙**: 동작하는 프로토타입으로 방향 확인
-3. **1주 단위 데모 공유**: 동작하는 결과물로 소통, 피드백 즉시 반영
-4. **배포 + 운영 가이드**: 배포 완료 후 운영 매뉴얼과 인수인계 문서 제공
-
-## 문의 방법
-
+- 문의: hello@ahn-partners.net
 - 웹사이트: https://ahn-partners.net
-- 프로젝트 문의: https://ahn-partners.net/about.html#contact
-- 문의 폼에서 프로젝트 유형, 요구사항, 연락처를 남겨주시면 빠르게 답변드립니다.
+- LinkedIn: https://www.linkedin.com/in/chrisahn-intuition/
+- Threads: https://www.threads.com/@ahn_partners
+- X: https://x.com/ahn_partners
+- YouTube: https://www.youtube.com/@ahn_partners
