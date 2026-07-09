@@ -34,8 +34,9 @@ html = html.replace(/href="(https:\/\/ahn-partners\.net[^"]*)"/g, (m, url) => {
 const headers = { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' };
 
 if (test) {
-  // 단건 테스트: unsubscribe 플레이스홀더는 # 처리
-  const testHtml = html.replaceAll('{{{RESEND_UNSUBSCRIBE_URL}}}', '#');
+  // 단건 테스트: unsubscribe 플레이스홀더는 브로드캐스트 전용이라 여기서는 뉴스레터 페이지로 대체
+  // (실제 발송에서는 Resend가 수신자별 원클릭 수신거부 URL로 치환한다)
+  const testHtml = html.replaceAll('{{{RESEND_UNSUBSCRIBE_URL}}}', 'https://ahn-partners.net/newsletter');
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST', headers,
     body: JSON.stringify({ from: FROM, to: [test], reply_to: REPLY_TO, subject: '[테스트] ' + subject, html: testHtml }),
