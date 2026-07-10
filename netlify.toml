@@ -55,6 +55,13 @@
     Content-Type = "text/plain; charset=utf-8"
     Cache-Control = "public, max-age=86400"
 
+# 구도메인 -> 커스텀 도메인 301 (2026-07-10, 유튜브 등 구링크 전부 신도메인 도착)
+[[redirects]]
+  from = "https://ahn-partners.netlify.app/*"
+  to = "https://ahn-partners.net/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/demo/pt-reports"
   to = "/demos/pt-reports/index.html"
