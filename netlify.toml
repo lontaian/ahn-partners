@@ -83,3 +83,9 @@
   from = "/contact"
   to = "/about.html#contact"
   status = 301
+
+# 포트폴리오 사이트가 RSS를 읽을 수 있게 (2026-07-10)
+[[headers]]
+  for = "/feed.xml"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
