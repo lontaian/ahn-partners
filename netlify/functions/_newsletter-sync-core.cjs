@@ -1,6 +1,7 @@
 const DEFAULT_WORKSPACE = 'ahn-partners';
 const DEFAULT_LIST_ID = 'O7Udbj';
 const SPREAD_ORIGIN = 'https://app.spread.so';
+const DEFAULT_RESEND_AUDIENCE_ID = '6b75513b-6845-4eed-818f-d02caea5c20f';
 
 function normalizeString(value) {
   return typeof value === 'string' ? value.trim() : '';
@@ -171,6 +172,48 @@ function safeLogPayload(submission) {
   };
 }
 
+async function addContactToResendAudience({ email, name }) {
+  const apiKey = normalizeString(process.env.RESEND_API_KEY);
+  if (!apiKey) {
+    const error = new Error('RESEND_API_KEY is not configured');
+    error.code = 'missing_resend_api_key';
+    throw error;
+  }
+
+  const audienceId = normalizeString(process.env.RESEND_NEWSLETTER_AUDIENCE_ID) || DEFAULT_RESEND_AUDIENCE_ID;
+  const response = await fetch(`https://api.resend.com/audiences/${encodeURIComponent(audienceId)}/contacts`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      first_name: name || undefined,
+      unsubscribed: false,
+    }),
+  });
+
+  const text = await response.text();
+  let payload = null;
+  try { payload = text ? JSON.parse(text) : null; } catch (_) { payload = { raw: text }; }
+
+  const alreadyExists = response.status === 409 || /already exists|duplicate|contact_already_exists/i.test(text);
+  if (!response.ok && !alreadyExists) {
+    const error = new Error('Resend contact add failed');
+    error.details = { status: response.status, audienceId, payload };
+    throw error;
+  }
+
+  return {
+    ok: true,
+    provider: 'resend',
+    audienceId,
+    contactId: payload && payload.id || null,
+    alreadyExists,
+  };
+}
+
 async function fetchSpreadToken({ workspace, listId, cookie }) {
   const listUrl = `${SPREAD_ORIGIN}/spread/${encodeURIComponent(workspace)}/lists/${encodeURIComponent(listId)}`;
   const response = await fetch(listUrl, {
@@ -287,9 +330,7 @@ async function syncNewsletterSubmission(input, options = {}) {
     return { ok: true, skipped: true, reason: 'missing_consent', submission: safeLogPayload(submission) };
   }
 
-  const result = buildRelateApiKey()
-    ? await addContactToRelateList({ email: submission.email, name: submission.name })
-    : await addContactToSpread({ email: submission.email, name: submission.name });
+  const result = await addContactToResendAudience({ email: submission.email, name: submission.name });
   return { ok: true, synced: true, result, submission: safeLogPayload(submission) };
 }
 
@@ -305,6 +346,7 @@ function jsonResponse(statusCode, body) {
 }
 
 module.exports = {
+  addContactToResendAudience,
   addContactToRelateList,
   addContactToSpread,
   extractSubmissionData,

@@ -16,8 +16,8 @@ exports.handler = async function newsletterSubscribe(event) {
       code: error.code,
       details: error.details,
     });
-    // Netlify Forms keeps the submission even if Spread is temporarily unavailable.
+    // Netlify Forms keeps the submission even if Resend is temporarily unavailable.
     // Keep the browser success path stable, and surface the sync state for diagnostics.
-    return jsonResponse(202, { ok: true, synced: false, queued: false, error: 'spread_sync_failed' });
+    return jsonResponse(202, { ok: true, synced: false, queued: false, error: 'resend_sync_failed' });
   }
 };
