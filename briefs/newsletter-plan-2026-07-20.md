@@ -18,7 +18,8 @@
 - [x] 사이트 신청자는 `Newsletter Subscribers`, 동의 지인은 `Gmail Contacts`로 분리
 - [x] 활성 수신자 수 확인: `Newsletter Subscribers` 15명, `Gmail Contacts` 214명
 - [x] HTML 안의 `{{{RESEND_UNSUBSCRIBE_URL}}}` 자리와 연락처 확인
-- [ ] 전면 개정한 두 뉴스레터를 내부 주소로 다시 시험 발송하고 실제 수신 화면 확인
+- [x] 전면 개정한 두 뉴스레터를 내부 주소로 다시 시험 발송하고 Resend 수락 확인
+- [ ] Gmail 실제 수신 화면에서 모바일 줄바꿈·로고·링크 확인
 - [ ] 테스트 승인 뒤 두 Audience의 수신자 수와 새 발송 시각 확인
 
 ## 실행 명령(승인 후에만 실행)
@@ -63,5 +64,6 @@ node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.
 
 - 검정 헤더용 공식 조합 `ap-mark.png` + `ap-wordmark-web.png` 적용
 - 이전 원고 No.003 테스트 발송 기록: `c61ddc86-7941-4b7b-b993-10f55104464b`
-- 2026-07-21 전면 개정 원고는 테스트 발송 전 상태
+- 전면 개정 No.003 테스트 ID: `c5616ee4-38ff-4262-b64b-d736d9bb6f26`
+- 전면 개정 No.004 테스트 ID: `8e66074e-d083-4515-aeeb-dc6a6b795dc2`
 - 전체 Audience 예약 없음. 새 원고의 테스트 확인 전에는 예약하지 않음
