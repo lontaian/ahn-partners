@@ -41,11 +41,20 @@ node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.
 | 2026-07-23 08:30 KST | Newsletter Subscribers | `f4ca7030-1e53-4d9f-af17-ad2c62264a7d` | deleted |
 | 2026-07-23 08:30 KST | Gmail Contacts | `3fa5e8b6-4900-4eeb-877a-8baea74c561e` | deleted |
 
-## 수정 후 예약 결과
+## 모바일 폭 수정으로 다시 취소한 예약
 
 | 발송 시각 | 호수 | Audience | Broadcast ID | 상태 |
 |---|---:|---|---|---|
-| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `84882e12-a2c8-44b0-9754-f1fb0300d1a3` | scheduled |
-| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `fd9686d5-0c44-4023-8451-f69f72247986` | scheduled |
-| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `44201a82-3348-4787-a829-8e81be291edf` | scheduled |
-| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `ef07795a-be45-406b-bc78-107d3608e3e4` | scheduled |
+| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `84882e12-a2c8-44b0-9754-f1fb0300d1a3` | deleted |
+| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `fd9686d5-0c44-4023-8451-f69f72247986` | deleted |
+| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `44201a82-3348-4787-a829-8e81be291edf` | deleted |
+| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `ef07795a-be45-406b-bc78-107d3608e3e4` | deleted |
+
+## 최종 예약 결과
+
+| 발송 시각 | 호수 | Audience | Broadcast ID | 상태 |
+|---|---:|---|---|---|
+| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `5c8c2f35-3586-4f15-ba56-ef7aed9ef011` | scheduled |
+| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `51746ae9-8a0d-4fb4-8fa3-55cd74b1b48d` | scheduled |
+| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `412e2ed8-7d85-4a95-9c6a-6067d6d55d6f` | scheduled |
+| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `3cefc76b-1b71-4562-9fd6-0f14104af8dd` | scheduled |
