@@ -5,9 +5,9 @@
 
 ## 발송 일정
 
-- 2026-07-21 (화) 08:30 KST — No.003 「답변보다 먼저, 승인 경계를 정하세요」
+- 2026-07-21 (화) — No.003 「AI는 샀는데 결재판은 그대로인 회사」
   - `Newsletter Subscribers`와 `Gmail Contacts`에 별도 Broadcast로 동시 발송
-- 2026-07-23 (목) 08:30 KST — No.004 「회의록을 줄이고 결정 로그를 남기세요」
+- 2026-07-23 (목) — No.004 「회의록에는 있는데 회사에는 없는 것」
   - `Newsletter Subscribers`와 `Gmail Contacts`에 별도 Broadcast로 동시 발송
 
 두 Audience는 합치지 않습니다. 같은 본문을 Audience별 Broadcast로 나눠 보내 수신자와 발송 결과를 각각 추적합니다.
@@ -18,16 +18,16 @@
 - [x] 사이트 신청자는 `Newsletter Subscribers`, 동의 지인은 `Gmail Contacts`로 분리
 - [x] 활성 수신자 수 확인: `Newsletter Subscribers` 15명, `Gmail Contacts` 214명
 - [x] HTML 안의 `{{{RESEND_UNSUBSCRIBE_URL}}}` 자리와 연락처 확인
-- [x] 두 뉴스레터를 내부 주소로 시험 발송하고 Resend 수락 확인
-- [x] Resend에서 두 Audience의 수신자 수, 예약 시각, 캠페인 ID 확인
+- [ ] 전면 개정한 두 뉴스레터를 내부 주소로 다시 시험 발송하고 실제 수신 화면 확인
+- [ ] 테스트 승인 뒤 두 Audience의 수신자 수와 새 발송 시각 확인
 
 ## 실행 명령(승인 후에만 실행)
 
 ```powershell
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "답변보다 먼저, 승인 경계를 정하세요" --campaign no003 --audience subscribers --at "2026-07-21T08:30:00+09:00"
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "답변보다 먼저, 승인 경계를 정하세요" --campaign no003 --audience gmail --at "2026-07-21T08:30:00+09:00"
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록을 줄이고 결정 로그를 남기세요" --campaign no004 --audience subscribers --at "2026-07-23T08:30:00+09:00"
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록을 줄이고 결정 로그를 남기세요" --campaign no004 --audience gmail --at "2026-07-23T08:30:00+09:00"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "AI는 샀는데 결재판은 그대로인 회사" --campaign no003 --audience subscribers --at "<승인한 KST 시각>"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "AI는 샀는데 결재판은 그대로인 회사" --campaign no003 --audience gmail --at "<승인한 KST 시각>"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록에는 있는데 회사에는 없는 것" --campaign no004 --audience subscribers --at "<승인한 KST 시각>"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록에는 있는데 회사에는 없는 것" --campaign no004 --audience gmail --at "<승인한 KST 시각>"
 ```
 
 예약 후 Resend에서 네 Broadcast가 모두 `scheduled` 상태인지 확인합니다.
@@ -62,5 +62,6 @@ node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.
 ## 현재 상태
 
 - 검정 헤더용 공식 조합 `ap-mark.png` + `ap-wordmark-web.png` 적용
-- No.003 테스트 발송 완료: `c61ddc86-7941-4b7b-b993-10f55104464b`
-- 전체 Audience 예약 없음. 테스트 확인 후 No.003과 No.004를 다시 예약해야 함
+- 이전 원고 No.003 테스트 발송 기록: `c61ddc86-7941-4b7b-b993-10f55104464b`
+- 2026-07-21 전면 개정 원고는 테스트 발송 전 상태
+- 전체 Audience 예약 없음. 새 원고의 테스트 확인 전에는 예약하지 않음

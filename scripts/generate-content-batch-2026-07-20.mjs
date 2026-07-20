@@ -7,6 +7,7 @@ const insightsDir = path.join(root, 'insights');
 const briefsDir = path.join(root, 'briefs');
 const site = 'https://ahn-partners.net';
 const publishedIso = '2026-07-20T18:00:00+09:00';
+const modifiedIso = '2026-07-21T14:00:00+09:00';
 const publishedText = '2026.07.20';
 
 const escapeHtml = (value) => String(value)
@@ -20,7 +21,8 @@ const inline = (value) => escapeHtml(value).replace(/\[\[([a-z0-9-]+)\|([^\]]+)\
 const p = (value) => `<p>${inline(value)}</p>`;
 const list = (items) => items.map((item) => `<li>${inline(item)}</li>`).join('');
 
-const posts = [
+// Retained as an editorial audit trail. The reviewed copy below is the only copy rendered.
+const draftPosts = [
   {
     slug: 'approval-boundary', topic: 'AI 전략', kicker: 'Decision Boundary',
     title: 'AI가 답을 잘 내도 조직이 느리다면 승인 경계부터 확인하세요',
@@ -423,6 +425,249 @@ const posts = [
   }
 ];
 
+const posts = [
+  {
+    slug: 'approval-boundary', topic: 'AI 전략', kicker: 'AI OPERATING MODEL', lens: '권한과 운영모델',
+    title: 'AI는 샀는데 결재판은 그대로인 회사',
+    deck: 'AI 도입의 병목은 답변 속도가 아니라 답변을 행동으로 바꾸는 권한입니다.',
+    image: 'ai-strategy-execution.jpg', minutes: 6,
+    tags: ['AI 전략', 'AI 에이전트', '의사결정', '업무 재설계'],
+    tldr: [
+      '2025년 조직의 AI 사용률은 88%까지 올랐지만, 에이전트의 실제 업무 배치는 대부분 한 자릿수에 머물렀습니다.',
+      'AI가 보고서를 10분 만에 써도 승인에 사흘이 걸리면 회사가 산 것은 생산성이 아니라 초안입니다.',
+      '정확도보다 먼저 ‘자동 실행·사후 검토·사전 승인’ 세 구역을 업무별로 나눠야 합니다.'
+    ],
+    term: { word: 'AI의 속도는 결재판 앞에서 0이 됩니다', en: 'CEO RULE', desc: '모델이 낸 답의 품질만 측정하지 말고, 답이 나온 시점부터 실제 행동이 시작될 때까지의 시간을 재야 합니다.' },
+    intro: [
+      '2026년 Stanford AI Index에 따르면 2025년 조사 대상 조직의 88%가 적어도 한 업무에서 AI를 썼습니다. 생성형 AI 사용률도 70%였습니다. 그런데 에이전트를 실제 업무에 배치한 비율은 거의 모든 기능에서 한 자릿수였습니다. 도구는 널리 샀지만, 일을 맡기는 방식은 거의 바뀌지 않았다는 뜻입니다.',
+      '많은 회사가 이 간극을 모델 성능 문제로 오해합니다. 답이 마음에 들지 않으면 프롬프트를 고치고, 그래도 불안하면 검토자를 한 명 더 붙입니다. 그 결과 AI는 10분 만에 초안을 만들고 사람은 사흘 동안 결재자를 찾습니다. 모델의 처리시간은 줄었지만 조직의 처리시간은 그대로입니다.'
+    ],
+    sections: [
+      { heading: '사용률 88%와 업무 배치 한 자릿수 사이에 무엇이 있나', paragraphs: [
+        'Microsoft의 2026 Work Trend Index에서는 문화, 관리자 지원, 인재 운영 같은 조직 요인이 개인의 노력보다 AI 효과를 두 배 더 크게 설명했습니다. AI를 많이 쓰는 것보다 그 능력을 받아들일 조직의 준비가 더 중요했다는 뜻입니다.',
+        'NIST AI 위험관리 프레임워크도 사람과 AI의 역할, 감독 책임, 결과의 사용 방법을 미리 구분하라고 권고합니다. 이것은 규제 대응만을 위한 문서가 아닙니다. 누가 멈출 수 있고 누가 실행할 수 있는지를 정해야 현장이 안심하고 속도를 낼 수 있기 때문입니다.'
+      ] },
+      { heading: '모든 답을 승인받게 하면 AI는 비싼 타자기가 됩니다', paragraphs: [
+        '위험이 다른 일을 같은 결재선에 태우는 것이 가장 흔한 실수입니다. 내부 회의 요약, 고객에게 보내는 가격 제안, 계약 해지 판단은 실패 비용이 전혀 다릅니다. 그런데도 모두 팀장 승인을 받게 하면 저위험 업무가 고위험 업무의 대기열에 갇힙니다.',
+        '업무를 세 구역으로 나누십시오. 되돌리기 쉽고 외부 영향이 작은 일은 자동 실행 뒤 표본 검토, 손실이 제한된 일은 담당자 확인 뒤 실행, 법률·가격·인사처럼 되돌리기 어려운 일은 사전 승인입니다. 사람을 빼는 것이 목표가 아니라 사람의 판단을 가장 비싼 순간에 쓰는 것이 목표입니다.'
+      ] },
+      { heading: '새 KPI는 정확도가 아니라 ‘답변에서 행동까지’입니다', paragraphs: [
+        '파일럿 보고서에는 정확도와 사용 횟수가 자주 등장합니다. 그러나 CEO가 봐야 할 숫자는 답변이 나온 뒤 첫 행동까지 걸린 시간, 사람에게 되돌아온 비율, 되돌아온 한 건을 처리하는 시간입니다. 이 세 숫자가 줄지 않으면 AI는 업무를 줄인 것이 아니라 앞단만 빠르게 만든 것입니다.',
+        '이번 주 한 업무만 골라 20건을 추적해 보십시오. AI가 답을 낸 시각, 첫 행동이 시작된 시각, 멈춘 이유를 적으면 병목이 드러납니다. ‘승인자 부재’가 반복된다면 다음 예산은 모델 교체가 아니라 권한표 수정에 써야 합니다.'
+      ] },
+      { heading: 'CEO가 던질 질문은 하나면 충분합니다', paragraphs: [
+        '“이 답이 맞으면 누가 오늘 무엇을 합니까?” 이 질문에 이름·행동·시간이 바로 나오지 않으면 아직 AI 기능이 아니라 보고서 기능입니다. 반대로 답이 선명하면 작은 범위라도 운영에 넣을 수 있습니다.',
+        'AI 전환은 사람이 판단하지 않는 조직을 만드는 일이 아닙니다. 판단할 필요가 없는 일과 반드시 판단해야 하는 일을 분리하는 일입니다. [[exception-path|예외 처리 비용]]과 [[decision-log|판단의 흔적]]까지 함께 설계해야 속도와 책임이 동시에 생깁니다.'
+      ] }
+    ],
+    checklist: ['AI 답변 뒤 실제 행동까지 걸린 시간을 재고 있는가', '자동 실행·사후 검토·사전 승인 업무가 구분돼 있는가', '사람에게 되돌아온 건수와 처리 시간이 줄고 있는가'],
+    sources: [
+      { label: 'Stanford HAI, 2026 AI Index Report — Economy', url: 'https://hai.stanford.edu/ai-index/2026-ai-index-report/economy' },
+      { label: 'Microsoft, 2026 Work Trend Index', url: 'https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization' },
+      { label: 'NIST, AI Risk Management Framework Core', url: 'https://airc.nist.gov/airmf-resources/airmf/5-sec-core/' }
+    ],
+    related: [
+      { slug: 'exception-path', label: '자동화 ROI는 예외 한 건의 처리 시간에서 갈립니다', desc: '정상 건수 뒤에 숨은 사람의 재작업을 계산합니다.' },
+      { slug: 'decision-log', label: '회의록에는 있는데 회사에는 없는 것', desc: '결정과 포기의 이유를 남기는 최소 기록입니다.' }
+    ]
+  },
+  {
+    slug: 'decision-log', topic: '데이터 의사결정', kicker: 'DECISION MEMORY', lens: '조직의 판단 기억',
+    title: '회의록에는 있는데 회사에는 없는 것',
+    deck: '발언은 남고 결정은 사라집니다. 선택하지 않은 이유까지 기록해야 같은 회의를 반복하지 않습니다.',
+    image: 'dashboard-decision-gap.jpg', minutes: 5,
+    tags: ['의사결정', '회의', '결정 기록', '조직 운영'],
+    tldr: ['회의록이 길수록 결정이 잘 남는다는 보장은 없습니다.', '결정 기록에는 선택, 버린 대안, 이유, 다시 열 조건만 있으면 됩니다.', '틀린 결정을 지우지 않아야 조직이 같은 실수를 더 비싸게 반복하지 않습니다.'],
+    term: { word: '결정의 반대말은 실패가 아니라 망각입니다', en: 'CEO RULE', desc: '결정이 틀릴 수는 있습니다. 더 큰 문제는 왜 그렇게 결정했는지 잊어 같은 논의를 처음부터 반복하는 것입니다.' },
+    intro: [
+      '회의록은 열두 쪽인데 “그래서 뭘 하기로 했죠?”라는 질문이 다시 나오는 회사가 있습니다. 기록이 부족한 것이 아닙니다. 발언을 기록했을 뿐 선택을 기록하지 않았기 때문입니다.',
+      '생성형 AI가 회의 요약을 거의 공짜로 만들면서 이 문제는 더 커졌습니다. 문서는 늘었지만 판단의 흔적은 더 깊이 묻힙니다. 요약의 생산성이 높아질수록 조직은 무엇을 남기지 않을지 더 엄격하게 정해야 합니다.'
+    ],
+    sections: [
+      { heading: 'AI 회의록은 기억을 늘리고 책임을 흐릴 수 있습니다', paragraphs: [
+        '발언 요약은 참석하지 못한 사람에게 유용합니다. 그러나 실행에는 누가 무엇을 왜 선택했는지가 필요합니다. “마케팅 예산을 유지하기로 함”만 적으면 다음 분기에 같은 논쟁이 돌아옵니다. “환불률이 더 큰 위험이라 신규 광고보다 온보딩을 고쳤다”까지 남겨야 다음 판단이 이어집니다.',
+        'AWS의 아키텍처 결정 기록 지침도 맥락, 결정, 결과를 남기고 승인된 기록은 고치지 말라고 권합니다. 새로운 정보로 판단이 바뀌면 과거 기록을 덮어쓰는 대신 새 기록이 이전 결정을 대체하게 합니다. 조직의 판단도 같은 방식이어야 합니다.'
+      ] },
+      { heading: '선택한 것보다 버린 대안이 더 비쌉니다', paragraphs: [
+        '사람은 채택된 안보다 탈락한 안을 빨리 잊습니다. 새 임원이 오거나 시장이 흔들리면 이미 검토했던 대안이 새 아이디어처럼 돌아옵니다. 그때 과거에 버린 이유가 없으면 조사와 토론 비용을 다시 냅니다.',
+        '결정 기록에 네 줄만 남기십시오. 무엇을 선택했는가, 무엇을 버렸는가, 어떤 증거로 골랐는가, 어떤 신호가 오면 다시 열 것인가. 담당자와 첫 행동은 별도 칸으로 붙입니다. 이보다 길면 회의록으로 돌아가기 쉽습니다.'
+      ] },
+      { heading: '틀린 결정을 지우는 순간 학습도 지워집니다', paragraphs: [
+        '결과가 나쁘면 당시 문장을 순화하고 싶은 유혹이 생깁니다. 그러나 그 기록은 평가표가 아니라 학습 장치입니다. 당시 이용할 수 있었던 정보와 지금 알게 된 정보를 분리해야 판단의 질을 개선할 수 있습니다.',
+        '한 달 뒤에는 “맞았나”보다 “어떤 전제가 깨졌나”를 붙이십시오. 개인의 책임 추궁이 아니라 전제의 수명을 관리하면, 팀은 불확실한 상황에서도 기록을 숨기지 않습니다.'
+      ] },
+      { heading: '첫 기록은 반복된 안건에서 시작하십시오', paragraphs: [
+        '전사 템플릿부터 만들지 마십시오. 최근 두 달 동안 세 번 이상 되돌아온 안건 하나를 고르십시오. 버린 대안과 다시 열 조건을 적는 것만으로 다음 회의가 달라집니다.',
+        '결정 기록의 성과는 작성 건수가 아닙니다. 과거 링크 하나로 끝난 논의의 수, 뒤집힌 결정에서 새로 발견한 전제의 수입니다. [[metric-owner|담당자 없는 KPI]]처럼 주인 없는 기록도 곧 장식이 됩니다.'
+      ] }
+    ],
+    checklist: ['선택한 안과 버린 안이 함께 남아 있는가', '결정을 다시 열 신호가 날짜가 아니라 사건으로 적혀 있는가', '새 정보가 생겨도 과거 기록을 덮어쓰지 않는가'],
+    sources: [
+      { label: 'AWS Prescriptive Guidance, Architectural decision record process', url: 'https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html' },
+      { label: 'AWS Well-Architected, Agent decision artifact storage', url: 'https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/agentsec05-bp01.html' }
+    ],
+    related: [
+      { slug: 'metric-owner', label: '담당자 없는 KPI는 숫자가 아니라 구경거리입니다', desc: '측정과 행동을 한 사람에게 연결합니다.' },
+      { slug: 'approval-boundary', label: 'AI는 샀는데 결재판은 그대로인 회사', desc: 'AI 답을 실행으로 바꾸는 권한을 설계합니다.' }
+    ]
+  },
+  {
+    slug: 'exception-path', topic: '업무 분석', kicker: 'AUTOMATION ECONOMICS', lens: '자동화 원가',
+    title: '자동화 ROI는 예외 한 건의 처리 시간에서 갈립니다',
+    deck: '정상 처리율이 높아도 사람이 다시 잡는 한 건이 길면 자동화는 비용을 옮겼을 뿐입니다.',
+    image: 'exception-work-first.jpg', minutes: 5,
+    tags: ['업무 분석', '자동화', '예외 처리', 'ROI'],
+    tldr: ['자동화율은 입력을 받은 비율이 아니라 사람 손을 거치지 않고 끝난 비율로 계산해야 합니다.', '예외 5%가 전체 노동시간의 절반을 먹을 수 있습니다.', '예외 건수보다 한 건당 재작업 시간과 정상 흐름 복귀율을 함께 봐야 합니다.'],
+    term: { word: '자동화가 실패한 곳에는 사람이 조용히 야근합니다', en: 'CEO RULE', desc: '시스템 오류가 아니라 사람이 엑셀·메신저·전화로 메운 시간까지 자동화 비용에 포함해야 합니다.' },
+    intro: ['데모에서는 주문 100건이 몇 초 만에 처리됩니다. 운영 첫 주에는 주소 오류 다섯 건, 중복 결제 두 건, 승인자 부재 세 건이 생깁니다. 시스템은 90% 자동화됐다고 보고하지만 담당자는 열 건을 복구하느라 반나절을 씁니다.', '자동화의 경제성은 정상 건이 아니라 예외 건에서 무너집니다. Google SRE는 반복적이고 수동적이며 자동화 가능한 운영 업무를 ‘toil’로 정의하고, 이를 측정해 상한을 두라고 권합니다. 보이지 않는 수작업을 비용표에 올리는 것이 첫 단계입니다.'],
+    sections: [
+      { heading: '처리율 95%가 노동시간 95% 절감을 뜻하지 않습니다', paragraphs: ['정상 건은 몇 초, 예외 건은 30분이 걸릴 수 있습니다. 100건 중 5건만 예외여도 정상 95건보다 예외 5건에 더 많은 시간이 들어갑니다. 건수 비율로 ROI를 계산하면 자동화 효과가 과장됩니다.', '세 숫자를 따로 보십시오. 사람 손 없이 끝난 비율, 사람에게 넘어온 한 건당 시간, 예외 처리 뒤 원래 기록으로 돌아간 비율입니다. 이 중 하나라도 빠지면 업무가 다른 장부로 새고 있을 수 있습니다.'] },
+      { heading: '오류 메시지보다 다음 선택지가 중요합니다', paragraphs: ['“처리 실패”는 시스템의 상태일 뿐 담당자의 다음 행동이 아닙니다. 추가 정보 요청, 수동 승인, 거절, 정상 흐름 복귀 중 무엇을 해야 하는지 화면에 보여야 합니다.', '예외 유형마다 첫 담당자와 종료 조건을 붙이십시오. 모든 예외를 자동화할 필요는 없습니다. 그러나 모든 예외에는 다음 단계가 있어야 합니다.'] },
+      { heading: 'AI는 좋은 팀도 나쁜 팀도 더 빠르게 만듭니다', paragraphs: ['Google DORA의 2025 연구는 AI가 기존 팀의 상태를 증폭한다고 설명합니다. 처리량과 제품 성과는 좋아졌지만 소프트웨어 전달 안정성과는 여전히 부정적 관계가 있었습니다. 빠른 생성이 뒤쪽의 시험·피드백·통제 약점을 드러낸 것입니다.', '그래서 AI 자동화 예산에는 예외 처리 화면, 로그, 복구 연습이 포함돼야 합니다. 정상 경로만 만드는 프로젝트는 출시가 아니라 미완성 비용의 이연입니다.'] },
+      { heading: '이번 주에는 가장 비싼 예외 하나만 없애십시오', paragraphs: ['지난달 예외를 건수 순서가 아니라 총 소요시간 순서로 세우십시오. 가장 위의 한 유형에 입력 검증을 넣거나, 필요한 정보를 앞단에서 받거나, 승인 권한을 낮추십시오.', '예외를 없앨 수 없다면 처리 시간을 절반으로 줄이는 것이 목표입니다. [[vendor-handoff|외주 시스템 검수]]에서도 정상 시연보다 이 복구 과정을 먼저 확인해야 합니다.'] }
+    ],
+    checklist: ['자동화율을 무인 완료율로 계산하는가', '예외 한 건당 사람의 시간을 재는가', '예외 처리 뒤 원래 시스템으로 기록이 돌아오는가'],
+    sources: [
+      { label: 'Google SRE Workbook, Eliminating Toil', url: 'https://sre.google/workbook/eliminating-toil/' },
+      { label: 'Google Cloud, 2025 DORA Report', url: 'https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report' }
+    ],
+    related: [{ slug: 'vendor-handoff', label: '외주 시스템의 진짜 납품일은 운영자가 혼자 복구한 날입니다', desc: '복구 시연을 검수 조건으로 바꿉니다.' }, { slug: 'approval-boundary', label: 'AI는 샀는데 결재판은 그대로인 회사', desc: '예외가 어디서 사람에게 넘어갈지 정합니다.' }]
+  },
+  {
+    slug: 'metric-owner', topic: '데이터 의사결정', kicker: 'METRICS THAT MOVE', lens: '측정과 행동',
+    title: '담당자 없는 KPI는 숫자가 아니라 구경거리입니다',
+    deck: '숫자가 움직였을 때 누구의 어떤 결정이 바뀌는지 없으면 대시보드는 장식입니다.',
+    image: 'data-that-pays.jpg', minutes: 5,
+    tags: ['KPI', '대시보드', '데이터 의사결정', '책임'],
+    tldr: ['좋은 KPI는 성과를 설명하기 전에 다음 행동을 촉발합니다.', '지표마다 담당자, 임계값, 첫 행동, 행동 예산이 있어야 합니다.', '세 번 연속 회의에서 설명만 한 지표는 내리거나 다시 설계해야 합니다.'],
+    term: { word: '숫자에 주인이 없으면 회의가 주인이 됩니다', en: 'CEO RULE', desc: '누가 언제 어떤 행동을 시작할지 정하지 않은 지표는 의사결정 도구가 아니라 관람용 화면입니다.' },
+    intro: ['대시보드가 늘면 데이터 중심 조직이 된 것처럼 보입니다. 하지만 빨간 숫자를 본 뒤 “관련 부서에서 확인해 주세요”로 끝난다면 화면만 생겼을 뿐 운영은 바뀌지 않았습니다.', 'Google의 HEART 연구는 목표를 먼저 정하고, 그 목표를 보여 주는 신호와 지표를 연결하는 과정을 강조합니다. 지표부터 고르는 것이 아니라 어떤 결정을 더 잘하려는지부터 정하는 방식입니다.'],
+    sections: [
+      { heading: 'KPI에는 숫자보다 동사가 먼저 와야 합니다', paragraphs: ['“전환율 3.2%”는 상태입니다. “전환율이 3% 아래로 이틀 지속되면 상품 책임자가 결제 단계별 이탈을 확인하고 한 가지 원인을 실험한다”가 운영 규칙입니다.', '지표 이름 옆에 담당자, 경보 조건, 첫 행동을 한 줄로 붙이십시오. 담당자는 결과를 혼자 책임지는 사람이 아니라 해석과 행동을 시작할 사람입니다.'] },
+      { heading: '행동 예산이 없으면 담당자도 이름표에 그칩니다', paragraphs: ['지표가 나빠져도 담당자가 가격, 인력, 실험을 바꿀 권한이 없다면 소유권은 허구입니다. 책임과 함께 작은 행동 예산 또는 의사결정 권한이 있어야 합니다.', '임계값을 넘을 때 할 수 있는 조치의 범위를 미리 정하십시오. 보고만 할 수 있는 사람을 KPI 소유자라고 부르면 책임만 아래로 내려갑니다.'] },
+      { heading: '지표 수를 줄이는 것이 데이터 역량일 수 있습니다', paragraphs: ['세 번 연속 회의에서 설명만 하고 아무 행동도 바꾸지 않은 지표를 표시하십시오. 법적 보고나 장기 관찰 목적이 아니라면 대시보드에서 내리거나 월간 보고로 옮길 후보입니다.', '지표를 없애면 정보가 줄어드는 것이 아니라 중요한 신호의 대비가 커집니다. 숫자를 추가하는 비용보다 주의력을 나누는 비용이 더 비쌀 수 있습니다.'] },
+      { heading: '다음 회의에서 화면 한 장을 고쳐 보십시오', paragraphs: ['가장 자주 보는 대시보드에서 지표 하나를 고르고 “이 숫자가 얼마가 되면 누가 무엇을 바꾸나”를 물으십시오. 답이 다르면 정의부터, 답이 없으면 소유권부터 고쳐야 합니다.', '결정이 이뤄지면 [[decision-log|버린 대안과 다시 볼 조건]]을 남기십시오. KPI는 답을 주는 장치가 아니라 더 나은 결정을 반복하게 하는 장치입니다.'] }
+    ],
+    checklist: ['지표마다 첫 행동을 시작할 한 사람이 있는가', '담당자에게 실제 행동 권한이나 예산이 있는가', '행동을 바꾸지 않는 지표를 정기적으로 내리는가'],
+    sources: [{ label: 'Google Research, HEART metrics framework', url: 'https://research.google/pubs/measuring-the-user-experience-on-a-large-scale-user-centered-metrics-for-web-applications/' }],
+    related: [{ slug: 'decision-log', label: '회의록에는 있는데 회사에는 없는 것', desc: '숫자로 내린 판단과 버린 대안을 남깁니다.' }, { slug: 'repeat-behavior', label: '고객의 칭찬보다 다음 예약이 더 정직합니다', desc: '의견보다 비용을 치른 행동을 봅니다.' }]
+  },
+  {
+    slug: 'repeat-behavior', topic: '신사업 실행', kicker: 'DEMAND SIGNAL', lens: '고객 수요',
+    title: '고객의 칭찬보다 다음 예약이 더 정직합니다',
+    deck: '“좋아요”는 공짜지만 재방문·선결제·추천은 고객이 실제 비용을 치르는 행동입니다.',
+    image: 'first-customer.jpg', minutes: 5,
+    tags: ['신사업', '고객 검증', '리텐션', '수요'],
+    tldr: ['인터뷰의 호평은 예의일 수 있지만 다음 예약은 일정이라는 비용을 냅니다.', '수요의 강도는 말이 아니라 선결제·자료 제공·동료 소개·반복 사용으로 측정해야 합니다.', '첫 실험의 목표는 만족도 5점이 아니라 고객이 돌아올 날짜를 잡는 것입니다.'],
+    term: { word: '고객의 진심은 감탄사가 아니라 달력에 남습니다', en: 'CEO RULE', desc: '긍정적인 말보다 고객이 시간·돈·평판을 실제로 거는 행동을 수요의 증거로 봅니다.' },
+    intro: ['새 서비스 시연이 끝나면 고객은 “좋네요”라고 말합니다. 창업팀은 그 말을 수요로 번역합니다. 그러나 다음 주에 다시 쓰지 않고, 예산 담당자를 소개하지 않고, 데이터를 보내지 않는다면 고객이 지불한 비용은 0원입니다.', '수요 검증은 호감도를 묻는 일이 아니라 고객이 무엇을 포기하고 이 행동을 택했는지 보는 일입니다. 시간, 돈, 내부 평판 중 하나도 걸리지 않은 신호는 약합니다.'],
+    sections: [
+      { heading: '말에는 예의가 섞이고 행동에는 비용이 섞입니다', paragraphs: ['고객은 관계를 망치지 않으려고 긍정적으로 답할 수 있습니다. 반면 다음 회의를 예약하고 내부 자료를 보내는 행동에는 시간이 듭니다. 선결제와 동료 소개에는 더 큰 비용이 듭니다.', '고객 반응을 약한 신호와 강한 신호로 나누십시오. 만족 표현과 설문 점수는 약한 신호, 재사용 날짜·선결제·데이터 제공·의사결정자 소개는 강한 신호입니다.', '행동도 진심을 완벽히 증명하지는 않습니다. NBER의 현시선호 연구가 지적하듯 선택은 관성, 정보 부족, 복잡성에 흔들립니다. 그래서 한 번의 클릭을 수요로 부르지 말고, 서로 다른 비용을 치른 행동이 두 번 이상 이어지는지 봐야 합니다.'] },
+      { heading: '첫 고객에게 기능보다 다음 행동을 요청하십시오', paragraphs: ['“어떤 기능이 더 필요하세요?”라고 물으면 요구사항 목록이 늘어납니다. “다음 주에도 이 업무에 쓰시겠습니까?”라고 물으면 지금 가치가 있는지 드러납니다.', '시연이 끝나기 전에 다음 사용 날짜를 잡고, 그때 고객이 가져올 자료를 정하십시오. 날짜와 자료 중 하나라도 정해지지 않으면 아직 파이프라인이 아니라 관심입니다.'] },
+      { heading: '반복은 빈도보다 맥락이 중요합니다', paragraphs: ['매일 필요한 도구와 분기마다 필요한 자문을 같은 주간 잔존율로 비교할 수 없습니다. 고객의 업무 주기에 맞춰 돌아올 시점을 정의해야 합니다.', '예상 주기가 지났는데 돌아오지 않았다면 기능 요청을 더 받기 전에 대체 행동을 확인하십시오. 엑셀, 전화, 기존 업체 중 무엇으로 돌아갔는지가 진짜 경쟁자입니다.'] },
+      { heading: 'CEO 대시보드에 “다음 약속” 열을 만드십시오', paragraphs: ['고객명 옆에 다음 행동, 날짜, 고객이 치르는 비용을 적으십시오. “관심 있음”은 상태가 아니라 미정입니다. 미정이 오래 남으면 수요로 계산하지 않습니다.', '이 표는 낙관을 꺾기 위한 것이 아니라 가장 강한 신호가 나온 고객에게 자원을 집중하기 위한 것입니다. [[experiment-budget|실험 예산]]도 이 강한 신호를 하나 얻는 데 필요한 금액으로 짜야 합니다.'] }
+    ],
+    checklist: ['고객과 다음 사용 날짜가 잡혀 있는가', '고객이 시간·돈·평판 중 하나를 실제로 걸었는가', '돌아오지 않은 고객의 대체 행동을 확인했는가'],
+    sources: [{ label: 'NBER, How are Preferences Revealed?', url: 'https://www.nber.org/papers/w13976' }, { label: 'Amplitude, The Retention Lifecycle Framework', url: 'https://amplitude.com/books/mastering-retention/the-retention-lifecycle-framework' }],
+    related: [{ slug: 'experiment-budget', label: '신사업 예산은 성공이 아니라 오답을 사는 돈입니다', desc: '가장 위험한 가설을 싸게 틀려 봅니다.' }, { slug: 'metric-owner', label: '담당자 없는 KPI는 숫자가 아니라 구경거리입니다', desc: '행동을 바꾸는 신호만 남깁니다.' }]
+  },
+  {
+    slug: 'vendor-handoff', topic: '운영 시스템', kicker: 'ACCEPTANCE TEST', lens: '외주 운영권',
+    title: '외주 시스템의 진짜 납품일은 운영자가 혼자 복구한 날입니다',
+    deck: '정상 화면 시연은 납품이 아닙니다. 장애를 내고 내부 운영자가 되살려야 인수인계가 끝납니다.',
+    image: 'consulting-end.jpg', minutes: 6,
+    tags: ['외주 개발', '인수인계', '운영', '검수'],
+    tldr: ['매뉴얼을 받은 날이 아니라 외주사 없이 장애를 복구한 날을 납품일로 잡아야 합니다.', '계정·로그·백업·복구·업데이트 권한을 실제 내부 담당자가 행사해 봐야 합니다.', '최종 대금의 일부를 독립 복구 시험 통과와 연결하면 인수인계가 부록이 아니라 제품이 됩니다.'],
+    term: { word: '시연은 공급자의 능력이고 복구는 고객의 소유권입니다', en: 'CEO RULE', desc: '공급자가 정상 작동을 보여 주는 것과 고객 조직이 시스템을 운영할 수 있는 것은 전혀 다른 검수 항목입니다.' },
+    intro: ['프로젝트 마지막 날 외주사가 완벽한 화면을 시연합니다. 석 달 뒤 인증서가 만료되고 서비스가 멈춥니다. 내부에는 관리자 계정도, 갱신 절차도, 로그 위치를 아는 사람도 없습니다. 시스템은 납품됐지만 운영 능력은 납품되지 않은 것입니다.', 'CISA의 Secure by Design 원칙은 보안 결과의 책임을 고객에게 떠넘기지 말고 공급자가 소유하라고 강조합니다. 구매자에게도 계약 단계부터 보안과 운영 증거를 요구하라고 권합니다. 인수인계는 문서 꾸러미가 아니라 독립 운영 능력의 이전이어야 합니다.'],
+    sections: [
+      { heading: '정상 시연은 가장 쉬운 시험입니다', paragraphs: ['공급자는 자신이 만든 시스템의 정상 경로를 가장 잘 압니다. 그래서 공급자가 로그인하고 성공 화면을 보여 주는 시험은 제품 기능만 확인할 뿐 고객의 운영 가능성을 증명하지 못합니다.', '검수 날에는 내부 담당자가 새 환경에서 배포하고, 권한을 바꾸고, 로그를 찾고, 백업에서 복구해야 합니다. 외주사는 관찰만 하도록 하십시오. 막힌 지점이 곧 인수인계의 누락입니다.'] },
+      { heading: '문서 목록보다 권한 목록이 먼저입니다', paragraphs: ['소스 코드가 있어도 저장소 관리자 권한이 없으면 소유하지 않은 것입니다. 클라우드 결제, 도메인, 인증서, 분석, 이메일, 비밀키, 백업 저장소의 최종 관리자가 회사 계정인지 확인하십시오.', '개인 이메일과 외주사 계정에 묶인 권한은 납품 전에 이전해야 합니다. 문서에는 “어떻게”뿐 아니라 “누가 지금 할 수 있는가”가 보여야 합니다.'] },
+      { heading: '일부러 고장 내는 검수가 필요합니다', paragraphs: ['테스트 계정의 권한을 끊고, 환경변수 하나를 틀리고, 백업에서 복원해 보십시오. 실제 장애와 같은 압박을 만들 필요는 없지만 실패 상태에서 진단 순서가 작동하는지는 확인해야 합니다.', '복구 시간과 도움 요청 횟수를 기록하십시오. 공급자의 설명 없이 복구하지 못했다면 납품 조건이 충족되지 않은 것입니다.'] },
+      { heading: '최종 대금과 독립 복구를 연결하십시오', paragraphs: ['인수인계가 마지막 주의 선의에 기대지 않으려면 계약의 산출물이어야 합니다. 최종 대금 일부를 계정 이전, 운영자 복구 시험, 최신 백업 확인, 변경 이력 전달과 연결하십시오.', '시스템의 가치는 출시 화면이 아니라 다음 장애 뒤에도 사업이 계속되는 데 있습니다. [[exception-path|예외 한 건의 처리 시간]]을 검수 지표에 넣으면 운영 부담까지 가격에 반영할 수 있습니다.'] }
+    ],
+    checklist: ['모든 핵심 계정의 최종 관리자가 회사 계정인가', '내부 운영자가 외주사 도움 없이 복구 시험을 통과했는가', '최종 대금이 운영 인수 조건과 연결돼 있는가'],
+    sources: [{ label: 'CISA, Secure by Design guidance', url: 'https://www.cisa.gov/securebydesign' }, { label: 'CISA, Software Acquisition Guide for Government Enterprise Consumers', url: 'https://www.cisa.gov/sites/default/files/2024-07/PDM24050%20Software%20Acquisition%20Guide%20for%20Government%20Enterprise%20ConsumersV2_508c.pdf' }],
+    related: [{ slug: 'exception-path', label: '자동화 ROI는 예외 한 건의 처리 시간에서 갈립니다', desc: '장애와 예외를 사람의 시간으로 계산합니다.' }, { slug: 'deletion-budget', label: 'AI로 빨리 만든 코드는 언제 지울지부터 정해야 합니다', desc: '싼 생성 뒤에 남는 유지비를 통제합니다.' }]
+  },
+  {
+    slug: 'training-last-mile', topic: 'AX 교육', kicker: 'LEARNING TRANSFER', lens: '학습 전이',
+    title: 'AI 교육이 실패하는 이유는 교육 뒤 첫 업무가 없어서입니다',
+    deck: '수료증은 학습의 끝이지만 성과의 시작은 교육 뒤 7일 안에 나온 실제 산출물입니다.',
+    image: 'ai-learning-loop.jpg', minutes: 5,
+    tags: ['AX 교육', 'AI 교육', '학습 전이', '생산성'],
+    tldr: ['WEF 조사에서 기업의 63%가 역량 격차를 사업 전환의 가장 큰 장애물로 꼽았습니다.', '그러나 수료율은 역량이 업무로 옮겨졌는지 말해 주지 않습니다.', '교육 신청 때 7일 안에 제출할 실제 업무 산출물과 검토자를 함께 정해야 합니다.'],
+    term: { word: '교육의 반대말은 무지가 아니라 미사용입니다', en: 'CEO RULE', desc: '배운 내용을 실제 업무에 쓰지 못하면 지식은 늘어도 조직의 처리 방식은 바뀌지 않습니다.' },
+    intro: ['World Economic Forum의 2025 조사에서 기업의 63%는 역량 격차를 사업 전환의 가장 큰 장애물로 꼽았습니다. 2030년까지 노동자의 핵심 역량 39%가 바뀔 것으로 예상했습니다. 그래서 회사는 교육 시간을 늘립니다.', '그런데 교육 당일 프롬프트는 잘 쓰던 직원이 다음 월요일에는 예전 양식으로 돌아갑니다. 과정이 나빠서가 아니라 배운 기술을 적용할 첫 업무, 검토할 상사, 사용할 데이터가 미리 정해지지 않았기 때문입니다.'],
+    sections: [
+      { heading: '수료율은 교육 운영 지표이지 사업 성과가 아닙니다', paragraphs: ['출석과 만족도는 과정이 잘 진행됐는지 보여 줍니다. 생산성, 품질, 의사결정 속도가 바뀌었는지는 보여 주지 않습니다. CIPD는 학습의 가치는 실제 업무에 적용될 때 생기지만 조직의 더 넓은 영향을 평가하는 비율은 소수라고 지적합니다.', '교육 KPI를 7일 내 첫 산출물 비율, 30일 내 재사용 비율, 기존 업무시간 감소로 바꾸십시오. 수료자가 많아도 이 세 숫자가 움직이지 않으면 교육은 이벤트였습니다.'] },
+      { heading: '교육 신청서에 업무를 먼저 적게 하십시오', paragraphs: ['참가자는 과정 전에 반복 업무 하나와 사용할 실제 자료를 가져와야 합니다. 교육 중에는 예제를 따라 하는 대신 그 업무의 첫 산출물을 만듭니다.', '보안상 실제 데이터를 쓸 수 없다면 승인된 대체 데이터와 반출 기준을 미리 준비해야 합니다. 현장에서 막힐 조건을 교실 밖으로 미루지 않는 것이 중요합니다.'] },
+      { heading: '상사의 첫 피드백이 교육보다 중요할 수 있습니다', paragraphs: ['직원이 AI로 만든 초안을 가져왔는데 상사가 기존 양식을 다시 요구하면 학습은 끝납니다. 검토자도 품질 기준, 허용 범위, 금지 데이터를 알아야 합니다.', '교육 대상자를 개인이 아니라 업무 단위로 묶으십시오. 실행자와 검토자가 함께 배워야 새 산출물이 조직 안에서 통과합니다.'] },
+      { heading: '교육 뒤 7일을 설계하십시오', paragraphs: ['교육 종료 전에 첫 업무, 제출 날짜, 검토자, 성공 기준을 확정하십시오. 일주일 뒤에는 잘 만든 사례보다 막힌 이유를 모아야 합니다.', '반복해서 막히는 이유가 권한·데이터·승인이라면 추가 교육을 사지 마십시오. [[approval-boundary|AI 답 뒤의 권한]]을 고쳐야 합니다. 역량 문제가 아닌 것을 역량 문제로 부르면 교육비만 늘어납니다.'] }
+    ],
+    checklist: ['교육 신청 때 실제 적용 업무가 정해졌는가', '7일 안에 첫 산출물을 검토할 사람이 있는가', '수료율 대신 재사용과 시간 절감을 측정하는가'],
+    sources: [{ label: 'World Economic Forum, Future of Jobs Report 2025', url: 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/3-skills-outlook/' }, { label: 'CIPD, Measuring learning transfer', url: 'https://www.cipd.org/en/knowledge/podcasts/transfer-of-learning/' }],
+    related: [{ slug: 'approval-boundary', label: 'AI는 샀는데 결재판은 그대로인 회사', desc: '교육 문제가 아닌 권한 문제를 가려냅니다.' }, { slug: 'question-debt', label: '질문 없는 팀은 정렬된 팀이 아니라 포기한 팀일 수 있습니다', desc: '막힌 질문을 업무 개선의 신호로 씁니다.' }]
+  },
+  {
+    slug: 'deletion-budget', topic: 'AI 전략', kicker: 'AI CODE LIABILITY', lens: '기술 부채',
+    title: 'AI로 빨리 만든 코드는 언제 지울지부터 정해야 합니다',
+    deck: '생성 비용이 내려갈수록 코드의 총량과 유지비는 올라갑니다. 폐기 조건 없는 속도는 부채를 자동 생산합니다.',
+    image: 'hidden-transition-cost.jpg', minutes: 5,
+    tags: ['AI 코딩', '기술 부채', '유지보수', '삭제'],
+    tldr: ['AI는 코드 작성 비용을 낮추지만 검토·시험·운영·삭제 비용까지 없애지는 않습니다.', 'DORA 2025는 AI 활용이 처리량을 높이면서도 전달 안정성과는 부정적 관계가 남았다고 보고했습니다.', '실험 코드에는 책임자·만료일·삭제 조건·복구 방법이 있어야 합니다.'],
+    term: { word: '코드가 싸지면 유지비가 비싸집니다', en: 'CEO RULE', desc: '만드는 비용이 내려가면 더 많은 코드가 남습니다. 따라서 생성 속도보다 보유 총량과 폐기 속도를 함께 관리해야 합니다.' },
+    intro: ['AI에게 한 문장만 주면 기능 하나가 생깁니다. 이 편리함은 개발비를 낮추지만 “일단 두자”는 결정도 싸게 만듭니다. 실험 스크립트, 임시 API, 중복 자동화가 늘고 누구도 지우지 못하는 순간 유지비가 시작됩니다.', 'Google DORA의 2025 연구는 AI가 소프트웨어 처리량과 제품 성과를 높이는 한편 전달 안정성과는 여전히 부정적 관계가 있다고 보고했습니다. 빠른 생성이 시험, 버전 관리, 피드백 같은 하류 통제의 약점을 증폭할 수 있다는 뜻입니다.'],
+    sections: [
+      { heading: '생성 비용과 보유 비용을 분리하십시오', paragraphs: ['코드를 만드는 데 30분이 걸렸어도 운영에는 로그, 보안 업데이트, 장애 대응, 데이터 보존, 담당자 학습이 붙습니다. CEO는 개발시간만 보고 싸다고 판단하기 쉽습니다.', '기능별 월간 보유 비용을 거칠게라도 적으십시오. 호출료, 모니터링, 장애 대응 시간, 종속 서비스, 담당자 수를 합치면 무엇을 지워야 할지 보입니다.'] },
+      { heading: '모든 실험 코드에는 만료일이 있어야 합니다', paragraphs: ['실험이 성공하면 정식화하고 실패하면 지우는 것이 원칙이지만, 실패를 선언할 사람이 없으면 임시는 영구가 됩니다. 배포 때 책임자와 재검토 날짜를 붙이십시오.', '날짜만으로 자동 삭제하지는 마십시오. 데이터 보존, 고객 영향, 다른 시스템 의존성을 확인한 뒤 삭제해야 합니다. 중요한 것은 삭제를 기본 일정에 넣는 것입니다.'] },
+      { heading: '삭제할 수 있어야 진짜 소유한 것입니다', paragraphs: ['누가 쓰는지 몰라 지우지 못하는 코드는 회사가 통제하지 못하는 자산입니다. 호출 로그와 의존 관계가 없으면 작은 기능도 폐기 결정이 어려워집니다.', '분기마다 한 기능을 골라 비활성화 연습을 하십시오. 경보가 울리는지, 대체 절차가 작동하는지, 데이터가 남는지 확인하면 기술 부채가 숫자로 바뀝니다.'] },
+      { heading: 'AI 코딩 KPI에 삭제를 넣으십시오', paragraphs: ['생성한 기능 수와 개발시간 절감만 보상하면 팀은 더 많이 남깁니다. 제거한 중복 코드, 줄인 의존성, 복구시간 개선을 함께 보십시오.', 'AI의 가장 큰 장점은 많이 만드는 능력만이 아닙니다. 낡은 것을 이해하고 정리하는 비용도 낮출 수 있습니다. [[experiment-budget|실험의 중단 조건]]과 삭제 작업을 처음부터 같은 예산에 넣으십시오.'] }
+    ],
+    checklist: ['실험 코드마다 책임자와 재검토 날짜가 있는가', '기능별 운영·보안·장애 대응 비용을 보고 있는가', '분기마다 실제 비활성화 또는 삭제 연습을 하는가'],
+    sources: [{ label: 'Google Cloud, 2025 DORA Report', url: 'https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report' }, { label: 'Google SRE Workbook, Eliminating Toil', url: 'https://sre.google/workbook/eliminating-toil/' }],
+    related: [{ slug: 'experiment-budget', label: '신사업 예산은 성공이 아니라 오답을 사는 돈입니다', desc: '중단과 정리까지 실험비에 넣습니다.' }, { slug: 'vendor-handoff', label: '외주 시스템의 진짜 납품일은 운영자가 혼자 복구한 날입니다', desc: '운영 소유권을 실제 시험합니다.' }]
+  },
+  {
+    slug: 'question-debt', topic: '조직과 사람', kicker: 'SILENCE RISK', lens: '심리적 안전감',
+    title: '질문 없는 팀은 정렬된 팀이 아니라 포기한 팀일 수 있습니다',
+    deck: '회의가 조용하다는 이유로 합의됐다고 믿으면, 질문은 회의 뒤 메신저와 재작업으로 돌아옵니다.',
+    image: 'quiet-quitting.jpg', minutes: 5,
+    tags: ['조직문화', '심리적 안전감', '질문', '재작업'],
+    tldr: ['질문이 없다는 사실은 이해했다는 증거가 아닙니다.', 'Google 연구에서 심리적 안전감은 효과적인 팀을 가르는 가장 중요한 역학으로 나타났습니다.', '질문의 수보다 질문 때문에 바뀐 결정과 줄어든 재작업을 기록해야 합니다.'],
+    term: { word: '회의에서 사라진 질문은 실행에서 비용으로 돌아옵니다', en: 'CEO RULE', desc: '그 자리에서 묻지 못한 모호함은 사라지지 않습니다. 지연, 우회, 재작업, 침묵 퇴사 중 하나로 나타납니다.' },
+    intro: ['대표가 설명을 끝내고 “질문 있습니까?”라고 묻습니다. 아무도 손을 들지 않습니다. 대표는 정렬됐다고 생각하지만 회의가 끝난 뒤 메신저에는 “결국 뭘 하라는 거야?”가 올라옵니다.', 'Google의 팀 효과성 연구에서 가장 중요한 요인은 누가 팀에 있는가가 아니라 심리적 안전감이었습니다. 기본적인 질문을 하면 무능해 보일까 봐 침묵하는 팀에서는 오해가 실행 단계까지 살아남습니다.'],
+    sections: [
+      { heading: '침묵은 합의가 아니라 위험 회피일 수 있습니다', paragraphs: ['질문에는 대인 비용이 있습니다. 목표를 다시 물으면 맥락을 모르는 사람처럼 보이고, 반대 근거를 내면 부정적인 사람처럼 보일 수 있습니다. 리더가 답을 이미 정한 듯 말할수록 비용은 커집니다.', 'AI가 만든 문서는 말투가 매끈하고 구조가 완성돼 보여 이 비용을 더 높일 수 있습니다. 초안을 검증해야 할 직원이 “이미 결론 난 문서”로 받아들이면 오류보다 침묵이 먼저 확산됩니다.', '“질문 있나요?” 대신 “이 계획이 실패한다면 가장 먼저 어디서 실패할까요?”라고 물으십시오. 사람의 이해를 시험하지 않고 계획의 약점을 찾는 질문으로 바꾸면 발화 비용이 낮아집니다.'] },
+      { heading: '질문 수를 KPI로 만들면 또 다른 연극이 됩니다', paragraphs: ['질문을 세면 사람들은 안전한 질문을 늘립니다. 중요한 것은 질문 때문에 바뀐 결정, 발견한 전제, 줄어든 재작업입니다.', '회의 뒤 결정 기록에 “오늘 질문으로 바뀐 것” 한 칸을 두십시오. 아무것도 바뀌지 않았다면 리더가 이미 답을 정해 놓고 의견만 요청했을 가능성을 점검해야 합니다.'] },
+      { heading: '리더가 먼저 틀릴 가능성을 공개하십시오', paragraphs: ['Google re:Work는 일을 학습 문제로 설명하고, 리더가 자신의 오류 가능성을 인정하며, 호기심을 보여 주라고 권합니다. “제가 놓친 고객 조건이 있을 수 있습니다”라는 한 문장이 반대 의견의 가격을 낮춥니다.', '반대 질문을 낸 사람에게 결과 책임까지 떠넘기지 마십시오. 질문은 계획의 공동 검증이지 추가 업무를 배정받는 벌이 아니어야 합니다.'] },
+      { heading: '회의 뒤의 질문을 회의 안으로 되돌리십시오', paragraphs: ['회의 후 개인 메신저로 반복되는 질문을 익명으로 모아 다음 회의 첫 5분에 답하십시오. 같은 질문이 두 번 나오면 설명 문제가 아니라 결정 구조 문제로 분류합니다.', '[[decision-log|버린 대안과 다시 열 조건]]이 보이면 질문의 상당수는 사라집니다. 말하기 훈련보다 질문이 필요 없게 만드는 정보 구조가 먼저일 때도 있습니다.'] }
+    ],
+    checklist: ['리더가 자신의 전제와 틀릴 조건을 먼저 말하는가', '질문 때문에 바뀐 결정을 기록하는가', '회의 뒤 반복되는 개인 질문을 공용 정보로 되돌리는가'],
+    sources: [{ label: 'Google re:Work, Understand team effectiveness', url: 'https://rework.withgoogle.com/intl/en/guides/understanding-team-effectiveness' }],
+    related: [{ slug: 'decision-log', label: '회의록에는 있는데 회사에는 없는 것', desc: '질문이 필요로 하는 판단 맥락을 남깁니다.' }, { slug: 'training-last-mile', label: 'AI 교육이 실패하는 이유는 교육 뒤 첫 업무가 없어서입니다', desc: '현장의 막힘을 추가 교육과 구분합니다.' }]
+  },
+  {
+    slug: 'experiment-budget', topic: '신사업 실행', kicker: 'CHEAP TRUTH', lens: '실험 자본',
+    title: '신사업 예산은 성공이 아니라 오답을 사는 돈입니다',
+    deck: '좋은 실험은 성공을 축하하는 장치가 아니라 가장 위험한 가설을 가장 싸게 틀려 보는 장치입니다.',
+    image: 'strategy-escape.jpg', minutes: 5,
+    tags: ['신사업', '실험', '예산', '중단 기준'],
+    tldr: ['실험 예산은 기능을 만드는 돈이 아니라 불확실성을 줄이는 돈입니다.', '시작 전에 계속·수정·중단 기준을 합의해야 매몰비용이 판단을 납치하지 못합니다.', '한 실험에서는 고객 문제, 지불 의사, 반복 사용 중 가장 위험한 가설 하나만 검증해야 합니다.'],
+    term: { word: '작게 성공하지 말고 싸게 틀리십시오', en: 'CEO RULE', desc: '보기 좋은 파일럿보다 다음 큰 투자를 막거나 정당화할 수 있는 명확한 오답이 더 가치 있습니다.' },
+    intro: ['신사업 파일럿은 자주 “작은 성공”을 만들도록 설계됩니다. 우호적인 고객을 고르고, 기능을 많이 넣고, 만족도 높은 문장을 보고합니다. 그러나 이 성공은 다음 10억 원 투자를 판단할 질문에 답하지 못할 수 있습니다.', '영국 정부의 2026 Test and Learn 지침은 시험 전에 우선 가설과 의사결정 기준을 정하고, 계속·수정·중단 판단을 사전 기준에 따라 내리라고 권합니다. 이미 쓴 시간과 돈 때문에 가능성 낮은 안을 계속하는 편향을 막기 위해서입니다.'],
+    sections: [
+      { heading: '예산이 사야 할 것은 기능이 아니라 정보입니다', paragraphs: ['같은 5천만 원으로 기능 다섯 개를 만들 수도 있고, 고객이 실제로 돈을 낼지 확인할 수도 있습니다. 전자는 자산처럼 보이지만 가설이 틀리면 폐기비용이 됩니다. 후자는 다음 투자를 막거나 앞당기는 정보를 줍니다.', '예산안 첫 줄에 “이 돈으로 어떤 불확실성을 없애는가”를 쓰십시오. 답이 세 개 이상이면 실험을 나눠야 합니다.'] },
+      { heading: '가장 위험한 가설부터 고르십시오', paragraphs: ['문제가 존재하는지, 고객이 돈을 낼지, 반복해서 쓸지, 우리가 제공할 수 있는지는 서로 다른 질문입니다. 만들기 쉬운 기능부터 시험하면 가장 위험한 시장 가설이 마지막까지 남습니다.', '가설을 “주어진 자료로, 무엇을 할 수 있는지, 그래서 어떤 행동이 바뀌는지” 한 문장으로 쓰십시오. 측정할 행동이 없으면 아직 시험 가능한 가설이 아닙니다.'] },
+      { heading: '중단 기준은 시작 전에만 정직합니다', paragraphs: ['파일럿이 시작된 뒤에는 팀의 자존심, 고객 관계, 이미 쓴 예산이 개입합니다. 그래서 결과를 보기 전에 계속·수정·중단 기준을 합의해야 합니다.', '예를 들어 4주 안에 세 고객 중 두 곳이 다음 사용 날짜를 잡지 않으면 기능 추가가 아니라 문제 가설을 다시 본다고 적습니다. 중단은 실패가 아니라 더 비싼 오답을 사지 않는 결정입니다.'] },
+      { heading: '실험 보고서는 한 장이면 됩니다', paragraphs: ['가설, 가장 위험한 전제, 관찰한 행동, 결정, 다음 예산 다섯 칸이면 충분합니다. 기능 목록과 활동 사진이 앞에 오면 학습보다 홍보가 앞선 것입니다.', '[[repeat-behavior|고객의 다음 약속]]을 가장 강한 증거로 보고, [[deletion-budget|남은 코드와 데이터의 정리비]]까지 실험비에 포함하십시오. 끝내는 비용을 빼면 모든 실험은 실제보다 싸게 보입니다.'] }
+    ],
+    checklist: ['예산이 줄일 불확실성이 한 문장으로 적혀 있는가', '결과를 보기 전에 계속·수정·중단 기준을 합의했는가', '실험 종료 뒤 코드·데이터·고객 안내 비용이 포함됐는가'],
+    sources: [{ label: 'GOV.UK, Test and Learn guidance', url: 'https://www.gov.uk/government/publications/the-magenta-book/test-and-learn-html' }, { label: 'UK Department for Business and Trade, Rapid AI experiment lessons', url: 'https://digitaltrade.blog.gov.uk/2026/05/27/10-things-we-learned-running-rapid-ai-experiements/' }],
+    related: [{ slug: 'repeat-behavior', label: '고객의 칭찬보다 다음 예약이 더 정직합니다', desc: '실험의 강한 수요 신호를 고릅니다.' }, { slug: 'deletion-budget', label: 'AI로 빨리 만든 코드는 언제 지울지부터 정해야 합니다', desc: '실험 뒤 남는 유지비까지 계산합니다.' }]
+  }
+];
+
 const header = `  <header id="header" class="header"><div class="container header-inner"><a href="../index.html" class="logo"><img src="../images/logo/ap-mark.png" class="logo-mark" alt=""><img src="../images/logo/ap-wordmark-web.png" class="logo-wordmark" alt="Ahn Partners"></a><nav class="desktop-nav" aria-label="주요 메뉴"><ul class="nav-list"><li><a href="../index.html#services" class="nav-link mix-difference">서비스</a></li><li><a href="../index.html#projects" class="nav-link mix-difference">수행 실적</a></li><li><a href="../about.html" class="nav-link mix-difference">소개</a></li><li><a href="../insights.html" class="nav-link mix-difference active" aria-current="page">인사이트</a></li><li><a href="../newsletter.html" class="nav-link mix-difference">뉴스레터</a></li><li><a href="../about.html#contact" class="nav-link mix-difference">문의</a></li></ul></nav><button type="button" class="mobile-menu-btn mix-difference" id="mobileMenuBtn" aria-label="메뉴"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button></div></header>
   <div class="mobile-menu-overlay" id="mobileMenu"><button type="button" class="mobile-menu-close" id="mobileClose" aria-label="닫기"><svg aria-hidden="true" focusable="false" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><ul class="mobile-nav-list"><li><a href="../index.html#services" class="mobile-nav-link">서비스</a></li><li><a href="../index.html#projects" class="mobile-nav-link">수행 실적</a></li><li><a href="../about.html" class="mobile-nav-link">소개</a></li><li><a href="../insights.html" class="mobile-nav-link active" aria-current="page">인사이트</a></li><li><a href="../newsletter.html" class="mobile-nav-link">뉴스레터</a></li><li><a href="../about.html#contact" class="mobile-nav-link">문의</a></li></ul></div>`;
 
@@ -434,12 +679,13 @@ function renderArticle(post) {
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title,
     description: post.deck, url, mainEntityOfPage: url, datePublished: publishedIso,
-    dateModified: publishedIso, articleSection: post.topic, keywords: post.tags,
+    dateModified: modifiedIso, articleSection: post.topic, keywords: post.tags,
     image: `${site}/images/og/insights/${post.image}?v=1`,
     author: { '@type': 'Person', name: '안병선', alternateName: 'Chris Ahn', url: `${site}/about.html` },
     publisher: { '@type': 'Organization', name: 'Ahn Partners', url: `${site}/` }
   });
   const sections = post.sections.map((section) => `<h2>${escapeHtml(section.heading)}</h2>\n${section.paragraphs.map(p).join('\n')}`).join('\n\n');
+  const sources = post.sources.map((source) => `<li>${escapeHtml(source.label)}. <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">원문 보기</a></li>`).join('');
   const related = post.related.map((item) => `<article class="insight-card"><p class="card-kicker">관련 인사이트</p><h3><a href="${item.slug}.html">${escapeHtml(item.label)}</a></h3><p>${escapeHtml(item.desc)}</p><a class="card-link" href="${item.slug}.html">읽기</a></article>`).join('');
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -468,7 +714,7 @@ function renderArticle(post) {
   <meta property="og:site_name" content="Ahn Partners">
   <meta property="og:locale" content="ko_KR">
   <meta property="article:published_time" content="${publishedIso}">
-  <meta property="article:modified_time" content="${publishedIso}">
+  <meta property="article:modified_time" content="${modifiedIso}">
   <meta property="article:section" content="${escapeHtml(post.topic)}">
   ${tags}
   <meta name="twitter:card" content="summary_large_image">
@@ -496,6 +742,7 @@ ${header}
       ${post.intro.map(p).join('\n      ')}
       ${sections}
       <div class="post-tldr"><p class="kicker">이번 주에 확인할 것</p><ul>${list(post.checklist)}</ul></div>
+      <div class="post-refs"><h2>근거와 더 읽을 자료</h2><ol>${sources}</ol></div>
     </article><aside class="post-aside"><div class="aside-card"><p class="card-kicker">Ahn's Newsletter</p><p>이런 판단 기준을 매주 화요일 아침 이메일로 받아보세요.</p><a class="text-link text-link-light" href="../newsletter.html">구독하기</a></div><div class="aside-card"><p class="card-kicker">Contact</p><p>조직의 실행 경계와 운영 방식을 함께 점검하고 싶다면 문의해 주세요.</p><a class="text-link text-link-light" href="../about.html#contact">문의하기</a></div></aside></section>
     <section class="container related"><p class="eyebrow">Related</p><div class="related-grid">${related}</div></section>
   </main>
@@ -509,53 +756,70 @@ ${footer}
 
 function newsletter({ no, date, subject, hook, title, paragraphs, questions, article, notes }) {
   const [note1, note2] = notes;
+  const displayTitle = escapeHtml(title).replaceAll('\n', '<br>');
   return `<!DOCTYPE html>
-<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex"><title>Ahn's Newsletter No.${escapeHtml(no)} | ${escapeHtml(subject)}</title></head>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex"><title>Ahn's Newsletter No.${escapeHtml(no)} | ${escapeHtml(subject)}</title><style>@media only screen and (max-width:620px){.email-outer{padding:12px 8px!important}.email-shell{width:100%!important;max-width:100%!important;table-layout:fixed!important}.email-header,.email-body,.email-footer{padding-left:20px!important;padding-right:20px!important}.email-title{font-size:25px!important}.email-body p,.email-body a,.email-footer p,.email-footer a{word-break:break-word!important;overflow-wrap:anywhere!important}}</style></head>
 <body style="margin:0;padding:0;background-color:#f2f2f0;"><div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">${escapeHtml(hook)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f0;"><tr><td align="center" style="padding:32px 16px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;">
-<tr><td style="background-color:#050505;border-radius:20px 20px 0 0;padding:26px 36px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td width="30"><img src="${site}/images/logo/ap-mark.png" width="30" height="30" alt="" style="display:block;border:0;"></td><td style="padding-left:10px;"><img src="${site}/images/logo/ap-wordmark-web.png" width="148" height="20" alt="Ahn Partners" style="display:block;border:0;"></td></tr></table></td></tr>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f0;"><tr><td class="email-outer" align="center" style="padding:32px 16px;"><table class="email-shell" role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;">
+<tr><td class="email-header" style="background-color:#050505;border-radius:20px 20px 0 0;padding:26px 36px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td width="30"><img src="${site}/images/logo/ap-mark.png" width="30" height="30" alt="" style="display:block;border:0;"></td><td style="padding-left:10px;"><img src="${site}/images/logo/ap-wordmark-web.png" width="148" height="20" alt="Ahn Partners" style="display:block;border:0;"></td></tr></table></td></tr>
 <tr><td style="height:4px;background-color:#2dd4bf;background-image:linear-gradient(90deg,#2dd4bf,#f5a623);font-size:0;line-height:0;">&nbsp;</td></tr>
-<tr><td style="background-color:#ffffff;padding:36px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#888888;letter-spacing:2px;">NO. ${escapeHtml(no)} &nbsp;|&nbsp; ${escapeHtml(date)}</p><p style="margin:18px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15px;line-height:1.7;color:#0f766e;font-weight:700;word-break:keep-all;">${escapeHtml(hook)}</p><h1 style="margin:14px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:27px;line-height:1.32;color:#111111;font-weight:800;letter-spacing:-0.5px;word-break:keep-all;">${escapeHtml(title)}</h1>${paragraphs.map((text) => `<p style="margin:22px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15.5px;line-height:1.85;color:#333333;word-break:keep-all;">${escapeHtml(text)}</p>`).join('')}
+<tr><td class="email-body" style="background-color:#ffffff;padding:36px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#888888;letter-spacing:2px;">NO. ${escapeHtml(no)} &nbsp;|&nbsp; ${escapeHtml(date)}</p><p style="margin:18px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15px;line-height:1.7;color:#0f766e;font-weight:700;word-break:keep-all;">${escapeHtml(hook)}</p><h1 class="email-title" style="margin:14px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:27px;line-height:1.32;color:#111111;font-weight:800;letter-spacing:-0.5px;word-break:keep-all;">${displayTitle}</h1>${paragraphs.map((text) => `<p style="margin:22px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15.5px;line-height:1.85;color:#333333;word-break:keep-all;">${escapeHtml(text)}</p>`).join('')}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;"><tr><td style="background-color:#f0fbf9;border-left:4px solid #2dd4bf;border-radius:0 14px 14px 0;padding:20px 24px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#0f766e;letter-spacing:2px;">CHECK</p><p style="margin:12px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14.5px;line-height:1.8;color:#333333;word-break:keep-all;">- ${questions.map(escapeHtml).join('<br>- ')}</p></td></tr></table>
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:30px auto 0;"><tr><td style="background-color:#111111;border-radius:999px;"><a href="${site}/insights/${article.slug}.html" style="display:inline-block;padding:14px 34px;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;">${escapeHtml(article.label)}</a></td></tr></table>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:34px;border-top:1px solid #eeeeee;"><tr><td style="padding-top:22px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#888888;letter-spacing:2px;">SHORT NOTES</p><p style="margin:12px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14px;line-height:1.8;color:#555555;word-break:keep-all;">- <a href="${site}/insights/${note1.slug}.html" style="color:#0f766e;text-decoration:underline;">${escapeHtml(note1.text)}</a><br>- <a href="${site}/insights/${note2.slug}.html" style="color:#0f766e;text-decoration:underline;">${escapeHtml(note2.text)}</a></p></td></tr></table>
 <p style="margin:30px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14.5px;line-height:1.8;color:#555555;word-break:keep-all;">읽어 주셔서 고맙습니다. 답장 주시면 다음 브리프 주제에 반영하겠습니다.<br>Chris Ahn 드림</p></td></tr>
-<tr><td style="background-color:#111111;border-radius:0 0 20px 20px;padding:24px 36px;"><p style="margin:0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:12px;line-height:1.8;color:#9ca3af;word-break:keep-all;">Ahn's Executive Brief는 웹사이트에서 구독을 신청했거나 기존 업무 관계에서 뉴스레터 수신에 동의한 분께 보냅니다.<br>문의: <a href="mailto:hello@ahn-partners.net" style="color:#9ca3af;text-decoration:underline;">hello@ahn-partners.net</a> &nbsp;|&nbsp; 전체 인사이트: <a href="${site}/insights.html" style="color:#9ca3af;text-decoration:underline;">ahn-partners.net/insights</a><br>수신을 원치 않으시면 <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#9ca3af;text-decoration:underline;">여기에서 수신거부</a>를 눌러 주세요.</p></td></tr>
+<tr><td class="email-footer" style="background-color:#111111;border-radius:0 0 20px 20px;padding:24px 36px;"><p style="margin:0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:12px;line-height:1.8;color:#9ca3af;word-break:keep-all;">Ahn's Executive Brief는 웹사이트에서 구독을 신청했거나 기존 업무 관계에서 뉴스레터 수신에 동의한 분께 보냅니다.<br>문의: <a href="mailto:hello@ahn-partners.net" style="color:#9ca3af;text-decoration:underline;">hello@ahn-partners.net</a> &nbsp;|&nbsp; 전체 인사이트: <a href="${site}/insights.html" style="color:#9ca3af;text-decoration:underline;">ahn-partners.net/insights</a><br>수신을 원치 않으시면 <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#9ca3af;text-decoration:underline;">여기에서 수신거부</a>를 눌러 주세요.</p></td></tr>
 </table></td></tr></table></body></html>`;
 }
 
 fs.mkdirSync(insightsDir, { recursive: true });
 fs.mkdirSync(briefsDir, { recursive: true });
+const uniqueLenses = new Set(posts.map((post) => post.lens));
+if (posts.length !== 10 || uniqueLenses.size !== 10) throw new Error('editorial batch must contain 10 distinct AX lenses');
+for (const post of posts) {
+  if (!post.sources.length || post.sources.some((source) => !source.url.startsWith('https://'))) throw new Error(`${post.slug}: authoritative sources required`);
+  if (post.title.includes('승인 경계') || post.title.includes('운영선')) throw new Error(`${post.slug}: internal jargon leaked into title`);
+  if (post.sections.length < 4 || post.tldr.length !== 3 || post.checklist.length !== 3) throw new Error(`${post.slug}: incomplete editorial structure`);
+}
 for (const post of posts) fs.writeFileSync(path.join(insightsDir, `${post.slug}.html`), renderArticle(post), 'utf8');
 
 const approval = posts.find((post) => post.slug === 'approval-boundary');
 const decision = posts.find((post) => post.slug === 'decision-log');
 fs.writeFileSync(path.join(briefsDir, '2026-07-21-newsletter.html'), newsletter({
-  no: '3', date: '2026. 7. 21 화요일', subject: '답변보다 먼저, 승인 경계를 정하세요',
-  hook: 'AI의 답이 좋은데도 일이 늦다면, 다음 행동의 승인자가 비어 있는지부터 보세요.',
-  title: '답변보다 먼저, 승인 경계를 정하세요',
+  no: '3', date: '2026. 7. 21 화요일', subject: 'AI는 샀는데 결재판은 그대로인 회사',
+  hook: 'AI 사용률 88%, 실제 에이전트 배치는 대부분 한 자릿수. 그 사이에는 결재판이 있습니다.',
+  title: 'AI는 샀는데\n결재판은 그대로인 회사',
   paragraphs: [
-    'AI 도입이 막히는 순간은 모델이 틀렸을 때만이 아닙니다. 답변은 충분히 괜찮은데 누가 검토하고 언제 실행할지 정해지지 않아 화면 안에 머무는 경우가 더 많습니다.',
-    '이번 주 인사이트에서는 추천·검토·승인의 책임자를 한 장에 정리하는 방법을 소개합니다. 모든 예외를 상위 결재로 보내지 않으면서도 현장이 안전하게 판단할 수 있는 기준을 만드는 내용입니다.',
-    '이번 주에는 자동화하려는 업무 하나를 골라 답변 뒤 첫 행동까지 걸리는 시간을 재 보세요. 병목이 모델인지 승인인지 구분하는 것만으로 다음 투자의 방향이 달라집니다.'
+    '2026년 Stanford AI Index에 따르면 2025년 조사 대상 조직의 88%가 AI를 썼습니다. 생성형 AI 사용률도 70%였습니다. 그런데 에이전트를 실제 업무에 배치한 비율은 거의 모든 기능에서 한 자릿수였습니다. 도구는 널리 샀지만 일을 맡기는 방식은 거의 그대로였다는 뜻입니다.',
+    'AI가 보고서를 10분 만에 써도 팀장 결재에 사흘이 걸리면 회사가 산 것은 생산성이 아니라 초안입니다. 모델의 처리시간은 줄었지만 조직의 처리시간은 그대로입니다.',
+    '업무를 세 구역으로 나누면 병목이 보입니다. 되돌리기 쉬운 일은 자동 실행 뒤 표본 검토, 손실이 제한된 일은 담당자 확인 뒤 실행, 법률·가격·인사처럼 되돌리기 어려운 일은 사전 승인입니다. 사람을 빼자는 뜻이 아닙니다. 사람의 판단을 가장 비싼 순간에 쓰자는 뜻입니다.',
+    '이번 주 한 업무에서 AI 답변이 나온 시각과 실제 행동이 시작된 시각을 20건만 적어 보십시오. 반복해서 멈춘 이유가 승인자 부재라면 다음 예산은 모델 교체가 아니라 권한표 수정에 써야 합니다.'
   ],
-  questions: ['AI 답변 뒤 첫 행동의 담당자가 한 명으로 정해져 있나요?', '상위 승인이 필요한 예외 조건이 관찰 가능한 사건으로 적혀 있나요?', '반려된 결과가 어디로 돌아가고 누가 수정하는지 보이나요?'],
-  article: { slug: approval.slug, label: '승인 경계 읽기' },
-  notes: [{ slug: 'decision-log', text: '회의록보다 결정 로그가 조직을 빠르게 만듭니다' }, { slug: 'training-last-mile', text: 'AI 교육의 성과는 다음 회의의 질문입니다' }]
+  questions: ['AI 답변에서 실제 행동까지 걸린 시간을 재고 있습니까?', '자동 실행·사후 검토·사전 승인 업무가 구분돼 있습니까?', '사람에게 되돌아온 한 건을 처리하는 시간이 줄고 있습니까?'],
+  article: { slug: approval.slug, label: 'AI 운영모델 전문 읽기' },
+  notes: [{ slug: 'exception-path', text: '자동화 ROI는 예외 한 건의 처리 시간에서 갈립니다' }, { slug: 'training-last-mile', text: 'AI 교육이 실패하는 이유는 교육 뒤 첫 업무가 없어서입니다' }]
 }), 'utf8');
 fs.writeFileSync(path.join(briefsDir, '2026-07-23-newsletter.html'), newsletter({
-  no: '4', date: '2026. 7. 23 목요일', subject: '회의록을 줄이고 결정 로그를 남기세요',
-  hook: '대화는 길어지는데 같은 질문이 반복된다면, 선택의 흔적이 남아 있지 않은 것입니다.',
-  title: '회의록을 줄이고 결정 로그를 남기세요',
+  no: '4', date: '2026. 7. 23 목요일', subject: '회의록에는 있는데 회사에는 없는 것',
+  hook: 'AI가 회의록을 공짜로 만들수록, 결정은 더 깊이 묻힐 수 있습니다.',
+  title: '회의록에는 있는데\n회사에는 없는 것',
   paragraphs: [
-    '회의록은 맥락을 보존하지만, 실행을 시작할 사람에게 필요한 선택과 다음 행동을 빠르게 보여 주지는 못합니다. 그래서 회의가 끝나도 지난번 결정을 다시 찾는 시간이 생깁니다.',
-    '이번 주에는 선택지·판단 기준·첫 행동의 담당자·재검토 조건 네 칸만 남기는 결정 로그를 소개합니다. 짧은 기록이 쌓이면 어떤 기준으로 결정했고 무엇을 놓쳤는지 다시 확인할 수 있습니다.',
-    '반복해서 되돌아오는 안건 하나를 골라 첫 로그를 써 보세요. 잘못된 판단을 지우지 않고 남겨야 다음 회의의 질문이 더 정확해집니다.'
+    '회의록은 열두 쪽인데 “그래서 뭘 하기로 했죠?”라는 질문이 다시 나오는 회사가 있습니다. 기록이 부족한 것이 아닙니다. 발언을 기록했을 뿐 선택을 기록하지 않았기 때문입니다.',
+    '생성형 AI가 회의 요약을 몇 분 만에 만들면서 이 문제는 더 커졌습니다. 문서는 늘었지만 판단의 흔적은 더 깊이 묻힙니다. 요약의 생산성이 높아질수록 조직은 무엇을 남기지 않을지 더 엄격하게 정해야 합니다.',
+    '결정 기록에는 네 줄이면 충분합니다. 무엇을 선택했는가, 무엇을 버렸는가, 어떤 증거로 골랐는가, 어떤 신호가 오면 다시 열 것인가. 특히 버린 대안을 남겨야 새 임원과 새 팀이 이미 끝낸 논의를 새 아이디어처럼 반복하지 않습니다.',
+    '틀린 결정을 지우지 않는 것도 중요합니다. 당시 알았던 정보와 지금 알게 된 정보를 분리해야 판단의 질이 좋아집니다. 결정의 반대말은 실패가 아니라 망각입니다.'
   ],
-  questions: ['이번 안건의 선택지가 한 문장으로 요약되나요?', '첫 행동의 담당자가 팀 전체가 아닌 한 명으로 적혀 있나요?', '다시 판단할 신호가 날짜가 아닌 사건으로 정의됐나요?'],
-  article: { slug: decision.slug, label: '결정 로그 읽기' },
-  notes: [{ slug: 'metric-owner', text: '대시보드에 숫자보다 먼저 적어야 할 담당자' }, { slug: 'exception-path', text: '자동화가 예외 흐름에서 무너지는 이유' }]
+  questions: ['선택한 안과 버린 안이 함께 남아 있습니까?', '결정을 다시 열 신호가 날짜가 아니라 사건으로 적혀 있습니까?', '새 정보가 생겨도 과거 판단을 덮어쓰지 않습니까?'],
+  article: { slug: decision.slug, label: '결정의 기억 전문 읽기' },
+  notes: [{ slug: 'metric-owner', text: '담당자 없는 KPI는 숫자가 아니라 구경거리입니다' }, { slug: 'question-debt', text: '질문 없는 팀은 정렬된 팀이 아니라 포기한 팀일 수 있습니다' }]
 }), 'utf8');
+
+for (const relativePath of ['insights.html', 'feed.xml', 'llms.txt']) {
+  const catalog = fs.readFileSync(path.join(root, relativePath), 'utf8');
+  for (const post of posts) {
+    if (!catalog.includes(post.title)) throw new Error(`${relativePath}: stale title for ${post.slug}`);
+  }
+}
 
 // newsletter-plan-2026-07-20.md is maintained as a reviewed artifact.
 console.log(`generated ${posts.length} insight pages and 2 newsletter drafts`);
