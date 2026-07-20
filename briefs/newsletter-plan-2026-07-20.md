@@ -68,4 +68,12 @@ node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.
 - 전면 개정 No.004 테스트 ID: `8e66074e-d083-4515-aeeb-dc6a6b795dc2`
 - 최종 편집 검수 No.003 테스트 ID: `39fef865-9890-4bcb-971a-65736ee7b9e2` (`delivered`)
 - 최종 편집 검수 No.004 테스트 ID: `1d578c4e-0662-438d-be9b-c645a532a7d3` (`delivered`)
-- 전체 Audience 예약 없음. 최종 발송 시각 승인 전에는 예약하지 않음
+
+## 최종 승인 예약
+
+| 발송 시각 | 호수 | Audience | Broadcast ID | 상태 |
+|---|---:|---|---|---|
+| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `dbf0a1bf-673e-419b-9d56-c4bea1290969` | scheduled |
+| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `ed04a8ca-352c-40ab-a55d-cea29aa8dfa9` | scheduled |
+| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `ef9b57c8-e93f-480f-a76b-055b7272ef26` | scheduled |
+| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `0ad9fbcd-5a87-4153-8a3f-4945aa38f89d` | scheduled |
