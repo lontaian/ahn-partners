@@ -5,9 +5,9 @@
 
 ## 발송 일정
 
-- 2026-07-21 (화) 08:30 KST — No.018 「답변보다 먼저, 승인 경계를 정하세요」
+- 2026-07-21 (화) 08:30 KST — No.003 「답변보다 먼저, 승인 경계를 정하세요」
   - `Newsletter Subscribers`와 `Gmail Contacts`에 별도 Broadcast로 동시 발송
-- 2026-07-23 (목) 08:30 KST — No.019 「회의록을 줄이고 결정 로그를 남기세요」
+- 2026-07-23 (목) 08:30 KST — No.004 「회의록을 줄이고 결정 로그를 남기세요」
   - `Newsletter Subscribers`와 `Gmail Contacts`에 별도 Broadcast로 동시 발송
 
 두 Audience는 합치지 않습니다. 같은 본문을 Audience별 Broadcast로 나눠 보내 수신자와 발송 결과를 각각 추적합니다.
@@ -24,19 +24,28 @@
 ## 실행 명령(승인 후에만 실행)
 
 ```powershell
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "답변보다 먼저, 승인 경계를 정하세요" --campaign brief-20260721 --audience subscribers --at "2026-07-21T08:30:00+09:00"
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "답변보다 먼저, 승인 경계를 정하세요" --campaign brief-20260721 --audience gmail --at "2026-07-21T08:30:00+09:00"
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록을 줄이고 결정 로그를 남기세요" --campaign brief-20260723 --audience subscribers --at "2026-07-23T08:30:00+09:00"
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록을 줄이고 결정 로그를 남기세요" --campaign brief-20260723 --audience gmail --at "2026-07-23T08:30:00+09:00"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "답변보다 먼저, 승인 경계를 정하세요" --campaign no003 --audience subscribers --at "2026-07-21T08:30:00+09:00"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "답변보다 먼저, 승인 경계를 정하세요" --campaign no003 --audience gmail --at "2026-07-21T08:30:00+09:00"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록을 줄이고 결정 로그를 남기세요" --campaign no004 --audience subscribers --at "2026-07-23T08:30:00+09:00"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록을 줄이고 결정 로그를 남기세요" --campaign no004 --audience gmail --at "2026-07-23T08:30:00+09:00"
 ```
 
 예약 후 Resend에서 네 Broadcast가 모두 `scheduled` 상태인지 확인합니다.
 
-## 예약 결과
+## 취소한 잘못된 예약
 
 | 발송 시각 | Audience | Broadcast ID | 상태 |
 |---|---|---|---|
-| 2026-07-21 08:30 KST | Newsletter Subscribers | `f707f6c9-018f-4528-af22-e2c17f0ec6dd` | scheduled |
-| 2026-07-21 08:30 KST | Gmail Contacts | `5d30dee8-4341-499d-93b2-adb08dfb60c2` | scheduled |
-| 2026-07-23 08:30 KST | Newsletter Subscribers | `f4ca7030-1e53-4d9f-af17-ad2c62264a7d` | scheduled |
-| 2026-07-23 08:30 KST | Gmail Contacts | `3fa5e8b6-4900-4eeb-877a-8baea74c561e` | scheduled |
+| 2026-07-21 08:30 KST | Newsletter Subscribers | `f707f6c9-018f-4528-af22-e2c17f0ec6dd` | deleted |
+| 2026-07-21 08:30 KST | Gmail Contacts | `5d30dee8-4341-499d-93b2-adb08dfb60c2` | deleted |
+| 2026-07-23 08:30 KST | Newsletter Subscribers | `f4ca7030-1e53-4d9f-af17-ad2c62264a7d` | deleted |
+| 2026-07-23 08:30 KST | Gmail Contacts | `3fa5e8b6-4900-4eeb-877a-8baea74c561e` | deleted |
+
+## 수정 후 예약 결과
+
+| 발송 시각 | 호수 | Audience | Broadcast ID | 상태 |
+|---|---:|---|---|---|
+| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `84882e12-a2c8-44b0-9754-f1fb0300d1a3` | scheduled |
+| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `fd9686d5-0c44-4023-8451-f69f72247986` | scheduled |
+| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `44201a82-3348-4787-a829-8e81be291edf` | scheduled |
+| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `ef07795a-be45-406b-bc78-107d3608e3e4` | scheduled |

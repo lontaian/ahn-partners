@@ -510,10 +510,10 @@ ${footer}
 function newsletter({ no, date, subject, hook, title, paragraphs, questions, article, notes }) {
   const [note1, note2] = notes;
   return `<!DOCTYPE html>
-<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex"><title>${escapeHtml(subject)}</title></head>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex"><title>Ahn's Newsletter No.${escapeHtml(no)} | ${escapeHtml(subject)}</title></head>
 <body style="margin:0;padding:0;background-color:#f2f2f0;"><div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">${escapeHtml(hook)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f0;"><tr><td align="center" style="padding:32px 16px;"><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;">
-<tr><td style="background-color:#050505;border-radius:20px 20px 0 0;padding:26px 36px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:20px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;">Ahn Partners</td><td align="right" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#2dd4bf;letter-spacing:3px;">EXECUTIVE&nbsp;BRIEF</td></tr></table></td></tr>
+<tr><td style="background-color:#050505;border-radius:20px 20px 0 0;padding:22px 36px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="60%"><img src="${site}/images/logo/ap-chip-light.png?v=1" width="168" height="44" alt="Ahn Partners" style="display:block;border:0;"></td><td width="40%" align="right" style="font-family:Consolas,'Courier New',monospace;font-size:10px;font-weight:700;color:#d1d5db;letter-spacing:2.5px;">AHN'S&nbsp;NEWSLETTER</td></tr></table></td></tr>
 <tr><td style="height:4px;background-color:#2dd4bf;background-image:linear-gradient(90deg,#2dd4bf,#f5a623);font-size:0;line-height:0;">&nbsp;</td></tr>
 <tr><td style="background-color:#ffffff;padding:36px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#888888;letter-spacing:2px;">NO. ${escapeHtml(no)} &nbsp;|&nbsp; ${escapeHtml(date)}</p><p style="margin:18px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15px;line-height:1.7;color:#0f766e;font-weight:700;word-break:keep-all;">${escapeHtml(hook)}</p><h1 style="margin:14px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:27px;line-height:1.32;color:#111111;font-weight:800;letter-spacing:-0.5px;word-break:keep-all;">${escapeHtml(title)}</h1>${paragraphs.map((text) => `<p style="margin:22px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15.5px;line-height:1.85;color:#333333;word-break:keep-all;">${escapeHtml(text)}</p>`).join('')}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;"><tr><td style="background-color:#f0fbf9;border-left:4px solid #2dd4bf;border-radius:0 14px 14px 0;padding:20px 24px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#0f766e;letter-spacing:2px;">CHECK</p><p style="margin:12px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14.5px;line-height:1.8;color:#333333;word-break:keep-all;">- ${questions.map(escapeHtml).join('<br>- ')}</p></td></tr></table>
@@ -531,7 +531,7 @@ for (const post of posts) fs.writeFileSync(path.join(insightsDir, `${post.slug}.
 const approval = posts.find((post) => post.slug === 'approval-boundary');
 const decision = posts.find((post) => post.slug === 'decision-log');
 fs.writeFileSync(path.join(briefsDir, '2026-07-21-newsletter.html'), newsletter({
-  no: '018', date: '2026.07.21', subject: '답변보다 먼저, 승인 경계를 정하세요',
+  no: '3', date: '2026. 7. 21 화요일', subject: '답변보다 먼저, 승인 경계를 정하세요',
   hook: 'AI의 답이 좋은데도 일이 늦다면, 다음 행동의 승인자가 비어 있는지부터 보세요.',
   title: '답변보다 먼저, 승인 경계를 정하세요',
   paragraphs: [
@@ -544,7 +544,7 @@ fs.writeFileSync(path.join(briefsDir, '2026-07-21-newsletter.html'), newsletter(
   notes: [{ slug: 'decision-log', text: '회의록보다 결정 로그가 조직을 빠르게 만듭니다' }, { slug: 'training-last-mile', text: 'AI 교육의 성과는 다음 회의의 질문입니다' }]
 }), 'utf8');
 fs.writeFileSync(path.join(briefsDir, '2026-07-23-newsletter.html'), newsletter({
-  no: '019', date: '2026.07.23', subject: '회의록을 줄이고 결정 로그를 남기세요',
+  no: '4', date: '2026. 7. 23 목요일', subject: '회의록을 줄이고 결정 로그를 남기세요',
   hook: '대화는 길어지는데 같은 질문이 반복된다면, 선택의 흔적이 남아 있지 않은 것입니다.',
   title: '회의록을 줄이고 결정 로그를 남기세요',
   paragraphs: [
