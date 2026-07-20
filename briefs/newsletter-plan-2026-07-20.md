@@ -50,11 +50,17 @@ node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.
 | 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `44201a82-3348-4787-a829-8e81be291edf` | deleted |
 | 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `ef07795a-be45-406b-bc78-107d3608e3e4` | deleted |
 
-## 최종 예약 결과
+## 다크 헤더 로고 교체를 위해 취소한 예약
 
 | 발송 시각 | 호수 | Audience | Broadcast ID | 상태 |
 |---|---:|---|---|---|
-| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `5c8c2f35-3586-4f15-ba56-ef7aed9ef011` | scheduled |
-| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `51746ae9-8a0d-4fb4-8fa3-55cd74b1b48d` | scheduled |
-| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `412e2ed8-7d85-4a95-9c6a-6067d6d55d6f` | scheduled |
-| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `3cefc76b-1b71-4562-9fd6-0f14104af8dd` | scheduled |
+| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `5c8c2f35-3586-4f15-ba56-ef7aed9ef011` | deleted |
+| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `51746ae9-8a0d-4fb4-8fa3-55cd74b1b48d` | deleted |
+| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `412e2ed8-7d85-4a95-9c6a-6067d6d55d6f` | deleted |
+| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `3cefc76b-1b71-4562-9fd6-0f14104af8dd` | deleted |
+
+## 현재 상태
+
+- 검정 헤더용 공식 조합 `ap-mark.png` + `ap-wordmark-web.png` 적용
+- No.003 테스트 발송 완료: `c61ddc86-7941-4b7b-b993-10f55104464b`
+- 전체 Audience 예약 없음. 테스트 확인 후 No.003과 No.004를 다시 예약해야 함
