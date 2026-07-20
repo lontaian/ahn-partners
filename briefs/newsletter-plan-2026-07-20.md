@@ -73,7 +73,9 @@ node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.
 
 | 발송 시각 | 호수 | Audience | Broadcast ID | 상태 |
 |---|---:|---|---|---|
-| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `dbf0a1bf-673e-419b-9d56-c4bea1290969` | scheduled |
-| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `ed04a8ca-352c-40ab-a55d-cea29aa8dfa9` | scheduled |
-| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `ef9b57c8-e93f-480f-a76b-055b7272ef26` | scheduled |
-| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `0ad9fbcd-5a87-4153-8a3f-4945aa38f89d` | scheduled |
+| 2026-07-21 08:30 KST | No.003 | Newsletter Subscribers | `fbe14986-5322-4a7a-96d2-fefac898d597` | scheduled |
+| 2026-07-21 08:30 KST | No.003 | Gmail Contacts | `e9b2ef45-a49d-435c-8e7c-c89725f1d47c` | scheduled |
+| 2026-07-23 08:30 KST | No.004 | Newsletter Subscribers | `9883556c-0ea6-476b-b86f-1712e46c2741` | scheduled |
+| 2026-07-23 08:30 KST | No.004 | Gmail Contacts | `8d8ee46b-8153-450c-bca9-05bf73e99e85` | scheduled |
+
+직전 승인 예약 4건은 푸터 문구 교체를 위해 발송 전에 삭제했습니다: `dbf0a1bf-673e-419b-9d56-c4bea1290969`, `ed04a8ca-352c-40ab-a55d-cea29aa8dfa9`, `ef9b57c8-e93f-480f-a76b-055b7272ef26`, `0ad9fbcd-5a87-4153-8a3f-4945aa38f89d`.
