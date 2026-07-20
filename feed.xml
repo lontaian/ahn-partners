@@ -7,6 +7,86 @@
     <description>AI 전환, 기술경영, 조직 운영에 대한 실무 통찰. 매주 화요일과 목요일 뉴스레터로도 보내드립니다.</description>
     <language>ko</language>
     <item>
+      <title>AI가 답을 잘 내도 조직이 느리다면 승인 경계부터 확인하세요</title>
+      <link>https://ahn-partners.net/insights/approval-boundary.html</link>
+      <guid>https://ahn-partners.net/insights/approval-boundary.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>AI 전략</category>
+      <description>모델의 정확도를 더 높이기 전에, 누가 무엇을 언제 승인하는지부터 설계해야 합니다.</description>
+    </item>
+    <item>
+      <title>회의록보다 결정 로그가 조직을 빠르게 만듭니다</title>
+      <link>https://ahn-partners.net/insights/decision-log.html</link>
+      <guid>https://ahn-partners.net/insights/decision-log.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>데이터 의사결정</category>
+      <description>대화의 요약이 아니라 선택·근거·다음 행동을 남기면 같은 논의가 반복되지 않습니다.</description>
+    </item>
+    <item>
+      <title>자동화의 성패는 예외 처리에서 갈립니다</title>
+      <link>https://ahn-partners.net/insights/exception-path.html</link>
+      <guid>https://ahn-partners.net/insights/exception-path.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>업무 분석</category>
+      <description>정상 건을 빠르게 처리하는 데 집중하면 실제 비용이 발생하는 예외를 놓치게 됩니다.</description>
+    </item>
+    <item>
+      <title>대시보드에 숫자보다 먼저 적어야 할 것은 담당자입니다</title>
+      <link>https://ahn-partners.net/insights/metric-owner.html</link>
+      <guid>https://ahn-partners.net/insights/metric-owner.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>데이터 의사결정</category>
+      <description>지표가 움직였을 때 누가 첫 번째로 확인하고 어떤 행동을 하는지까지 보여야 합니다.</description>
+    </item>
+    <item>
+      <title>고객 인터뷰보다 다음 주에 반복하는 행동을 보세요</title>
+      <link>https://ahn-partners.net/insights/repeat-behavior.html</link>
+      <guid>https://ahn-partners.net/insights/repeat-behavior.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>신사업 실행</category>
+      <description>좋다는 말보다 고객이 다시 시간을 쓰고 비용을 지불하고 동료를 부르는지를 확인해야 합니다.</description>
+    </item>
+    <item>
+      <title>외주 시스템의 운영 실패는 인수인계에서 시작됩니다</title>
+      <link>https://ahn-partners.net/insights/vendor-handoff.html</link>
+      <guid>https://ahn-partners.net/insights/vendor-handoff.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>운영 시스템</category>
+      <description>배포만으로는 끝나지 않습니다. 운영자가 외주사 없이 복구할 수 있어야 인수인계가 완료됩니다.</description>
+    </item>
+    <item>
+      <title>AI 교육의 성과는 수료율이 아니라 다음 회의의 질문입니다</title>
+      <link>https://ahn-partners.net/insights/training-last-mile.html</link>
+      <guid>https://ahn-partners.net/insights/training-last-mile.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>AX 교육</category>
+      <description>도구 사용법을 배운 뒤 실제 업무의 질문이 바뀌는지까지 설계해야 교육이 전환으로 이어집니다.</description>
+    </item>
+    <item>
+      <title>빠르게 만든 코드는 정리하고 지울 시간을 확보해야 자산이 됩니다</title>
+      <link>https://ahn-partners.net/insights/deletion-budget.html</link>
+      <guid>https://ahn-partners.net/insights/deletion-budget.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>AI 전략</category>
+      <description>개발 속도만 높이면 시스템의 복잡성도 빠르게 커집니다. 검증·정리·삭제 시간을 일정에 포함해야 오래 운영할 수 있습니다.</description>
+    </item>
+    <item>
+      <title>팀의 질문이 줄었다면 이탈 신호부터 확인하세요</title>
+      <link>https://ahn-partners.net/insights/question-debt.html</link>
+      <guid>https://ahn-partners.net/insights/question-debt.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>조직과 사람</category>
+      <description>조용한 회의는 합의가 아니라 포기의 신호일 수 있습니다. 질문이 사라지는 경로를 먼저 살펴야 합니다.</description>
+    </item>
+    <item>
+      <title>전략을 더 세우기 전에 가장 작은 실험을 정하세요</title>
+      <link>https://ahn-partners.net/insights/experiment-budget.html</link>
+      <guid>https://ahn-partners.net/insights/experiment-budget.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>신사업 실행</category>
+      <description>큰 계획은 시작을 늦춥니다. 배울 수 있고, 멈출 수 있고, 다시 시도할 수 있는 최소 단위를 먼저 만드세요.</description>
+    </item>
+    <item>
       <title>일 잘하는 사람을 승진시키면 두 번 잃습니다</title>
       <link>https://ahn-partners.net/insights/promotion-trap.html</link>
       <guid>https://ahn-partners.net/insights/promotion-trap.html</guid>

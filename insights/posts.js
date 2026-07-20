@@ -1,6 +1,16 @@
 // Insights 글 매니페스트. 배열 순서가 추천 읽기 순서이며 글 하단 이전/다음 내비게이션에 쓰인다.
 // 새 글을 추가하면 여기에도 한 줄 추가한다(주제 짝끼리 인접 배치).
 window.INSIGHT_POSTS = [
+  { slug: 'approval-boundary', topic: 'AI 전략', title: 'AI가 답을 잘 내도 조직이 느리다면 승인 경계부터 확인하세요' },
+  { slug: 'deletion-budget', topic: 'AI 전략', title: '빠르게 만든 코드는 정리하고 지울 시간을 확보해야 자산이 됩니다' },
+  { slug: 'decision-log', topic: '데이터 의사결정', title: '회의록보다 결정 로그가 조직을 빠르게 만듭니다' },
+  { slug: 'metric-owner', topic: '데이터 의사결정', title: '대시보드에 숫자보다 먼저 적어야 할 것은 담당자입니다' },
+  { slug: 'exception-path', topic: '업무 분석', title: '자동화의 성패는 예외 처리에서 갈립니다' },
+  { slug: 'repeat-behavior', topic: '신사업 실행', title: '고객 인터뷰보다 다음 주에 반복하는 행동을 보세요' },
+  { slug: 'experiment-budget', topic: '신사업 실행', title: '전략을 더 세우기 전에 가장 작은 실험을 정하세요' },
+  { slug: 'vendor-handoff', topic: '운영 시스템', title: '외주 시스템의 운영 실패는 인수인계에서 시작됩니다' },
+  { slug: 'training-last-mile', topic: 'AX 교육', title: 'AI 교육의 성과는 수료율이 아니라 다음 회의의 질문입니다' },
+  { slug: 'question-debt', topic: '조직과 사람', title: '팀의 질문이 줄었다면 이탈 신호부터 확인하세요' },
   { slug: 'silent-shelving', topic: 'AI 전략', title: 'AI 도입 프로젝트 열에 아홉은 성과 없이 끝납니다' },
   { slug: 'ai-executive-misconception', topic: 'AI 전략', title: 'AI 전환에서 경영진이 가장 많이 하는 착각' },
   { slug: 'ai-strategy-execution', topic: 'AI 전략', title: 'AI 전략이 실행되지 않는 이유' },
