@@ -444,7 +444,7 @@ const posts = [
     ],
     sections: [
       { heading: '사용률 88%와 업무 배치 한 자릿수 사이에 무엇이 있나', paragraphs: [
-        'Microsoft의 2026 Work Trend Index에서는 문화, 관리자 지원, 인재 운영 같은 조직 요인이 개인의 노력보다 AI 효과를 두 배 더 크게 설명했습니다. AI를 많이 쓰는 것보다 그 능력을 받아들일 조직의 준비가 더 중요했다는 뜻입니다.',
+        'Microsoft의 2026 Work Trend Index는 문화, 관리자 지원, 인재 운영 같은 조직 요인이 직원이 보고한 AI 효과와 얼마나 함께 움직이는지 분석했습니다. 조직 요인의 설명 비중은 67%, 개인 요인은 32%였습니다. 인과관계를 뜻하지는 않지만, 개인의 활용 노력만 보면서 조직 조건을 빼놓으면 성과 격차를 제대로 설명하기 어렵다는 신호입니다.',
         'NIST AI 위험관리 프레임워크도 사람과 AI의 역할, 감독 책임, 결과의 사용 방법을 미리 구분하라고 권고합니다. 이것은 규제 대응만을 위한 문서가 아닙니다. 누가 멈출 수 있고 누가 실행할 수 있는지를 정해야 현장이 안심하고 속도를 낼 수 있기 때문입니다.'
       ] },
       { heading: '모든 답을 승인받게 하면 AI는 비싼 타자기가 됩니다', paragraphs: [
@@ -606,7 +606,7 @@ const posts = [
       { heading: '교육 뒤 7일을 설계하십시오', paragraphs: ['교육 종료 전에 첫 업무, 제출 날짜, 검토자, 성공 기준을 확정하십시오. 일주일 뒤에는 잘 만든 사례보다 막힌 이유를 모아야 합니다.', '반복해서 막히는 이유가 권한·데이터·승인이라면 추가 교육을 사지 마십시오. [[approval-boundary|AI 답 뒤의 권한]]을 고쳐야 합니다. 역량 문제가 아닌 것을 역량 문제로 부르면 교육비만 늘어납니다.'] }
     ],
     checklist: ['교육 신청 때 실제 적용 업무가 정해졌는가', '7일 안에 첫 산출물을 검토할 사람이 있는가', '수료율 대신 재사용과 시간 절감을 측정하는가'],
-    sources: [{ label: 'World Economic Forum, Future of Jobs Report 2025', url: 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/3-skills-outlook/' }, { label: 'CIPD, Measuring learning transfer', url: 'https://www.cipd.org/en/knowledge/podcasts/transfer-of-learning/' }],
+    sources: [{ label: 'World Economic Forum, Future of Jobs Report 2025', url: 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/4-workforce-strategies/' }, { label: 'CIPD, Measuring learning transfer', url: 'https://www.cipd.org/en/knowledge/podcasts/transfer-of-learning/' }],
     related: [{ slug: 'approval-boundary', label: 'AI는 샀는데 결재판은 그대로인 회사', desc: '교육 문제가 아닌 권한 문제를 가려냅니다.' }, { slug: 'question-debt', label: '질문 없는 팀은 정렬된 팀이 아니라 포기한 팀일 수 있습니다', desc: '막힌 질문을 업무 개선의 신호로 씁니다.' }]
   },
   {
@@ -644,7 +644,7 @@ const posts = [
       { heading: '회의 뒤의 질문을 회의 안으로 되돌리십시오', paragraphs: ['회의 후 개인 메신저로 반복되는 질문을 익명으로 모아 다음 회의 첫 5분에 답하십시오. 같은 질문이 두 번 나오면 설명 문제가 아니라 결정 구조 문제로 분류합니다.', '[[decision-log|버린 대안과 다시 열 조건]]이 보이면 질문의 상당수는 사라집니다. 말하기 훈련보다 질문이 필요 없게 만드는 정보 구조가 먼저일 때도 있습니다.'] }
     ],
     checklist: ['리더가 자신의 전제와 틀릴 조건을 먼저 말하는가', '질문 때문에 바뀐 결정을 기록하는가', '회의 뒤 반복되는 개인 질문을 공용 정보로 되돌리는가'],
-    sources: [{ label: 'Google re:Work, Understand team effectiveness', url: 'https://rework.withgoogle.com/intl/en/guides/understanding-team-effectiveness' }],
+    sources: [{ label: 'Google re:Work, Understand team effectiveness', url: 'https://rework.withgoogle.com/en/guides/understanding-team-effectiveness' }],
     related: [{ slug: 'decision-log', label: '회의록에는 있는데 회사에는 없는 것', desc: '질문이 필요로 하는 판단 맥락을 남깁니다.' }, { slug: 'training-last-mile', label: 'AI 교육이 실패하는 이유는 교육 뒤 첫 업무가 없어서입니다', desc: '현장의 막힘을 추가 교육과 구분합니다.' }]
   },
   {
@@ -754,7 +754,7 @@ ${footer}
 `;
 }
 
-function newsletter({ no, date, subject, hook, title, paragraphs, questions, article, notes }) {
+function newsletter({ no, date, subject, hook, title, paragraphs, questions, article, notes, replyPrompt }) {
   const [note1, note2] = notes;
   const displayTitle = escapeHtml(title).replaceAll('\n', '<br>');
   return `<!DOCTYPE html>
@@ -767,7 +767,7 @@ function newsletter({ no, date, subject, hook, title, paragraphs, questions, art
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;"><tr><td style="background-color:#f0fbf9;border-left:4px solid #2dd4bf;border-radius:0 14px 14px 0;padding:20px 24px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#0f766e;letter-spacing:2px;">CHECK</p><p style="margin:12px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14.5px;line-height:1.8;color:#333333;word-break:keep-all;">- ${questions.map(escapeHtml).join('<br>- ')}</p></td></tr></table>
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:30px auto 0;"><tr><td style="background-color:#111111;border-radius:999px;"><a href="${site}/insights/${article.slug}.html" style="display:inline-block;padding:14px 34px;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;">${escapeHtml(article.label)}</a></td></tr></table>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:34px;border-top:1px solid #eeeeee;"><tr><td style="padding-top:22px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#888888;letter-spacing:2px;">SHORT NOTES</p><p style="margin:12px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14px;line-height:1.8;color:#555555;word-break:keep-all;">- <a href="${site}/insights/${note1.slug}.html" style="color:#0f766e;text-decoration:underline;">${escapeHtml(note1.text)}</a><br>- <a href="${site}/insights/${note2.slug}.html" style="color:#0f766e;text-decoration:underline;">${escapeHtml(note2.text)}</a></p></td></tr></table>
-<p style="margin:30px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14.5px;line-height:1.8;color:#555555;word-break:keep-all;">읽어 주셔서 고맙습니다. 답장 주시면 다음 브리프 주제에 반영하겠습니다.<br>Chris Ahn 드림</p></td></tr>
+<p style="margin:30px 0 0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:14.5px;line-height:1.8;color:#555555;word-break:keep-all;">${escapeHtml(replyPrompt)}<br>Chris Ahn 드림</p></td></tr>
 <tr><td class="email-footer" style="background-color:#111111;border-radius:0 0 20px 20px;padding:24px 36px;"><p style="margin:0;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:12px;line-height:1.8;color:#9ca3af;word-break:keep-all;">Ahn's Executive Brief는 웹사이트에서 구독을 신청했거나 기존 업무 관계에서 뉴스레터 수신에 동의한 분께 보냅니다.<br>문의: <a href="mailto:hello@ahn-partners.net" style="color:#9ca3af;text-decoration:underline;">hello@ahn-partners.net</a> &nbsp;|&nbsp; 전체 인사이트: <a href="${site}/insights.html" style="color:#9ca3af;text-decoration:underline;">ahn-partners.net/insights</a><br>수신을 원치 않으시면 <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#9ca3af;text-decoration:underline;">여기에서 수신거부</a>를 눌러 주세요.</p></td></tr>
 </table></td></tr></table></body></html>`;
 }
@@ -797,10 +797,11 @@ fs.writeFileSync(path.join(briefsDir, '2026-07-21-newsletter.html'), newsletter(
   ],
   questions: ['AI 답변에서 실제 행동까지 걸린 시간을 재고 있습니까?', '자동 실행·사후 검토·사전 승인 업무가 구분돼 있습니까?', '사람에게 되돌아온 한 건을 처리하는 시간이 줄고 있습니까?'],
   article: { slug: approval.slug, label: 'AI 운영모델 전문 읽기' },
-  notes: [{ slug: 'exception-path', text: '자동화 ROI는 예외 한 건의 처리 시간에서 갈립니다' }, { slug: 'training-last-mile', text: 'AI 교육이 실패하는 이유는 교육 뒤 첫 업무가 없어서입니다' }]
+  notes: [{ slug: 'exception-path', text: '자동화 ROI는 예외 한 건의 처리 시간에서 갈립니다' }, { slug: 'training-last-mile', text: 'AI 교육이 실패하는 이유는 교육 뒤 첫 업무가 없어서입니다' }],
+  replyPrompt: '읽어 주셔서 고맙습니다. 우리 회사에서 AI 답변 뒤 가장 오래 멈추는 승인 단계가 있다면 한 줄로 답장해 주세요. 익명으로 다음 브리프에서 진단하겠습니다.'
 }), 'utf8');
 fs.writeFileSync(path.join(briefsDir, '2026-07-23-newsletter.html'), newsletter({
-  no: '4', date: '2026. 7. 23 목요일', subject: '회의록에는 있는데 회사에는 없는 것',
+  no: '4', date: '2026. 7. 23 목요일', subject: '회의록은 있는데 결정은 없는 회사',
   hook: 'AI가 회의록을 공짜로 만들수록, 결정은 더 깊이 묻힐 수 있습니다.',
   title: '회의록에는 있는데\n회사에는 없는 것',
   paragraphs: [
@@ -811,7 +812,8 @@ fs.writeFileSync(path.join(briefsDir, '2026-07-23-newsletter.html'), newsletter(
   ],
   questions: ['선택한 안과 버린 안이 함께 남아 있습니까?', '결정을 다시 열 신호가 날짜가 아니라 사건으로 적혀 있습니까?', '새 정보가 생겨도 과거 판단을 덮어쓰지 않습니까?'],
   article: { slug: decision.slug, label: '결정의 기억 전문 읽기' },
-  notes: [{ slug: 'metric-owner', text: '담당자 없는 KPI는 숫자가 아니라 구경거리입니다' }, { slug: 'question-debt', text: '질문 없는 팀은 정렬된 팀이 아니라 포기한 팀일 수 있습니다' }]
+  notes: [{ slug: 'metric-owner', text: '담당자 없는 KPI는 숫자가 아니라 구경거리입니다' }, { slug: 'question-debt', text: '질문 없는 팀은 정렬된 팀이 아니라 포기한 팀일 수 있습니다' }],
+  replyPrompt: '읽어 주셔서 고맙습니다. 최근 두 달 사이 되풀이된 안건이 있다면 제목만 답장해 주세요. 어떤 결정 기록이 빠졌는지 익명으로 진단하겠습니다.'
 }), 'utf8');
 
 for (const relativePath of ['insights.html', 'feed.xml', 'llms.txt']) {

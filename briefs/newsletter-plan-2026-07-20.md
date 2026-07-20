@@ -7,7 +7,7 @@
 
 - 2026-07-21 (화) — No.003 「AI는 샀는데 결재판은 그대로인 회사」
   - `Newsletter Subscribers`와 `Gmail Contacts`에 별도 Broadcast로 동시 발송
-- 2026-07-23 (목) — No.004 「회의록에는 있는데 회사에는 없는 것」
+- 2026-07-23 (목) — No.004 「회의록은 있는데 결정은 없는 회사」
   - `Newsletter Subscribers`와 `Gmail Contacts`에 별도 Broadcast로 동시 발송
 
 두 Audience는 합치지 않습니다. 같은 본문을 Audience별 Broadcast로 나눠 보내 수신자와 발송 결과를 각각 추적합니다.
@@ -27,8 +27,8 @@
 ```powershell
 node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "AI는 샀는데 결재판은 그대로인 회사" --campaign no003 --audience subscribers --at "<승인한 KST 시각>"
 node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-21-newsletter.html --subject "AI는 샀는데 결재판은 그대로인 회사" --campaign no003 --audience gmail --at "<승인한 KST 시각>"
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록에는 있는데 회사에는 없는 것" --campaign no004 --audience subscribers --at "<승인한 KST 시각>"
-node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록에는 있는데 회사에는 없는 것" --campaign no004 --audience gmail --at "<승인한 KST 시각>"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록은 있는데 결정은 없는 회사" --campaign no004 --audience subscribers --at "<승인한 KST 시각>"
+node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.html --subject "회의록은 있는데 결정은 없는 회사" --campaign no004 --audience gmail --at "<승인한 KST 시각>"
 ```
 
 예약 후 Resend에서 네 Broadcast가 모두 `scheduled` 상태인지 확인합니다.
@@ -66,4 +66,6 @@ node --env-file=.env scripts/brief-send.mjs --file briefs/2026-07-23-newsletter.
 - 이전 원고 No.003 테스트 발송 기록: `c61ddc86-7941-4b7b-b993-10f55104464b`
 - 전면 개정 No.003 테스트 ID: `c5616ee4-38ff-4262-b64b-d736d9bb6f26`
 - 전면 개정 No.004 테스트 ID: `8e66074e-d083-4515-aeeb-dc6a6b795dc2`
-- 전체 Audience 예약 없음. 새 원고의 테스트 확인 전에는 예약하지 않음
+- 최종 편집 검수 No.003 테스트 ID: `39fef865-9890-4bcb-971a-65736ee7b9e2` (`delivered`)
+- 최종 편집 검수 No.004 테스트 ID: `1d578c4e-0662-438d-be9b-c645a532a7d3` (`delivered`)
+- 전체 Audience 예약 없음. 최종 발송 시각 승인 전에는 예약하지 않음
