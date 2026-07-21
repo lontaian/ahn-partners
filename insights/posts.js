@@ -29,5 +29,7 @@ window.INSIGHT_POSTS = [
   { slug: 'first-customer-first', topic: '신사업 실행', title: '투자자보다 첫 고객이 먼저입니다' },
   { slug: 'table-note-service-operations', topic: '테이블 노트', title: '좋은 식당은 운영이 보입니다' },
   { slug: 'table-note-empty-table', topic: '테이블 노트', title: '빈 테이블은 내일 다시 팔 수 없습니다' },
-  { slug: 'table-note-wine-inventory', topic: '테이블 노트', title: '팔리지 않는 와인은 취향이 아니라 묶인 현금입니다' }
+  { slug: 'table-note-wine-inventory', topic: '테이블 노트', title: '팔리지 않는 와인은 취향이 아니라 묶인 현금입니다' },
+  { slug: 'table-note-menu-labor', topic: '테이블 노트', title: '잘 팔리는 메뉴가 반드시 많이 남기는 메뉴는 아닙니다' },
+  { slug: 'table-note-meal-pace', topic: '테이블 노트', title: '빨리 치운다고 테이블이 빨리 도는 것은 아닙니다' }
 ];

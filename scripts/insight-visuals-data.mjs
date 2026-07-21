@@ -110,6 +110,18 @@ export const INSIGHT_VISUALS = [
     items: [{ label: '병당 마진', value: '가격의 성과' }, { label: '재고 회전', value: '선택의 성과' }]
   },
   {
+    slug: 'table-note-menu-labor', category: 'TABLE NOTE', layout: 'matrix', composition: 'split', accent: 'amber',
+    title: '잘 팔리는 메뉴가 반드시 많이 남기는 메뉴는 아닙니다',
+    thesis: '접시의 이익에서 주방이 쓴 시간을 빼야 진짜 손익이 보입니다.',
+    items: [{ label: '판매량' }, { label: '식재료비' }, { label: '조리시간' }, { label: '병목 점유' }]
+  },
+  {
+    slug: 'table-note-meal-pace', category: 'TABLE NOTE', layout: 'timeline', composition: 'reverse', accent: 'amber',
+    title: '빨리 치운다고 테이블이 빨리 도는 것은 아닙니다',
+    thesis: '식사는 서두르지 않고 주문과 계산의 대기만 줄이십시오.',
+    items: [{ label: '착석·주문', value: '대기 단축' }, { label: '식사 중', value: '흐름 유지' }, { label: '계산', value: '즉시 처리' }]
+  },
+  {
     slug: 'workflow-analysis-before-ai', category: 'WORKFLOW', layout: 'timeline', composition: 'reverse',
     title: 'AI 도입 전 먼저 봐야 할 업무 병목 지도',
     thesis: '시간이 새는 곳은 일하는 구간보다 기다리는 구간입니다.',
