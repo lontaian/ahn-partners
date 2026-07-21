@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{width:1200px;height:630px;overflow:hidden}
+  html,body{width:100vw;height:100vh;overflow:hidden}
   body{--bg:#101211;--fg:#f4f4f0;--muted:#a7aaa6;--line:rgba(255,255,255,.14);--panel:rgba(255,255,255,.055);--accent:#2dd4bf;position:relative;background:var(--bg);color:var(--fg);font-family:'Pretendard Variable',Pretendard,sans-serif}
   body.theme-light{--bg:#f4f1e9;--fg:#151817;--muted:#656a66;--line:rgba(21,24,23,.16);--panel:rgba(255,255,255,.58)}
   body.theme-deep{--bg:#0b292b;--fg:#f6f5ef;--muted:#b4c5c2;--line:rgba(255,255,255,.15);--panel:rgba(255,255,255,.055)}
@@ -38,6 +38,21 @@
   .matrix{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px}.matrix .node{min-height:108px;padding:18px;border:1px solid var(--line);display:flex;align-items:flex-end}.matrix .node:nth-child(2),.matrix .node:nth-child(3){border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
   .signal{width:100%;display:flex;flex-direction:column;gap:11px}.signal .node{height:52px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px}.signal .node::before{content:"";width:var(--signal);height:8px;background:var(--accent)}.signal .node:nth-child(1){--signal:36px}.signal .node:nth-child(2){--signal:70px}.signal .node:nth-child(3){--signal:104px}.signal .node:nth-child(4){--signal:138px}
   .branch{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px}.branch .node{min-height:82px;border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;justify-content:center}.branch .node:first-child{grid-column:1/-1;border-color:var(--accent)}.branch .node:nth-child(n+4){background:color-mix(in srgb,var(--accent) 8%,transparent)}
+  .card-mode .guides::before{left:24px}.card-mode .guides::after{right:24px}
+  .card-mode .frame{padding:24px 32px 28px}
+  .card-mode .top{height:24px;justify-content:flex-end}.card-mode .brand{display:none}.card-mode .category{font-size:13px;letter-spacing:.14em}
+  .card-mode .content{display:block;padding:18px 0 0}.card-mode .copy{max-width:100%}.card-mode .title{display:none}.card-mode .thesis{margin:0;max-width:640px;font-size:28px;line-height:1.25;font-weight:720;color:var(--fg);letter-spacing:-.025em}
+  .card-mode .visual{position:absolute;left:32px;right:32px;bottom:28px;height:270px;min-height:0;padding:20px}
+  .card-mode .visual::before{top:12px;left:14px;font-size:9px}.card-mode .bottom{display:none}
+  .card-mode .item-label{font-size:17px}.card-mode .item-detail{margin-top:5px;font-size:12px}.card-mode .item-value{margin-bottom:5px;font-size:27px}
+  .card-mode .flow .node{padding:17px 8px}.card-mode .flow .arrow{font-size:18px}
+  .card-mode .compare .node{min-height:170px;padding:22px 16px}
+  .card-mode .loop .node{min-height:76px}.card-mode .loop::after{width:48px;height:48px;font-size:24px}
+  .card-mode .stack .node{height:46px;padding:0 16px}
+  .card-mode .timeline .node{padding-left:4px;padding-right:4px}
+  .card-mode .matrix .node{min-height:84px;padding:14px}
+  .card-mode .signal .node{height:42px}
+  .card-mode .branch .node{min-height:64px;padding:13px}
 </style>
 </head>
 <body>
@@ -56,8 +71,9 @@
 <script>
   const params = new URLSearchParams(location.search);
   const data = JSON.parse(params.get('data') || '{}');
+  const mode = params.get('mode') || 'og';
   const theme = data.composition === 'reverse' ? 'light' : data.composition === 'vertical' ? 'deep' : 'dark';
-  document.body.classList.add(`theme-${theme}`, `composition-${data.composition || 'split'}`, `accent-${data.accent || 'teal'}`);
+  document.body.classList.add(`theme-${theme}`, `composition-${data.composition || 'split'}`, `accent-${data.accent || 'teal'}`, `${mode}-mode`);
   if (theme === 'light') document.getElementById('wordmark').src = '../../logo/ap-wordmark-dark.png';
   document.getElementById('category').textContent = data.category || 'INSIGHT';
   document.getElementById('title').textContent = data.title || '';

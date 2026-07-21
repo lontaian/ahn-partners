@@ -157,6 +157,8 @@ All spacing derives from 4px. Existing source often uses rem values; map them to
 - **Spacing**: featured card can use a two-column layout; standard grid cards use `2rem` padding and `1.25rem` gap.
 - **Featured visual**: 화면의 35% 이상을 차지하는 비주얼은 글의 핵심 주장, 검증된 수치, 업무 구조 중 하나를 독립적으로 전달해야 한다. 제목·카테고리·의미 없는 번호만 넣은 장식 패널은 금지한다.
 - **Content density**: 큰 비주얼에는 최소 2개의 관계 있는 정보 단위와 그 관계를 설명하는 시각 문법이 있어야 한다. 정보가 없다면 비주얼 면적을 줄이거나 제거한다.
+- **Card visual**: 모든 표준 인사이트 카드에는 같은 비주얼 브리프에서 만든 720×450 화면용 이미지를 사용한다. 공유용 1200×630 OG를 CSS로 축소해 재사용하지 않는다.
+- **Card accessibility**: 카드 이미지의 `alt`에는 비주얼의 핵심 주장만 넣고, 제목 링크를 중복해서 읽게 만들지 않는다.
 - **States**: default, hover, focus-within. Hover uses lift and subtle border darkening, not unrelated animation.
 - **Accessibility**: title link is the primary focus target; metadata remains text.
 - **Motion**: transform `0.2s ease`, border/background `0.2s`.

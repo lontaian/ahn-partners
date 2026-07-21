@@ -41,13 +41,16 @@
 
 1. `node scripts/generate-content-batch-2026-07-20.mjs`로 10개 인사이트와 뉴스레터 2통을 생성한다.
 2. 새 글마다 `scripts/insight-visuals-data.mjs`에 고유한 정보형 비주얼 브리프를 추가한다.
-3. `node scripts/gen-og-insights.mjs [slug ...]`로 글별 OG 이미지를 생성한다.
+3. `node scripts/gen-og-insights.mjs [slug ...]`로 글별 OG 이미지와 720×450 화면용 카드 이미지를 함께 생성한다.
 4. `node scripts/sync-insight-og-meta.mjs`로 모든 글의 이미지 경로와 캐시 버전을 slug 기준으로 동기화한다.
-5. `node scripts/check-insight-visuals.mjs`로 글과 이미지가 일대일인지, 파일이 존재하는지, 같은 이미지가 재사용되지 않았는지 확인한다.
-6. 생성기는 글 수, 고유 관점 수, 출처, 본문 구조, 금지 제목을 검사한다.
-7. `insights.html`, `feed.xml`, `llms.txt`의 제목이 본문과 일치하는지 확인한다.
-8. 모바일 폭과 데스크톱 폭에서 인사이트, 대표 비주얼, 이메일을 렌더링해 줄바꿈·로고·CTA를 확인한다.
-9. 뉴스레터는 전체 발송을 예약하기 전에 내부 테스트 메일을 보낸다. 본문 수정 중에는 예약하지 않는다.
+5. `node scripts/sync-insight-card-visuals.mjs`로 인사이트 허브의 모든 글 카드에 화면용 이미지를 동기화한다.
+6. `node scripts/check-insight-visuals.mjs`로 글·OG·카드 이미지가 일대일인지, 규격과 파일이 맞는지, 같은 이미지가 재사용되지 않았는지 확인한다.
+7. 생성기는 글 수, 고유 관점 수, 출처, 본문 구조, 금지 제목을 검사한다.
+8. `insights.html`, `feed.xml`, `llms.txt`의 제목이 본문과 일치하는지 확인한다.
+9. 모바일 폭과 데스크톱 폭에서 인사이트, 대표 비주얼, 카드 이미지, 이메일을 렌더링해 줄바꿈·로고·CTA를 확인한다.
+10. 뉴스레터는 전체 발송을 예약하기 전에 내부 테스트 메일을 보낸다. 본문 수정 중에는 예약하지 않는다.
+
+전체 이미지 생성·메타 동기화·허브 카드 삽입·검사는 `npm run insights:visuals` 한 번으로 실행한다.
 
 ## 7. 인사이트 이미지 적대적 리뷰
 
