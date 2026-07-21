@@ -27,5 +27,7 @@ window.INSIGHT_POSTS = [
   { slug: 'safe-failure', topic: 'AX 교육', title: '잘 크는 주니어는 일찍 틀려본 주니어입니다' },
   { slug: 'hydrogen-new-business-execution', topic: '신사업 실행', title: '100억 수소충전소에서 배운 신사업 실행의 순서' },
   { slug: 'first-customer-first', topic: '신사업 실행', title: '투자자보다 첫 고객이 먼저입니다' },
-  { slug: 'table-note-service-operations', topic: '테이블 노트', title: '좋은 식당은 운영이 보입니다' }
+  { slug: 'table-note-service-operations', topic: '테이블 노트', title: '좋은 식당은 운영이 보입니다' },
+  { slug: 'table-note-empty-table', topic: '테이블 노트', title: '빈 테이블은 내일 다시 팔 수 없습니다' },
+  { slug: 'table-note-wine-inventory', topic: '테이블 노트', title: '팔리지 않는 와인은 취향이 아니라 묶인 현금입니다' }
 ];

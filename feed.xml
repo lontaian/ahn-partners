@@ -7,7 +7,23 @@
     <description>AI 전환, 기술경영, 조직 운영에 대한 실무 통찰. 매주 화요일과 목요일 뉴스레터로도 보내드립니다.</description>
     <language>ko</language>
     <item>
-      <title>AI는 샀는데 결재판은 그대로인 회사</title>
+      <title>팔리지 않는 와인은 취향이 아니라 묶인 현금입니다</title>
+      <link>https://ahn-partners.net/insights/table-note-wine-inventory.html</link>
+      <guid>https://ahn-partners.net/insights/table-note-wine-inventory.html</guid>
+      <pubDate>Tue, 21 Jul 2026 01:00:00 GMT</pubDate>
+      <category>테이블 노트</category>
+      <description>와인 리스트의 수익성은 높은 마진이 아니라 마진과 재고 회전율을 함께 볼 때 드러납니다.</description>
+    </item>
+    <item>
+      <title>빈 테이블은 내일 다시 팔 수 없습니다</title>
+      <link>https://ahn-partners.net/insights/table-note-empty-table.html</link>
+      <guid>https://ahn-partners.net/insights/table-note-empty-table.html</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+      <category>테이블 노트</category>
+      <description>예약금의 목적은 손님을 벌주는 것이 아니라 취소를 일찍 받아 좌석을 다시 팔 시간을 확보하는 것입니다.</description>
+    </item>
+    <item>
+      <title>AI가 답을 잘 내도 조직이 느리다면 승인 경계부터 확인하세요</title>
       <link>https://ahn-partners.net/insights/approval-boundary.html</link>
       <guid>https://ahn-partners.net/insights/approval-boundary.html</guid>
       <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
@@ -15,55 +31,7 @@
       <description>AI 도입의 병목은 답변 속도가 아니라 답변을 행동으로 바꾸는 권한입니다.</description>
     </item>
     <item>
-      <title>회의록에는 있는데 회사에는 없는 것</title>
-      <link>https://ahn-partners.net/insights/decision-log.html</link>
-      <guid>https://ahn-partners.net/insights/decision-log.html</guid>
-      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
-      <category>데이터 의사결정</category>
-      <description>발언은 남고 결정은 사라집니다. 선택하지 않은 이유까지 기록해야 같은 회의를 반복하지 않습니다.</description>
-    </item>
-    <item>
-      <title>자동화 ROI는 예외 한 건의 처리 시간에서 갈립니다</title>
-      <link>https://ahn-partners.net/insights/exception-path.html</link>
-      <guid>https://ahn-partners.net/insights/exception-path.html</guid>
-      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
-      <category>업무 분석</category>
-      <description>정상 처리율이 높아도 사람이 다시 잡는 한 건이 길면 자동화는 비용을 옮겼을 뿐입니다.</description>
-    </item>
-    <item>
-      <title>담당자 없는 KPI는 숫자가 아니라 구경거리입니다</title>
-      <link>https://ahn-partners.net/insights/metric-owner.html</link>
-      <guid>https://ahn-partners.net/insights/metric-owner.html</guid>
-      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
-      <category>데이터 의사결정</category>
-      <description>숫자가 움직였을 때 누구의 어떤 결정이 바뀌는지 없으면 대시보드는 장식입니다.</description>
-    </item>
-    <item>
-      <title>고객의 칭찬보다 다음 예약이 더 정직합니다</title>
-      <link>https://ahn-partners.net/insights/repeat-behavior.html</link>
-      <guid>https://ahn-partners.net/insights/repeat-behavior.html</guid>
-      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
-      <category>신사업 실행</category>
-      <description>좋아요는 공짜지만 재방문·선결제·추천은 고객이 실제 비용을 치르는 행동입니다.</description>
-    </item>
-    <item>
-      <title>외주 시스템의 진짜 납품일은 운영자가 혼자 복구한 날입니다</title>
-      <link>https://ahn-partners.net/insights/vendor-handoff.html</link>
-      <guid>https://ahn-partners.net/insights/vendor-handoff.html</guid>
-      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
-      <category>운영 시스템</category>
-      <description>정상 화면 시연은 납품이 아닙니다. 장애를 내고 내부 운영자가 되살려야 인수인계가 끝납니다.</description>
-    </item>
-    <item>
-      <title>AI 교육이 실패하는 이유는 교육 뒤 첫 업무가 없어서입니다</title>
-      <link>https://ahn-partners.net/insights/training-last-mile.html</link>
-      <guid>https://ahn-partners.net/insights/training-last-mile.html</guid>
-      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
-      <category>AX 교육</category>
-      <description>수료증은 학습의 끝이지만 성과의 시작은 교육 뒤 7일 안에 나온 실제 산출물입니다.</description>
-    </item>
-    <item>
-      <title>AI로 빨리 만든 코드는 언제 지울지부터 정해야 합니다</title>
+      <title>빠르게 만든 코드는 정리하고 지울 시간을 확보해야 자산이 됩니다</title>
       <link>https://ahn-partners.net/insights/deletion-budget.html</link>
       <guid>https://ahn-partners.net/insights/deletion-budget.html</guid>
       <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
@@ -71,20 +39,68 @@
       <description>생성 비용이 내려갈수록 코드의 총량과 유지비는 올라갑니다. 폐기 조건 없는 속도는 부채를 자동 생산합니다.</description>
     </item>
     <item>
-      <title>질문 없는 팀은 정렬된 팀이 아니라 포기한 팀일 수 있습니다</title>
-      <link>https://ahn-partners.net/insights/question-debt.html</link>
-      <guid>https://ahn-partners.net/insights/question-debt.html</guid>
+      <title>회의록보다 결정 로그가 조직을 빠르게 만듭니다</title>
+      <link>https://ahn-partners.net/insights/decision-log.html</link>
+      <guid>https://ahn-partners.net/insights/decision-log.html</guid>
       <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
-      <category>조직과 사람</category>
-      <description>회의가 조용하다는 이유로 합의됐다고 믿으면 질문은 회의 뒤 메신저와 재작업으로 돌아옵니다.</description>
+      <category>데이터 의사결정</category>
+      <description>발언은 남고 결정은 사라집니다. 선택하지 않은 이유까지 기록해야 같은 회의를 반복하지 않습니다.</description>
     </item>
     <item>
-      <title>신사업 예산은 성공이 아니라 오답을 사는 돈입니다</title>
+      <title>대시보드에 숫자보다 먼저 적어야 할 것은 담당자입니다</title>
+      <link>https://ahn-partners.net/insights/metric-owner.html</link>
+      <guid>https://ahn-partners.net/insights/metric-owner.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>데이터 의사결정</category>
+      <description>숫자가 움직였을 때 누구의 어떤 결정이 바뀌는지 없으면 대시보드는 장식입니다.</description>
+    </item>
+    <item>
+      <title>자동화의 성패는 예외 처리에서 갈립니다</title>
+      <link>https://ahn-partners.net/insights/exception-path.html</link>
+      <guid>https://ahn-partners.net/insights/exception-path.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>업무 분석</category>
+      <description>정상 처리율이 높아도 사람이 다시 잡는 한 건이 길면 자동화는 비용을 옮겼을 뿐입니다.</description>
+    </item>
+    <item>
+      <title>고객 인터뷰보다 다음 주에 반복하는 행동을 보세요</title>
+      <link>https://ahn-partners.net/insights/repeat-behavior.html</link>
+      <guid>https://ahn-partners.net/insights/repeat-behavior.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>신사업 실행</category>
+      <description>“좋아요”는 공짜지만 재방문·선결제·추천은 고객이 실제 비용을 치르는 행동입니다.</description>
+    </item>
+    <item>
+      <title>전략을 더 세우기 전에 가장 작은 실험을 정하세요</title>
       <link>https://ahn-partners.net/insights/experiment-budget.html</link>
       <guid>https://ahn-partners.net/insights/experiment-budget.html</guid>
       <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
       <category>신사업 실행</category>
       <description>좋은 실험은 성공을 축하하는 장치가 아니라 가장 위험한 가설을 가장 싸게 틀려 보는 장치입니다.</description>
+    </item>
+    <item>
+      <title>외주 시스템의 운영 실패는 인수인계에서 시작됩니다</title>
+      <link>https://ahn-partners.net/insights/vendor-handoff.html</link>
+      <guid>https://ahn-partners.net/insights/vendor-handoff.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>운영 시스템</category>
+      <description>정상 화면 시연은 납품이 아닙니다. 장애를 내고 내부 운영자가 되살려야 인수인계가 끝납니다.</description>
+    </item>
+    <item>
+      <title>AI 교육의 성과는 수료율이 아니라 다음 회의의 질문입니다</title>
+      <link>https://ahn-partners.net/insights/training-last-mile.html</link>
+      <guid>https://ahn-partners.net/insights/training-last-mile.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>AX 교육</category>
+      <description>수료증은 학습의 끝이지만 성과의 시작은 교육 뒤 7일 안에 나온 실제 산출물입니다.</description>
+    </item>
+    <item>
+      <title>팀의 질문이 줄었다면 이탈 신호부터 확인하세요</title>
+      <link>https://ahn-partners.net/insights/question-debt.html</link>
+      <guid>https://ahn-partners.net/insights/question-debt.html</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <category>조직과 사람</category>
+      <description>회의가 조용하다는 이유로 합의됐다고 믿으면, 질문은 회의 뒤 메신저와 재작업으로 돌아옵니다.</description>
     </item>
     <item>
       <title>일 잘하는 사람을 승진시키면 두 번 잃습니다</title>

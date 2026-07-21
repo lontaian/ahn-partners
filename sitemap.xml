@@ -163,6 +163,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ahn-partners.net/insights/table-note-empty-table.html</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ahn-partners.net/insights/table-note-wine-inventory.html</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ahn-partners.net/insights/ai-strategy-execution.html</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>

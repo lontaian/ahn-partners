@@ -98,6 +98,18 @@ export const INSIGHT_VISUALS = [
     items: [{ label: '주문' }, { label: '주방' }, { label: '서빙' }, { label: '기억' }]
   },
   {
+    slug: 'table-note-empty-table', category: 'TABLE NOTE', layout: 'flow', composition: 'reverse', accent: 'amber',
+    title: '빈 테이블은 내일 다시 팔 수 없습니다',
+    thesis: '예약금보다 취소 시점과 좌석 재판매율을 보십시오.',
+    items: [{ label: '예약' }, { label: '빠른 취소' }, { label: '대기 고객' }, { label: '좌석 재판매' }]
+  },
+  {
+    slug: 'table-note-wine-inventory', category: 'TABLE NOTE', layout: 'ratio', composition: 'vertical', accent: 'amber',
+    title: '팔리지 않는 와인은 취향이 아니라 묶인 현금입니다',
+    thesis: '와인 한 병의 생산성은 마진과 회전율이 함께 만듭니다.',
+    items: [{ label: '병당 마진', value: '가격의 성과' }, { label: '재고 회전', value: '선택의 성과' }]
+  },
+  {
     slug: 'workflow-analysis-before-ai', category: 'WORKFLOW', layout: 'timeline', composition: 'reverse',
     title: 'AI 도입 전 먼저 봐야 할 업무 병목 지도',
     thesis: '시간이 새는 곳은 일하는 구간보다 기다리는 구간입니다.',
