@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { INSIGHT_VISUAL_VERSION } from './insight-visuals-data.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const insightsDir = path.join(root, 'insights');
@@ -680,7 +681,7 @@ function renderArticle(post) {
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title,
     description: post.deck, url, mainEntityOfPage: url, datePublished: publishedIso,
     dateModified: modifiedIso, articleSection: post.topic, keywords: post.tags,
-    image: `${site}/images/og/insights/${post.image}?v=1`,
+    image: `${site}/images/og/insights/${post.slug}.jpg?v=${INSIGHT_VISUAL_VERSION}`,
     author: { '@type': 'Person', name: '안병선', alternateName: 'Chris Ahn', url: `${site}/about.html` },
     publisher: { '@type': 'Organization', name: 'Ahn Partners', url: `${site}/` }
   });
@@ -705,8 +706,8 @@ function renderArticle(post) {
   <meta property="og:url" content="${url}">
   <meta property="og:title" content="${escapeHtml(post.title)} | Ahn Partners">
   <meta property="og:description" content="${escapeHtml(post.deck)}">
-  <meta property="og:image" content="${site}/images/og/insights/${post.image}?v=1">
-  <meta property="og:image:secure_url" content="${site}/images/og/insights/${post.image}?v=1">
+  <meta property="og:image" content="${site}/images/og/insights/${post.slug}.jpg?v=${INSIGHT_VISUAL_VERSION}">
+  <meta property="og:image:secure_url" content="${site}/images/og/insights/${post.slug}.jpg?v=${INSIGHT_VISUAL_VERSION}">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -720,7 +721,7 @@ function renderArticle(post) {
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(post.title)} | Ahn Partners">
   <meta name="twitter:description" content="${escapeHtml(post.deck)}">
-  <meta name="twitter:image" content="${site}/images/og/insights/${post.image}?v=1">
+  <meta name="twitter:image" content="${site}/images/og/insights/${post.slug}.jpg?v=${INSIGHT_VISUAL_VERSION}">
   <meta name="twitter:image:alt" content="${escapeHtml(post.title)} - Ahn Partners">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

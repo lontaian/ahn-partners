@@ -155,6 +155,8 @@ All spacing derives from 4px. Existing source often uses rem values; map them to
 - **Structure**: `article` card with category eyebrow, title, 2-3 sentence summary, publication date, read time, primary link.
 - **Variants**: featured large card, standard grid card, compact list item, `Table Note` card.
 - **Spacing**: featured card can use a two-column layout; standard grid cards use `2rem` padding and `1.25rem` gap.
+- **Featured visual**: 화면의 35% 이상을 차지하는 비주얼은 글의 핵심 주장, 검증된 수치, 업무 구조 중 하나를 독립적으로 전달해야 한다. 제목·카테고리·의미 없는 번호만 넣은 장식 패널은 금지한다.
+- **Content density**: 큰 비주얼에는 최소 2개의 관계 있는 정보 단위와 그 관계를 설명하는 시각 문법이 있어야 한다. 정보가 없다면 비주얼 면적을 줄이거나 제거한다.
 - **States**: default, hover, focus-within. Hover uses lift and subtle border darkening, not unrelated animation.
 - **Accessibility**: title link is the primary focus target; metadata remains text.
 - **Motion**: transform `0.2s ease`, border/background `0.2s`.
@@ -309,15 +311,22 @@ Recommended article meta template:
 
 ### OG Image System
 
-Per-post OG should be generated from a consistent template:
+Per-post OG는 같은 브랜드 프레임 안에서 서로 다른 정보 구조를 보여주는 **일관된 시스템**으로 만든다. 제목과 부제만 바꾼 단일 템플릿 반복은 허용하지 않는다.
 
 - Size: `1200x630`.
 - Background: dark `#050505` or off-white `#f8f8f8` depending on series.
 - Brand: Ahn Partners wordmark, never split across lines.
 - Category label: small eyebrow in teal/amber.
 - Title: 2-3 lines max, Korean `keep-all` composition.
-- Optional series marker: `AI Strategy`, `AX Education`, `Table Note`.
+- Visual brief: 글마다 `thesis`, `layout`, `composition`, `items`를 작성한다. `scripts/insight-visuals-data.mjs`가 단일 원본이다.
+- Visual grammar: `flow`, `compare`, `loop`, `stack`, `timeline`, `ratio`, `matrix`, `signal`, `branch` 중 논지에 맞는 방식을 고른다.
+- Composition: `split`, `reverse`, `vertical`을 순환해 모든 이미지가 같은 구도로 보이지 않게 한다.
+- Evidence: 숫자는 본문에서 검증된 값만 쓰고, 숫자마다 단위와 의미를 설명하는 라벨을 붙인다. 설명되지 않은 장식 숫자는 금지한다.
+- Density: 큰 비주얼 패널에는 최소 2개의 관계 있는 정보 단위가 있어야 한다. 점무늬·글로우·그라데이션만으로 빈 면을 채우지 않는다.
+- Accessibility: `og:image:alt`는 글 제목을 설명하고, 정보형 비주얼의 핵심은 본문에도 텍스트로 존재해야 한다.
 - Save to `images/og/insights/{slug}.jpg`.
+- 한 이미지를 여러 글이 공유하거나 파일이 없는 상태를 허용하지 않는다.
+- 생성 후 `node scripts/check-insight-visuals.mjs`로 글별 고유 이미지, 파일 존재, 비주얼 브리프, 시각 문법 다양성을 검사한다.
 - Use cache buster query only when replacing an already-deployed image.
 
 ### KakaoTalk Sharing
