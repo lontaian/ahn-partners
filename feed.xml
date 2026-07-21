@@ -7,6 +7,78 @@
     <description>AI 전환, 기술경영, 조직 운영에 대한 실무 통찰. 매주 화요일과 목요일 뉴스레터로도 보내드립니다.</description>
     <language>ko</language>
     <item>
+      <title>AI 교육은 버튼이 아니라 작업 순서를 바꿔야 남습니다</title>
+      <link>https://ahn-partners.net/insights/ai-training-behavior-protocol.html</link>
+      <guid>https://ahn-partners.net/insights/ai-training-behavior-protocol.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>AX 교육</category>
+      <description>질문하고, 초안을 받고, 검증하고, 고치는 순서를 실제 업무에 심어야 교육이 성과로 이어집니다.</description>
+    </item>
+    <item>
+      <title>현장 엑셀은 규정 위반이 아니라 시스템 결함의 신고서입니다</title>
+      <link>https://ahn-partners.net/insights/workaround-signal.html</link>
+      <guid>https://ahn-partners.net/insights/workaround-signal.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>업무 분석</category>
+      <description>우회 작업을 없애기 전에 그 일이 공식 시스템이 놓친 무엇을 복구하는지부터 확인해야 합니다.</description>
+    </item>
+    <item>
+      <title>급한 일을 먼저 처리할수록 중요한 일이 더 늦어집니다</title>
+      <link>https://ahn-partners.net/insights/interruption-recovery-time.html</link>
+      <guid>https://ahn-partners.net/insights/interruption-recovery-time.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>업무 분석</category>
+      <description>알림에 답한 3분보다 원래 문제로 돌아오는 20분이 비쌉니다. 중단 뒤 복귀 시간까지 업무로 계산해야 합니다.</description>
+    </item>
+    <item>
+      <title>예측 범위를 보여 줘도 결정은 저절로 좋아지지 않습니다</title>
+      <link>https://ahn-partners.net/insights/forecast-action-rule.html</link>
+      <guid>https://ahn-partners.net/insights/forecast-action-rule.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>데이터 의사결정</category>
+      <description>최선·기준·최악의 숫자보다 먼저, 과잉과 부족 중 어느 실패가 더 비싼지 행동 규칙으로 번역해야 합니다.</description>
+    </item>
+    <item>
+      <title>백업 성공 알림은 복구 성공 증명이 아닙니다</title>
+      <link>https://ahn-partners.net/insights/restore-drill.html</link>
+      <guid>https://ahn-partners.net/insights/restore-drill.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>운영 시스템</category>
+      <description>파일이 저장됐다는 초록불보다 실제 운영자가 목표 시간 안에 서비스를 되살리는 시험이 먼저입니다.</description>
+    </item>
+    <item>
+      <title>알람을 늘릴수록 중요한 장애에 늦게 반응합니다</title>
+      <link>https://ahn-partners.net/insights/actionable-alert.html</link>
+      <guid>https://ahn-partners.net/insights/actionable-alert.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>운영 시스템</category>
+      <description>깨우는 알람에는 담당자와 첫 행동이 있어야 합니다. 아무 행동도 바꾸지 않는 경고는 소음입니다.</description>
+    </item>
+    <item>
+      <title>한 사람만 아는 업무는 전문성이 아니라 중단 위험입니다</title>
+      <link>https://ahn-partners.net/insights/knowledge-concentration.html</link>
+      <guid>https://ahn-partners.net/insights/knowledge-concentration.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>조직과 사람</category>
+      <description>문서 개수보다 담당자 없이도 동료가 업무를 끝낼 수 있는지를 시험해야 조직의 지식이 됩니다.</description>
+    </item>
+    <item>
+      <title>관리자의 일정표에 코칭 시간이 없으면 육성 계획도 없습니다</title>
+      <link>https://ahn-partners.net/insights/coaching-capacity.html</link>
+      <guid>https://ahn-partners.net/insights/coaching-capacity.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>조직과 사람</category>
+      <description>좋은 피드백을 기대하기 전에 관찰하고 묻고 다시 시도하게 할 시간을 업무 용량으로 확보해야 합니다.</description>
+    </item>
+    <item>
+      <title>첫 고객의 요구를 제품 전략으로 착각하지 마십시오</title>
+      <link>https://ahn-partners.net/insights/second-customer-test.html</link>
+      <guid>https://ahn-partners.net/insights/second-customer-test.html</guid>
+      <pubDate>Tue, 21 Jul 2026 09:00:00 GMT</pubDate>
+      <category>신사업 실행</category>
+      <description>첫 계약은 문제를 증명하지만 반복 가능한 제품을 증명하지는 않습니다. 두 번째 고객이 같은 핵심에 돈을 내는지 확인해야 합니다.</description>
+    </item>
+    <item>
       <title>빨리 치운다고 테이블이 빨리 도는 것은 아닙니다</title>
       <link>https://ahn-partners.net/insights/table-note-meal-pace.html</link>
       <guid>https://ahn-partners.net/insights/table-note-meal-pace.html</guid>

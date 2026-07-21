@@ -25,6 +25,15 @@ Ahn Partners는 기술경영(CTO/COO) 실무 경험을 바탕으로 기업의 AI
 - [AI로 빨리 만든 코드는 언제 지울지부터 정해야 합니다](https://ahn-partners.net/insights/deletion-budget.html): 생성 비용 뒤에 숨은 운영·보안·삭제 비용을 계산합니다.
 - [질문 없는 팀은 정렬된 팀이 아니라 포기한 팀일 수 있습니다](https://ahn-partners.net/insights/question-debt.html): 질문 때문에 바뀐 결정과 줄어든 재작업을 봅니다.
 - [신사업 예산은 성공이 아니라 오답을 사는 돈입니다](https://ahn-partners.net/insights/experiment-budget.html): 기능이 아니라 가장 위험한 가설의 오답을 가장 싸게 삽니다.
+- [AI 교육은 버튼이 아니라 작업 순서를 바꿔야 남습니다](https://ahn-partners.net/insights/ai-training-behavior-protocol.html): 질문·초안·검증·수정의 반복 가능한 협업 순서를 훈련합니다.
+- [현장 엑셀은 규정 위반이 아니라 시스템 결함의 신고서입니다](https://ahn-partners.net/insights/workaround-signal.html): 우회 작업이 공식 시스템에서 복구한 기능을 찾아 제품 개선으로 연결합니다.
+- [급한 일을 먼저 처리할수록 중요한 일이 더 늦어집니다](https://ahn-partners.net/insights/interruption-recovery-time.html): 알림 처리 시간 뒤에 숨은 맥락 복귀 비용을 계산합니다.
+- [예측 범위를 보여 줘도 결정은 저절로 좋아지지 않습니다](https://ahn-partners.net/insights/forecast-action-rule.html): 예측의 불확실성을 과잉과 부족의 손실에 맞는 행동 규칙으로 바꿉니다.
+- [백업 성공 알림은 복구 성공 증명이 아닙니다](https://ahn-partners.net/insights/restore-drill.html): 저장 성공과 실제 업무 복구를 분리하고 운영자 단독 복구를 시험합니다.
+- [알람을 늘릴수록 중요한 장애에 늦게 반응합니다](https://ahn-partners.net/insights/actionable-alert.html): 담당자와 첫 행동이 없는 경고를 운영 소음으로 관리합니다.
+- [한 사람만 아는 업무는 전문성이 아니라 중단 위험입니다](https://ahn-partners.net/insights/knowledge-concentration.html): 문서 수보다 핵심 업무의 독립 실행자 수를 봅니다.
+- [관리자의 일정표에 코칭 시간이 없으면 육성 계획도 없습니다](https://ahn-partners.net/insights/coaching-capacity.html): 관찰·피드백·재시도 시간을 관리자의 실제 업무 용량에 넣습니다.
+- [첫 고객의 요구를 제품 전략으로 착각하지 마십시오](https://ahn-partners.net/insights/second-customer-test.html): 첫 고객의 맞춤 요청을 두 번째 고객에게도 팔리는 핵심과 분리합니다.
 
 - [AI 도입 프로젝트 열에 아홉은 성과 없이 끝납니다](https://ahn-partners.net/insights/silent-shelving.html): 기술이 부족해서가 아닙니다. 끝을 정하지 않고 시작하기 때문입니다. MIT, S&P, McKinsey 조사로 확인했습니다.
 - [AI 전환에서 경영진이 가장 많이 하는 착각](https://ahn-partners.net/insights/ai-executive-misconception.html): 도구를 고르기 전에 먼저 물어야 할 게 있습니다. 어떤 판단이 느리고 어떤 판단이 반복되는지입니다. AI 전환을 제대로 시작하는 순서를 정리했습니다.

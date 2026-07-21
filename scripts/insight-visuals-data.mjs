@@ -186,6 +186,51 @@ export const INSIGHT_VISUALS = [
     title: '신사업 예산은 성공이 아니라 오답을 사는 돈입니다',
     thesis: '좋은 실험은 다음 큰 투자를 막거나 정당화합니다.',
     items: [{ label: '가설' }, { label: '관찰' }, { label: '계속' }, { label: '수정' }, { label: '중단' }]
+  },
+  {
+    slug: 'ai-training-behavior-protocol', category: 'BEHAVIOR PROTOCOL', layout: 'loop', composition: 'vertical',
+    title: 'AI 교육은 버튼이 아니라 작업 순서를 바꿔야 남습니다', thesis: '질문부터 수정까지 반복 가능한 순서를 훈련합니다.',
+    items: [{ label: '질문' }, { label: '초안' }, { label: '검증' }, { label: '수정' }]
+  },
+  {
+    slug: 'workaround-signal', category: 'WORKAROUND SIGNAL', layout: 'branch', composition: 'reverse',
+    title: '현장 엑셀은 규정 위반이 아니라 시스템 결함의 신고서입니다', thesis: '금지하기 전에 우회 작업이 복구한 능력을 봅니다.',
+    items: [{ label: '현장 우회' }, { label: '유지' }, { label: '시스템 흡수' }, { label: '안전한 폐기' }]
+  },
+  {
+    slug: 'interruption-recovery-time', category: 'RECOVERY TIME', layout: 'timeline', composition: 'split',
+    title: '급한 일을 먼저 처리할수록 중요한 일이 더 늦어집니다', thesis: '3분짜리 알림 뒤에는 보이지 않는 복귀 시간이 남습니다.',
+    items: [{ label: '집중 업무' }, { label: '중단', value: '3분' }, { label: '맥락 복구', value: '15분' }, { label: '다음 행동' }]
+  },
+  {
+    slug: 'forecast-action-rule', category: 'DECISION UNDER LOSS', layout: 'ratio', composition: 'reverse',
+    title: '예측 범위를 보여 줘도 결정은 저절로 좋아지지 않습니다', thesis: '예측은 숫자이고 결정은 오류 비용의 선택입니다.',
+    items: [{ label: '과잉 비용', value: '재고·폐기' }, { label: '부족 비용', value: '품절·이탈' }]
+  },
+  {
+    slug: 'restore-drill', category: 'RECOVERY PROOF', layout: 'flow', composition: 'split',
+    title: '백업 성공 알림은 복구 성공 증명이 아닙니다', thesis: '저장 완료가 아니라 업무 복구까지 시험합니다.',
+    items: [{ label: '백업' }, { label: '운영자 복원' }, { label: '현업 검증' }, { label: '업무 재개' }]
+  },
+  {
+    slug: 'actionable-alert', category: 'ACTIONABLE ALERT', layout: 'signal', composition: 'vertical',
+    title: '알람을 늘릴수록 중요한 장애에 늦게 반응합니다', thesis: '첫 행동이 없는 알람은 신호가 아니라 소음입니다.',
+    items: [{ label: '잡음' }, { label: '행동 가능 신호' }, { label: '담당자' }, { label: '첫 행동' }]
+  },
+  {
+    slug: 'knowledge-concentration', category: 'KNOWLEDGE CONCENTRATION', layout: 'matrix', composition: 'split',
+    title: '한 사람만 아는 업무는 전문성이 아니라 중단 위험입니다', thesis: '문서보다 독립적으로 끝낼 수 있는 사람을 셉니다.',
+    items: [{ label: '관찰' }, { label: '공동 수행' }, { label: '단독 수행' }, { label: '복기' }]
+  },
+  {
+    slug: 'coaching-capacity', category: 'COACHING CAPACITY', layout: 'timeline', composition: 'reverse',
+    title: '관리자의 일정표에 코칭 시간이 없으면 육성 계획도 없습니다', thesis: '관찰과 재시도를 위한 시간을 업무 용량에 넣습니다.',
+    items: [{ label: '과업 관찰' }, { label: '행동 피드백' }, { label: '다음 시도' }, { label: '독립 판단' }]
+  },
+  {
+    slug: 'second-customer-test', category: 'SECOND CUSTOMER TEST', layout: 'compare', composition: 'vertical',
+    title: '첫 고객의 요구를 제품 전략으로 착각하지 마십시오', thesis: '첫 계약은 문제를, 두 번째 유사 계약은 반복을 증명합니다.',
+    items: [{ label: '첫 고객', value: '맞춤 요구' }, { label: '두 번째 고객', value: '반복 가능성' }]
   }
 ];
 

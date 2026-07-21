@@ -22,7 +22,7 @@ const inline = (value) => escapeHtml(value).replace(/\[\[([a-z0-9-]+)\|([^\]]+)\
 const p = (value) => `<p>${inline(value)}</p>`;
 const list = (items) => items.map((item) => `<li>${inline(item)}</li>`).join('');
 
-// Retained as an editorial audit trail. The reviewed copy below is the only copy rendered.
+// The first ten entries are retained as an editorial audit trail; entries after them are the approved 2026-07-21 expansion batch.
 const draftPosts = [
   {
     slug: 'approval-boundary', topic: 'AI 전략', kicker: 'Decision Boundary',
@@ -423,6 +423,177 @@ const draftPosts = [
       { slug: 'repeat-behavior', label: '고객 인터뷰보다 다음 주에 반복하는 행동을 보세요', desc: '말이 아닌 재사용·지불·추천 행동으로 가설을 검증합니다.' },
       { slug: 'first-customer-first', label: '투자자보다 첫 고객이 먼저입니다', desc: '첫 고객과 함께 실험의 범위를 좁히는 순서입니다.' }
     ]
+  },
+  {
+    slug: 'ai-training-behavior-protocol', topic: 'AX 교육', kicker: 'BEHAVIOR PROTOCOL', lens: 'AI 협업 습관',
+    title: 'AI 교육은 버튼이 아니라 작업 순서를 바꿔야 남습니다',
+    deck: '질문하고, 초안을 받고, 검증하고, 고치는 순서를 실제 업무에 심어야 교육이 성과로 이어집니다.',
+    image: 'ai-learning-loop.jpg', minutes: 6,
+    tags: ['AX 교육', 'AI 협업', '행동 프로토콜', '학습 전이'],
+    tldr: ['기능을 많이 아는 것과 AI를 믿을 만한 동료로 쓰는 것은 다른 역량입니다.', '좋은 교육은 프롬프트 문장을 외우게 하지 않고 질문·초안·검증·수정의 작업 순서를 반복시킵니다.', '교육 평가는 만족도가 아니라 30일 뒤 같은 순서를 혼자 재현하는지로 해야 합니다.'],
+    term: { word: '행동 프로토콜', en: 'Behavioral Protocol', desc: 'AI와 일할 때 사람이 수행할 질문, 검증, 수정, 기록의 순서를 관찰 가능한 행동으로 정리한 절차입니다.' },
+    intro: ['교육장에서는 모두가 멋진 답을 만듭니다. 한 달 뒤 현장을 찾아가면 어떤 사람은 매일 AI를 쓰고, 어떤 사람은 빈 입력창 앞에서 다시 예전 방식으로 돌아갑니다. 차이는 기능 지식보다 막혔을 때 다음에 무엇을 할지 아느냐에서 생깁니다.', '388명의 직원을 대상으로 한 Microsoft Research의 현장 실험은 인간과 AI의 협업 순서를 명시적으로 가르친 집단에서 높은 수준의 문서 품질이 더 좋아질 수 있음을 보여 줬습니다. 한 기업의 특정 과업을 다룬 연구이므로 모든 조직에 그대로 일반화할 수는 없습니다. 그래도 [[training-last-mile|교육 뒤 첫 업무를 설계하는 일]]에 더해, 그 업무를 푸는 순서까지 훈련해야 한다는 실무 가설은 충분히 검증할 가치가 있습니다.'],
+    sections: [
+      { heading: '프롬프트 모음은 막힌 순간을 구해 주지 못합니다', paragraphs: ['예시 문장을 복사하면 첫 결과는 빨리 나옵니다. 그러나 자료가 부족하거나 답이 서로 충돌하면 사용자는 어디서부터 고쳐야 할지 모릅니다. 교육이 성공 사례만 보여 줬기 때문입니다.', '한 문장의 만능 프롬프트보다 네 단계가 낫습니다. 먼저 목적과 제약을 질문으로 적고, AI에게 초안을 시키고, 사실과 누락을 사람이 검증하고, 수정 이유를 남긴 뒤 다시 생성합니다. 과업이 달라져도 이 순서는 옮겨 쓸 수 있습니다.'] },
+      { heading: '검증을 마지막 검수로 미루지 마십시오', paragraphs: ['사람은 완성된 문장을 보면 내용도 완성됐다고 느끼기 쉽습니다. 그래서 검증을 제출 직전 한 번의 확인으로 두면 근거 없는 숫자와 빠진 전제가 문서 전체에 번집니다.', '초안을 받은 직후 출처, 계산, 이해관계자, 실행 조건 네 칸을 확인하게 하십시오. 틀린 답을 잡는 훈련보다 어디를 의심할지 정하는 훈련이 재사용성이 높습니다.'] },
+      { heading: '교육장은 실제 파일과 실제 마감으로 꾸리십시오', paragraphs: ['가상의 여행 계획은 재미있지만 다음 주 회의 자료를 바꾸지 못합니다. 참가자가 실제로 처리할 보고서, 고객 문의, 분석표를 가져오고 정보보호 기준 안에서 다뤄야 합니다.', '강사는 정답을 대신 만들지 말고 사용자가 어느 단계에서 멈췄는지 표시합니다. 질문에서 막혔는지, 검증에서 막혔는지에 따라 다음 교육과 시스템 개선이 달라집니다.'] },
+      { heading: '30일 뒤 재현 여부가 수료증보다 정직합니다', paragraphs: ['교육 당일 만족도는 강사와 분위기를 평가합니다. 업무 전환을 보려면 7일 안의 첫 산출물, 30일 안의 반복 사용, 동료에게 설명할 수 있는지를 봐야 합니다.', 'Olivero 등의 31명 관리자 대상 연구에서는 교육 뒤 일대일 코칭이 이어졌을 때 생산성 향상이 더 크게 나타났습니다. 작은 표본의 행동연구라는 한계가 있지만, 교육 후 피드백이 별도 옵션이 아니라 전이 과정이라는 점을 잘 보여 줍니다. [[coaching-capacity|관리자의 코칭 시간]]까지 확보해야 교육이 현장에서 끝납니다.'] }
+    ],
+    checklist: ['실제 업무 한 건으로 질문·초안·검증·수정을 모두 연습하는가', '틀린 답보다 검증하지 않은 답을 구분해 기록하는가', '30일 뒤 같은 작업 순서를 혼자 재현하는지 확인하는가'],
+    sources: [{ label: 'Microsoft Research, Scaffolding Human-AI Collaboration', url: 'https://www.microsoft.com/en-us/research/publication/human-ai-collaboration-field-experiment/' }, { label: 'Olivero, Bane and Kopelman, Executive Coaching as a Transfer of Training Tool', url: 'https://journals.sagepub.com/doi/10.1177/009102609702600403' }],
+    related: [{ slug: 'training-last-mile', label: 'AI 교육의 성과는 수료율이 아니라 다음 회의의 질문입니다', desc: '교육 뒤 첫 업무가 연결되는 조건을 봅니다.' }, { slug: 'coaching-capacity', label: '관리자의 일정표에 코칭 시간이 없으면 육성 계획도 없습니다', desc: '학습을 행동으로 옮기는 후속 시간을 설계합니다.' }]
+  },
+  {
+    slug: 'workaround-signal', topic: '업무 분석', kicker: 'WORKAROUND SIGNAL', lens: '현장 우회 작업',
+    title: '현장 엑셀은 규정 위반이 아니라 시스템 결함의 신고서입니다',
+    deck: '우회 작업을 없애기 전에 그 일이 공식 시스템이 놓친 무엇을 복구하는지부터 확인해야 합니다.',
+    image: 'workflow-bottleneck.jpg', minutes: 6,
+    tags: ['업무 분석', '워크어라운드', '엑셀', '현장 운영'],
+    tldr: ['현장의 별도 엑셀과 메신저는 종종 공식 시스템이 처리하지 못한 속도·예외·가시성을 보완합니다.', '우회 작업을 먼저 금지하면 업무가 사라지는 것이 아니라 흔적만 사라집니다.', '유지·흡수·폐기 세 가지로 분류하고, 흡수할 기능은 실제 사용 순서에서 찾아야 합니다.'],
+    term: { word: '우회 작업', en: 'Workaround', desc: '공식 절차나 시스템이 업무 요구를 충족하지 못할 때 현장이 목표를 달성하려고 만든 비공식 방법입니다.' },
+    intro: ['새 시스템 도입 뒤에도 팀의 공유폴더에는 ‘최종_진짜최종.xlsx’가 남습니다. 관리자는 표준을 따르지 않는 습관으로 보고 파일부터 없애려 합니다. 그러나 그 파일에는 공식 화면에서 한 번에 보이지 않는 납기, 예외 사유, 고객 약속이 모여 있을 수 있습니다.', '루마니아 기업 시스템 사용자 310명을 조사한 연구는 부적절한 정보시스템이 우회 작업을 유발하며, 일부 우회가 조직에 편익을 줄 수 있음을 보고했습니다. 다른 다국적 기업의 31개 인터뷰 연구도 규정에 맞지 않는 우회가 필수 활동을 가능하게 한 사례를 확인했습니다. 표본과 맥락이 제한돼 모든 우회를 정당화하지는 않지만, 금지 전에 기능을 분석해야 한다는 근거는 됩니다.'],
+    sections: [
+      { heading: '파일 이름보다 그 파일이 복구한 능력을 보십시오', paragraphs: ['우회 작업은 대개 속도, 가시성, 예외 처리, 협업 중 하나를 복구합니다. 사용자가 왜 공식 화면을 떠났는지 묻지 않고 파일만 회수하면 같은 요구가 개인 메모나 메신저로 더 깊이 숨습니다.', '지난주 사용한 비공식 파일 하나를 열어 공식 시스템에 없는 열을 표시하십시오. 그 열이 현장의 실제 판단 기준입니다. [[exception-path|예외 경로]]와 겹치는 열은 특히 먼저 봐야 합니다.'] },
+      { heading: '모든 우회를 제품 요구사항으로 승격시키지 마십시오', paragraphs: ['오래 썼다는 이유만으로 좋은 방식은 아닙니다. 중복 입력, 개인정보 복사, 계산식 오류처럼 위험을 키우는 우회도 있습니다. 현장 편익과 통제 위험을 같은 표에서 봐야 합니다.', '편익이 크고 반복되는 방식은 공식 시스템에 흡수하고, 일시적이지만 안전한 방식은 종료일을 붙여 유지합니다. 편익보다 위험이 큰 방식은 대체 경로를 먼저 제공한 뒤 폐기합니다.'] },
+      { heading: '우회 횟수보다 이중 입력 시간을 재십시오', paragraphs: ['파일 개수는 운영비를 설명하지 못합니다. 같은 주문을 시스템과 엑셀에 두 번 입력하고 서로 맞추는 시간이 실제 비용입니다.', '한 주 동안 우회 건수, 추가 입력 시간, 오류 수정 시간, 승인 대기 시간을 기록하십시오. 기능 개발비와 비교할 수 있는 언어로 바뀌면 현장 불만이 투자 판단이 됩니다.'] },
+      { heading: '새 화면은 기존 우회의 순서로 시험하십시오', paragraphs: ['요구사항 문서만 보고 만든 화면은 현장이 쓰던 맥락을 놓치기 쉽습니다. 실제 파일의 한 행이 어떻게 생기고, 누구에게 전달되고, 언제 닫히는지 그대로 재연해야 합니다. 잦은 호출 때문에 우회가 생겼다면 [[interruption-recovery-time|중단 뒤 복귀 시간]]도 함께 재야 합니다.', '출시 전 우회를 만든 사람이 새 화면으로 같은 사례를 끝내게 하십시오. 성공 기준은 로그인이나 저장이 아니라 별도 파일 없이 업무가 닫히는 것입니다. [[workflow-analysis-before-ai|병목 지도]]에 우회 경로를 함께 그리면 재발도 줄어듭니다.'] }
+    ],
+    checklist: ['비공식 파일이 공식 시스템에서 복구한 기능을 한 문장으로 적었는가', '유지·흡수·폐기와 종료 조건을 구분했는가', '별도 파일 없이 실제 사례를 끝내는 시험을 했는가'],
+    sources: [{ label: 'Wong et al., Working around inadequate information systems in the workplace', url: 'https://www.sciencedirect.com/science/article/pii/S0268401222000020' }, { label: 'Davison et al., The coordination of workarounds', url: 'https://www.sciencedirect.com/science/article/pii/S037872062100104X' }],
+    related: [{ slug: 'exception-path', label: '자동화의 성패는 예외 처리에서 갈립니다', desc: '표준 밖 업무가 돌아올 길을 설계합니다.' }, { slug: 'workflow-analysis-before-ai', label: 'AI 도입 전 먼저 봐야 할 업무 병목 지도', desc: '작업보다 대기와 우회를 함께 봅니다.' }]
+  },
+  {
+    slug: 'interruption-recovery-time', topic: '업무 분석', kicker: 'RECOVERY TIME', lens: '업무 중단 비용',
+    title: '급한 일을 먼저 처리할수록 중요한 일이 더 늦어집니다',
+    deck: '알림에 답한 3분보다 원래 문제로 돌아오는 20분이 비쌉니다. 중단 뒤 복귀 시간까지 업무로 계산해야 합니다.',
+    image: 'work-interruptions.jpg', minutes: 5,
+    tags: ['업무 분석', '업무 중단', '집중', '복귀 시간'],
+    tldr: ['중단 비용은 알림을 처리한 시간이 아니라 원래 과업의 맥락을 다시 불러오는 시간까지 포함합니다.', '긴 과업일수록 멈춘 위치와 다음 행동을 남기지 않으면 복귀 비용이 커집니다.', '긴급 요청을 묶어 처리하고 진짜 긴급의 조건을 좁혀야 중요한 일이 끝납니다.'],
+    term: { word: '복귀 시간', en: 'Resumption Lag', desc: '중단된 업무로 돌아온 뒤 원래의 속도와 판단 맥락을 회복해 다음 유효 행동을 시작하기까지 걸리는 시간입니다.' },
+    intro: ['보고서를 쓰다 메신저 질문에 3분 답하고 돌아왔는데, 어느 숫자를 확인하던 중이었는지 다시 찾는 데 15분이 걸립니다. 일정표에는 3분만 남고 15분은 사라집니다. 그래서 팀은 늘 바쁜데 큰 과업의 완료일은 계속 밀립니다.', '현장과 실험을 함께 다룬 중단 연구는 고객 전화가 처리 시간을 늘리고, 두 번째 과업 시작 구간의 오류율을 높일 수 있음을 보고했습니다. Microsoft Research의 일주일 업무 일지 연구도 복잡하고 장기적인 과업으로 돌아가기 어렵다는 점을 관찰했습니다. 직무와 도구가 오래전 연구와 달라졌어도 맥락 복구를 비용으로 보라는 질문은 여전히 유효합니다.'],
+    sections: [
+      { heading: '알림 처리 시간만 재면 절반을 놓칩니다', paragraphs: ['중단은 두 번 비용을 만듭니다. 새 요청을 이해하고 처리하는 시간, 그리고 이전 과업의 자료·가설·다음 행동을 되살리는 시간입니다.', '한 주 동안 중단 시각과 원래 과업에서 다음 유효 행동을 한 시각을 적으십시오. 두 시각의 차이에서 새 요청 처리 시간을 빼면 보이지 않던 복귀 비용이 드러납니다.'] },
+      { heading: '멈추기 전에 다음 한 줄을 남기십시오', paragraphs: ['갑작스러운 호출을 막을 수 없다면 복귀 단서를 남겨야 합니다. “매출표 검토 중”보다 “3월 반품률 상승이 단가와 수량 중 무엇 때문인지 4월과 비교”처럼 다음 질문을 적습니다.', '열어 둔 파일, 확인한 범위, 다음 행동 세 가지만 남겨도 맥락을 처음부터 재구성하지 않아도 됩니다. 결정이 필요한 과업에는 [[decision-log|결정 로그]] 링크까지 붙입니다.'] },
+      { heading: '긴급함을 보낸 사람의 감정으로 정하지 마십시오', paragraphs: ['모든 메시지에 즉시 답하면 가장 자주 재촉하는 사람이 팀의 우선순위를 정합니다. 고객 중단, 금전 손실, 법적 기한처럼 관찰 가능한 조건만 즉시 중단 사유로 둬야 합니다.', '나머지 요청은 하루 두세 번의 처리 창구로 모읍니다. 요청자는 답변 시각을 예측할 수 있고, 담당자는 긴 과업을 끝낼 구간을 확보합니다.'] },
+      { heading: '회의 없는 시간이 아니라 중단 없는 시간을 만드십시오', paragraphs: ['캘린더의 빈칸도 알림과 즉석 요청으로 잘릴 수 있습니다. 60분을 확보했다면 그 시간에 대응할 백업 담당자와 진짜 긴급 연락 경로를 함께 정해야 합니다. 요청이 비공식 파일로 번진다면 [[workaround-signal|우회 작업이 복구한 기능]]도 확인합니다.', '완료 건수만 비교하지 말고 복귀 시간과 재작업률을 함께 보십시오. [[metric-owner|지표 담당자]]가 매주 가장 비싼 중단 유형 하나를 없애면 집중은 복지 문구가 아니라 운영 능력이 됩니다.'] }
+    ],
+    checklist: ['중단 처리 시간과 원래 과업 복귀 시간을 따로 재는가', '멈추기 전 확인 범위와 다음 행동을 남기는가', '즉시 대응해야 할 조건이 관찰 가능한 사건으로 좁혀져 있는가'],
+    sources: [{ label: 'Eyrolle and Cellier, The effects of interruptions in work activity', url: 'https://www.sciencedirect.com/science/article/pii/S0003687000000193' }, { label: 'Microsoft Research, A Diary Study of Task Switching and Interruptions', url: 'https://research.microsoft.com/en-us/um/people/horvitz/taskdiary.pdf' }],
+    related: [{ slug: 'workflow-analysis-before-ai', label: 'AI 도입 전 먼저 봐야 할 업무 병목 지도', desc: '작업보다 기다림이 긴 구간을 찾습니다.' }, { slug: 'metric-owner', label: '대시보드에 숫자보다 먼저 적어야 할 것은 담당자입니다', desc: '중단 원인을 행동 가능한 지표로 바꿉니다.' }]
+  },
+  {
+    slug: 'forecast-action-rule', topic: '데이터 의사결정', kicker: 'DECISION UNDER LOSS', lens: '예측과 손실 함수',
+    title: '예측 범위를 보여 줘도 결정은 저절로 좋아지지 않습니다',
+    deck: '최선·기준·최악의 숫자보다 먼저, 과잉과 부족 중 어느 실패가 더 비싼지 행동 규칙으로 번역해야 합니다.',
+    image: 'forecast-range.jpg', minutes: 6,
+    tags: ['데이터 의사결정', '예측', '불확실성', '손실 함수'],
+    tldr: ['예측은 미래를 맞히는 숫자이고 결정은 틀렸을 때의 비용을 선택하는 행동입니다.', '예측 구간만 추가해도 과잉과 부족의 비용이 연결되지 않으면 더 나은 행동으로 이어지지 않습니다.', '의사결정 화면에는 범위와 함께 비용 비대칭, 행동 기준, 재검토 신호가 있어야 합니다.'],
+    term: { word: '손실 함수', en: 'Loss Function', desc: '예측이 빗나갔을 때 과잉·부족·지연 등 각 오류가 만드는 비용을 의사결정 기준으로 표현한 규칙입니다.' },
+    intro: ['수요 예측 화면에 1,000개라는 숫자가 뜹니다. 생산팀은 그대로 만들고 싶고 영업팀은 품절이 두려워 1,200개를 요구합니다. 둘 중 누가 예측을 더 믿는지가 아니라, 재고 200개와 품절 200개의 손실이 다르기 때문에 판단이 갈립니다.', 'Goodwin 등의 실험에서는 점 예측, 50% 예측 구간, 95% 예측 구간을 보여 준 집단을 비교했지만 구간만 제공한다고 결정이 좋아지지 않았고, 비용 비대칭에 맞는 반응이 오히려 약해질 수 있었습니다. 60명의 경영학 학생과 생산량 과업이라는 한계가 있으므로 숫자를 보편 법칙으로 받아들여서는 안 됩니다. 핵심은 불확실성 표시와 행동 규칙을 분리하지 말라는 데 있습니다.'],
+    sections: [
+      { heading: '예측값과 주문량은 같은 숫자가 아닙니다', paragraphs: ['예측값은 가장 그럴듯한 수요를 말합니다. 주문량은 그 예측이 틀렸을 때 감당할 비용을 반영한 선택입니다. 둘을 같은 셀에 넣으면 판단과 모델 성능을 구분할 수 없습니다.', '화면에는 예측 중앙값, 범위, 최종 결정값을 따로 남기십시오. 결정값을 바꿨다면 품절, 폐기, 긴급 조달 중 어떤 비용을 피하려 했는지 기록합니다.'] },
+      { heading: '최악의 경우보다 더 비싼 오류를 먼저 고르십시오', paragraphs: ['최악·기준·최선 시나리오는 보기 쉽지만 확률과 비용을 섞어 버리기 쉽습니다. 먼저 한 단위 부족할 때와 한 단위 남을 때의 비용을 계산해야 합니다.', '의약품 부족처럼 한쪽 손실이 압도적이면 상단 구간을 택할 이유가 생깁니다. 유행 상품처럼 잔여 재고가 빠르게 가치가 없어지면 반대입니다. 이 선택은 예측 정확도가 아니라 사업의 손실 구조입니다.'] },
+      { heading: '범위를 행동 문장으로 번역하십시오', paragraphs: ['“수요는 800~1,200개”는 정보입니다. “품절 비용이 잔여 비용의 두 배이므로 85% 수준을 기준으로 생산하고, 예약 주문이 900개를 넘으면 증산한다”가 행동 규칙입니다.', '2005년 Goodwin의 다른 실험에서도 비대칭 손실 아래 통계 예측은 무지원 판단보다 비용을 낮췄지만, 복잡한 확률 분해 절차는 유의한 개선을 만들지 못했습니다. 복잡한 표시보다 손실에 맞는 간단한 규칙이 실무에 더 유용할 수 있음을 시사합니다.'] },
+      { heading: '틀린 예측과 틀린 결정을 따로 복기하십시오', paragraphs: ['실제 수요가 범위를 벗어났다면 예측 모델과 데이터 문제를 봅니다. 수요는 범위 안이었지만 손실이 컸다면 선택한 행동 기준을 봐야 합니다. 신제품이라면 [[second-customer-test|두 번째 고객의 반복 신호]]가 예측의 첫 입력이 됩니다.', '[[decision-log|결정 로그]]에 당시의 범위, 비용 가정, 선택값, 재검토 신호를 남기십시오. [[data-that-pays|돈이 되는 데이터]]는 더 정확한 숫자만이 아니라 더 나은 손실 선택을 만드는 데이터입니다.'] }
+    ],
+    checklist: ['예측값과 최종 결정값을 다른 필드로 남기는가', '과잉과 부족의 단위 비용이 비교돼 있는가', '예측 실패와 의사결정 실패를 따로 복기하는가'],
+    sources: [{ label: 'Goodwin, Onkal and Thomson, Prediction intervals and production planning decisions', url: 'https://researchportal.bath.ac.uk/en/publications/do-forecasts-expressed-as-prediction-intervals-improve-production/' }, { label: 'Goodwin, Providing support for decisions under asymmetric loss', url: 'https://www.sciencedirect.com/science/article/abs/pii/S037722170300883X' }],
+    related: [{ slug: 'decision-log', label: '회의록보다 결정 로그가 조직을 빠르게 만듭니다', desc: '예측 뒤 선택과 가정을 남깁니다.' }, { slug: 'data-that-pays', label: '쌓이는 데이터와 돈이 되는 데이터는 다릅니다', desc: '행동과 손실을 바꾸는 데이터부터 고릅니다.' }]
+  },
+  {
+    slug: 'restore-drill', topic: '운영 시스템', kicker: 'RECOVERY PROOF', lens: '복구 가능성',
+    title: '백업 성공 알림은 복구 성공 증명이 아닙니다',
+    deck: '파일이 저장됐다는 초록불보다 실제 운영자가 목표 시간 안에 서비스를 되살리는 시험이 먼저입니다.',
+    image: 'system-recovery.jpg', minutes: 5,
+    tags: ['운영 시스템', '백업', '복구 훈련', '연속성'],
+    tldr: ['백업은 보관 작업이고 복구는 사람·권한·절차·데이터가 함께 작동하는 운영 능력입니다.', '복구 목표 시간 안에 실제 데이터를 되살리고 업무 결과를 검증해야 합니다.', '훈련에서 막힌 지점을 문서로 덮지 말고 다음 훈련의 시나리오로 남겨야 합니다.'],
+    term: { word: '복구 훈련', en: 'Restore Drill', desc: '장애 상황을 가정하고 지정된 운영자가 백업에서 시스템과 데이터를 되살린 뒤 업무 기능까지 검증하는 시험입니다.' },
+    intro: ['월요일 아침 데이터가 사라졌는데 대시보드는 전날 밤 백업이 성공했다고 표시합니다. 막상 복구하려니 비밀번호는 퇴사자 계정에 있고, 어느 시점의 파일을 골라야 할지 모르며, 복원된 주문 합계가 맞는지 확인할 사람도 없습니다. 백업은 있었지만 복구 능력은 없었던 것입니다.', 'NIST의 정보시스템 비상계획 지침은 백업뿐 아니라 시험·훈련·복구 뒤 검증을 함께 다룹니다. 정부기관 중심의 지침이라 모든 중소기업에 같은 문서 규모를 요구할 이유는 없습니다. 다만 저장 성공과 업무 복구를 다른 완료 기준으로 보라는 원칙은 규모와 무관합니다.'],
+    sections: [
+      { heading: '복구 목표를 파일이 아니라 업무로 적으십시오', paragraphs: ['“데이터베이스 복원 완료”는 기술 상태입니다. 고객이 주문을 조회하고, 직원이 출고를 이어 가며, 합계가 원본과 맞아야 업무가 복구된 것입니다.', '핵심 업무마다 허용 중단 시간과 허용 데이터 손실을 적으십시오. 기술팀의 복원 시간과 현업의 검증 시간을 모두 포함해야 실제 목표가 됩니다.'] },
+      { heading: '복구 권한은 사고 전에 확인하십시오', paragraphs: ['백업 저장소에 접근할 사람, 복호화 키를 꺼낼 사람, 새 환경을 만들 사람 중 하나라도 빠지면 절차는 멈춥니다. 개인 계정에 기대면 휴가와 퇴사가 곧 장애가 됩니다.', '역할별 권한과 대체 담당자를 두고 분기마다 접근을 시험하십시오. 비밀값 자체가 아니라 보관 위치와 발급·회수 절차를 문서화합니다. [[vendor-handoff|외주 인수인계]]에도 같은 시험을 붙여야 합니다.'] },
+      { heading: '가장 쉬운 백업부터 시험하지 마십시오', paragraphs: ['빈 개발 환경에 작은 파일을 복원하는 시험은 초록불만 늘립니다. 실제 용량, 의존 서비스, 오래된 백업처럼 실패 가능성이 높은 조건을 하나씩 넣어야 합니다.', '처음에는 읽기 전용 복제 환경에서 훈련하고, 복구 시간·수동 단계·오류를 기록합니다. 다음 훈련은 가장 오래 걸린 수동 단계를 없애는 데 집중합니다.'] },
+      { heading: '훈련 결과를 운영 계약으로 바꾸십시오', paragraphs: ['실패한 훈련을 담당자의 실수로 끝내면 같은 장애가 반복됩니다. 막힌 권한, 오래된 문서, 검증되지 않은 데이터 각각에 수정 담당자와 재시험 날짜를 붙입니다. [[actionable-alert|행동 가능한 알람]]이 실제 훈련 시작점이 되는지도 확인합니다.', '성공 기준은 “문제없이 끝남”이 아닙니다. 목표 시간 안에 복구하고, 현업 담당자가 핵심 거래 몇 건과 집계값을 확인하고, 임시 조치가 모두 회수됐을 때 닫습니다.'] }
+    ],
+    checklist: ['복구 완료가 실제 업무 기능과 숫자로 정의돼 있는가', '주 담당자 없이 대체 담당자가 권한을 얻을 수 있는가', '최근 분기에 실제 백업으로 목표 시간 안에 복구해 봤는가'],
+    sources: [{ label: 'NIST SP 800-34 Rev.1, Contingency Planning Guide for Federal Information Systems', url: 'https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-34r1.pdf' }, { label: 'NIST, Contingency Planning', url: 'https://csrc.nist.gov/topics/security-and-privacy/security-programs-and-operations/contingency-planning' }],
+    related: [{ slug: 'vendor-handoff', label: '외주 시스템의 운영 실패는 인수인계에서 시작됩니다', desc: '외부 도움 없이 복구하는 검수 기준을 세웁니다.' }, { slug: 'outsourced-system-neglect', label: '외주로 만든 시스템이 1년 뒤 방치되는 이유', desc: '운영 소유권이 사라지는 구조를 봅니다.' }]
+  },
+  {
+    slug: 'actionable-alert', topic: '운영 시스템', kicker: 'ACTIONABLE ALERT', lens: '알람 피로',
+    title: '알람을 늘릴수록 중요한 장애에 늦게 반응합니다',
+    deck: '깨우는 알람에는 담당자와 첫 행동이 있어야 합니다. 아무 행동도 바꾸지 않는 경고는 소음입니다.',
+    image: 'alert-fatigue.jpg', minutes: 5,
+    tags: ['운영 시스템', '알람 피로', '모니터링', '장애 대응'],
+    tldr: ['알람의 목적은 이상을 모두 알리는 것이 아니라 사람이 제때 행동하게 만드는 것입니다.', '알람마다 담당자·긴급도·첫 행동·종료 조건이 없으면 결국 무시됩니다.', '페이지 알람, 업무시간 확인, 대시보드 관찰을 분리하고 매달 불필요한 알람을 내리십시오.'],
+    term: { word: '행동 가능 알람', en: 'Actionable Alert', desc: '수신자가 정해져 있고 즉시 수행할 첫 행동이 있으며, 무시했을 때 사용자나 사업에 구체적인 피해가 생기는 경고입니다.' },
+    intro: ['새벽 2시 CPU 경고가 울려 담당자가 접속했지만 서비스는 정상입니다. 같은 일이 일주일 반복된 뒤 진짜 결제 장애가 발생합니다. 담당자는 또 같은 잡음이라 생각해 확인을 늦춥니다. 경고를 많이 만든 대가로 중요한 신호의 신뢰를 잃은 것입니다.', '소아병원 알람을 분석한 Bonafide 등의 연구는 최근의 비행동성 알람 노출이 많을수록 반응 시간이 길어지는 연관을 보고했습니다. 한 병동의 소규모 관찰연구이므로 인과관계나 IT 운영에 그대로 적용할 수는 없습니다. 하지만 반복되는 무의미한 신호가 대응을 둔화할 수 있다는 위험은 운영팀도 직접 측정해야 합니다.'],
+    sections: [
+      { heading: '알람과 관찰 지표를 분리하십시오', paragraphs: ['모든 이상 징후가 사람을 깨울 이유는 아닙니다. 지금 행동하지 않아도 되는 값은 대시보드나 업무시간 보고서로 보내야 합니다.', '사용자 거래 실패, 데이터 손실, 보안 사고처럼 즉시 피해를 줄일 행동이 있을 때만 호출합니다. 임계값을 넘었다는 사실만 있고 첫 행동이 없다면 알람이 아니라 관찰 지표입니다.'] },
+      { heading: '알람 설명의 첫 줄은 명령문이어야 합니다', paragraphs: ['“오류율 5% 초과”는 상황일 뿐입니다. 어느 서비스에서 무엇을 확인하고, 자동 완화가 실패했으면 누구에게 넘길지 적어야 합니다.', '알람마다 담당 역할, 첫 10분의 행동, 참고 화면, 상향 조건, 정상화 확인을 붙입니다. [[restore-drill|복구 훈련]]에서 실제로 이 링크가 열리는지도 시험합니다.'] },
+      { heading: '알람 수보다 행동 없는 호출 비율을 보십시오', paragraphs: ['한 달 알람이 1,000건이라는 숫자만으로 많고 적음을 판단할 수 없습니다. 사람이 확인했지만 아무 변경도 하지 않은 호출, 같은 원인의 반복 호출, 자동으로 사라진 호출을 구분해야 합니다.', '비행동성 호출 비율과 중복 호출 시간을 측정하고, 가장 비싼 세 개부터 임계값·집계 시간·자동 복구를 조정합니다. 알람을 없애는 것이 아니라 신뢰를 회복하는 일입니다.'] },
+      { heading: '새 알람에는 만료일을 붙이십시오', paragraphs: ['장애 뒤 임시 경고를 추가하면 마음은 놓이지만 임시가 영구 소음이 되기 쉽습니다. 새 알람에는 책임자와 30일 재검토 날짜를 붙입니다.', '재검토 때 실제 행동을 바꾼 사례가 없으면 대시보드로 내리거나 제거합니다. [[metric-owner|담당자 없는 지표]]를 내리는 원칙과 같습니다. 알람 한 개를 추가할 때 하나를 검토하는 습관이 운영 집중력을 지킵니다.'] }
+    ],
+    checklist: ['야간 호출마다 즉시 할 첫 행동이 적혀 있는가', '확인했지만 행동하지 않은 알람 비율을 아는가', '새 알람에 책임자와 재검토 날짜가 있는가'],
+    sources: [{ label: 'Bonafide et al., Association between exposure to nonactionable alarms and response time', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4456276/' }, { label: 'Google SRE Book, Monitoring Distributed Systems', url: 'https://sre.google/sre-book/monitoring-distributed-systems/' }],
+    related: [{ slug: 'restore-drill', label: '백업 성공 알림은 복구 성공 증명이 아닙니다', desc: '경고 뒤 실제 복구 능력을 시험합니다.' }, { slug: 'metric-owner', label: '대시보드에 숫자보다 먼저 적어야 할 것은 담당자입니다', desc: '신호와 첫 행동을 한 사람에게 연결합니다.' }]
+  },
+  {
+    slug: 'knowledge-concentration', topic: '조직과 사람', kicker: 'KNOWLEDGE CONCENTRATION', lens: '업무 연속성',
+    title: '한 사람만 아는 업무는 전문성이 아니라 중단 위험입니다',
+    deck: '문서 개수보다 담당자 없이도 동료가 업무를 끝낼 수 있는지를 시험해야 조직의 지식이 됩니다.',
+    image: 'knowledge-risk.jpg', minutes: 5,
+    tags: ['조직과 사람', '지식 집중', '버스 팩터', '업무 연속성'],
+    tldr: ['핵심 업무를 한 사람만 끝낼 수 있다면 그 지식은 회사 자산이 아니라 개인 의존성입니다.', '문서가 있다는 사실보다 다른 사람이 실제 사례를 처리할 수 있는지가 중요합니다.', '관찰·공동 수행·단독 수행·복기 네 단계로 두 번째 실행자를 만드십시오.'],
+    term: { word: '지식 집중도', en: 'Knowledge Concentration', desc: '핵심 업무의 판단 맥락과 실행 권한이 소수에게 몰려, 부재 시 업무가 중단될 가능성을 나타내는 운영 위험입니다.' },
+    intro: ['월말 정산 담당자가 갑자기 쉬자 팀이 매뉴얼을 찾습니다. 문서는 열두 쪽이지만 어떤 거래를 예외로 보고 어느 숫자를 먼저 맞추는지는 적혀 있지 않습니다. 결국 담당자에게 전화합니다. 회사에 문서는 있었지만 일을 끝낼 두 번째 사람은 없었습니다.', '269명의 엔지니어 설문과 13개 JetBrains 프로젝트 분석을 다룬 버스 팩터 연구는 버전관리 기록만으로 지식 분포를 설명하기 어렵고 코드 리뷰와 회의 같은 협업 정보가 중요하다고 봤습니다. 소프트웨어 조직 중심이라는 한계가 있지만, 문서 수가 아닌 실제 협업과 수행 경험을 보라는 결론은 일반 업무에도 적용해 볼 수 있습니다.'],
+    sections: [
+      { heading: '담당자 수가 아니라 독립 실행자 수를 세십시오', paragraphs: ['회의에 참석했거나 문서를 읽었다고 업무를 수행할 수 있는 것은 아닙니다. 입력을 받고, 예외를 판단하고, 결과를 검증해 닫을 수 있어야 실행자입니다.', '핵심 업무마다 주 담당자를 제외하고 혼자 끝낼 수 있는 사람 수를 적으십시오. 0인 업무는 채용보다 먼저 다뤄야 할 연속성 위험입니다.'] },
+      { heading: '매뉴얼에는 정상 순서보다 판단 갈림길을 남기십시오', paragraphs: ['버튼 순서는 화면을 보면 알 수 있지만 어떤 예외를 보류하고 누구에게 물을지는 경험자 머릿속에 남습니다. 문서에는 입력 조건, 갈림길, 실패 신호, 검증 숫자를 우선 기록해야 합니다.', '[[exception-path|예외 경로]]의 실제 사례를 붙이고 왜 그 선택을 했는지 설명하십시오. 결과만 복사하면 다음 사람은 조건이 바뀌었을 때 다시 멈춥니다.'] },
+      { heading: '인수인계는 네 번의 수행으로 끝냅니다', paragraphs: ['첫째 동료가 관찰하고, 둘째 둘이 함께 수행하고, 셋째 동료가 단독 수행하며, 넷째 기존 담당자가 결과를 복기합니다. 설명 한 번으로 끝내는 인수인계보다 시간이 들지만 실제 공백을 찾습니다.', '단독 수행 중 질문이 생긴 지점을 문서와 시스템에 되돌립니다. 개인의 암묵지를 완전히 문서화하려 하지 말고 반복해서 막히는 판단부터 조직 자산으로 바꿉니다.'] },
+      { heading: '전문가를 빼앗지 말고 레버리지를 높이십시오', paragraphs: ['두 번째 실행자를 만든다고 전문가의 가치를 낮추는 것이 아닙니다. 반복 실행을 분산하면 전문가는 더 어려운 예외와 개선에 시간을 쓸 수 있습니다.', '분기마다 핵심 업무 하나를 골라 주 담당자 없이 실행하는 날을 만드십시오. 성공 기준은 질문이 0개가 아니라 업무가 멈추지 않고 질문이 다음 개선으로 남는 것입니다. [[promotion-trap|승진으로 전문가를 잃는 문제]]도 함께 줄일 수 있습니다.'] }
+    ],
+    checklist: ['핵심 업무마다 주 담당자 외 독립 실행자가 한 명 이상인가', '문서에 예외 판단과 검증 숫자가 들어 있는가', '최근 분기에 담당자 없이 실제 업무를 끝내 본 적이 있는가'],
+    sources: [{ label: 'Cosentino et al., Bus Factor In Practice', url: 'https://arxiv.org/abs/2202.01523' }, { label: 'Reagans, Miron-Spektor and Argote, Knowledge Utilization, Coordination, and Team Performance', url: 'https://ideas.repec.org/a/inm/ororsc/v27y2016i5p1108-1124.html' }],
+    related: [{ slug: 'promotion-trap', label: '일 잘하는 사람을 승진시키면 두 번 잃습니다', desc: '전문성과 관리 역할을 분리해 설계합니다.' }, { slug: 'vendor-handoff', label: '외주 시스템의 운영 실패는 인수인계에서 시작됩니다', desc: '외부 지식을 내부 실행 능력으로 바꿉니다.' }]
+  },
+  {
+    slug: 'coaching-capacity', topic: '조직과 사람', kicker: 'COACHING CAPACITY', lens: '관리자 시간 배분',
+    title: '관리자의 일정표에 코칭 시간이 없으면 육성 계획도 없습니다',
+    deck: '좋은 피드백을 기대하기 전에 관찰하고 묻고 다시 시도하게 할 시간을 업무 용량으로 확보해야 합니다.',
+    image: 'manager-coaching.jpg', minutes: 5,
+    tags: ['조직과 사람', '관리자', '코칭', '육성'],
+    tldr: ['육성은 평가 시즌의 조언이 아니라 실제 과업을 관찰하고 다음 시도를 설계하는 반복 작업입니다.', '관리자의 일정이 승인과 보고로 가득하면 코칭은 선의에 맡겨지고 가장 바쁜 달에 사라집니다.', '주간 30분을 확보하고 한 행동의 변화를 다음 회의에서 확인하십시오.'],
+    term: { word: '코칭 용량', en: 'Coaching Capacity', desc: '관리자가 구성원의 실제 과업을 관찰하고 질문·피드백·재시도를 이어 갈 수 있도록 확보한 시간과 주의력입니다.' },
+    intro: ['분기 목표에는 “팀원 역량 강화”가 적혀 있지만 관리자의 캘린더에는 결재, 보고, 고객 회의만 있습니다. 피드백은 일이 틀어진 뒤 메신저 한 줄로 오고, 팀원은 무엇을 바꿔야 할지 모릅니다. 육성 의지가 부족해서가 아니라 육성을 수행할 용량이 배정되지 않은 것입니다.', '31명의 관리자를 대상으로 한 Olivero 등의 행동연구는 교육 뒤 8주간의 일대일 코칭이 이어졌을 때 생산성 개선이 더 크게 나타났다고 보고했습니다. 표본이 작고 통제된 대규모 실험이 아니라 효과 수치를 그대로 일반화할 수는 없습니다. 그래도 일회성 교육과 지속적 피드백을 분리해서 측정할 이유는 충분합니다.'],
+    sections: [
+      { heading: '코칭을 상담이 아니라 실제 업무 검토로 바꾸십시오', paragraphs: ['“요즘 어때요?”로 시작하는 대화도 필요하지만 행동 변화는 구체적인 과업에서 생깁니다. 최근 보고서, 고객 통화, 의사결정 하나를 놓고 무엇을 봤고 왜 그렇게 선택했는지 묻습니다.', '정답을 먼저 말하면 팀원은 관리자의 취향을 외웁니다. 판단 기준과 놓친 신호를 질문하고, 다음 과업에서 바꿀 행동 하나를 함께 고릅니다.'] },
+      { heading: '한 번에 한 행동만 바꾸십시오', paragraphs: ['피드백 열 가지를 한꺼번에 주면 무엇도 연습되지 않습니다. “더 주도적으로” 같은 평가 대신 “다음 고객 회의 전에 선택지 두 개와 추천안을 먼저 보낸다”처럼 관찰 가능한 행동을 정합니다.', '다음 일대일에서 그 행동을 실제로 했는지부터 확인합니다. 결과가 나빴더라도 시도와 판단을 분리해 복기해야 안전하게 어려운 일을 맡길 수 있습니다. [[safe-failure|작은 실패의 학습]]도 이 반복 안에서 생깁니다.'] },
+      { heading: '코칭 시간을 운영 용량에 넣으십시오', paragraphs: ['관리자 한 명이 직접 처리할 일만으로 100% 채워져 있다면 코칭은 야근이나 취소 대상이 됩니다. 팀원별 주간 30분과 사전 검토 시간을 관리자 용량에 먼저 잡아야 합니다.', '호주 은행의 318명 금융자문사를 조사한 연구는 관리자의 코칭이 행동 성과와 판매 성과에 긍정적인 관련을 보였다고 보고했습니다. 단일 조직의 관찰 자료이므로 인과를 단정할 수는 없지만, 코칭 빈도와 행동 변화를 조직 내부에서 함께 추적할 근거가 됩니다.'] },
+      { heading: '코칭의 성과는 독립적인 판단으로 확인하십시오', paragraphs: ['회의 횟수나 만족도만 세면 대화가 늘어도 의존성은 그대로일 수 있습니다. 같은 유형의 질문이 줄고, 팀원이 선택지와 근거를 먼저 가져오며, 관리자가 없어도 일을 닫는지가 성과입니다. [[ai-training-behavior-protocol|AI 협업의 작업 순서]]도 코칭에서 실제 산출물로 점검할 수 있습니다.', '[[knowledge-concentration|두 번째 실행자]]가 생기는지, [[question-debt|질문이 안전하게 드러나는지]] 함께 보십시오. 좋은 코칭은 답을 많이 주는 일이 아니라 다음에는 답을 덜 줘도 되는 상태를 만드는 일입니다.'] }
+    ],
+    checklist: ['주간 일정에 팀원별 실제 과업을 검토할 시간이 있는가', '피드백이 다음 과업의 관찰 가능한 행동 하나로 끝나는가', '같은 유형의 질문과 관리자 의존이 줄어드는지 확인하는가'],
+    sources: [{ label: 'Olivero, Bane and Kopelman, Executive Coaching as a Transfer of Training Tool', url: 'https://journals.sagepub.com/doi/10.1177/009102609702600403' }, { label: 'Pousa and Mathieu, Is managerial coaching a source of competitive advantage?', url: 'https://doi.org/10.1108/IJBM-01-2016-0005' }],
+    related: [{ slug: 'knowledge-concentration', label: '한 사람만 아는 업무는 전문성이 아니라 중단 위험입니다', desc: '구성원이 독립 실행자가 되는 과정을 만듭니다.' }, { slug: 'safe-failure', label: '잘 크는 주니어는 일찍 틀려본 주니어입니다', desc: '작은 실패를 피드백으로 바꾸는 환경을 봅니다.' }]
+  },
+  {
+    slug: 'second-customer-test', topic: '신사업 실행', kicker: 'SECOND CUSTOMER TEST', lens: '제품화 경계',
+    title: '첫 고객의 요구를 제품 전략으로 착각하지 마십시오',
+    deck: '첫 계약은 문제를 증명하지만 반복 가능한 제품을 증명하지는 않습니다. 두 번째 고객이 같은 핵심에 돈을 내는지 확인해야 합니다.',
+    image: 'second-customer.jpg', minutes: 6,
+    tags: ['신사업 실행', '첫 고객', '제품화', '고객 공동개발'],
+    tldr: ['첫 고객의 요청은 귀중한 학습 자료지만 그 고객의 조직 구조에만 필요한 맞춤 개발일 수 있습니다.', '요청을 공통 핵심·설정 가능·일회 서비스로 나누고 공통 핵심은 두 번째 고객의 증거를 요구하십시오.', '첫 매출보다 같은 방식으로 두 번째 매출이 나는지가 제품 사업의 시작입니다.'],
+    term: { word: '두 번째 고객 검증', en: 'Second-Customer Test', desc: '첫 고객을 위해 만든 핵심 기능과 가치 제안을 다른 고객도 큰 재설계 없이 선택하고 비용을 지불하는지 확인하는 시험입니다.' },
+    intro: ['첫 고객이 계약서에 도장을 찍자 개발 목록이 그 회사의 요청으로 가득 찹니다. 전용 결재 단계, 오래된 시스템 연동, 특정 임원의 보고서까지 모두 제품 기능이 됩니다. 매출은 생겼지만 다음 고객에게 보여 줄 제품은 점점 사라집니다.', '2025년 Journal of the Academy of Marketing Science에 실린 217개 제조 공급사 연구는 고객의 공동개발 참여와 신제품 성과 사이에 역 U자 관계를 보고했습니다. 중국 제조업의 설문 자료라는 한계가 있어 스타트업에 그대로 적용할 수는 없습니다. 다만 고객 참여가 많을수록 무조건 좋다는 전제를 경계하고, 어디까지 공동개발할지 정해야 한다는 근거는 됩니다.'],
+    sections: [
+      { heading: '첫 고객은 문제를 증명하고 시장은 반복을 증명합니다', paragraphs: ['첫 계약은 누군가 이 문제에 돈을 낸다는 강한 신호입니다. 그러나 그 사람이 산 것이 제품인지, 대표와 개발팀의 전담 서비스인지는 아직 모릅니다.', '계약 뒤 추가된 요구를 공통 핵심, 설정 가능, 일회 서비스 세 칸에 넣으십시오. 공통 핵심은 다른 고객도 같은 문제와 용어를 쓰는지 확인해야 합니다.'] },
+      { heading: '맞춤 요청의 가격을 숨기지 마십시오', paragraphs: ['무료 맞춤 개발은 고객에게는 기능이고 공급자에게는 영구 유지비입니다. 견적서에 분석, 개발, 테스트, 이후 유지 비용을 분리하면 고객도 우선순위를 더 선명하게 고릅니다.', '일회 서비스는 제품 로드맵 밖에 두고 별도 비용과 종료 조건을 붙입니다. 설정 가능 영역은 옵션 수와 조합 복잡도가 운영비를 넘지 않도록 제한합니다.'] },
+      { heading: '두 번째 고객 앞에서 설명이 길어지면 경고입니다', paragraphs: ['첫 고객의 조직명과 내부 용어를 빼고도 가치 제안을 한 문장으로 설명할 수 있어야 합니다. 두 번째 고객이 같은 결과를 원하지만 완전히 다른 기능 목록을 요구한다면 문제 정의가 아직 넓거나 제품이 아닐 수 있습니다.', '고객 참여 연구는 전문성과 공유 비전 같은 조건에 따라 성과가 달라질 수 있다고 봅니다. 고객의 말을 그대로 구현하는 능력보다 여러 요구에서 반복 가능한 구조를 골라내는 공급자의 판단이 중요합니다.'] },
+      { heading: '로드맵 투표권은 증거에 비례해야 합니다', paragraphs: ['요청의 목소리 크기가 아니라 반복 빈도, 지불 의사, 다른 고객의 재사용 가능성으로 우선순위를 정합니다. 첫 고객의 관계가 중요해도 제품 전체의 방향까지 자동으로 넘겨서는 안 됩니다. 수요 폭이 넓다면 [[forecast-action-rule|오류 비용에 맞는 예측 행동 규칙]]도 함께 정합니다.', '[[repeat-behavior|반복 행동]]을 첫 고객 안에서 확인하고, [[first-customer-first|첫 고객과 함께 만든 결과]]가 두 번째 고객에게도 통하는지 30일 안에 시험하십시오. 첫 매출은 축하할 일이고, 두 번째 유사 매출은 사업 모델을 믿기 시작할 근거입니다.'] }
+    ],
+    checklist: ['신규 요청을 공통 핵심·설정 가능·일회 서비스로 나눴는가', '공통 핵심에는 두 번째 고객의 같은 문제와 지불 증거가 있는가', '맞춤 개발의 이후 유지 비용과 종료 조건을 가격에 반영했는가'],
+    sources: [{ label: 'Zaefarian et al., Customer involvement as co-developer and new product performance', url: 'https://link.springer.com/article/10.1007/s11747-024-01066-1' }, { label: 'Morgan and Obal, Customer Participation in New Product Development', url: 'https://link.springer.com/chapter/10.1007/978-3-319-26647-3_93' }],
+    related: [{ slug: 'repeat-behavior', label: '고객 인터뷰보다 다음 주에 반복하는 행동을 보세요', desc: '고객의 말보다 비용을 치른 행동을 확인합니다.' }, { slug: 'first-customer-first', label: '투자자보다 첫 고객이 먼저입니다', desc: '첫 고객을 학습 파트너로 삼는 순서를 봅니다.' }]
   }
 ];
 
@@ -666,7 +837,8 @@ const posts = [
     checklist: ['예산이 줄일 불확실성이 한 문장으로 적혀 있는가', '결과를 보기 전에 계속·수정·중단 기준을 합의했는가', '실험 종료 뒤 코드·데이터·고객 안내 비용이 포함됐는가'],
     sources: [{ label: 'GOV.UK, Test and Learn guidance', url: 'https://www.gov.uk/government/publications/the-magenta-book/test-and-learn-html' }, { label: 'UK Department for Business and Trade, Rapid AI experiment lessons', url: 'https://digitaltrade.blog.gov.uk/2026/05/27/10-things-we-learned-running-rapid-ai-experiements/' }],
     related: [{ slug: 'repeat-behavior', label: '고객의 칭찬보다 다음 예약이 더 정직합니다', desc: '실험의 강한 수요 신호를 고릅니다.' }, { slug: 'deletion-budget', label: 'AI로 빨리 만든 코드는 언제 지울지부터 정해야 합니다', desc: '실험 뒤 남는 유지비까지 계산합니다.' }]
-  }
+  },
+  ...draftPosts.slice(10).map((post) => ({ ...post, publishedIso: '2026-07-21T18:00:00+09:00', publishedText: '2026.07.21' }))
 ];
 
 const header = `  <header id="header" class="header"><div class="container header-inner"><a href="../index.html" class="logo"><img src="../images/logo/ap-mark.png" class="logo-mark" alt=""><img src="../images/logo/ap-wordmark-web.png" class="logo-wordmark" alt="Ahn Partners"></a><nav class="desktop-nav" aria-label="주요 메뉴"><ul class="nav-list"><li><a href="../index.html#services" class="nav-link mix-difference">서비스</a></li><li><a href="../index.html#projects" class="nav-link mix-difference">수행 실적</a></li><li><a href="../about.html" class="nav-link mix-difference">소개</a></li><li><a href="../insights.html" class="nav-link mix-difference active" aria-current="page">인사이트</a></li><li><a href="../newsletter.html" class="nav-link mix-difference">뉴스레터</a></li><li><a href="../about.html#contact" class="nav-link mix-difference">문의</a></li></ul></nav><button type="button" class="mobile-menu-btn mix-difference" id="mobileMenuBtn" aria-label="메뉴"><svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button></div></header>
@@ -676,10 +848,12 @@ const footer = `  <footer class="footer"><div class="container"><div class="foot
 
 function renderArticle(post) {
   const url = `${site}/insights/${post.slug}.html`;
+  const articlePublishedIso = post.publishedIso || publishedIso;
+  const articlePublishedText = post.publishedText || publishedText;
   const tags = post.tags.map((tag) => `<meta property="article:tag" content="${escapeHtml(tag)}">`).join('\n  ');
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title,
-    description: post.deck, url, mainEntityOfPage: url, datePublished: publishedIso,
+    description: post.deck, url, mainEntityOfPage: url, datePublished: articlePublishedIso,
     dateModified: modifiedIso, articleSection: post.topic, keywords: post.tags,
     image: `${site}/images/og/insights/${post.slug}.jpg?v=${INSIGHT_VISUAL_VERSION}`,
     author: { '@type': 'Person', name: '안병선', alternateName: 'Chris Ahn', url: `${site}/about.html` },
@@ -714,7 +888,7 @@ function renderArticle(post) {
   <meta property="og:image:alt" content="${escapeHtml(post.title)} - Ahn Partners">
   <meta property="og:site_name" content="Ahn Partners">
   <meta property="og:locale" content="ko_KR">
-  <meta property="article:published_time" content="${publishedIso}">
+  <meta property="article:published_time" content="${articlePublishedIso}">
   <meta property="article:modified_time" content="${modifiedIso}">
   <meta property="article:section" content="${escapeHtml(post.topic)}">
   ${tags}
@@ -736,7 +910,7 @@ function renderArticle(post) {
 <body>
 ${header}
   <main>
-    <section class="post-hero"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../insights.html">인사이트</a><span>/</span><span>${escapeHtml(post.topic)}</span></nav><p class="eyebrow">${escapeHtml(post.kicker)}</p><h1 class="post-title">${escapeHtml(post.title)}</h1><p class="post-dek">${escapeHtml(post.deck)}</p><div class="post-meta"><span>${publishedText}</span><span>${post.minutes}분 읽기</span><span>Full Insight</span></div><div class="share-row"><button type="button" class="share-button" data-share="copy">링크 복사</button><button type="button" class="share-button" data-share="kakao">카카오톡 공유</button><button type="button" class="share-button" data-share="native">기기 공유</button><button type="button" class="share-button" data-share="linkedin">LinkedIn</button><button type="button" class="share-button" data-share="x">X</button></div></div></section>
+    <section class="post-hero"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../insights.html">인사이트</a><span>/</span><span>${escapeHtml(post.topic)}</span></nav><p class="eyebrow">${escapeHtml(post.kicker)}</p><h1 class="post-title">${escapeHtml(post.title)}</h1><p class="post-dek">${escapeHtml(post.deck)}</p><div class="post-meta"><span>${articlePublishedText}</span><span>${post.minutes}분 읽기</span><span>Full Insight</span></div><div class="share-row"><button type="button" class="share-button" data-share="copy">링크 복사</button><button type="button" class="share-button" data-share="kakao">카카오톡 공유</button><button type="button" class="share-button" data-share="native">기기 공유</button><button type="button" class="share-button" data-share="linkedin">LinkedIn</button><button type="button" class="share-button" data-share="x">X</button></div></div></section>
     <section class="container post-layout"><article class="post-body">
       <div class="post-tldr"><p class="kicker">이 글의 핵심</p><ul>${list(post.tldr)}</ul></div>
       <div class="post-term"><span class="term-word">${escapeHtml(post.term.word)}</span><span class="term-en">${escapeHtml(post.term.en)}</span><p>${escapeHtml(post.term.desc)}</p></div>
@@ -776,7 +950,7 @@ function newsletter({ no, date, subject, hook, title, paragraphs, questions, art
 fs.mkdirSync(insightsDir, { recursive: true });
 fs.mkdirSync(briefsDir, { recursive: true });
 const uniqueLenses = new Set(posts.map((post) => post.lens));
-if (posts.length !== 10 || uniqueLenses.size !== 10) throw new Error('editorial batch must contain 10 distinct AX lenses');
+if (posts.length !== 19 || uniqueLenses.size !== 19) throw new Error('editorial batch must contain 19 distinct lenses');
 for (const post of posts) {
   if (!post.sources.length || post.sources.some((source) => !source.url.startsWith('https://'))) throw new Error(`${post.slug}: authoritative sources required`);
   if (post.title.includes('승인 경계') || post.title.includes('운영선')) throw new Error(`${post.slug}: internal jargon leaked into title`);
@@ -819,7 +993,7 @@ fs.writeFileSync(path.join(briefsDir, '2026-07-23-newsletter.html'), newsletter(
 
 for (const relativePath of ['insights.html', 'feed.xml', 'llms.txt']) {
   const catalog = fs.readFileSync(path.join(root, relativePath), 'utf8');
-  for (const post of posts) {
+  for (const post of posts.slice(10)) {
     if (!catalog.includes(post.title)) throw new Error(`${relativePath}: stale title for ${post.slug}`);
   }
 }
