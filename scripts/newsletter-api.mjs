@@ -1,4 +1,5 @@
 import { setTimeout as delay } from 'node:timers/promises';
+import { createSign } from 'node:crypto';
 
 const RESEND_API = 'https://api.resend.com';
 const GA4_DATA_API = 'https://analyticsdata.googleapis.com/v1beta';
@@ -103,6 +104,45 @@ export async function refreshAuthorizedUserAccessToken(credentials, fetchImpl = 
     body: body.toString(),
   });
   const result = await readJson(response, 'Google OAuth token refresh');
+  if (!result.access_token) throw new Error('Google OAuth response did not include access_token');
+  return result.access_token;
+}
+
+function base64Url(value) {
+  return Buffer.from(value).toString('base64url');
+}
+
+export async function createServiceAccountAccessToken(
+  credentials,
+  scopes,
+  fetchImpl = fetch,
+) {
+  const now = Math.floor(Date.now() / 1000);
+  const header = base64Url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }));
+  const claims = base64Url(
+    JSON.stringify({
+      iss: credentials.client_email,
+      scope: scopes.join(' '),
+      aud: credentials.token_uri,
+      iat: now,
+      exp: now + 3600,
+    }),
+  );
+  const unsigned = `${header}.${claims}`;
+  const signer = createSign('RSA-SHA256');
+  signer.update(unsigned);
+  signer.end();
+  const assertion = `${unsigned}.${signer.sign(credentials.private_key, 'base64url')}`;
+  const body = new URLSearchParams({
+    grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+    assertion,
+  });
+  const response = await fetchImpl(credentials.token_uri, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString(),
+  });
+  const result = await readJson(response, 'Google service account token exchange');
   if (!result.access_token) throw new Error('Google OAuth response did not include access_token');
   return result.access_token;
 }

@@ -1,5 +1,7 @@
 {
   "ga4PropertyId": "360327884",
+  "netlifyNewsletterFormId": "6a491ec57f29150008fdd2ea",
+  "netlifyContactFormId": "699d731a6d4eee00085507e7",
   "audiences": {
     "subscribers": "6b75513b-6845-4eed-818f-d02caea5c20f",
     "gmail": "d08db842-4a4c-459a-bba6-397d03b93ab3"

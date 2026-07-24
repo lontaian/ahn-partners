@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { generateKeyPairSync } from 'node:crypto';
 import test from 'node:test';
 
 async function loadSubject() {
@@ -222,6 +223,7 @@ test('renderMarkdownReport exposes Resend results and GA4 collection status', as
       status: 'ok',
       replies: [],
       formSubmissions: [{ email: 'reader@example.com', receivedAt: '2026-07-24' }],
+      inquiries: [{ receivedAt: '2026-07-24' }],
     },
     overall: {
       generated: 5,
@@ -239,6 +241,7 @@ test('renderMarkdownReport exposes Resend results and GA4 collection status', as
   assert.match(markdown, /GA4.*ok/);
   assert.match(markdown, /newsletter_arrival/);
   assert.match(markdown, /폼 신청.*1/);
+  assert.match(markdown, /사이트 문의.*1/);
   assert.match(markdown, /전체 퍼널/);
   assert.match(markdown, /사이트 세션.*3/);
 });
@@ -263,11 +266,50 @@ test('summarizeGmailFeedback separates reader replies from site form conversions
         receivedAt: '2026-07-24T02:00:00Z',
       },
     ],
+    inquiries: [{ receivedAt: '2026-07-24T03:00:00Z' }],
   });
 
   assert.equal(feedback.replyCount, 1);
   assert.equal(feedback.formSubmissionCount, 1);
+  assert.equal(feedback.inquiryCount, 1);
   assert.equal(feedback.replies[0].snippet, '좋은 글 감사합니다.');
+});
+
+test('normalizeNetlifySubmissions keeps attribution without private telemetry', async () => {
+  const { normalizeNetlifySubmissions } = await loadSubject();
+  assert.equal(typeof normalizeNetlifySubmissions, 'function');
+
+  const submissions = normalizeNetlifySubmissions(
+    [
+      {
+        id: 'submission-1',
+        created_at: '2026-07-23T23:25:08.617Z',
+        data: {
+          email: 'reader@example.com',
+          name: 'Reader',
+          referrer:
+            'https://ahn-partners.net/newsletter?utm_source=brief&utm_medium=email&utm_campaign=no004',
+          ip: '127.0.0.1',
+          user_agent: 'private',
+        },
+      },
+    ],
+    '2026-07-21',
+  );
+
+  assert.deepEqual(submissions, [
+    {
+      id: 'submission-1',
+      email: 'reader@example.com',
+      name: 'Reader',
+      receivedAt: '2026-07-23T23:25:08.617Z',
+      referrer:
+        'https://ahn-partners.net/newsletter?utm_source=brief&utm_medium=email&utm_campaign=no004',
+      campaign: 'no004',
+      source: 'brief',
+      medium: 'email',
+    },
+  ]);
 });
 
 test('GA loader declares the newsletter journey events used by reports', () => {
@@ -394,6 +436,31 @@ test('refreshAuthorizedUserAccessToken exchanges an ADC refresh token', async ()
   assert.equal(token, 'access-token');
   assert.equal(request.url, 'https://oauth2.googleapis.com/token');
   assert.match(request.options.body, /grant_type=refresh_token/);
+});
+
+test('createServiceAccountAccessToken exchanges a signed JWT', async () => {
+  const { createServiceAccountAccessToken } = await loadApiSubject();
+  assert.equal(typeof createServiceAccountAccessToken, 'function');
+
+  const { privateKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
+  let request;
+  const fetchImpl = async (url, options) => {
+    request = { url, options };
+    return { ok: true, json: async () => ({ access_token: 'service-token' }) };
+  };
+  const token = await createServiceAccountAccessToken(
+    {
+      client_email: 'analytics@example.iam.gserviceaccount.com',
+      private_key: privateKey.export({ type: 'pkcs8', format: 'pem' }),
+      token_uri: 'https://oauth2.googleapis.com/token',
+    },
+    ['https://www.googleapis.com/auth/analytics.readonly'],
+    fetchImpl,
+  );
+
+  assert.equal(token, 'service-token');
+  assert.equal(request.url, 'https://oauth2.googleapis.com/token');
+  assert.match(request.options.body, /grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer/);
 });
 
 test('runGa4Reports calls the configured property for every request', async () => {

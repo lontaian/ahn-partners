@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import {
+  createServiceAccountAccessToken,
   fetchAllResendEmails,
   fetchGmailMessages,
   refreshAuthorizedUserAccessToken,
@@ -11,6 +13,7 @@ import {
 import {
   buildGa4ReportRequests,
   parseGa4Report,
+  normalizeNetlifySubmissions,
   renderMarkdownReport,
   summarizeGmailFeedback,
   summarizeResendCampaigns,
@@ -42,6 +45,44 @@ const campaigns = summarizeResendCampaigns(emails, subjects).map((summary) => {
   return { campaign: metadata.campaign, date: metadata.date, ...summary };
 });
 
+const netlifyCli = path.join(
+  process.env.APPDATA ?? '',
+  'npm',
+  'node_modules',
+  'netlify-cli',
+  'bin',
+  'run.js',
+);
+let formSubmissions = [];
+let inquiries = [];
+let netlifyError = null;
+try {
+  const fetchSubmissions = (formId) =>
+    JSON.parse(
+      execFileSync(
+        process.execPath,
+        [
+          netlifyCli,
+          'api',
+          'listFormSubmissions',
+          '--data',
+          JSON.stringify({ form_id: formId }),
+        ],
+        { cwd: root, encoding: 'utf8', windowsHide: true },
+      ),
+    );
+  formSubmissions = normalizeNetlifySubmissions(
+    fetchSubmissions(config.netlifyNewsletterFormId),
+    startDate,
+  );
+  inquiries = normalizeNetlifySubmissions(
+    fetchSubmissions(config.netlifyContactFormId),
+    startDate,
+  );
+} catch (error) {
+  netlifyError = error instanceof Error ? error.message : String(error);
+}
+
 let accessToken = null;
 let googleError = null;
 try {
@@ -49,16 +90,23 @@ try {
     process.env.GOOGLE_APPLICATION_CREDENTIALS ||
     path.join(os.homedir(), 'AppData', 'Roaming', 'gcloud', 'application_default_credentials.json');
   const credentials = JSON.parse(fs.readFileSync(adcPath, 'utf8'));
-  accessToken = await refreshAuthorizedUserAccessToken(credentials);
+  accessToken =
+    credentials.type === 'service_account'
+      ? await createServiceAccountAccessToken(
+          credentials,
+          ['https://www.googleapis.com/auth/analytics.readonly'],
+        )
+      : await refreshAuthorizedUserAccessToken(credentials);
 } catch (error) {
   googleError = error instanceof Error ? error.message : String(error);
 }
 
 let feedback = {
-  status: 'error',
-  error: googleError,
+  status: netlifyError ? 'error' : 'netlify-ok',
+  error: netlifyError,
   replies: [],
-  formSubmissions: [],
+  formSubmissions,
+  inquiries,
 };
 let ga4 = {
   status: 'error',
@@ -69,7 +117,7 @@ let ga4 = {
 };
 
 if (accessToken) {
-  try {
+  if (process.env.NEWSLETTER_GMAIL_API === '1') try {
     const replyBatches = await Promise.all(
       config.campaigns.map(async ({ campaign, subject, date }) => {
         const messages = await fetchGmailMessages({
@@ -79,21 +127,12 @@ if (accessToken) {
         return messages.map((message) => ({ campaign, ...message }));
       }),
     );
-    const formMessages = await fetchGmailMessages({
-      accessToken,
-      query: `in:anywhere after:${startDate.replaceAll('-', '/')} from:formresponses@netlify.com subject:"Form submission from newsletter form:"`,
-    });
-    const formSubmissions = formMessages.map((message) => ({
-      id: message.id,
-      email: message.snippet.match(/이메일 \*:\s*([^\s]+)/)?.[1] ?? '',
-      name: message.snippet.match(/이름:\s*(.*?)\s+Consent Newsletter:/)?.[1] ?? '',
-      receivedAt: message.receivedAt,
-    }));
     feedback = {
-      status: 'ok',
+      status: netlifyError ? 'gmail-ok-netlify-error' : 'ok',
       ...summarizeGmailFeedback({
         replies: replyBatches.flat(),
         formSubmissions,
+        inquiries,
       }),
     };
   } catch (error) {
@@ -134,6 +173,7 @@ const overall = {
   siteSessions: ga4.campaignRows.reduce((sum, item) => sum + (item.sessions ?? 0), 0),
   replies: feedback.replies.length,
   formSubmissions: feedback.formSubmissions.length,
+  inquiries: feedback.inquiries.length,
 };
 const report = {
   reportDate: kstDate,
@@ -178,4 +218,4 @@ console.log(`history=${historyPath}`);
 console.log(`resend_campaigns=${campaigns.length}`);
 console.log(`gmail_status=${feedback.status}`);
 console.log(`ga4_status=${ga4.status}`);
-if (feedback.status !== 'ok' || ga4.status !== 'ok') process.exitCode = 1;
+if (feedback.status === 'error' || ga4.status !== 'ok') process.exitCode = 1;

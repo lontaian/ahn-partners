@@ -7,7 +7,8 @@
 `brief-send.mjs`가 사이트 링크에 `utm_source=brief`, `utm_medium=email`, `utm_campaign=noNNN`을 붙인다. 발송 성공 시 `config/newsletter-analytics.json`에도 캠페인·발송일·제목을 자동 등록한다.
 
 - Resend: 생성, 유효 전달, 열람 이상, 클릭, 반송, 억제, 신고
-- Gmail: 제목으로 캠페인에 귀속한 직접 회신과 문의
+- Netlify: 뉴스레터 신청과 사이트 문의, 유입 referrer/UTM
+- Gmail: 제목으로 캠페인에 귀속한 직접 회신(선택 수집)
 - ahn-partners.net: 뉴스레터 유입, 랜딩 페이지, 내부 링크 이동, 인사이트 50%/90% 읽기, 문의 의향, 구독 제출·완료
 - GA4: 위 사이트 행동을 `sessionCampaignName=noNNN` 기준으로 묶어 호별 및 전체 집계
 
@@ -16,7 +17,7 @@
 - 수동 실행: `npm run newsletter:analytics`
 - 자동 실행: Windows 작업 스케줄러 `AhnPartners-Newsletter-Analytics-Daily`
 - 실행 시각: 매일 09:15 KST
-- 브라우저 조건: 없음. Resend API와 Google API를 직접 사용한다.
+- 브라우저 조건: 없음. Resend API, Netlify API, GA4 서비스 계정을 사용한다.
 - 네트워크가 없거나 API가 실패하면 작업은 실패 상태와 로그를 남기고 다음 예약에서 다시 시도한다.
 
 결과물은 Git에 포함되지 않는 `exports/newsletter-analytics/`에 쌓인다.

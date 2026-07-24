@@ -202,13 +202,50 @@ export function selectSafeBounceContacts(
     .sort((a, b) => a.email.localeCompare(b.email));
 }
 
-export function summarizeGmailFeedback({ replies = [], formSubmissions = [] }) {
+export function summarizeGmailFeedback({
+  replies = [],
+  formSubmissions = [],
+  inquiries = [],
+}) {
   return {
     replyCount: replies.length,
     formSubmissionCount: formSubmissions.length,
+    inquiryCount: inquiries.length,
     replies,
     formSubmissions,
+    inquiries,
   };
+}
+
+export function normalizeNetlifySubmissions(submissions, startDate) {
+  const start = new Date(`${startDate}T00:00:00Z`);
+  return submissions
+    .filter(({ created_at: createdAt }) => new Date(createdAt) >= start)
+    .map((submission) => {
+      const referrer = submission.data?.referrer ?? '';
+      let source = '';
+      let medium = '';
+      let campaign = '';
+      try {
+        const url = new URL(referrer);
+        source = url.searchParams.get('utm_source') ?? '';
+        medium = url.searchParams.get('utm_medium') ?? '';
+        campaign = url.searchParams.get('utm_campaign') ?? '';
+      } catch (_) {
+        // Empty or non-URL referrers are valid for direct visits.
+      }
+      return {
+        id: submission.id,
+        email: submission.data?.email ?? submission.email ?? '',
+        name: submission.data?.name ?? submission.name ?? '',
+        receivedAt: submission.created_at,
+        referrer,
+        campaign,
+        source,
+        medium,
+      };
+    })
+    .sort((a, b) => a.receivedAt.localeCompare(b.receivedAt));
 }
 
 export function renderMarkdownReport(report) {
@@ -228,6 +265,7 @@ export function renderMarkdownReport(report) {
     `- 사이트 세션: ${report.overall?.siteSessions ?? 0}`,
     `- 직접 회신/문의: ${report.overall?.replies ?? 0}`,
     `- 뉴스레터 폼 신청: ${report.overall?.formSubmissions ?? 0}`,
+    `- 사이트 문의: ${report.overall?.inquiries ?? 0}`,
     '',
     '## Resend 발송 성과',
     '',
@@ -251,6 +289,7 @@ export function renderMarkdownReport(report) {
     `- Gmail 수집 상태: ${feedback.status}`,
     `- 직접 회신/문의: ${feedback.replies?.length ?? 0}건`,
     `- 뉴스레터 폼 신청: ${feedback.formSubmissions?.length ?? 0}건`,
+    `- 사이트 문의: ${feedback.inquiries?.length ?? 0}건`,
   );
   for (const reply of feedback.replies ?? []) {
     lines.push(
