@@ -1,0 +1,19 @@
+{
+  "ga4PropertyId": "360327884",
+  "audiences": {
+    "subscribers": "6b75513b-6845-4eed-818f-d02caea5c20f",
+    "gmail": "d08db842-4a4c-459a-bba6-397d03b93ab3"
+  },
+  "campaigns": [
+    {
+      "campaign": "no003",
+      "date": "2026-07-21",
+      "subject": "AI는 샀는데 결재판은 그대로인 회사"
+    },
+    {
+      "campaign": "no004",
+      "date": "2026-07-23",
+      "subject": "회의록은 있는데 결정은 없는 회사"
+    }
+  ]
+}

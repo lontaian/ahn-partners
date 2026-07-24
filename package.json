@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --minify",
     "watch": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test tests/newsletter-analytics.test.mjs",
     "sync:hrs": "cp ../hydrogen/hrs-dash/deploy/index.html ./demos/hrs-dashboard.html && cp ../hydrogen/hrs-dash/deploy/pogok.html ./demos/pogok.html && if grep -q 'auth-gate.js' ./demos/hrs-dashboard.html ./demos/pogok.html; then echo 'ERROR: auth-gate leaked - is hrs-dash on public branch?' >&2; exit 1; fi && echo 'HRS demos synced OK (from hrs-dash public branch)'",
     "newsletter:export": "node scripts/export-newsletter-subscribers.mjs",
     "newsletter:sync-spread": "node scripts/sync-newsletter-to-spread.mjs",
@@ -18,6 +18,8 @@
     "newsletter:admin:status": "node scripts/newsletter-admin-control.mjs status",
     "newsletter:admin:stop": "node scripts/newsletter-admin-control.mjs stop",
     "newsletter:run": "node scripts/newsletter-run-once.mjs",
+    "newsletter:analytics": "node --env-file=.env scripts/newsletter-analytics.mjs",
+    "newsletter:bounces:check": "node --env-file=.env scripts/newsletter-remove-bounces.mjs",
     "newsletter:auth": "node scripts/check-newsletter-auth.mjs",
     "insights:visuals": "node scripts/gen-og-insights.mjs && node scripts/sync-insight-og-meta.mjs && node scripts/sync-insight-card-visuals.mjs && node scripts/check-insight-visuals.mjs"
   },

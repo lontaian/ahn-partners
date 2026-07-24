@@ -5,6 +5,7 @@
 //   즉시 발송:          --at 생략
 // audience: subscribers | gmail  (코호트 2개, 둘 다 보내려면 두 번 실행)
 import fs from 'node:fs';
+import { upsertCampaignConfig } from './newsletter-analytics-lib.mjs';
 
 const AUDIENCES = {
   subscribers: '6b75513b-6845-4eed-818f-d02caea5c20f', // Newsletter Subscribers (자발 신청)
@@ -36,6 +37,19 @@ html = html.replace(/<a\b([^>]*?)href="(https:\/\/ahn-partners\.net[^"]*)"([^>]*
 
 const headers = { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' };
 
+function registerCampaign() {
+  const configPath = new URL('../config/newsletter-analytics.json', import.meta.url);
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  const date = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(at ? new Date(at) : new Date());
+  const next = upsertCampaignConfig(config, { campaign, date, subject });
+  fs.writeFileSync(configPath, `${JSON.stringify(next, null, 2)}\n`, 'utf8');
+}
+
 if (test) {
   // 단건 테스트: unsubscribe 플레이스홀더는 브로드캐스트 전용이라 여기서는 뉴스레터 페이지로 대체
   // (실제 발송에서는 Resend가 수신자별 원클릭 수신거부 URL로 치환한다)
@@ -60,6 +74,7 @@ else {
   const cj = await create.json();
   console.log('broadcast create:', create.status, JSON.stringify(cj));
   if (cj.id) {
+    registerCampaign();
     const sendBody = at ? { scheduled_at: at } : {};
     const send = await fetch(`https://api.resend.com/broadcasts/${cj.id}/send`, {
       method: 'POST', headers, body: JSON.stringify(sendBody),
