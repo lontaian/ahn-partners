@@ -88,7 +88,13 @@ let googleError = null;
 try {
   const adcPath =
     process.env.GOOGLE_APPLICATION_CREDENTIALS ||
-    path.join(os.homedir(), 'AppData', 'Roaming', 'gcloud', 'application_default_credentials.json');
+    path.join(
+      os.homedir(),
+      'AppData',
+      'Roaming',
+      'ahn-partners',
+      'ga4-service-account.json',
+    );
   const credentials = JSON.parse(fs.readFileSync(adcPath, 'utf8'));
   accessToken =
     credentials.type === 'service_account'
@@ -143,19 +149,34 @@ if (accessToken) {
   }
 
   try {
+    const reportRequests = buildGa4ReportRequests({
+      startDate,
+      endDate: kstDate,
+      campaigns: config.campaigns.map(({ campaign }) => campaign),
+    });
     const rawReports = await runGa4Reports({
       propertyId: config.ga4PropertyId,
       accessToken,
-      requests: buildGa4ReportRequests({
-        startDate,
-        endDate: kstDate,
-      }),
+      requests: reportRequests.map(({ request }) => request),
+    });
+    const reportRows = {
+      campaign: [],
+      landing: [],
+      event: [],
+    };
+    reportRequests.forEach(({ campaign, kind }, index) => {
+      reportRows[kind].push(
+        ...parseGa4Report(rawReports[index]).map((row) => ({
+          sessionCampaignName: campaign,
+          ...row,
+        })),
+      );
     });
     ga4 = {
       status: 'ok',
-      campaignRows: parseGa4Report(rawReports[0]),
-      landingRows: parseGa4Report(rawReports[1]),
-      eventRows: parseGa4Report(rawReports[2]),
+      campaignRows: reportRows.campaign,
+      landingRows: reportRows.landing,
+      eventRows: reportRows.event,
     };
   } catch (error) {
     ga4 = {

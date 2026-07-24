@@ -5,6 +5,7 @@ $output = Join-Path $repo 'exports\newsletter-analytics'
 $logs = Join-Path $output 'logs'
 New-Item -ItemType Directory -Path $logs -Force | Out-Null
 $log = Join-Path $logs ("task-{0}.log" -f (Get-Date -Format 'yyyy-MM-dd'))
+$env:GOOGLE_APPLICATION_CREDENTIALS = Join-Path $env:APPDATA 'ahn-partners\ga4-service-account.json'
 
 Set-Location $repo
 try {

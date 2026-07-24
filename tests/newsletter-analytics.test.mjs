@@ -68,17 +68,29 @@ test('summarizeResendCampaigns treats clicked as the latest event after open', a
   ]);
 });
 
-test('buildGa4ReportRequests restricts reports to brief email campaigns', async () => {
+test('buildGa4ReportRequests consolidates Resend campaign suffixes per registered issue', async () => {
   const { buildGa4ReportRequests } = await loadSubject();
   assert.equal(typeof buildGa4ReportRequests, 'function');
 
-  const requests = buildGa4ReportRequests({
+  const reports = buildGa4ReportRequests({
     startDate: '2026-07-09',
     endDate: '2026-07-24',
+    campaigns: ['no003', 'no004'],
   });
 
-  assert.equal(requests.length, 3);
-  for (const request of requests) {
+  assert.equal(reports.length, 6);
+  assert.deepEqual(
+    reports.map(({ campaign, kind }) => ({ campaign, kind })),
+    [
+      { campaign: 'no003', kind: 'campaign' },
+      { campaign: 'no003', kind: 'landing' },
+      { campaign: 'no003', kind: 'event' },
+      { campaign: 'no004', kind: 'campaign' },
+      { campaign: 'no004', kind: 'landing' },
+      { campaign: 'no004', kind: 'event' },
+    ],
+  );
+  for (const { campaign, request } of reports) {
     assert.deepEqual(request.dateRanges, [
       { startDate: '2026-07-09', endDate: '2026-07-24' },
     ]);
@@ -88,11 +100,14 @@ test('buildGa4ReportRequests restricts reports to brief email campaigns', async 
     assert.match(serialized, /sessionMedium/);
     assert.match(serialized, /email/);
     assert.match(serialized, /sessionCampaignName/);
+    assert.match(serialized, new RegExp(`\\^${campaign}`));
+    assert.match(serialized, /\/\.\*/);
+    assert.doesNotMatch(
+      JSON.stringify(request.dimensions),
+      /sessionCampaignName/,
+    );
   }
-  assert.deepEqual(requests[2].dimensions, [
-    { name: 'sessionCampaignName' },
-    { name: 'eventName' },
-  ]);
+  assert.deepEqual(reports[2].request.dimensions, [{ name: 'eventName' }]);
 });
 
 test('parseGa4Report maps headers and metric values into named rows', async () => {

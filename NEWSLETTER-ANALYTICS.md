@@ -12,6 +12,16 @@
 - ahn-partners.net: 뉴스레터 유입, 랜딩 페이지, 내부 링크 이동, 인사이트 50%/90% 읽기, 문의 의향, 구독 제출·완료
 - GA4: 위 사이트 행동을 `sessionCampaignName=noNNN` 기준으로 묶어 호별 및 전체 집계
 
+GA4 운영 대상은 Analytics 계정 `Ahn Partners`(`402205906`)의 속성
+`ahn-partners.net`(`544871944`)이다. acdelco 계정과 속성은 이
+파이프라인의 대상이 아니다. 자동 리포트는
+`ahn-newsletter-ga4@ahn-partners-newsletter.iam.gserviceaccount.com`의
+속성 Viewer 권한을 사용한다.
+
+Resend 추적 리디렉션이 `utm_campaign=noNNN/1/...` 형태의 세션 캠페인을
+만들 수 있으므로, GA4 요청은 등록된 각 `noNNN`과 해당 추적 변형을 한
+캠페인으로 묶어 집계한다.
+
 ## 실행과 결과물
 
 - 수동 실행: `npm run newsletter:analytics`

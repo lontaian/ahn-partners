@@ -63,7 +63,7 @@ export function summarizeResendCampaigns(emails, subjects) {
   });
 }
 
-function newsletterDimensionFilter() {
+function newsletterDimensionFilter(campaign) {
   return {
     andGroup: {
       expressions: [
@@ -82,7 +82,10 @@ function newsletterDimensionFilter() {
         {
           filter: {
             fieldName: 'sessionCampaignName',
-            stringFilter: { matchType: 'BEGINS_WITH', value: 'no' },
+            stringFilter: {
+              matchType: 'FULL_REGEXP',
+              value: `^${campaign}($|/.*)`,
+            },
           },
         },
       ],
@@ -90,62 +93,62 @@ function newsletterDimensionFilter() {
   };
 }
 
-export function buildGa4ReportRequests({ startDate, endDate }) {
-  const common = {
-    dateRanges: [{ startDate, endDate }],
-    dimensionFilter: newsletterDimensionFilter(),
-    keepEmptyRows: false,
-    limit: '10000',
-  };
+export function buildGa4ReportRequests({ startDate, endDate, campaigns }) {
+  return campaigns.flatMap((campaign) => {
+    const common = {
+      dateRanges: [{ startDate, endDate }],
+      dimensionFilter: newsletterDimensionFilter(campaign),
+      keepEmptyRows: false,
+      limit: '10000',
+    };
 
-  return [
-    {
-      ...common,
-      dimensions: [
-        { name: 'sessionCampaignName' },
-        { name: 'sessionSource' },
-        { name: 'sessionMedium' },
-      ],
-      metrics: [
-        { name: 'sessions' },
-        { name: 'totalUsers' },
-        { name: 'screenPageViews' },
-        { name: 'engagedSessions' },
-        { name: 'engagementRate' },
-        { name: 'averageSessionDuration' },
-      ],
-      orderBys: [{ dimension: { dimensionName: 'sessionCampaignName' } }],
-    },
-    {
-      ...common,
-      dimensions: [
-        { name: 'sessionCampaignName' },
-        { name: 'landingPagePlusQueryString' },
-      ],
-      metrics: [
-        { name: 'sessions' },
-        { name: 'totalUsers' },
-        { name: 'screenPageViews' },
-        { name: 'engagedSessions' },
-      ],
-      orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
-    },
-    {
-      ...common,
-      dimensions: [
-        { name: 'sessionCampaignName' },
-        { name: 'eventName' },
-      ],
-      metrics: [
-        { name: 'eventCount' },
-        { name: 'totalUsers' },
-      ],
-      orderBys: [
-        { dimension: { dimensionName: 'sessionCampaignName' } },
-        { metric: { metricName: 'eventCount' }, desc: true },
-      ],
-    },
-  ];
+    return [
+      {
+        campaign,
+        kind: 'campaign',
+        request: {
+          ...common,
+          dimensions: [{ name: 'sessionSource' }, { name: 'sessionMedium' }],
+          metrics: [
+            { name: 'sessions' },
+            { name: 'totalUsers' },
+            { name: 'screenPageViews' },
+            { name: 'engagedSessions' },
+            { name: 'engagementRate' },
+            { name: 'averageSessionDuration' },
+          ],
+        },
+      },
+      {
+        campaign,
+        kind: 'landing',
+        request: {
+          ...common,
+          dimensions: [{ name: 'landingPagePlusQueryString' }],
+          metrics: [
+            { name: 'sessions' },
+            { name: 'totalUsers' },
+            { name: 'screenPageViews' },
+            { name: 'engagedSessions' },
+          ],
+          orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+        },
+      },
+      {
+        campaign,
+        kind: 'event',
+        request: {
+          ...common,
+          dimensions: [{ name: 'eventName' }],
+          metrics: [
+            { name: 'eventCount' },
+            { name: 'totalUsers' },
+          ],
+          orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+        },
+      },
+    ];
+  });
 }
 
 export function parseGa4Report(report) {
