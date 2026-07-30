@@ -10,6 +10,10 @@ import { upsertCampaignConfig } from './newsletter-analytics-lib.mjs';
 const AUDIENCES = {
   subscribers: '6b75513b-6845-4eed-818f-d02caea5c20f', // Newsletter Subscribers (자발 신청)
   gmail: 'd08db842-4a4c-459a-bba6-397d03b93ab3', // Gmail Contacts (동의 지인)
+  // 'General'(Resend 기본 생성 추정, 2026-07-08). 실구독자 0명이며 예약과 발송 동작 검증 전용으로 용도를 확정했다(2026-07-30).
+  // ★여기에 실제 구독자를 넣지 않는다. 플랜이 세그먼트 3개 한도라 이 자리를 비워두면 검증할 오디언스가 없어진다.
+  // API로 오디언스 이름을 바꿀 수 없어(PATCH 405) 이름은 General로 남아 있다.
+  test: '9a7514ac-71d6-4de7-9203-d0c81947d78c',
 };
 // 발신 표시명 규칙(사용자 확정 2026-07-08):
 //   newsletter@ = "Ahn's Newsletter" (뉴스레터 발송, 7월 4일 Spread 시절부터의 규칙)

@@ -34,3 +34,4 @@ exports/
 # Secrets
 .env
 .env.*
+.gstack/
