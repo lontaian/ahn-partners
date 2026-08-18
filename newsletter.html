@@ -203,24 +203,41 @@
           });
           if (!res.ok) throw new Error('submit failed');
 
+          // 서버가 skipped(동의 누락, 형식 오류)를 돌려줘도 예전 코드는 성공으로 표시했다.
+          // 응답을 읽어 실패를 그대로 알린다. (2026-08-18)
+          var reasons = {
+            missing_consent: '수집 동의에 체크해 주세요.',
+            invalid_email: '이메일 주소를 다시 확인해 주세요.',
+            honeypot: '신청이 처리되지 않았습니다. hello@ahn-partners.net 으로 알려주세요.',
+            different_form: '신청이 처리되지 않았습니다. hello@ahn-partners.net 으로 알려주세요.'
+          };
+          var sync = null;
           try {
-            await fetch('/.netlify/functions/newsletter-subscribe', {
+            var syncRes = await fetch('/.netlify/functions/newsletter-subscribe', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 email: formData.get('email') || '',
                 name: formData.get('name') || '',
                 consent_newsletter: formData.get('consent_newsletter') || '',
+                'bot-field': formData.get('bot-field') || '',
                 source: 'newsletter_form'
               })
             });
+            sync = await syncRes.json();
           } catch (syncError) {
             console.warn('Newsletter sync delayed', syncError);
           }
 
+          if (sync && sync.skipped) {
+            message.className = 'form-message error';
+            message.textContent = reasons[sync.reason] || '신청이 처리되지 않았습니다. 입력값을 확인해 주세요.';
+            return;
+          }
+
           form.reset();
           message.className = 'form-message success';
-          message.textContent = '신청되었습니다. 감사합니다.';
+          message.textContent = '신청되었습니다. 확인 메일을 보냈으니 받은편지함을 봐 주세요.';
         } catch (error) {
           message.className = 'form-message error';
           message.textContent = '신청 처리 중 문제가 발생했습니다. 잠시 후 다시 시도하거나 hello@ahn-partners.net 으로 알려주세요.';

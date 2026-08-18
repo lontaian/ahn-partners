@@ -166,3 +166,65 @@
     });
   });
 })();
+
+
+/* 글 하단 인라인 구독 폼 (2026-08-18)
+   서버가 skipped(동의 누락, 형식 오류)를 돌려줘도 예전 코드는 성공으로 표시했다.
+   여기서는 응답을 읽어 실패를 그대로 알린다. */
+(function () {
+  var REASON = {
+    missing_consent: '수집 동의에 체크해 주세요.',
+    invalid_email: '이메일 주소를 다시 확인해 주세요.',
+    honeypot: '신청이 처리되지 않았습니다. hello@ahn-partners.net 으로 알려주세요.',
+    different_form: '신청이 처리되지 않았습니다. hello@ahn-partners.net 으로 알려주세요.'
+  };
+  var FAIL = '신청 처리 중 문제가 생겼습니다. 잠시 후 다시 시도하시거나 hello@ahn-partners.net 으로 알려주세요.';
+
+  document.querySelectorAll('form[data-newsletter-inline]').forEach(function (form) {
+    var msg = form.querySelector('.inline-subscribe-message');
+    var btn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var data = new FormData(form);
+      var label = btn ? btn.textContent : '';
+      msg.className = 'inline-subscribe-message';
+      msg.textContent = '';
+      if (btn) { btn.disabled = true; btn.textContent = '신청 중...'; }
+
+      fetch('/newsletter.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      }).then(function () {
+        return fetch('/.netlify/functions/newsletter-subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: data.get('email') || '',
+            name: data.get('name') || '',
+            consent_newsletter: data.get('consent_newsletter') || '',
+            'bot-field': data.get('bot-field') || '',
+            source: 'insights_inline'
+          })
+        });
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; });
+      }).then(function (body) {
+        if (body && body.skipped) {
+          msg.className = 'inline-subscribe-message error';
+          msg.textContent = REASON[body.reason] || FAIL;
+          return;
+        }
+        form.reset();
+        msg.className = 'inline-subscribe-message success';
+        msg.textContent = '신청되었습니다. 확인 메일을 보냈으니 받은편지함을 봐 주세요.';
+      }).catch(function () {
+        msg.className = 'inline-subscribe-message error';
+        msg.textContent = FAIL;
+      }).then(function () {
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+      });
+    });
+  });
+})();

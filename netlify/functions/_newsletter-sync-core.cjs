@@ -1,3 +1,5 @@
+const { sendWelcomeEmail } = require('./_welcome-email.cjs');
+
 const DEFAULT_WORKSPACE = 'ahn-partners';
 const DEFAULT_LIST_ID = 'O7Udbj';
 const SPREAD_ORIGIN = 'https://app.spread.so';
@@ -331,7 +333,20 @@ async function syncNewsletterSubmission(input, options = {}) {
   }
 
   const result = await addContactToResendAudience({ email: submission.email, name: submission.name });
-  return { ok: true, synced: true, result, submission: safeLogPayload(submission) };
+
+  // 환영 메일은 신규 등록일 때만 보낸다. 이미 있던 주소에 다시 보내지 않는다.
+  // 발송이 실패해도 구독 자체는 성공으로 둔다. 메일 하나 때문에 명단을 잃지 않는다. (2026-08-18)
+  let welcome = { sent: false, skipped: true, reason: 'already_exists' };
+  if (!result.alreadyExists) {
+    try {
+      welcome = await sendWelcomeEmail({ email: submission.email, name: submission.name });
+    } catch (error) {
+      console.error('welcome email failed', { message: error.message, details: error.details });
+      welcome = { sent: false, skipped: true, reason: 'send_failed' };
+    }
+  }
+
+  return { ok: true, synced: true, result, welcome, submission: safeLogPayload(submission) };
 }
 
 function jsonResponse(statusCode, body) {
