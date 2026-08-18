@@ -174,6 +174,22 @@ function safeLogPayload(submission) {
   };
 }
 
+/**
+ * 이미 명단에 있는 주소인지 먼저 확인한다.
+ *
+ * Resend 의 POST /audiences/{id}/contacts 는 기존 주소에도 201 을 돌려주고 409 를 주지 않는다.
+ * 그래서 응답만 보고 신규 여부를 판단하면 기존 구독자에게 환영 메일이 다시 나간다.
+ * 2026-08-18 에 실제로 한 건 오발송했다. GET 으로 먼저 조회해서 막는다.
+ */
+async function resendContactExists({ apiKey, audienceId, email }) {
+  const url = `https://api.resend.com/audiences/${encodeURIComponent(audienceId)}/contacts/${encodeURIComponent(email)}`;
+  const response = await fetch(url, { headers: { Authorization: `Bearer ${apiKey}` } });
+  if (response.status === 200) return true;
+  if (response.status === 404) return false;
+  // 조회가 불확실하면 기존 구독자로 간주한다. 오발송보다 미발송이 낫다.
+  return true;
+}
+
 async function addContactToResendAudience({ email, name }) {
   const apiKey = normalizeString(process.env.RESEND_API_KEY);
   if (!apiKey) {
@@ -183,6 +199,7 @@ async function addContactToResendAudience({ email, name }) {
   }
 
   const audienceId = normalizeString(process.env.RESEND_NEWSLETTER_AUDIENCE_ID) || DEFAULT_RESEND_AUDIENCE_ID;
+  const existedBefore = await resendContactExists({ apiKey, audienceId, email });
   const response = await fetch(`https://api.resend.com/audiences/${encodeURIComponent(audienceId)}/contacts`, {
     method: 'POST',
     headers: {
@@ -200,7 +217,9 @@ async function addContactToResendAudience({ email, name }) {
   let payload = null;
   try { payload = text ? JSON.parse(text) : null; } catch (_) { payload = { raw: text }; }
 
-  const alreadyExists = response.status === 409 || /already exists|duplicate|contact_already_exists/i.test(text);
+  const alreadyExists = existedBefore
+    || response.status === 409
+    || /already exists|duplicate|contact_already_exists/i.test(text);
   if (!response.ok && !alreadyExists) {
     const error = new Error('Resend contact add failed');
     error.details = { status: response.status, audienceId, payload };
