@@ -1,6 +1,10 @@
 /**
  * 구독 신청 직후 보내는 환영 메일 (2026-08-18)
  *
+ * 수신거부 링크 주의: {{{RESEND_UNSUBSCRIBE_URL}}} 은 Resend 브로드캐스트 전용
+ * 치환 토큰이다. 단건 발송(POST /emails)에서는 치환되지 않고 문자 그대로 나간다.
+ * 실제로 그렇게 4통이 나갔다. 단건에서는 실제 URL 을 직접 쓴다.
+ *
  * 왜 만드나: 신청자가 받는 피드백이 성공 화면 한 장뿐이었다. 다음 발송까지
  * 최대 5일을 기다려야 첫 메일이 도착하고, 그 사이 신청한 사실을 잊는다.
  * 이메일을 잘못 적었어도 본인이 알 방법이 없었다.
@@ -96,7 +100,7 @@ function buildHtml({ name }) {
         <tr><td style="background:#fafafa;padding:20px 32px;border-top:1px solid #eee">
           <p style="margin:0;font-size:12px;line-height:1.7;color:#999">
             Ahn Partners. 이 메일은 <a href="${SITE}/newsletter" style="color:#666">Ahn's Executive Brief</a> 신청자에게 발송됩니다.
-            더 받고 싶지 않으시면 <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#666">여기</a>를 눌러 주세요.
+            더 받고 싶지 않으시면 <a href="${SITE}/newsletter" style="color:#666">여기</a>에서 알려 주시거나 이 메일에 답장해 주세요.
           </p>
         </td></tr>
 
