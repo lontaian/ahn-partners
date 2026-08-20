@@ -221,7 +221,7 @@
             <p class="case-sub reveal">물류센터(FC) 셔틀버스 노선 생성 시스템. 41개 FC, 4,274개 정류장 커버.</p>
             <div class="meta-chips reveal"><span class="meta-chip">Web App</span><span class="meta-chip">v1.0.0</span></div>
             <div class="hero-actions reveal">
-          <a href="https://route-builder.onrender.com/" target="_blank" rel="noopener" class="btn btn-solid">Live Demo</a>
+          <a href="https://route-builder.onrender.com/" target="_blank" rel="noopener" class="btn btn-solid">Live Demo (첫 접속 시 기동에 15초 내외)</a>
         </div>
           </div>
           <div class="reveal">
@@ -265,7 +265,9 @@
           <span class="mono section-eyebrow reveal">Overview</span>
           <h2 class="section-title reveal">문제와 해결</h2>
           <div class="lead reveal">
-          <p>물류센터(FC) 셔틀버스 노선 생성 시스템. 41개 FC, 4,274개 정류장 커버.</p>
+          <p>물류센터 셔틀 노선은 담당자가 지도를 띄워놓고 정류장을 하나씩 찍어가며 만듭니다. 문제는 다 그린 뒤에야 운행시간 초과나 정원 초과를 알게 된다는 점입니다. 그때 처음부터 다시 그립니다.</p>
+          <p>검증을 마지막이 아니라 매 클릭마다 하도록 뒤집었습니다. 정류장을 찍는 순간 OSRM이 도로 기반 경로를 계산하고, 75분 운행시간과 44인승 정원 초과 여부가 즉시 표시됩니다.</p>
+          <p>41개 물류센터와 4,274개 정류장을 커버하며, FC 도착 시간을 기준으로 역산해 각 정류장 출발 시간표까지 자동 생성합니다.</p>
           </div>
         </div>
       </section>
@@ -275,10 +277,10 @@
           <span class="mono section-eyebrow reveal">Features</span>
           <h2 class="section-title reveal">주요 기능</h2>
           <div class="comp-grid reveal">
-          <div class="comp"><span class="comp-num">01</span><div><div class="comp-title">클릭으로 정류장 추가 (인터랙티브 맵)</div><p class="comp-desc"></p></div></div>
-          <div class="comp"><span class="comp-num">02</span><div><div class="comp-title">75분 노선 + 44인승 제약 실시간 검증</div><p class="comp-desc"></p></div></div>
-          <div class="comp"><span class="comp-num">03</span><div><div class="comp-title">OSRM + Kakao API 하이브리드 라우팅</div><p class="comp-desc"></p></div></div>
-          <div class="comp"><span class="comp-num">04</span><div><div class="comp-title">FC 도착 시간 기반 자동 시간표 생성</div><p class="comp-desc"></p></div></div>
+          <div class="comp"><span class="comp-num">01</span><div><div class="comp-title">클릭으로 정류장 추가</div><p class="comp-desc">FC를 선택하면 반경 내 정류장이 지도에 뜨고, 클릭 순서대로 노선이 구성됩니다.</p></div></div>
+          <div class="comp"><span class="comp-num">02</span><div><div class="comp-title">제약조건 실시간 검증</div><p class="comp-desc">75분 운행시간과 44인승 정원을 매 편집마다 검사해 초과 시점에 바로 경고합니다.</p></div></div>
+          <div class="comp"><span class="comp-num">03</span><div><div class="comp-title">OSRM과 Kakao API 하이브리드 라우팅</div><p class="comp-desc">직선거리가 아닌 실제 도로 경로로 계산하며, 두 엔진을 상황에 따라 나눠 써 정확도와 비용을 함께 잡았습니다.</p></div></div>
+          <div class="comp"><span class="comp-num">04</span><div><div class="comp-title">도착 시간 기반 자동 시간표</div><p class="comp-desc">FC 도착 목표 시각에서 역산해 각 정류장의 출발 시간을 자동 산출합니다.</p></div></div>
           </div>
         </div>
       </section>

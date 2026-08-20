@@ -2150,9 +2150,9 @@
               <span class="work-category-chip" data-cat="웹앱">웹앱</span>
               <span class="work-featured-badge">Featured</span>
             </div>
-            <h4 class="work-title">운송 ERP (FMS)</h4>
+            <h4 class="work-title">WonderFMS 운수 경영 시스템</h4>
             <ul class="work-feature-list">
-              <li class="work-feature-item">3개 법인 통합 ERP. 431대 차량, 368명 기사, 4,700건 이상 비용기록을 관리하는 프로덕션 시스템.</li>
+              <li class="work-feature-item">3개 법인 통합 ERP로 검증한 뒤 외부 운수회사용 제품으로 확장. 차량과 기사와 거래처를 원가와 수익으로 연결해 배차와 증차 판단 근거를 만듭니다.</li>
             </ul>
             <div class="work-meta-chips">
               <span class="work-tag-chip">Next.js 14</span>
@@ -2160,13 +2160,13 @@
               <span class="work-tag-chip">PostgreSQL</span>
             </div>
             <div class="work-links">
-              <a href="https://fms-readonly-sigma.vercel.app/" class="work-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">Live Demo</a>
+              <a href="https://fms.1-bus.com" class="work-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">fms.1-bus.com</a>
             </div>
           </div>
         </div>
 
         <!-- Card 3: 노선 프레젠테이션 뷰어 -->
-        <div class="work-card" data-category="웹앱" onclick="location.href='projects/pt-reports.html'">
+        <div class="work-card" data-category="분석" onclick="location.href='projects/pt-reports.html'">
           <div class="work-image-wrapper">
             <div class="work-image-placeholder card-bg-webapp">
               <div class="card-glow" style="background:radial-gradient(circle,#14b8a6 0%,transparent 70%);width:140px;height:140px;top:-10px;right:-10px;left:auto"></div>
@@ -2184,7 +2184,7 @@
           </div>
           <div class="work-info">
             <div class="work-header-row">
-              <span class="work-category-chip" data-cat="웹앱">웹앱</span>
+              <span class="work-category-chip" data-cat="분석">분석</span>
             </div>
             <h4 class="work-title">노선 프레젠테이션 뷰어</h4>
             <ul class="work-feature-list">
@@ -2383,7 +2383,7 @@
         </div>
 
         <!-- Card 8: 일버스 (hidden initially) -->
-        <div class="work-card hidden" data-category="웹앱" onclick="location.href='projects/1bus.html'">
+        <div class="work-card hidden" data-category="플랫폼" onclick="location.href='projects/1bus.html'">
           <div class="work-image-wrapper">
             <div class="work-image-placeholder card-bg-webapp">
               <div class="card-glow" style="background:radial-gradient(circle,#2dd4bf 0%,transparent 70%);width:120px;height:120px;bottom:-10px;left:30px;top:auto"></div>
@@ -2404,7 +2404,7 @@
           </div>
           <div class="work-info">
             <div class="work-header-row">
-              <span class="work-category-chip" data-cat="웹앱">웹앱</span>
+              <span class="work-category-chip" data-cat="플랫폼">플랫폼</span>
             </div>
             <h4 class="work-title">일버스 (1-bus.com)</h4>
             <ul class="work-feature-list">
@@ -2421,44 +2421,52 @@
           </div>
         </div>
 
-        <!-- Card 9: 계약 관리 자동화 (hidden initially) -->
-        <div class="work-card hidden" data-category="분석" onclick="location.href='projects/bizno.html'">
+        <!-- Card 9: 수주나비 (hidden initially) -->
+        <div class="work-card hidden" data-category="플랫폼" data-featured="true" onclick="location.href='projects/sujunavi.html'">
           <div class="work-image-wrapper">
-            <div class="work-image-placeholder card-bg-analysis">
-              <div class="card-glow" style="background:radial-gradient(circle,#c4b5fd 0%,transparent 70%);width:130px;height:130px;top:10px;right:10px;left:auto"></div>
+            <div class="work-image-placeholder card-bg-platform">
+              <div class="card-glow" style="background:radial-gradient(circle,#2dd4bf 0%,transparent 70%);width:130px;height:130px;top:10px;right:10px;left:auto"></div>
               <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;z-index:1">
-                <!-- document lines -->
-                <rect x="60" y="20" width="130" height="160" rx="5" fill="none" stroke="#c4b5fd" stroke-width="1.2"/>
-                <line x1="75" y1="50" x2="175" y2="50" stroke="#c4b5fd" stroke-width="1"/>
-                <line x1="75" y1="70" x2="175" y2="70" stroke="#c4b5fd" stroke-width="1"/>
-                <line x1="75" y1="90" x2="155" y2="90" stroke="#c4b5fd" stroke-width="1"/>
-                <line x1="75" y1="110" x2="175" y2="110" stroke="#c4b5fd" stroke-width="0.7" stroke-dasharray="3 2"/>
-                <line x1="75" y1="130" x2="145" y2="130" stroke="#c4b5fd" stroke-width="0.7" stroke-dasharray="3 2"/>
-                <!-- diff indicator -->
-                <rect x="165" y="60" width="6" height="100" rx="2" fill="#c4b5fd" fill-opacity="0.3"/>
-                <rect x="176" y="85" width="6" height="50" rx="2" fill="#c4b5fd" fill-opacity="0.5"/>
-                <!-- change marks -->
-                <circle cx="180" cy="70" r="4" fill="#f5a623" fill-opacity="0.6"/>
-                <circle cx="180" cy="90" r="4" fill="#f5a623" fill-opacity="0.6"/>
+                <!-- 공고문 -->
+                <rect x="24" y="28" width="88" height="130" rx="5" fill="none" stroke="#2dd4bf" stroke-width="1.2"/>
+                <line x1="40" y1="52" x2="96" y2="52" stroke="#2dd4bf" stroke-width="1"/>
+                <line x1="40" y1="70" x2="86" y2="70" stroke="#2dd4bf" stroke-width="1"/>
+                <rect x="40" y="84" width="56" height="10" rx="2" fill="#2dd4bf" fill-opacity="0.35"/>
+                <line x1="40" y1="110" x2="96" y2="110" stroke="#2dd4bf" stroke-width="0.7" stroke-dasharray="3 2"/>
+                <line x1="40" y1="128" x2="78" y2="128" stroke="#2dd4bf" stroke-width="0.7" stroke-dasharray="3 2"/>
+                <line x1="112" y1="93" x2="146" y2="93" stroke="#2dd4bf" stroke-width="1"/>
+                <!-- 낙찰가 분포 -->
+                <path d="M160 158 C 192 158, 196 60, 236 60 C 276 60, 280 158, 314 158" fill="none" stroke="#2dd4bf" stroke-width="1.6"/>
+                <line x1="160" y1="158" x2="314" y2="158" stroke="#2dd4bf" stroke-width="1"/>
+                <line x1="236" y1="60" x2="236" y2="158" stroke="#2dd4bf" stroke-width="0.8" stroke-dasharray="4 3"/>
+                <circle cx="236" cy="60" r="5" fill="#2dd4bf"/>
+                <circle cx="198" cy="126" r="3.5" fill="#2dd4bf" fill-opacity="0.7"/>
+                <circle cx="276" cy="124" r="3.5" fill="#2dd4bf" fill-opacity="0.7"/>
+                <circle cx="178" cy="148" r="3.5" fill="#2dd4bf" fill-opacity="0.5"/>
+                <circle cx="298" cy="146" r="3.5" fill="#2dd4bf" fill-opacity="0.5"/>
               </svg>
-              <span class="card-wordmark">Contract Analysis</span>
+              <span class="card-wordmark">Bid Navigator</span>
               <span class="card-num">09</span>
             </div>
             <div class="work-overlay"></div>
           </div>
           <div class="work-info">
             <div class="work-header-row">
-              <span class="work-category-chip" data-cat="분석">분석</span>
+              <span class="work-category-chip" data-cat="플랫폼">플랫폼</span>
+              <span class="work-featured-badge">Featured</span>
             </div>
-            <h4 class="work-title">계약 관리 자동화</h4>
+            <h4 class="work-title">수주나비 (sujunavi.com)</h4>
             <ul class="work-feature-list">
-              <li class="work-feature-item">정부 조달 계약 문서 분석 및 수정 추적 시스템.</li>
+              <li class="work-feature-item">나라장터 공고를 여는 순간 참가자격과 예상 낙찰가, 경쟁 규모를 원문 근거와 함께 제시하는 상용 SaaS. 누적 공고 188만건 기반.</li>
             </ul>
             <div class="work-meta-chips">
-              <span class="work-tag-chip">Python</span>
-              <span class="work-tag-chip">Document Analysis</span>
+              <span class="work-tag-chip">Next.js</span>
+              <span class="work-tag-chip">Supabase</span>
+              <span class="work-tag-chip">AI Gateway</span>
             </div>
-            <div class="work-links"></div>
+            <div class="work-links">
+              <a href="https://sujunavi.com" class="work-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">sujunavi.com</a>
+            </div>
           </div>
         </div>
 
@@ -2496,6 +2504,50 @@
             <div class="work-meta-chips">
               <span class="work-tag-chip">Platform Design</span>
               <span class="work-tag-chip">SaaS</span>
+            </div>
+            <div class="work-links"></div>
+          </div>
+        </div>
+
+        <!-- Card 11: 농촌 모빌리티 정부 제안 (hidden initially) -->
+        <div class="work-card hidden" data-category="자동화" onclick="location.href='projects/rural-mobility.html'">
+          <div class="work-image-wrapper">
+            <div class="work-image-placeholder card-bg-automation">
+              <div class="card-glow" style="background:radial-gradient(circle,#2dd4bf 0%,transparent 70%);width:130px;height:130px;bottom:10px;left:10px;top:auto"></div>
+              <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;z-index:1">
+                <!-- 단일 사업 실체 -->
+                <rect x="132" y="76" width="76" height="40" rx="6" fill="none" stroke="#2dd4bf" stroke-width="1.4"/>
+                <!-- 4개 부처 문서 -->
+                <rect x="22" y="18" width="58" height="42" rx="4" fill="none" stroke="#2dd4bf" stroke-width="1"/>
+                <rect x="260" y="18" width="58" height="42" rx="4" fill="none" stroke="#2dd4bf" stroke-width="1"/>
+                <rect x="22" y="132" width="58" height="42" rx="4" fill="none" stroke="#2dd4bf" stroke-width="1"/>
+                <rect x="260" y="132" width="58" height="42" rx="4" fill="none" stroke="#2dd4bf" stroke-width="1"/>
+                <line x1="132" y1="86" x2="80" y2="42" stroke="#2dd4bf" stroke-width="0.8"/>
+                <line x1="208" y1="86" x2="260" y2="42" stroke="#2dd4bf" stroke-width="0.8"/>
+                <line x1="132" y1="108" x2="80" y2="150" stroke="#2dd4bf" stroke-width="0.8"/>
+                <line x1="208" y1="108" x2="260" y2="150" stroke="#2dd4bf" stroke-width="0.8"/>
+                <line x1="34" y1="32" x2="68" y2="32" stroke="#2dd4bf" stroke-width="0.7"/>
+                <line x1="272" y1="32" x2="306" y2="32" stroke="#2dd4bf" stroke-width="0.7"/>
+                <line x1="34" y1="146" x2="68" y2="146" stroke="#2dd4bf" stroke-width="0.7"/>
+                <line x1="272" y1="146" x2="306" y2="146" stroke="#2dd4bf" stroke-width="0.7"/>
+              </svg>
+              <span class="card-wordmark">Rural DRT</span>
+              <span class="card-num">11</span>
+            </div>
+            <div class="work-overlay"></div>
+          </div>
+          <div class="work-info">
+            <div class="work-header-row">
+              <span class="work-category-chip" data-cat="자동화">자동화</span>
+            </div>
+            <h4 class="work-title">농촌 모빌리티 정부 제안</h4>
+            <ul class="work-feature-list">
+              <li class="work-feature-item">부처마다 원하는 답이 다릅니다. 핵심 데이터는 공유하되 관점과 예산, 성과 지표만 달리 조립되도록 자동화해 총 170억원 규모 제안 4건을 만들었습니다.</li>
+            </ul>
+            <div class="work-meta-chips">
+              <span class="work-tag-chip">Python</span>
+              <span class="work-tag-chip">python-docx</span>
+              <span class="work-tag-chip">pandas</span>
             </div>
             <div class="work-links"></div>
           </div>
