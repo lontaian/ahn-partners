@@ -83,8 +83,21 @@ else {
     const send = await fetch(`https://api.resend.com/broadcasts/${cj.id}/send`, {
       method: 'POST', headers, body: JSON.stringify(sendBody),
     });
-    console.log('broadcast send:', send.status, JSON.stringify(await send.json()));
-    console.log(at ? `예약 완료: ${at}` : '즉시 발송 완료');
+    const sj = await send.json();
+    console.log('broadcast send:', send.status, JSON.stringify(sj));
+    // 2026-08-20: send 응답을 안 보고 무조건 예약 완료를 찍고 있었다.
+    // Resend 는 scheduled_at 을 30일 이내로만 받는데(422 validation_error),
+    // 그때도 완료로 보고돼서 안 나갈 호를 나간 것으로 착각할 뻔했다.
+    // 초안(broadcast)은 생성돼 있으므로 30일 안으로 들어오면 그 id 로 send 만 다시 호출하면 된다.
+    if (!send.ok) {
+      console.log(`★예약 실패. 초안만 생성됨. id=${cj.id}`);
+      if (String(sj.message || '').includes('within 30 days')) {
+        console.log('  원인: Resend 는 예약을 30일 이내로만 받는다. 발송일 30일 전에 다시 send 를 호출할 것');
+      }
+      process.exitCode = 1;
+    } else {
+      console.log(at ? `예약 완료: ${at}` : '즉시 발송 완료');
+    }
   } else process.exitCode = 1;
 }
 }
