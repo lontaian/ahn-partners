@@ -6,67 +6,47 @@ Ahn Partners의 외부 구독 URL은 다음이다.
 
 - `https://ahn-partners.net/newsletter`
 - 뉴스레터 공식 명칭: `Ahn's Newsletter`
-- Spread 리스트: `Newsletter Subscribers` (`O7Udbj`)
 
-웹 폼 제출은 Netlify Forms에 먼저 저장된다. 이후 Spread 반영 상태는 로컬 운영 명령으로 확인/동기화한다.
+**발송은 Resend로 나간다.** 오디언스는 두 개다.
 
+| 오디언스 | ID | 대상 |
+| --- | --- | --- |
+| subscribers | `6b75513b-6845-4eed-818f-d02caea5c20f` | 웹 폼으로 직접 신청한 구독자 |
+| gmail | `d08db842-4a4c-459a-bba6-397d03b93ab3` | 주소록 기반 코호트 |
 
+**구독자 등록은 자동이다.** 웹 폼 제출은 Netlify Forms에 저장되고, 같은 제출을
+`netlify/functions/form-submitted.mjs` 훅이 받아 `_newsletter-sync-core.cjs`의
+`addContactToResendAudience`로 Resend subscribers 오디언스에 바로 넣는다.
+평소에 사람이 할 동기화 작업은 없다.
 
-## Windows 더블클릭 실행
+Spread/Relate는 발송 경로가 아니다. 아래 "과거 기록" 절에만 남긴다.
 
-명령어를 기억할 필요 없이 아래 파일을 Windows 탐색기에서 더블클릭한다.
+## 평소 운영
 
-```text
-뉴스레터_동기화_더블클릭.cmd
-```
-
-같은 파일의 영문 이름도 있다.
-
-```text
-newsletter-sync-double-click.cmd
-```
-
-더블클릭하면 새 콘솔 창이 열리고 다음을 자동 실행한다.
-
-1. Windows에서 이 폴더로 이동
-2. Windows Node/NPM 확인
-3. `npm run newsletter:run` 실행
-4. Netlify 제출 확인
-5. Spread `Newsletter Subscribers` 동기화
-6. 최종 결과 출력
-7. Enter를 누를 때까지 창 유지
-
-평소에는 이 파일만 더블클릭하면 된다. WSL은 사용하지 않는다.
-
-## 단발 실행 방식
-
-상시 로컬 서버를 띄우지 않으려면 아래 명령만 사용한다.
+할 일이 하나뿐이다. 상태만 본다.
 
 ```bash
-npm run newsletter:run
+npm run newsletter:status
 ```
 
-이 명령은 한 번 실행될 때만 리소스를 사용하고 종료된다.
+`resend.missing`이 0이면 정상이다. 그 값이 0이 아니면 훅이 실패했다는 뜻이고,
+그때만 복구 명령을 쓴다.
 
-동작 순서:
+```bash
+npm run newsletter:sync-resend           # 무엇을 넣을지 미리보기
+npm run newsletter:sync-resend -- --apply  # 실제 등록
+```
 
-1. CDP 브라우저(`http://127.0.0.1:9222`)가 살아 있는지 확인한다.
-2. 죽어 있으면 `.browser-profile`로 브라우저를 자동 실행한다.
-3. Netlify Forms 현재 상태를 확인한다.
-4. Spread `Newsletter Subscribers` 리스트에 pending 구독자를 반영한다.
-5. 최종 상태를 다시 확인한다.
-6. `spreadPending: 0`이면 완료로 출력하고 종료한다.
-
-평소 운영은 이 명령 하나만 기억하면 된다.
+두 명령 모두 `--env-file-if-exists=.env`로 `RESEND_API_KEY`를 읽는다.
+키 없이 돌리면 `resend.checked: false`와 종료 코드 1이 나온다.
+조용히 0으로 보고하지 않는다.
 
 Windows CMD에서 직접 실행할 때는 다음과 같다.
 
 ```cmd
-cd /d C:\dev\active\ahn-partners
-npm run newsletter:run
+cd /d C:\Dev\client\personal\ahn-partners
+npm run newsletter:status
 ```
-
-Spread/Relate 로그인 세션이 만료된 경우에는 브라우저에서 Google 로그인을 한 번 다시 한 뒤 같은 명령을 재실행한다.
 
 ## 새 신청이 들어왔는지 아는 방법
 
@@ -90,56 +70,32 @@ npm run newsletter:status
 
 - Netlify `newsletter` form 원본 제출 수
 - Netlify `contact` form 원본 제출 수
-- 수신동의/이메일 유효성/테스트 제외 후 실제 구독 대상 수
-- Spread 동기화 완료 수
-- Spread 동기화 대기 수
+- 수신동의와 이메일 유효성, 테스트 제외 후 실제 구독 대상 수 (`eligibleSubscribers`)
+- Resend subscribers 오디언스 실제 등록 수, 수신거부 수, 발송 가능 수 (`resend`)
+- 폼에는 있는데 Resend에 없는 인원 (`resend.missing`과 `missing` 목록)
 - 최근 제출 5건
 
-현재 기준 예시:
+2026-08-21 기준 예시:
 
-- newsletter form 원본 제출: 2
-- contact form 원본 제출: 6
-- 실제 구독 대상: 1
-- Spread pending: 0
-
-## Spread 메일링리스트 업데이트 방법
-
-```bash
-npm run newsletter:sync-spread
+```json
+{
+  "eligibleSubscribers": 23,
+  "resend": { "contacts": 23, "unsubscribed": 1, "deliverable": 22, "missing": 0 },
+  "missing": []
+}
 ```
 
-동작:
+`missing`이 비어 있으면 손댈 것이 없다.
 
-1. `npm run newsletter:export`로 Netlify Forms에서 신청자를 가져온다.
-2. 테스트 제출을 제외한다.
-3. 수신동의가 있는 이메일만 남긴다.
-4. CDP 브라우저(`http://127.0.0.1:9222`)의 로그인된 Spread 세션으로 `Newsletter Subscribers` 리스트를 연다.
-5. 기존 연락처를 검색한다.
-6. 없으면 연락처를 만들고, 있으면 기존 contact id로 리스트에 추가한다.
-7. 이미 리스트에 있으면 중복을 성공 처리한다.
-8. `exports/newsletter-spread-sync.json`에 완료 상태를 기록한다.
-
-재실행해도 이미 동기화된 이메일은 건너뛴다.
-
-## 운영 루틴
-
-권장 루틴:
-
-```cmd
-cd /d C:\dev\active\ahn-partners
-npm run newsletter:status
-npm run newsletter:sync-spread
-npm run newsletter:status
-```
-
-- 첫 `status`: 새 신청/pending 확인
-- `sync-spread`: pending을 Spread에 반영
-- 두 번째 `status`: `spreadPending: 0` 확인
+테스트 주소는 집계에서 뺀다. `@example.com`으로 끝나거나 `abc@abc.com`,
+`+newsletter-2026` 같은 태그가 붙은 주소가 대상이다.
 
 
-## 로컬 관리자 웹
+## 로컬 관리자 웹 (Spread 시절 유물, 쓰지 않음)
 
-필요할 때만 시각적으로 보고 싶으면 로컬 관리자 웹을 사용할 수 있다. 기본 운영은 단발 실행 방식이다.
+아래 화면은 Spread 동기화를 사람이 돌리던 시절에 만든 것이다.
+지금은 Resend 훅이 등록을 처리하므로 동기화 버튼과 10분 자동 동기화는 의미가 없다.
+`npm run newsletter:status`로 충분하다. 기록으로만 남긴다.
 
 ### 시작
 
@@ -179,24 +135,30 @@ npm run newsletter:admin:stop
 
 관리자 서버와 동기화 스크립트는 자동으로 CDP 브라우저(`http://127.0.0.1:9222`)를 확인하고, 죽어 있으면 `.browser-profile`로 다시 띄운다. 단, Spread/Relate 로그인이 만료되면 사용자가 한 번 Google 로그인을 다시 해야 한다.
 
-## 자동화 root cause와 현재 처리
+## 과거 기록: Spread/Relate 경로 (해결됨, 더 이상 쓰지 않음)
 
-### 왜 Netlify 제출 직후 Spread 서버리스 자동 등록이 아직 완전하지 않은가
+발송처를 Resend로 옮기면서 아래 문제는 전부 무의미해졌다. 배경 설명으로만 남긴다.
 
-1. Netlify 웹 폼 저장은 정상이다.
-2. Netlify Function도 배포되어 있다: `/.netlify/functions/newsletter-subscribe`
+### 당시 Spread 서버리스 자동 등록이 막혔던 이유
+
+1. Netlify 웹 폼 저장은 정상이었다.
+2. Netlify Function도 배포되어 있었다: `/.netlify/functions/newsletter-subscribe`
 3. Relate Public API는 공식 문서상 `Authorization: Bearer {API key}`가 필요하다.
 4. Spread/Relate의 Zapier 화면에서 API 키를 생성했지만, `api.relate.so/v1` Public API는 해당 키를 401로 거부했다.
 5. 따라서 그 키는 Zapier 연동용 키로 보이며, Public API용 키와 다르다.
-6. 서버에서 Spread 내부 UI endpoint를 쿠키로 호출하면 401/422 등 인증/CSRF 문제가 있어 안정적으로 쓸 수 없다.
-7. 로그인된 실제 브라우저 컨텍스트 안에서 실행하면 Spread 리스트 추가가 정상 작동한다.
+6. 서버에서 Spread 내부 UI endpoint를 쿠키로 호출하면 401/422 등 인증과 CSRF 문제가 있어 안정적으로 쓸 수 없다.
+7. 로그인된 실제 브라우저 컨텍스트 안에서 실행하면 Spread 리스트 추가가 정상 작동했다.
 
-그래서 현재의 미션 완료 기준은 다음이다.
+### 지금 구조
 
-- 제출 저장: Netlify Forms가 담당
-- 제출 감지: Netlify 이메일 hook + `newsletter:status`
-- 리스트 반영: `newsletter:sync-spread`가 로그인된 브라우저 컨텍스트에서 자동 처리
-- 완전 서버리스 전환: Relate에서 Public API용 키를 받으면 기존 Netlify Function이 바로 사용 가능
+- 제출 저장: Netlify Forms
+- 오디언스 등록: `netlify/functions/form-submitted.mjs` 훅이 Resend에 즉시 반영
+- 확인: `npm run newsletter:status`의 `resend.missing`
+- 복구: `npm run newsletter:sync-resend -- --apply`
+
+브라우저 로그인 세션이나 CDP는 발송 경로에 필요하지 않다.
+`newsletter:run`, `newsletter:sync-spread`, `newsletter:admin`, 더블클릭 cmd 파일은
+Spread 시절 유물이라 지금 운영에서는 쓰지 않는다.
 
 ## Zapier 도입 판단
 
@@ -358,7 +320,7 @@ DKIM DNS: 3mmfdklq3jsouvqujdbj73wee5x5eyh2._domainkey.ahn-partners.net 정상
 1. 테스트 메일을 스팸함에서 받은편지함으로 옮긴 상태는 Gmail에 정상 신호를 준다.
 2. 다음 발송부터 제목의 `[TEST]` 반복을 제거한다.
 3. 첫 실제 발송은 소수의 신뢰 수신자에게 보내고, 받은편지함 도착/열람/답장을 유도한다.
-4. 한 번에 대량 발송하지 말고 10명 이하 → 20명 이하 → 50명 이하로 천천히 늘린다.
+4. 한 번에 대량 발송하지 말고 10명 이하에서 20명 이하, 50명 이하 순으로 천천히 늘린다.
 5. 본문 하단에 발신자/수신거부/문의 정보를 명확히 넣는다.
 
 ### 수신거부/발신자 정보 확인 결과

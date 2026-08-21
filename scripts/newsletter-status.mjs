@@ -44,6 +44,7 @@ function looksLikeTest(row) {
   const name = String(row.name ?? '').toLowerCase();
   return (
     email === 'abc@abc.com' ||
+    email.endsWith('@example.com') ||
     email.includes('+newsletter-2026') ||
     email.includes('+contact-2026') ||
     email.includes('+spreadform-2026') ||
@@ -66,9 +67,37 @@ function normalize(submission, source, formName) {
   };
 }
 
-function loadSyncState() {
-  try { return JSON.parse(readFileSync('exports/newsletter-spread-sync.json', 'utf8')); }
-  catch { return { synced: {} }; }
+function readSubscriberAudienceId() {
+  if (process.env.RESEND_NEWSLETTER_AUDIENCE_ID) return process.env.RESEND_NEWSLETTER_AUDIENCE_ID;
+  const config = JSON.parse(readFileSync('config/newsletter-analytics.json', 'utf8'));
+  return config.audiences?.subscribers;
+}
+
+/**
+ * 실제 발송은 Resend 오디언스로 나간다. 폼 제출은 netlify/functions/form-submitted.mjs 가
+ * 훅으로 받아 Resend 에 바로 등록하므로, 여기서는 등록이 실제로 됐는지만 대조한다.
+ * 예전 Spread 동기화 기록(exports/newsletter-spread-sync.json)은 발송 경로가 아니라 보지 않는다.
+ */
+async function loadResendContacts() {
+  const apiKey = process.env.RESEND_API_KEY;
+  const audienceId = readSubscriberAudienceId();
+  if (!apiKey) return { ok: false, reason: 'RESEND_API_KEY 없음. npm run newsletter:status 는 .env 를 읽는다', audienceId };
+  if (!audienceId) return { ok: false, reason: 'subscribers 오디언스 ID를 찾을 수 없음', audienceId };
+
+  const response = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+  });
+  if (!response.ok) return { ok: false, reason: `Resend 조회 실패 ${response.status}`, audienceId };
+
+  const body = await response.json();
+  const contacts = body.data ?? [];
+  return {
+    ok: true,
+    audienceId,
+    emails: new Set(contacts.map((contact) => String(contact.email ?? '').toLowerCase())),
+    unsubscribed: contacts.filter((contact) => contact.unsubscribed).length,
+    total: contacts.length,
+  };
 }
 
 const siteId = readSiteId();
@@ -98,9 +127,8 @@ const deduped = [...eligible]
   .reduce((map, row) => map.set(row.email, row), new Map());
 
 const subscribers = [...deduped.values()].sort((a, b) => String(a.email).localeCompare(String(b.email)));
-const state = loadSyncState();
-const syncedEmails = new Set(Object.keys(state.synced || {}).map((email) => email.toLowerCase()));
-const pending = subscribers.filter((row) => !syncedEmails.has(row.email));
+const resend = await loadResendContacts();
+const missing = resend.ok ? subscribers.filter((row) => !resend.emails.has(row.email)) : [];
 const lastSubmissions = [...rows]
   .sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)))
   .slice(0, 5)
@@ -110,14 +138,23 @@ const summary = {
   siteId,
   rawCounts,
   eligibleSubscribers: subscribers.length,
-  spreadSynced: subscribers.length - pending.length,
-  spreadPending: pending.length,
-  pending: pending.map((row) => ({ email: row.email, name: row.name, created_at: row.created_at })),
+  resend: resend.ok
+    ? {
+        audienceId: resend.audienceId,
+        contacts: resend.total,
+        unsubscribed: resend.unsubscribed,
+        deliverable: resend.total - resend.unsubscribed,
+        missing: missing.length,
+      }
+    : { checked: false, reason: resend.reason, audienceId: resend.audienceId ?? null },
+  missing: missing.map((row) => ({ email: row.email, name: row.name, created_at: row.created_at })),
   lastSubmissions,
   commands: {
     exportCsv: 'npm run newsletter:export',
-    syncSpread: 'npm run newsletter:sync-spread',
+    addMissingToResend: 'npm run newsletter:sync-resend',
   },
 };
 
 console.log(JSON.stringify(summary, null, 2));
+
+if (!resend.ok) process.exitCode = 1;
