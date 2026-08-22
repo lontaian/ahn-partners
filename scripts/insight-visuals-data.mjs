@@ -873,6 +873,66 @@ export const INSIGHT_VISUALS = [
     title: 'AI 강의 수강 인원이 늘어도 회사 매출이 오르지 않는 이유는 시장 구조에 있습니다',
     thesis: '강의가 파는 것은 개인 속도이고 조직 성과는 프로세스 재설계에서 옵니다.',
     items: [{ label: '개인 기술 교육', detail: '도구 사용법을 판다' }, { label: '프로세스 전환', detail: '조직 성과 경로를 재설계한다' }]
+  },
+  {
+    slug: 'ai-pilot-operation-gap', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
+    title: '파일럿에서 성공한 AI가 전사 배포 이후 사라지는 이유',
+    thesis: '파일럿 성공 조건은 현업 조직에 그대로 이전되지 않습니다.',
+    items: [{ label: '파일럿 조건', detail: '전담 인원, 경영진 직보, 데이터 지원' }, { label: '현업 조건', detail: '기존 KPI, 지원 없음, 역할 미정의' }]
+  },
+  {
+    slug: 'ai-decision-rights-map', category: 'AI OPERATING MODEL', layout: 'stack', composition: 'vertical',
+    title: '어느 결정을 AI에게 맡겼는지 지금 문서화돼 있습니까',
+    thesis: 'AI 결정 권한 지도가 없으면 추천이 실행으로 넘어가는 시점을 조직이 알지 못합니다.',
+    items: [{ label: '자율 실행', detail: '소액, 반복, 되돌릴 수 있음' }, { label: '담당자 승인', detail: '예산 초과, 신규 거래처' }, { label: '임원 승인', detail: '전략 계약, 인사 결정' }]
+  },
+  {
+    slug: 'security-owns-ai-code', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
+    title: 'AI가 쓴 코드의 보안 취약점은 누가 책임집니까',
+    thesis: 'AI가 코드를 썼다고 보안 검토 책임이 사라지는 것은 아닙니다.',
+    items: [{ label: 'AI 생성 코드', detail: '취약점이 기능 안에 섞인다' }, { label: '검토 없이 배포', detail: '데이터 노출 경로가 된다' }]
+  },
+  {
+    slug: 'vendor-demo-workflow-gap', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
+    title: '데모에서 98%였던 AI 정확도가 현업에서 절반으로 줄어든 이유',
+    thesis: '벤더 데모는 최적 조건에서 나옵니다. 실제 데이터와 예외로 다시 확인해야 합니다.',
+    items: [{ label: '데모 조건', detail: '정제 데이터, 단선 흐름' }, { label: '실제 업무', detail: '비정형 입력, 예외, 시스템 연동' }]
+  },
+  {
+    slug: 'automation-stop-button', category: 'AUTOMATION ECONOMICS', layout: 'flow', composition: 'split',
+    title: '자동화를 켜기 전에 끄는 방법을 먼저 설계해야 합니다',
+    thesis: '자동화 오작동의 피해는 사람보다 빠르게 커집니다. 중단 기준, 권한자, 복구 경로가 먼저입니다.',
+    items: [{ label: '임계치 설정' }, { label: '중단 권한자' }, { label: '복구 경로' }, { label: '재가동 승인' }]
+  },
+  {
+    slug: 'nice-leader-ruins', category: 'LEADERSHIP', layout: 'branch', composition: 'split',
+    title: '좋은 사람이라는 평판을 지키려다 팀에서 솔직한 말이 사라집니다',
+    thesis: '불편한 대화를 피하는 리더가 의도 없이 팀의 솔직함을 없앱니다.',
+    items: [{ label: '피드백 공백', detail: '기준을 알 수 없다' }, { label: '침묵 학습', detail: '말해도 소용없다는 경험' }, { label: '기준 하향', detail: '팀 전체 수준이 낮아진다' }]
+  },
+  {
+    slug: 'b2b-internal-champion', category: 'SALES', layout: 'flow', composition: 'vertical',
+    title: 'B2B 계약이 검토 단계에서 멈추는 이유는 고객사 내부에 있습니다',
+    thesis: '고객사 내부에서 구매를 밀어주는 사람이 없으면 계약은 검토 중에 사라집니다.',
+    items: [{ label: '직접 수혜자' }, { label: '내부 신뢰' }, { label: '내부 설득 자료' }, { label: '구매 완료' }]
+  },
+  {
+    slug: 'field-feedback-loop', category: 'OPERATING SYSTEM', layout: 'loop', composition: 'vertical',
+    title: '현장에서 올라온 말이 다시 현장으로 내려오지 않으면 보고가 멈춥니다',
+    thesis: '피드백 수집이 아니라 결과가 돌아오는 순환 구조가 현장 보고를 이어갑니다.',
+    items: [{ label: '현장 보고' }, { label: '접수 확인' }, { label: '처리 결과 통보' }, { label: '반영 사례 공유' }]
+  },
+  {
+    slug: 'data-owner-not-dashboard', category: 'DATA DECISION', layout: 'compare', composition: 'split',
+    title: '지표 정의가 부서마다 다르면 대시보드 회의는 숫자 싸움이 됩니다',
+    thesis: '지표 소유자 없이 대시보드를 늘리면 불일치도 함께 커집니다.',
+    items: [{ label: '소유자 없는 지표', detail: '부서마다 정의가 달라진다' }, { label: '소유자 있는 지표', detail: '집계 방식과 기준이 하나다' }]
+  },
+  {
+    slug: 'nocode-hidden-work', category: 'WORKFLOW', layout: 'stack', composition: 'vertical',
+    title: '노코드로 만드는 것은 반나절이지만 굴리는 것은 그다음부터입니다',
+    thesis: '만들기는 빠르지만 유지보수 비용은 코드와 같습니다. 생애 주기를 만들기에 포함해야 합니다.',
+    items: [{ label: 'API 변경 대응' }, { label: '데이터 예외 처리' }, { label: '운영 지식 이전' }]
   }
 ];
 
