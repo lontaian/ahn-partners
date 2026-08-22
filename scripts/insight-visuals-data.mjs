@@ -1113,6 +1113,84 @@ export const INSIGHT_VISUALS = [
     title: '퇴직 면담은 있는데 잔류 면담이 없는 조직은 남아있는 이유를 추측으로 설계합니다',
     thesis: '이탈 이유를 없애는 처방과 잔류 이유를 만드는 처방은 방향이 다릅니다.',
     items: [{ label: '퇴직 면담', detail: '나간 사람에게 이탈 원인을 묻는다' }, { label: '잔류 면담', detail: '남아있는 사람에게 잔류 이유를 묻는다' }]
+  },
+  {
+    slug: 'b2b-spec-language-gap', category: 'SALES', layout: 'compare', composition: 'split',
+    title: '기술 스펙서를 그대로 보내면 고객사 담당자가 내부 설득에 실패합니다',
+    thesis: '영업팀이 설득해야 할 상대는 창구 담당자가 아니라 그 담당자가 설득해야 할 내부 이해관계자입니다.',
+    items: [{ label: '기술 스펙 전달', detail: '담당자가 내부 설득 자료를 스스로 만들어야 한다' }, { label: '고객 손실 언어 번역', detail: '담당자가 이해관계자에게 그대로 전달할 수 있다' }]
+  },
+  {
+    slug: 'executive-ai-shadow-usage', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
+    title: '경영진이 개인 AI 계정으로 처리하는 업무가 회사 데이터 정책 밖에 있습니다',
+    thesis: 'AI 사용 직장인의 78%가 개인 계정을 씁니다. 금지는 우회될 뿐이고 격차를 줄이는 것이 실질 대응입니다.',
+    items: [{ label: '금지 정책', detail: '우회 경로는 개인 계정이고 숨기는 것만 늘어난다' }, { label: '허용 기준 설계', detail: '정보 유형과 도구 목록 기준이 생겨야 정책이 작동한다' }]
+  },
+  {
+    slug: 'erp-process-before-code', category: 'OPERATING SYSTEM', layout: 'flow', composition: 'vertical',
+    title: 'ERP를 시작하기 전에 업무 프로세스가 팀 간 합의돼야 하는 이유는 코드 문제가 아닙니다',
+    thesis: '요구사항이 구축 도중 바뀌는 이유는 대부분 같습니다. 시작 전에 프로세스 합의와 결정 권한이 없었기 때문입니다.',
+    items: [{ label: '정상 흐름 합의' }, { label: '예외 유형 확정' }, { label: '처리 권한 지정' }, { label: 'ERP 구축 착수' }]
+  },
+  {
+    slug: 'portfolio-ai-verify-method', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '외주 결과물과 포트폴리오가 AI로 만들어졌는지 확인하는 유일하게 작동하는 방법은 질문입니다',
+    thesis: 'AI 탐지 도구는 이미 작동하지 않습니다. 검증할 것은 AI 사용 여부가 아니라 산출물에 판단이 있는가입니다.',
+    items: [{ label: 'AI 탐지 도구', detail: '오탐률이 높고 후처리로 우회된다' }, { label: '판단 근거 질문', detail: '버린 대안과 확신이 낮은 부분을 설명할 수 있으면 이해한 것이다' }]
+  },
+  {
+    slug: 'visible-work-client-trust', category: 'OPERATIONS', layout: 'compare', composition: 'split',
+    title: '결과만 전달하는 협력사보다 과정을 보여주는 협력사가 계약을 갱신합니다',
+    thesis: 'B2B 신뢰를 만드는 것은 역량 증명이 아니라 투명성입니다. 담당자가 내부 보고에 쓸 수 있는 자료가 충성도를 만듭니다.',
+    items: [{ label: '결과만 전달', detail: '고객이 진행 상태를 모르는 불안이 쌓인다' }, { label: '과정 공유', detail: '담당자가 내부에서 전략적으로 보이고 협력사 가치가 높아진다' }]
+  },
+  {
+    slug: 'field-visit-decision-clarity', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '현장 방문 후 결정이 바뀌었다면 그 결정은 처음부터 현장 없이 내릴 수 없는 것이었습니다',
+    thesis: '보고서에는 있는 것만 보고됩니다. 결정이 영향을 미치는 사람이 회의실에 없다면 현장 방문이 필요한 결정입니다.',
+    items: [{ label: '보고서 기반 결정', detail: '필터링된 정보로 내려진다' }, { label: '현장 직접 관찰', detail: '보고되지 않는 비공식 조건이 거기에 있다' }]
+  },
+  {
+    slug: 'ai-lecture-org-signal', category: 'AX EDUCATION', layout: 'compare', composition: 'split',
+    title: '직원이 AI 강의를 신청하는 이유가 AI 때문만은 아닐 수 있습니다',
+    thesis: 'AI 강의 신청이 많은 팀이 직무 만족도가 낮다면 그것은 도구 수요가 아니라 성장 기회 부재의 신호입니다.',
+    items: [{ label: '도구 수요 신청', detail: '구체적 적용 업무가 있고 팀 성과와 연결된다' }, { label: '불안 신호 신청', detail: '막연한 대체 불안이거나 현재 직무에서 출구를 찾는 행동이다' }]
+  },
+  {
+    slug: 'hydrogen-demand-anchor-b2b', category: 'NEW BUSINESS', layout: 'ratio', composition: 'split',
+    title: '수소충전소 수익 구조는 지나가는 차가 아니라 매일 오는 법인 고객이 결정합니다',
+    thesis: '유동 승용차만으로는 손익분기를 맞출 수 없습니다. 노선 버스, 청소차처럼 충전 빈도가 예측 가능한 법인 계약이 먼저입니다.',
+    items: [{ label: '유동 수요', value: '불확실' }, { label: '법인 앵커 계약', value: '수익 기반' }]
+  },
+  {
+    slug: 'ev-commercial-charge-schedule', category: 'MOBILITY', layout: 'compare', composition: 'split',
+    title: '전기 화물차 전환을 막는 것은 차 가격이 아니라 충전하는 동안 멈추는 시간입니다',
+    thesis: '하루 16시간 운행하는 화물차에서 완충 1-2시간은 납기 스케줄 전체를 바꿉니다. 자사 운행 데이터 분석이 먼저입니다.',
+    items: [{ label: '경유 화물차', detail: '주유 5-10분, 기존 스케줄 유지' }, { label: '전기 화물차', detail: '완충 1-2시간, 운행 스케줄 전면 재설계 필요' }]
+  },
+  {
+    slug: 'fcev-repair-network-gap', category: 'OPERATIONS', layout: 'compare', composition: 'split',
+    title: '수소 트럭 법인 도입을 막는 것은 연료비 계산이 아니라 고장 났을 때 어디서 고치는가입니다',
+    thesis: '경유 트럭은 동네 정비소에서 고칩니다. 수소 트럭은 지금 그럴 수 없습니다. 이 차이가 연간 연료비 절감액보다 크게 인식됩니다.',
+    items: [{ label: '경유 트럭 정비', detail: '전국 네트워크, 출동 서비스' }, { label: '수소 트럭 정비', detail: '공식 거점 한정, 부품 조달 대기 발생' }]
+  },
+  {
+    slug: 'zero-to-one-customer-spec', category: 'NEW BUSINESS', layout: 'compare', composition: 'reverse',
+    title: '신사업 스펙을 내부 기능 목록으로 시작하면 고객이 없는 제품이 완성됩니다',
+    thesis: '내부가 할 수 있는 것에서 시작한 스펙과 고객이 지금 불편해서 돈을 내고 있는 것에서 시작한 스펙은 결과가 다릅니다.',
+    items: [{ label: '내부 기능 목록', detail: '내부가 원하는 것이 만들어진다' }, { label: '고객 불편 언어', detail: '고객이 돈을 낼 이유가 만들어진다' }]
+  },
+  {
+    slug: 'ideas-timing-beats-quality', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '좋은 아이디어가 채택되지 않는 이유 절반은 아이디어 품질이 아닙니다',
+    thesis: '예산 주기, 경영진 우선순위, 팀 에너지와 맞지 않는 제안은 의제에 오르지 못합니다. 타이밍은 설계할 수 있습니다.',
+    items: [{ label: '품질 좋은 제안', detail: '타이밍이 맞지 않으면 나중에가 되고 대부분 사라진다' }, { label: '타이밍이 맞는 제안', detail: '예산 주기와 경영진 우선순위에 연결되어 의제에 오른다' }]
+  },
+  {
+    slug: 'manager-selection-wrong-criteria', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '팀장을 실무 성과 1위로 뽑는 관행이 팀 성과를 운에 맡기는 이유입니다',
+    thesis: '팀 성과의 70%가 팀장에서 비롯됩니다. 실무 역량과 관리 역량은 같은 축이 아닙니다. 선발 기준에 관리 역량이 없으면 결과가 운에 가까워집니다.',
+    items: [{ label: '실무 성과 기준', detail: '가장 직관적이지만 관리 역량과 연결이 없다' }, { label: '관리 역량 기준', detail: '팀원 개발 이력과 판단 공유 방식으로 사전에 관찰된다' }]
   }
 ];
 
