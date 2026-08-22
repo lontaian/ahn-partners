@@ -186,12 +186,27 @@ if (accessToken) {
   }
 }
 
+// 실독자 프록시 (2026-08-22, 수주나비 루프 C807 봇 판별 후속):
+// 뉴스레터 유입 세션의 다수가 메일 보안 스캐너(desktop/Chrome,
+// 체류 수 초)로 확인됐다. 스캐너가 만들지 못하는 실상호작용
+// 이벤트(scroll, insight_read_50/90, internal_link_click)의
+// 캠페인별 최대 사용자 수를 실독자 하한 추정치로 쓴다.
+const REAL_EVENTS = new Set(['scroll', 'insight_read_50', 'insight_read_90', 'internal_link_click']);
+const realReadersByCampaign = new Map();
+for (const row of ga4.eventRows) {
+  if (!REAL_EVENTS.has(row.eventName)) continue;
+  const prev = realReadersByCampaign.get(row.sessionCampaignName) ?? 0;
+  realReadersByCampaign.set(row.sessionCampaignName, Math.max(prev, row.totalUsers ?? 0));
+}
+const realReaders = [...realReadersByCampaign.values()].reduce((a, b) => a + b, 0);
+
 const overall = {
   generated: campaigns.reduce((sum, item) => sum + item.generated, 0),
   delivered: campaigns.reduce((sum, item) => sum + item.delivered, 0),
   engaged: campaigns.reduce((sum, item) => sum + item.engaged, 0),
   clicked: campaigns.reduce((sum, item) => sum + item.clicked, 0),
   siteSessions: ga4.campaignRows.reduce((sum, item) => sum + (item.sessions ?? 0), 0),
+  realReaders,
   replies: feedback.replies.length,
   formSubmissions: feedback.formSubmissions.length,
   inquiries: feedback.inquiries.length,

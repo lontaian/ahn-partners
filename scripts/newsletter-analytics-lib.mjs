@@ -266,6 +266,7 @@ export function renderMarkdownReport(report) {
     `- 열람 이상: ${report.overall?.engaged ?? 0}`,
     `- 링크 클릭: ${report.overall?.clicked ?? 0}`,
     `- 사이트 세션: ${report.overall?.siteSessions ?? 0}`,
+    `- 실독자 프록시(스캐너 제외 실상호작용): ${report.overall?.realReaders ?? 0}`,
     `- 직접 회신/문의: ${report.overall?.replies ?? 0}`,
     `- 뉴스레터 폼 신청: ${report.overall?.formSubmissions ?? 0}`,
     `- 사이트 문의: ${report.overall?.inquiries ?? 0}`,
