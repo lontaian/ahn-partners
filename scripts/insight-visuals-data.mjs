@@ -333,6 +333,66 @@ export const INSIGHT_VISUALS = [
     title: '위험 서른 개가 있으면 아무도 보지 않습니다',
     thesis: '서른네 개 목록은 아무도 보지 않고, 셋만 남겼을 때 담당자가 끝까지 봤습니다.',
     items: [{ label: '전체 목록', value: '분기 검토' }, { label: '핵심 위험', value: '매주 확인' }]
+  },
+  {
+    slug: 'organizational-silence', category: 'SILENCE RISK', layout: 'signal', composition: 'vertical',
+    title: '나쁜 소식에 한 번 부정적으로 반응하면 팀원은 다음 소식을 숨깁니다',
+    thesis: '침묵은 용기가 없어서가 아니라 말했을 때 어떤 일이 생기는지를 이미 학습한 결과입니다.',
+    items: [{ label: '나쁜 소식 보고' }, { label: '부정적 반응' }, { label: '다음 소식 차단' }, { label: '문제 수면 아래 축적' }]
+  },
+  {
+    slug: 'hiring-learning-speed', category: 'ORG AND PEOPLE', layout: 'compare', composition: 'split',
+    title: '경력이 길어도 역할이 3년 뒤 달라질 자리에서는 학습 속도가 더 중요합니다',
+    thesis: '채용 결정이 과거 경험에만 의존할 때 조직 환경 변화 속도가 그 경험의 유효 기간을 결정합니다.',
+    items: [{ label: '경력 연수 기준', detail: '환경이 안정적일 때 유효하다' }, { label: '학습 속도 기준', detail: '역할이 빠르게 바뀔 때 더 강하게 작동한다' }]
+  },
+  {
+    slug: 'measurement-trap-goodhart', category: 'METRICS THAT MOVE', layout: 'compare', composition: 'reverse',
+    title: '지표가 목표가 되는 순간 그 지표는 좋은 지표이기를 멈춥니다',
+    thesis: '지표를 달성하는 가장 쉬운 방법이 실제 성과를 내는 것과 일치하지 않을 때 구성원은 지표를 최적화하고 실제 목표를 잊습니다.',
+    items: [{ label: '정보 지표', detail: '실제 상태를 파악한다' }, { label: '달성 목표', detail: '우회 방법이 생긴다' }]
+  },
+  {
+    slug: 'intuition-vs-data-decision', category: 'DATA DECISION', layout: 'matrix', composition: 'split',
+    title: '직관이 데이터를 이기는 상황과 데이터가 직관을 대체해야 하는 상황은 다릅니다',
+    thesis: '직관이 형성된 환경과 지금 환경이 유사한지를 먼저 확인해야 직관과 데이터 중 어느 쪽에 더 비중을 둘지 결정할 수 있습니다.',
+    items: [{ label: '환경 유사성' }, { label: '측정 가능성' }, { label: '직관 우세' }, { label: '데이터 우세' }]
+  },
+  {
+    slug: 'organizational-forgetting', category: 'DECISION MEMORY', layout: 'branch', composition: 'split',
+    title: '인수인계 문서에 절차는 남지만 왜 그 절차인지는 사라집니다',
+    thesis: '결과만 기록하고 이유를 버리는 것이 조직의 기본 설정이고 이를 바꾸려면 의도적인 구조가 필요합니다.',
+    items: [{ label: '절차와 양식', detail: '남는다' }, { label: '판단 근거', detail: '사라진다' }, { label: '실패 이유', detail: '다시 반복된다' }]
+  },
+  {
+    slug: 'curse-of-knowledge', category: 'AI OPERATING MODEL', layout: 'flow', composition: 'split',
+    title: '전문가가 설명량을 늘릴수록 경영진이 필요한 정보와 멀어집니다',
+    thesis: '경영진에게 필요한 정보는 기술적 정확성이 아니라 지금 하지 않으면 발생하는 비용과 하면 생기는 변화입니다.',
+    items: [{ label: '기술 세부 설명' }, { label: '경영진 혼란' }, { label: '추가 자료 요청' }, { label: '결정 연기' }]
+  },
+  {
+    slug: 'reward-decoupled-from-title', category: 'PEOPLE & ORG', layout: 'stack', composition: 'vertical',
+    title: '보상과 직책이 같은 경로에 있으면 전문가도 관리자가 되어야 합니다',
+    thesis: '보상 경로와 직책 경로를 분리하면 전문가가 관리자가 되지 않아도 성장할 수 있습니다.',
+    items: [{ label: '전문 역량' }, { label: '직책 승진 압박' }, { label: '관리 역할 불일치' }]
+  },
+  {
+    slug: 'speed-paradox-reversible-decisions', category: 'DECISION MEMORY', layout: 'ratio', composition: 'split',
+    title: '바꿀 수 있는 결정을 신중하게 처리할수록 바꿔야 할 결정이 늦어집니다',
+    thesis: '되돌릴 수 있는 결정은 빠르게 실행하고 결과로 배우며, 되돌릴 수 없는 결정은 검토를 두 번 거쳐야 합니다.',
+    items: [{ label: '되돌릴 수 있는 결정', value: '빠르게 실행' }, { label: '되돌릴 수 없는 결정', value: '충분한 검토' }]
+  },
+  {
+    slug: 'report-vs-work', category: 'PEOPLE & ORG', layout: 'compare', composition: 'vertical',
+    title: '관리자가 보지 못한 성과는 보고된 성과로 대체됩니다',
+    thesis: '결과 지표가 없는 평가 환경에서 보고 빈도와 품질이 성과 대리 지표가 됩니다.',
+    items: [{ label: '보고 기반 평가', detail: '가시성이 높을수록 유리하다' }, { label: '결과 기반 평가', detail: '실제 기여도가 드러난다' }]
+  },
+  {
+    slug: 'sunk-cost-project', category: 'NEW BUSINESS', layout: 'timeline', composition: 'vertical',
+    title: '이미 쓴 돈이 앞으로의 결정에 영향을 주는 순간 판단이 오염됩니다',
+    thesis: '매몰비용은 이미 돌이킬 수 없고, 계속 여부의 기준은 앞으로 더 쓸 비용과 앞으로 얻을 가치의 비교뿐입니다.',
+    items: [{ label: '투자 시작' }, { label: '경고 신호' }, { label: '매몰비용 심리' }, { label: '추가 손실' }]
   }
 ];
 
