@@ -813,6 +813,66 @@ export const INSIGHT_VISUALS = [
     title: '완성된 결과만 팀에 공유하면 중간 판단의 오류는 다음 사람에게도 반복됩니다',
     thesis: '과정을 공유하는 것은 미완성을 드러내는 것이 아니라 다음 사람의 학습 비용을 줄이는 행동입니다.',
     items: [{ label: '결과만 공유', detail: '판단 경로가 사라진다' }, { label: '과정 공유', detail: '다음 사람의 학습 비용이 줄어든다' }]
+  },
+  {
+    slug: 'ev-vs-commercial-reality', category: 'MOBILITY', layout: 'compare', composition: 'split',
+    title: '전기차가 상용차 현장에서 기대와 달랐던 이유',
+    thesis: '기술의 우열이 아니라 차의 쓰임이 에너지 선택을 결정합니다.',
+    items: [{ label: '기술 우열 판단', detail: '배터리냐 수소냐' }, { label: '차량 쓰임 판단', detail: '하중, 거리, 충전 접근성' }]
+  },
+  {
+    slug: 'hydrogen-use-case-split', category: 'MOBILITY', layout: 'compare', composition: 'split',
+    title: '수소차가 망했다는 말, 절반만 맞습니다',
+    thesis: '승용차에서 진 것이 대형 상용차에서도 진 것을 의미하지 않습니다.',
+    items: [{ label: '승용차 시장', detail: '전기차가 이미 앞섰다' }, { label: '대형 상용차 시장', detail: '경쟁이 아직 열려 있다' }]
+  },
+  {
+    slug: 'hydrogen-timing-lesson', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '옳은 기술에 너무 일찍 투자한 것이 문제였습니다',
+    thesis: '기술 타당성 판단과 시장 준비도 판단은 다른 질문입니다.',
+    items: [{ label: '기술 타당성', detail: '기술이 맞는가' }, { label: '시장 준비도', detail: '지금이 들어갈 타이밍인가' }]
+  },
+  {
+    slug: 'ai-speed-not-revenue', category: 'AI STRATEGY', layout: 'flow', composition: 'split',
+    title: 'AI로 업무가 빨라졌는데 매출이 그대로인 이유',
+    thesis: 'AI 속도가 병목을 건너지 못하면 조직 성과에 닿지 않습니다.',
+    items: [{ label: 'AI 개인 속도 향상' }, { label: '병목 구간', detail: '사람 검토, 승인 대기' }, { label: '매출 연결 없음' }]
+  },
+  {
+    slug: 'success-inertia-self-renewal', category: 'LEADERSHIP', layout: 'signal', composition: 'vertical',
+    title: '한때 통한 방식이 경영자 자신을 가두는 방식',
+    thesis: '방식이 통하는 동안 멈춘 점검이 환경 변화 이후 장벽이 됩니다.',
+    items: [{ label: '방식 성공' }, { label: '점검 중단' }, { label: '맥락 변화' }, { label: '방식이 장벽' }]
+  },
+  {
+    slug: 'hire-juniors-ai-era', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: 'AI가 초급 업무를 대신한다고 신입을 안 뽑으면 3년 뒤 조직에서 무슨 일이 생기는가',
+    thesis: '신입 채용의 목적은 초급 업무 처리가 아니라 3년 뒤 관리자 파이프라인입니다.',
+    items: [{ label: '단기 인건비 절감', detail: 'AI가 초급 업무를 처리한다' }, { label: '3년 뒤 관리자 공백', detail: '외부 채용 비용이 더 크게 온다' }]
+  },
+  {
+    slug: 'busy-vs-ai', category: 'AI STRATEGY', layout: 'loop', composition: 'vertical',
+    title: 'AI 도구를 도입한 뒤 야근이 줄지 않는 이유는 150년 전에 이미 설명됐습니다',
+    thesis: '효율 향상은 수요 감소가 아니라 수요 증가로 이어집니다.',
+    items: [{ label: 'AI 속도 향상' }, { label: '업무 요청 증가' }, { label: '처리 기준 상향' }, { label: '야근 유지' }]
+  },
+  {
+    slug: 'midyear-checkpoint', category: 'PLANNING', layout: 'compare', composition: 'split',
+    title: '8월에 확인해야 할 것은 달성률이 아니라 목표 자체가 아직 맞는가입니다',
+    thesis: '중간 점검의 질문은 얼마나 달성했는가가 아니라 방향이 아직 유효한가입니다.',
+    items: [{ label: '달성률 점검', detail: '얼마나 왔는가' }, { label: '목표 유효성 감사', detail: '방향이 아직 맞는가' }]
+  },
+  {
+    slug: 'reverse-from-yearend', category: 'PLANNING', layout: 'timeline', composition: 'reverse',
+    title: '12월 31일 원하는 상태를 먼저 쓰면 이번 주 할 일 목록이 달라집니다',
+    thesis: '출발점이 아닌 도착점에서 역산하면 지금 해야 할 일이 달라집니다.',
+    items: [{ label: '12월 31일 상태' }, { label: '10월 말 역산' }, { label: '8월 말 역산' }, { label: '이번 주 첫 행동' }]
+  },
+  {
+    slug: 'ai-lecture-exposed', category: 'AX EDUCATION', layout: 'compare', composition: 'split',
+    title: 'AI 강의 수강 인원이 늘어도 회사 매출이 오르지 않는 이유는 시장 구조에 있습니다',
+    thesis: '강의가 파는 것은 개인 속도이고 조직 성과는 프로세스 재설계에서 옵니다.',
+    items: [{ label: '개인 기술 교육', detail: '도구 사용법을 판다' }, { label: '프로세스 전환', detail: '조직 성과 경로를 재설계한다' }]
   }
 ];
 
