@@ -393,6 +393,66 @@ export const INSIGHT_VISUALS = [
     title: '이미 쓴 돈이 앞으로의 결정에 영향을 주는 순간 판단이 오염됩니다',
     thesis: '매몰비용은 이미 돌이킬 수 없고, 계속 여부의 기준은 앞으로 더 쓸 비용과 앞으로 얻을 가치의 비교뿐입니다.',
     items: [{ label: '투자 시작' }, { label: '경고 신호' }, { label: '매몰비용 심리' }, { label: '추가 손실' }]
+  },
+  {
+    slug: 'new-business-betting-learning-speed', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '신사업 초기 자본 배분에서 중요한 것은 베팅 규모가 아닙니다',
+    thesis: '얼마나 확신하는가가 아니라 얼마나 빨리 검증할 수 있는가가 초기 자본 배분의 기준입니다.',
+    items: [{ label: '베팅 규모 기준', detail: '얼마나 확신하는가' }, { label: '학습 속도 기준', detail: '얼마나 빨리 검증하는가' }]
+  },
+  {
+    slug: 'technical-debt-capital-allocation', category: 'CAPITAL', layout: 'flow', composition: 'split',
+    title: '기술부채 상환 예산은 부채 총량이 아니라 다음 사업과의 충돌로 결정합니다',
+    thesis: '사업 계획과 기술부채 지도를 같은 회의에서 펼치면 예산 배정 논리가 달라집니다.',
+    items: [{ label: '다음 사업 계획' }, { label: '충돌 부채 확인' }, { label: '선 상환' }, { label: '개발 일정 확보' }]
+  },
+  {
+    slug: 'meetings-signal-distrust', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '회의가 많은 조직에는 두 종류가 있습니다',
+    thesis: '결정을 받으러 모이는 팀에서 회의를 없애면 결정 경로가 막혀 팀이 멈춥니다.',
+    items: [{ label: '정보 공유 회의', detail: '줄여도 팀이 움직인다' }, { label: '결정 허락 회의', detail: '없애면 팀이 멈춘다' }]
+  },
+  {
+    slug: 'hydrogen-station-chicken-egg', category: 'NEW BUSINESS', layout: 'loop', composition: 'vertical',
+    title: '수소충전소와 수소차는 서로를 기다립니다',
+    thesis: '수요와 공급이 서로를 결정하는 구조에서 사업계획서에 필요한 것은 교착을 깨는 순서 설계입니다.',
+    items: [{ label: '수소차 수요 부족' }, { label: '충전소 추가 지연' }, { label: '충전소 밀도 부족' }, { label: '수소차 구매 지연' }]
+  },
+  {
+    slug: 'ace-leaves-quietly', category: 'TALENT', layout: 'signal', composition: 'vertical',
+    title: '에이스가 떠나기 전 먼저 조용해집니다',
+    thesis: '이탈 결정은 통보 12개월 전 세 가지 행동 변화로 시작됩니다.',
+    items: [{ label: '자발적 기여 감소' }, { label: '관계망 변화' }, { label: '지식 정리 시작' }, { label: '퇴사 통보' }]
+  },
+  {
+    slug: 'smart-city-real-bottleneck', category: 'OPERATIONS', layout: 'stack', composition: 'vertical',
+    title: '관제 시스템을 켜도 운영이 바뀌지 않는 이유',
+    thesis: '스마트시티의 진짜 병목은 기술이 아니라 결정 기준과 권한과 책임의 부재입니다.',
+    items: [{ label: '결정 기준' }, { label: '결정 권한' }, { label: '책임 구조' }]
+  },
+  {
+    slug: 'bottleneck-code-to-goal', category: 'TECHNOLOGY', layout: 'compare', composition: 'split',
+    title: '개발이 느린 게 아니라 무엇을 만들지 결정이 안 된 것이 병목입니다',
+    thesis: '병목이 코드 이전에 있으면 인력을 더 넣어도 속도가 나지 않습니다.',
+    items: [{ label: '코드 병목', detail: '인력과 툴이 해법이다' }, { label: '목표 병목', detail: '기획 프로세스가 해법이다' }]
+  },
+  {
+    slug: 'ax-code-immersion-trap', category: 'AX', layout: 'flow', composition: 'reverse',
+    title: 'AI 도구를 너무 잘 이해하면 해결하려던 문제를 잊게 됩니다',
+    thesis: '구현 이해도가 높아지는 것과 업무 문제 해결이 가까워지는 것은 같은 방향이 아닙니다.',
+    items: [{ label: '업무 문제 정의' }, { label: '구현 몰입' }, { label: '기술 과제 집중' }, { label: '업무 개선 없음' }]
+  },
+  {
+    slug: 'planning-dev-boundary', category: 'OPERATIONS', layout: 'timeline', composition: 'split',
+    title: '기획이 끝난 뒤에도 요구사항이 바뀌는 조직의 공통점',
+    thesis: '결정이 빠진 채 개발이 시작되면 요구사항 변경 비용이 단계마다 크게 늘어납니다.',
+    items: [{ label: '기획 단계', value: '비용 1' }, { label: '개발 단계', value: '비용 10배' }, { label: '테스트 단계', value: '수십 배' }]
+  },
+  {
+    slug: 'build-vs-buy-kr', category: 'TECHNOLOGY', layout: 'ratio', composition: 'vertical',
+    title: 'ERP를 직접 만들겠다는 결정이 3년 뒤 예산을 두 배로 만드는 이유',
+    thesis: '운영 지원 소프트웨어에서 자체 개발의 경쟁 우위는 대부분 1년 안에 사라집니다.',
+    items: [{ label: '초기 비용 비교', value: '자체 개발 유리' }, { label: '3년 TCO', value: '패키지 경제적' }]
   }
 ];
 
