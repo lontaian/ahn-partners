@@ -753,6 +753,66 @@ export const INSIGHT_VISUALS = [
     title: '이직률이 높아졌을 때는 이미 몰입도가 낮아진 지 수개월이 지난 시점입니다',
     thesis: '만족도와 이직률은 과거를 보여주고 몰입도는 6개월에서 12개월 뒤 성과 방향을 먼저 보여줍니다.',
     items: [{ label: '만족도와 이직률', detail: '후행 지표, 이미 문제가 생긴 뒤에 나온다' }, { label: '몰입도', detail: '선행 지표, 성과 변화 6-12개월 전 신호다' }]
+  },
+  {
+    slug: 'ai-build-not-prompt', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
+    title: 'ChatGPT를 잘 쓰는 것으로는 경쟁 우위가 생기지 않습니다',
+    thesis: '차별화는 AI를 쓰는 것이 아니라 자사 데이터와 업무 흐름에 AI를 연결한 도구를 구축하는 데서 옵니다.',
+    items: [{ label: '프롬프트 사용', detail: '경쟁자도 같은 방식으로 배운다' }, { label: '도구 구축', detail: '자사 데이터가 연결된 운영 자산이 된다' }]
+  },
+  {
+    slug: 'ai-like-managing-people', category: 'AI OPERATING MODEL', layout: 'stack', composition: 'vertical',
+    title: 'AI에게 업무를 잘 맡기는 역량은 27년 사람 관리 경험과 같은 종류입니다',
+    thesis: '업무를 맡기는 지시의 품질이 AI 결과물의 품질을 결정합니다.',
+    items: [{ label: '단위를 작게' }, { label: '기준을 하나만' }, { label: '맥락을 먼저' }]
+  },
+  {
+    slug: 'question-over-answer-ai', category: 'AI STRATEGY', layout: 'flow', composition: 'split',
+    title: 'AI가 즉시 답을 줄수록 대표가 키워야 할 역량은 질문입니다',
+    thesis: '답을 구하는 비용이 0에 가까워질수록 어떤 질문을 할 것인가가 경영 역량이 됩니다.',
+    items: [{ label: '큰 질문' }, { label: 'AI 즉시 답' }, { label: '빠른 오답' }, { label: '잘못된 결정' }]
+  },
+  {
+    slug: 'ai-personal-vs-org', category: 'AI OPERATING MODEL', layout: 'compare', composition: 'split',
+    title: '직원이 AI 활용법을 개발해도 그 방법이 그 사람과 함께 퇴사합니다',
+    thesis: 'AI 생산성이 개인 자산으로 쌓이는 회사와 조직 자산으로 축적되는 회사의 차이는 지금 만들어지고 있습니다.',
+    items: [{ label: '개인 암묵지', detail: '직원이 퇴사하면 방법이 사라진다' }, { label: '조직 형식지', detail: '공유와 검토로 팀 자산이 된다' }]
+  },
+  {
+    slug: 'nondev-builds-with-ai', category: 'AI STRATEGY', layout: 'stack', composition: 'vertical',
+    title: '개발팀 없이 현장 직원이 AI로 업무 도구를 만들기 시작하면 조직에 세 가지 일이 생깁니다',
+    thesis: '막는 것이 아니라 관리하는 체계가 현장 속도와 조직 거버넌스를 동시에 만듭니다.',
+    items: [{ label: 'IT 모르는 데이터 흐름' }, { label: '유지보수 공백' }, { label: '규제 준수 공백' }]
+  },
+  {
+    slug: 'leader-unspoken-expectations', category: 'LEADERSHIP', layout: 'flow', composition: 'split',
+    title: '말하지 않은 기대치를 팀이 알아서 파악하기를 기다리면 팀은 성과보다 신호 해석을 먼저 배웁니다',
+    thesis: '기대치가 명시되지 않으면 팀은 일보다 리더를 읽는 능력을 먼저 개발합니다.',
+    items: [{ label: '기대치 미명시' }, { label: '질문 억제' }, { label: '신호 해석 학습' }, { label: '일보다 리더 파악' }]
+  },
+  {
+    slug: 'control-room-lesson', category: 'OPERATIONS', layout: 'signal', composition: 'vertical',
+    title: '관제실에 표시하는 데이터를 늘릴수록 운영자가 정작 중요한 신호를 놓쳤습니다',
+    thesis: '행동이 없는 지표는 화면에 있어야 할 이유가 없습니다. 정보가 많을수록 핵심 신호가 잡음에 묻힙니다.',
+    items: [{ label: '지표 추가' }, { label: '잡음 증가' }, { label: '핵심 신호 소실' }, { label: '판단 지연' }]
+  },
+  {
+    slug: 'attention-direction', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '리더가 어느 회의에 시간을 쓰는지가 팀 전체에 이번 달 우선순위를 공표합니다',
+    thesis: '전략 발표가 아니라 리더의 캘린더와 질문 방향이 조직의 실제 우선순위를 만듭니다.',
+    items: [{ label: '전략 선언', detail: '분기에 한 번 도달한다' }, { label: '주의 방향', detail: '매일 팀에 신호로 읽힌다' }]
+  },
+  {
+    slug: 'org-flow-design', category: 'OPERATIONS', layout: 'flow', composition: 'vertical',
+    title: '안건이 많아도 조직이 움직이지 않는 것은 우선순위가 없어서가 아닙니다',
+    thesis: '안건이 실행되지 않는 이유는 우선순위 부재가 아니라 흐름 경로의 제약 지점입니다.',
+    items: [{ label: '안건 선언' }, { label: '흐름 경로 제약' }, { label: '대기 누적' }, { label: '실행 없음' }]
+  },
+  {
+    slug: 'show-your-work', category: 'CULTURE', layout: 'compare', composition: 'split',
+    title: '완성된 결과만 팀에 공유하면 중간 판단의 오류는 다음 사람에게도 반복됩니다',
+    thesis: '과정을 공유하는 것은 미완성을 드러내는 것이 아니라 다음 사람의 학습 비용을 줄이는 행동입니다.',
+    items: [{ label: '결과만 공유', detail: '판단 경로가 사라진다' }, { label: '과정 공유', detail: '다음 사람의 학습 비용이 줄어든다' }]
   }
 ];
 
