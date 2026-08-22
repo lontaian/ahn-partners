@@ -513,6 +513,66 @@ export const INSIGHT_VISUALS = [
     title: '가장 바빴던 주가 가장 안 움직인 주였습니다',
     thesis: '활동 지표가 많으면 바쁜 것이고, 결정과 납품이 늘어야 진척입니다.',
     items: [{ label: '활동 지표', detail: '회의, 보고, 이메일' }, { label: '성과 지표', detail: '결정, 납품, 계약' }]
+  },
+  {
+    slug: 'gov-funding-ai-evaluation', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
+    title: 'AI로 인건비를 줄이면 정부 평가에서 불이익을 받는 구조',
+    thesis: '인건비 투입량이 사업 신뢰도 지표인 한, AI 도입 기업은 평가에서 불리합니다.',
+    items: [{ label: '투입 중심 평가', detail: '인건비 많을수록 신뢰 점수 높음' }, { label: '성과 중심 평가', detail: 'AI 생산성이 신뢰 기준이 되어야 함' }]
+  },
+  {
+    slug: 'hydrogen-bus-tco', category: 'CAPITAL', layout: 'ratio', composition: 'split',
+    title: '수소버스 경제성은 10년 총소유비용으로 봐야 합니다',
+    thesis: '오늘 단가표로 10년을 사면 틀립니다. 보조금 없는 시나리오의 TCO를 먼저 계산하십시오.',
+    items: [{ label: '차량 구입비', value: '구매 시점 결정' }, { label: '10년 운용 비용', value: '연료+정비+충전 접근비' }]
+  },
+  {
+    slug: 'best-tech-vs-sellable-tech', category: 'TECHNOLOGY', layout: 'compare', composition: 'split',
+    title: '최고 기술보다 전환 비용이 낮은 기술이 시장을 잡습니다',
+    thesis: '시장은 정확도가 아니라 기존 시스템에 붙는 용이성을 먼저 봅니다.',
+    items: [{ label: '기술 우수성', detail: '정확도, 속도를 높인다' }, { label: '전환 용이성', detail: '연동 시간, 구현 비용을 낮춘다' }]
+  },
+  {
+    slug: 'hydrogen-station-permits', category: 'NEW BUSINESS', layout: 'flow', composition: 'vertical',
+    title: '수소충전소 인허가는 기술 준비와 병렬로 Day 1부터 시작합니다',
+    thesis: '인허가 세 단계 중 하나가 막히면 나머지 전체가 멈춥니다. 기술 일정과 함께 Gantt에 넣으십시오.',
+    items: [{ label: '부지 확정' }, { label: '주민 동의' }, { label: '관계기관 협의' }, { label: '운영 시작' }]
+  },
+  {
+    slug: 'ai-agent-workforce-move', category: 'AI OPERATING MODEL', layout: 'branch', composition: 'split',
+    title: 'AI 에이전트 도입이 감축이 되느냐 이동이 되느냐는 CEO 설계에 달려 있습니다',
+    thesis: 'AI가 반복 업무를 가져갈 때 다음 역할을 미리 정하지 않으면 이동이 아니라 감축이 됩니다.',
+    items: [{ label: 'AI 에이전트 도입' }, { label: '이동 설계 있음', detail: '역할 재배치' }, { label: '이동 설계 없음', detail: '자리 소멸' }]
+  },
+  {
+    slug: 'leader-subtracts', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '추가는 관성이고 제거는 결정입니다',
+    thesis: '과제를 추가하는 비용은 보이지 않고 제거하는 비용은 바로 보입니다. 그래서 목록은 항상 늘어납니다.',
+    items: [{ label: '과제 추가', detail: '대화 한 번, 비용은 팀에 분산' }, { label: '과제 제거', detail: '설명 필요, 저항이 즉시 보임' }]
+  },
+  {
+    slug: 'years-vs-decisions', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '판단력은 연차가 아니라 직접 내린 결정의 수에서 납니다',
+    thesis: '연차는 시간이 흐르면 자동으로 쌓이지만 결정 경험은 의도적으로 만들어야 쌓입니다.',
+    items: [{ label: '연차', detail: '시간이 지나면 자동으로 늘어난다' }, { label: '결정 횟수', detail: '의도적으로 설계해야 늘어난다' }]
+  },
+  {
+    slug: 'tech-to-coo-shift', category: 'OPERATIONS', layout: 'flow', composition: 'split',
+    title: '기술 리더가 운영 총괄로 전환할 때 처음 만나는 실패',
+    thesis: '기술에서는 옳은 답이 결과를 만들지만 운영에서는 납득이 실행을 만듭니다.',
+    items: [{ label: '옳은 답' }, { label: '납득' }, { label: '실행' }]
+  },
+  {
+    slug: 'decision-loneliness', category: 'LEADERSHIP', layout: 'signal', composition: 'vertical',
+    title: '결정의 외로움을 없애려 할 때 결정의 질이 나빠집니다',
+    thesis: '외로움이 불편해서 합의를 찾고 결정을 미루면 외로움은 줄지만 결정 책임 주체가 흐려집니다.',
+    items: [{ label: '합의 과잉' }, { label: '결정 지연' }, { label: '외부 의존' }, { label: '결정 품질 저하' }]
+  },
+  {
+    slug: 'ai-talent-development', category: 'AX EDUCATION', layout: 'stack', composition: 'vertical',
+    title: 'AI가 반복 업무를 가져가면 주니어 판단력이 자라는 사다리가 사라집니다',
+    thesis: '반복 업무는 단순 노동이 아니라 패턴과 판단력이 자라는 토양입니다. 사다리를 의도적으로 다시 설계해야 합니다.',
+    items: [{ label: '반복 업무 경험' }, { label: '실수와 수정' }, { label: '패턴 이해' }, { label: '독립 판단력' }]
   }
 ];
 
