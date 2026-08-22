@@ -993,6 +993,66 @@ export const INSIGHT_VISUALS = [
     title: '앱 다운로드 100만은 경쟁 우위가 아닙니다',
     thesis: '설치 수는 시작점이지 해자가 아닙니다. 경쟁사가 같은 기능을 만들어도 고객이 남는 이유가 해자입니다.',
     items: [{ label: '다운로드 수', detail: '마케팅 효과를 보여준다. 6개월 뒤 경쟁사도 만들 수 있다' }, { label: '리텐션과 전환 비용', detail: '고객이 이동하지 않는 이유를 보여주는 지표다' }]
+  },
+  {
+    slug: 'ai-reading-vs-understanding', category: 'AX EDUCATION', layout: 'compare', composition: 'split',
+    title: 'AI 요약을 읽은 뒤 설명하지 못하면 그것은 이해가 아닙니다',
+    thesis: '읽히는 느낌과 이해는 다른 인지 과정입니다. 설명할 수 있어야 의사결정에 쓸 수 있는 이해입니다.',
+    items: [{ label: '정보 소비', detail: '유창하게 읽혔다, 다 알 것 같다' }, { label: '이해', detail: '설명할 수 있다, 반론을 제기할 수 있다' }]
+  },
+  {
+    slug: 'exec-ai-investment-judgment', category: 'AI STRATEGY', layout: 'stack', composition: 'vertical',
+    title: 'AI에 예산을 배정하기 전에 직접 써봐야 달라지는 세 가지 판단',
+    thesis: '직접 써본 임원은 파일럿 범위, 사람 검토 단계, 성과 지표를 다르게 설정합니다.',
+    items: [{ label: '파일럿 범위' }, { label: '사람 검토 단계' }, { label: '측정 가능한 성과 지표' }]
+  },
+  {
+    slug: 'ai-tool-count-not-a-metric', category: 'AI STRATEGY', layout: 'compare', composition: 'reverse',
+    title: '도입한 AI 도구 수를 이사회에 보고하는 것이 AI 전략을 후퇴시키는 이유',
+    thesis: '세기 쉬운 것이 지표가 되면 조직은 실질 변화 대신 숫자를 채우는 쪽으로 움직입니다.',
+    items: [{ label: 'AI 도구 수', detail: '도입됐는가를 측정한다' }, { label: '업무 방식 변화', detail: '달라졌는가를 측정한다' }]
+  },
+  {
+    slug: 'saved-time-conversion-gap', category: 'WORKFLOW', layout: 'flow', composition: 'split',
+    title: 'AI로 아낀 시간이 회사 손익에 나타나지 않는 이유',
+    thesis: '절약된 시간이 성과로 전환되려면 명시적 의사결정이 필요합니다. 자동으로 전환되지 않습니다.',
+    items: [{ label: '시간 절약' }, { label: '전환 결정 부재' }, { label: '팀 내 흡수' }, { label: '손익 변화 없음' }]
+  },
+  {
+    slug: 'question-design-as-skill', category: 'AX EDUCATION', layout: 'compare', composition: 'split',
+    title: 'AI 질문을 잘 만드는 직원이 팀에 두 명이면 그것은 역량이 아니라 의존입니다',
+    thesis: '개인 역량과 팀 역량은 다릅니다. 잘 작동한 질문을 공유하면 팀 기준으로 이동합니다.',
+    items: [{ label: '개인 역량', detail: '그 두 명이 없으면 팀의 AI 수준이 급감한다' }, { label: '팀 역량', detail: '잘 작동한 질문이 팀 공유 기준이 된다' }]
+  },
+  {
+    slug: 'bad-news-travel-time', category: 'OPERATING SYSTEM', layout: 'flow', composition: 'reverse',
+    title: '나쁜 소식이 CEO에게 도달하는 데 며칠이 걸리는지 측정해 본 적 있습니까',
+    thesis: '나쁜 소식 도달 시간은 측정 가능한 수치입니다. 측정 없이는 단축도 없습니다.',
+    items: [{ label: '현장 발생' }, { label: '완충(확정 대기)' }, { label: '포장(강도 낮춤)' }, { label: 'CEO 인지' }]
+  },
+  {
+    slug: 'undelegatable-decision-types', category: 'ORG AND PEOPLE', layout: 'stack', composition: 'vertical',
+    title: '위임해도 되는 결정과 CEO만 할 수 있는 결정은 구조가 다릅니다',
+    thesis: '위임 불가 결정은 세 구조로 판별합니다. 이 목록이 없으면 모든 결정이 CEO에게 오거나, 와야 할 것이 안 옵니다.',
+    items: [{ label: 'CEO 고유 맥락 의존' }, { label: '조직 전체 귀속 책임' }, { label: '내부 이해 충돌 중재' }]
+  },
+  {
+    slug: 'newbiz-institutionalization-trap', category: 'NEW BUSINESS', layout: 'timeline', composition: 'vertical',
+    title: '기업 신사업이 사내 인정을 받을수록 더 빨리 죽는 이유',
+    thesis: '제도화 단계가 신사업의 가장 치명적인 지점입니다. 인정의 방식이 기존 BU 편입이기 때문입니다.',
+    items: [{ label: '챔피언 창업' }, { label: '첫 고객 확보' }, { label: '기존 BU 편입' }, { label: '핵심 인재 이탈' }]
+  },
+  {
+    slug: 'counteroffer-structural-latency', category: 'ORG AND PEOPLE', layout: 'compare', composition: 'split',
+    title: '에이스가 사표를 낸 뒤에야 연봉 이야기가 나오는 구조적 이유',
+    thesis: '카운터오퍼가 가능했다면 사전 인상도 가능했습니다. 사표가 트리거가 되는 것은 시스템의 구조적 지연입니다.',
+    items: [{ label: '사표 이후', detail: '긴박성이 생겨 예외 승인이 난다' }, { label: '사표 이전', detail: '보상 검토 주기 안에 경로가 없다' }]
+  },
+  {
+    slug: 'rule-asymmetry-no-deletion', category: 'OPERATING SYSTEM', layout: 'compare', composition: 'split',
+    title: '규정을 만드는 절차는 있는데 없애는 절차가 없는 이유',
+    thesis: '신설에는 승인 절차가 있고 폐지에는 없습니다. 구조가 비대칭이면 결과도 비대칭입니다.',
+    items: [{ label: '규정 신설', detail: '사건, 검토, 승인, 담당 부서가 있다' }, { label: '규정 폐지', detail: '제안 채널, 검토 기준, 담당자가 없다' }]
   }
 ];
 
