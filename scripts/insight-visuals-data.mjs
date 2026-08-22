@@ -453,6 +453,66 @@ export const INSIGHT_VISUALS = [
     title: 'ERP를 직접 만들겠다는 결정이 3년 뒤 예산을 두 배로 만드는 이유',
     thesis: '운영 지원 소프트웨어에서 자체 개발의 경쟁 우위는 대부분 1년 안에 사라집니다.',
     items: [{ label: '초기 비용 비교', value: '자체 개발 유리' }, { label: '3년 TCO', value: '패키지 경제적' }]
+  },
+  {
+    slug: 'delegation-paradox', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '직접 처리하는 CEO가 조직의 판단력을 빼앗습니다',
+    thesis: '위임 실패 비용은 즉각 보이고, 미위임 비용은 3년 뒤 판단력 부재로 나타납니다.',
+    items: [{ label: '위임 실패 비용', detail: '즉각 신호가 온다' }, { label: '미위임 비용', detail: '3년 뒤 팀이 혼자 결정하지 못한다' }]
+  },
+  {
+    slug: 'bad-news-speed', category: 'SILENCE RISK', layout: 'compare', composition: 'split',
+    title: '나쁜 소식이 늦게 도착하는 조직의 공통점',
+    thesis: '보고 속도는 나쁜 소식을 처음 전했을 때 CEO의 반응이 결정합니다.',
+    items: [{ label: '원인 추궁 반응', detail: '다음 소식이 늦고 가공되어 온다' }, { label: '상황 파악 반응', detail: '다음 소식이 빠르고 날것으로 온다' }]
+  },
+  {
+    slug: 'system-adoption-trap', category: 'OPERATIONS', layout: 'compare', composition: 'split',
+    title: '도입 비용은 계약서에 있고 정착 비용은 어디에도 없습니다',
+    thesis: '도구 도입과 업무 흐름 정착은 같은 프로젝트가 아닙니다.',
+    items: [{ label: '도입 비용', detail: '계약서에 명시된다' }, { label: '정착 비용', detail: '어느 계획에도 없다' }]
+  },
+  {
+    slug: 'data-that-changes-decisions', category: 'DATA DECISION', layout: 'compare', composition: 'reverse',
+    title: '데이터가 결정 뒤에 들어오면 그것은 보고용입니다',
+    thesis: '데이터가 결정을 바꾸려면 선택지가 열려 있는 결정 직전에 있어야 합니다.',
+    items: [{ label: '결정 전 데이터', detail: '방향이 달라진다' }, { label: '결정 후 데이터', detail: '보고 자료가 된다' }]
+  },
+  {
+    slug: 'corporate-newbiz-dies', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '대기업 신사업이 죽는 건 돈이 없어서가 아닙니다',
+    thesis: '본업의 ROI 잣대로 신사업을 재면 신사업은 항상 실패처럼 보입니다.',
+    items: [{ label: '본업 평가 기준', detail: '매출, 이익률, 점유율' }, { label: '신사업 평가 기준', detail: '가설 검증, 반복 고객' }]
+  },
+  {
+    slug: 'ai-adoption-start-with-pain', category: 'AI STRATEGY', layout: 'compare', composition: 'reverse',
+    title: 'AI 도입을 기술 선택으로 시작하면 현장이 6개월 뒤 돌아섭니다',
+    thesis: '고통이 없는 자리에서 변화도 생기지 않습니다.',
+    items: [{ label: '도구 선택 먼저', detail: '쓸 업무를 나중에 찾게 된다' }, { label: '고통 발굴 먼저', detail: '현장이 도구를 먼저 달라고 한다' }]
+  },
+  {
+    slug: 'ai-summary-illusion', category: 'DATA DECISION', layout: 'flow', composition: 'split',
+    title: 'AI가 요약했다고 읽은 것이 됩니까',
+    thesis: 'AI 요약의 유창성이 이해 착각을 만들고 빠진 정보를 없는 것처럼 보이게 합니다.',
+    items: [{ label: 'AI 요약' }, { label: '유창성 착각' }, { label: '빠진 정보 미인식' }, { label: '결정 오류' }]
+  },
+  {
+    slug: 'exec-use-ai-directly', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: 'AI를 직접 쓰는 임원과 보고로만 받는 임원의 판단이 달라지는 지점',
+    thesis: 'AI 출력이 어떤 조건에서 틀리는지를 경험으로 알아야 팀에 정확한 기준을 전달할 수 있습니다.',
+    items: [{ label: '직접 사용 임원', detail: '위임 기준이 경험에서 나온다' }, { label: '보고 경유 임원', detail: '과대 또는 과소 위임이 생긴다' }]
+  },
+  {
+    slug: 'zero-to-one-newbiz', category: 'NEW BUSINESS', layout: 'timeline', composition: 'vertical',
+    title: '신사업이 첫 결제 전에 멈추는 구간',
+    thesis: '제품 완성 전에 고객이 지금 이 문제를 충분히 불편해하는지 먼저 확인해야 합니다.',
+    items: [{ label: '문제 검증' }, { label: '수요 확인' }, { label: '제품 개발' }, { label: '첫 결제' }]
+  },
+  {
+    slug: 'busy-vs-progress', category: 'OPERATIONS', layout: 'compare', composition: 'vertical',
+    title: '가장 바빴던 주가 가장 안 움직인 주였습니다',
+    thesis: '활동 지표가 많으면 바쁜 것이고, 결정과 납품이 늘어야 진척입니다.',
+    items: [{ label: '활동 지표', detail: '회의, 보고, 이메일' }, { label: '성과 지표', detail: '결정, 납품, 계약' }]
   }
 ];
 
