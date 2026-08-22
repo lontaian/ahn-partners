@@ -4,6 +4,8 @@ window.INSIGHT_POSTS = [
   { slug: 'approval-boundary', topic: 'AI 전략', title: 'AI가 답을 잘 내도 조직이 느리다면 승인 경계부터 확인하세요' },
   { slug: 'deletion-budget', topic: 'AI 전략', title: '빠르게 만든 코드는 정리하고 지울 시간을 확보해야 자산이 됩니다' },
   { slug: 'reporting-line-that-slows-everything', topic: '조직 운영', title: '보고 단계가 하나 늘면 정보가 줄어듭니다' },
+  { slug: 'hindsight-bias-review', topic: '데이터 의사결정', title: '\'그럴 줄 알았다\'가 나오는 회고 회의가 실패를 반복시키는 이유' },
+  { slug: 'parkinsons-law-deadline', topic: '업무 원가', title: '일정을 넉넉하게 줄수록 프로젝트가 그만큼 늦어집니다' },
   { slug: 'meeting-that-decides-nothing', topic: '데이터 의사결정', title: '결론이 안 나는 회의는 두 가지 중 하나입니다' },
   { slug: 'saying-no-to-a-good-idea', topic: '신사업 실행', title: '좋은 아이디어를 거절하는 법' },
   { slug: 'decision-log', topic: '데이터 의사결정', title: '회의록보다 결정 로그가 조직을 빠르게 만듭니다' },

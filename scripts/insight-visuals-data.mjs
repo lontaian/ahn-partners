@@ -2,6 +2,18 @@ export const INSIGHT_VISUAL_VERSION = '20260721-2';
 
 export const INSIGHT_VISUALS = [
   {
+    slug: 'hindsight-bias-review', category: 'ORG AND PEOPLE', layout: 'compare', composition: 'split',
+    title: "'그럴 줄 알았다'가 나오는 회고 회의",
+    thesis: '결과를 알고 보면 당시의 판단 난이도가 사라집니다.',
+    items: [{ label: '결과 공개 먼저', detail: '그럴 줄 알았다' }, { label: '상황 복원 먼저', detail: '그때는 무엇이 보였나' }]
+  },
+  {
+    slug: 'parkinsons-law-deadline', category: 'WORKFLOW', layout: 'ratio', composition: 'split',
+    title: '일정을 넉넉하게 줄수록 늦어지는 이유',
+    thesis: '일은 주어진 시간을 채울 때까지 늘어납니다.',
+    items: [{ label: '넉넉한 일정', detail: '범위와 회의가 늘어난다' }, { label: '짧은 마감', detail: '핵심만 남는다' }]
+  },
+  {
     slug: 'ai-executive-misconception', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
     title: 'AI 전환에서 경영진이 가장 많이 하는 착각',
     thesis: '도구 선택보다 반복되는 판단의 병목이 먼저입니다.',
@@ -231,6 +243,96 @@ export const INSIGHT_VISUALS = [
     slug: 'second-customer-test', category: 'SECOND CUSTOMER TEST', layout: 'compare', composition: 'vertical',
     title: '첫 고객의 요구를 제품 전략으로 착각하지 마십시오', thesis: '첫 계약은 문제를, 두 번째 유사 계약은 반복을 증명합니다.',
     items: [{ label: '첫 고객', value: '맞춤 요구' }, { label: '두 번째 고객', value: '반복 가능성' }]
+  },
+  {
+    slug: 'budget-for-things-that-do-not-show', category: 'OPERATING SYSTEM', layout: 'compare', composition: 'split',
+    title: '사고를 막으면 아무도 모릅니다',
+    thesis: '청구서가 있는 복구가 기록 없는 예방 예산을 이깁니다.',
+    items: [{ label: '복구 비용', detail: '청구서가 남는다' }, { label: '예방 효과', detail: '기록이 남지 않는다' }]
+  },
+  {
+    slug: 'customer-who-asks-for-a-feature', category: 'WORKFLOW', layout: 'compare', composition: 'split',
+    title: '요구는 기능으로 오지만 문제는 업무에 있습니다',
+    thesis: '무엇에 쓰는지 물으면 요구의 절반이 다른 모양으로 바뀝니다.',
+    items: [{ label: '기능 요구', detail: '화면마다 버튼' }, { label: '업무 실제', detail: '월말 표 하나' }]
+  },
+  {
+    slug: 'data-we-cannot-take-with-us', category: 'OPERATING SYSTEM', layout: 'compare', composition: 'split',
+    title: '데이터가 우리 것이 아니었습니다',
+    thesis: '소유권이 있어도 읽을 수 없으면 우리 것이 아닙니다.',
+    items: [{ label: '계약서 소유권', detail: '자산이라 적혀 있다' }, { label: '실질 접근권', detail: '만든 쪽만 읽는다' }]
+  },
+  {
+    slug: 'exception-rate-not-automation-rate', category: 'AUTOMATION ECONOMICS', layout: 'ratio', composition: 'split',
+    title: '자동화율 구십 퍼센트의 함정',
+    thesis: '자동화율 옆에 예외율과 처리 시간이 없으면 실제 비용을 알 수 없습니다.',
+    items: [{ label: '자동화율', value: '보이는 숫자' }, { label: '예외 처리 시간', value: '숨은 비용' }]
+  },
+  {
+    slug: 'first-hire-for-a-new-business', category: 'NEW BUSINESS', layout: 'timeline', composition: 'vertical',
+    title: '신사업 첫 채용에서 보는 것',
+    thesis: '첫 사람의 성과는 결과가 아니라 문제 목록입니다.',
+    items: [{ label: '탐색가 먼저' }, { label: '문제 목록 완성' }, { label: '전문가 채용' }]
+  },
+  {
+    slug: 'handover-to-operations', category: 'OPERATING SYSTEM', layout: 'flow', composition: 'vertical',
+    title: '문서를 개발팀이 쓰지 않고 운영팀이 씁니다',
+    thesis: '받는 쪽이 쓰면 모르는 것이 드러나고 만드는 쪽이 쓰면 당연한 것이 빠집니다.',
+    items: [{ label: '운영팀 초안' }, { label: '개발팀 교정' }, { label: '장애 동행' }, { label: '단독 복구' }]
+  },
+  {
+    slug: 'kpi-that-changes-behavior', category: 'METRICS THAT MOVE', layout: 'compare', composition: 'split',
+    title: '지표를 바꿨더니 행동이 바뀌었습니다',
+    thesis: '무엇을 재는지가 현장이 무엇을 포기하는지를 정합니다.',
+    items: [{ label: '처리 건수', detail: '빠른 것 먼저 잡는다' }, { label: '재발률', detail: '원인부터 찾는다' }]
+  },
+  {
+    slug: 'legacy-system-that-still-runs', category: 'OPERATING SYSTEM', layout: 'compare', composition: 'vertical',
+    title: '낡은 것과 위험한 것은 다릅니다',
+    thesis: '오래됐다는 것은 교체 근거가 아니라 버텼다는 증거입니다.',
+    items: [{ label: '기술 노후', detail: '오래 버텼다' }, { label: '업무 변화', detail: '교체 근거' }]
+  },
+  {
+    slug: 'meeting-that-decides-nothing', category: 'DECISION MEMORY', layout: 'branch', composition: 'split',
+    title: '결론이 안 나는 회의는 두 가지 중 하나입니다',
+    thesis: '결정할 사람이 없거나 정보가 없거나, 어느 쪽인지 먼저 가릅니다.',
+    items: [{ label: '결정자 없음', detail: '권한 없는 자리' }, { label: '정보 없음', detail: '자료 없는 결정 압박' }]
+  },
+  {
+    slug: 'pilot-that-cannot-fail', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '실패하면 안 되는 시범사업은 시범이 아닙니다',
+    thesis: '잘될 조건만 고른 시범은 확대 판단에 쓸 수 없습니다.',
+    items: [{ label: '배우는 시범', detail: '나쁜 조건 포함' }, { label: '증명하는 시범', detail: '좋은 조건만 선택' }]
+  },
+  {
+    slug: 'reporting-line-that-slows-everything', category: 'SILENCE RISK', layout: 'stack', composition: 'vertical',
+    title: '보고 단계가 하나 늘면 정보가 줄어듭니다',
+    thesis: '단계마다 요약되면서 원인이 지워지고 결론만 남습니다.',
+    items: [{ label: '현장 원문' }, { label: '중간 요약' }, { label: '임원 보고' }]
+  },
+  {
+    slug: 'saying-no-to-a-good-idea', category: 'DECISION MEMORY', layout: 'compare', composition: 'split',
+    title: '좋은 아이디어를 거절하는 법',
+    thesis: '안 한다와 지금은 아니다는 다른 결정이고, 날짜가 그 차이를 만듭니다.',
+    items: [{ label: '안 한다', detail: '영구 거절' }, { label: '지금은 아니다', detail: '날짜 붙인 보류' }]
+  },
+  {
+    slug: 'spec-that-changes-after-signing', category: 'OPERATING SYSTEM', layout: 'flow', composition: 'split',
+    title: '요구는 반드시 바뀝니다',
+    thesis: '변경 창구와 월 한도를 계약에 넣으면 거절 대신 순서가 됩니다.',
+    items: [{ label: '변경 요청' }, { label: '월 한도 배정' }, { label: '우선순위 결정' }, { label: '대기 목록' }]
+  },
+  {
+    slug: 'technical-debt-in-business-terms', category: 'OPERATING SYSTEM', layout: 'compare', composition: 'split',
+    title: '기술 부채라는 말을 임원에게 쓰지 않습니다',
+    thesis: '기술 용어 대신 같은 일이 세 배 걸린다는 문장이 결정을 만듭니다.',
+    items: [{ label: '기술 용어', detail: '설명이 필요하다' }, { label: '업무 숫자', detail: '그 자리에서 결정 난다' }]
+  },
+  {
+    slug: 'three-risks-not-forty', category: 'NEW BUSINESS', layout: 'ratio', composition: 'vertical',
+    title: '위험 서른 개가 있으면 아무도 보지 않습니다',
+    thesis: '서른네 개 목록은 아무도 보지 않고, 셋만 남겼을 때 담당자가 끝까지 봤습니다.',
+    items: [{ label: '전체 목록', value: '분기 검토' }, { label: '핵심 위험', value: '매주 확인' }]
   }
 ];
 
