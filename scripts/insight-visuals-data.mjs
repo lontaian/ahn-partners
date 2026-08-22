@@ -633,6 +633,66 @@ export const INSIGHT_VISUALS = [
     title: '새 시스템을 도입했는데 더 느려진 이유는 구 시스템을 끄지 않았기 때문입니다',
     thesis: '새 시스템 도입 계획에 구 시스템 종료 날짜가 없으면 프로젝트 종료 시 시스템이 두 개가 됩니다.',
     items: [{ label: '구 시스템 유지', detail: '이중 부담과 혼선이 지속된다' }, { label: '구 시스템 종료', detail: '새 시스템이 기준이 된다' }]
+  },
+  {
+    slug: 'hydrogen-operator-vs-investor', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '수소충전소에 투자한 사람과 운영하는 사람이 보는 숫자가 다릅니다',
+    thesis: '투자자 언어로만 쓴 수소 사업 계획서에 운영자 가동률 시나리오가 없으면 현실 검증이 빠진 것입니다.',
+    items: [{ label: '투자자 숫자', detail: '시장 규모와 기술 완성도' }, { label: '운영자 숫자', detail: '가동률과 유지보수 비용' }]
+  },
+  {
+    slug: 'ai-tool-list-trap', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
+    title: 'AI 도구 목록이 전략이 아닌 이유는 경계가 없기 때문입니다',
+    thesis: '어느 판단에서 AI를 쓰고 어느 판단에서 사람이 책임지는지를 먼저 정해야 합니다.',
+    items: [{ label: '도구 목록 먼저', detail: '업무 방식이 그대로 남는다' }, { label: '경계 설계 먼저', detail: '도구가 업무를 실제로 바꾼다' }]
+  },
+  {
+    slug: 'newbiz-endurance', category: 'NEW BUSINESS', layout: 'branch', composition: 'split',
+    title: '신사업이 느릴 때, 멈춰야 하는지 기다려야 하는지를 구분하는 방법',
+    thesis: '느린 것과 틀린 것의 구분이 없으면 멈춰야 할 것을 계속하거나 기다려야 할 것을 포기합니다.',
+    items: [{ label: '느린 신사업' }, { label: '반복 사용 있음', detail: '타이밍 문제, 기다린다' }, { label: '반복 사용 없음', detail: '가설 문제, 재검토한다' }]
+  },
+  {
+    slug: 'costliest-lesson', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '논리가 맞아도 납득이 없으면 결정은 실행되지 않습니다',
+    thesis: '설득은 반박을 없애는 것이고, 납득은 그 결정이 자기 일이 된다고 느끼는 것입니다.',
+    items: [{ label: '설득', detail: '반박이 없어진다' }, { label: '납득', detail: '결정이 자기 일이 된다' }]
+  },
+  {
+    slug: 'success-trap', category: 'LEADERSHIP', layout: 'signal', composition: 'vertical',
+    title: '성공한 공식이 환경이 바뀐 뒤에도 계속될 때, 공식 자체가 실패 원인이 됩니다',
+    thesis: '잘됐을 때 멈춰버린 의심이 환경 변화를 알아채지 못하게 합니다.',
+    items: [{ label: '성공 지속' }, { label: '의심 중단' }, { label: '환경 변화' }, { label: '공식이 실패 원인' }]
+  },
+  {
+    slug: 'cant-delegate-psychology', category: 'LEADERSHIP', layout: 'stack', composition: 'vertical',
+    title: '위임이 안 되는 이유는 상대를 못 믿어서가 아닙니다',
+    thesis: '위임을 막는 것은 팀원 역량이 아니라 위임자 내면의 세 층위 심리 장벽입니다.',
+    items: [{ label: '통제감 상실 불안' }, { label: '품질 기준 불안' }, { label: '설명 비용 인식' }]
+  },
+  {
+    slug: 'step-back-to-lead', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '대표가 매일 달릴수록 팀은 방향을 잃습니다',
+    thesis: '리더가 항상 실행 안에 있으면 방향을 점검하는 시간이 조직에서 사라집니다.',
+    items: [{ label: '실행 안에 있음', detail: '바로 앞 일만 보인다' }, { label: '물러서서 봄', detail: '전체 패턴과 방향이 보인다' }]
+  },
+  {
+    slug: 'junior-grows-conditions', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '주니어가 빨리 크는 조직은 교육이 많은 곳이 아닙니다',
+    thesis: '성장 속도를 결정하는 것은 교육량이 아니라 실패 허용 범위와 피드백 주기입니다.',
+    items: [{ label: '교육량 증가', detail: '성장 속도가 달라지지 않는다' }, { label: '실패 허용과 피드백 주기', detail: '성장 속도가 결정된다' }]
+  },
+  {
+    slug: 'depth-over-speed', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '한 분야를 깊이 판 사람이 위기에서 흔들리지 않는 이유',
+    thesis: '전문가는 선택지를 나열해 비교하지 않고 패턴을 인식해 먼저 배제합니다.',
+    items: [{ label: '넓은 경험', detail: '선택지를 나열하고 분석한다' }, { label: '깊은 전문성', detail: '패턴을 인식해 빠르게 배제한다' }]
+  },
+  {
+    slug: 'manager-makes-team', category: 'TALENT', layout: 'ratio', composition: 'split',
+    title: '팀 성과 차이의 70%는 복지나 제도가 아니라 관리자에서 납니다',
+    thesis: '같은 회사 안에서도 팀마다 성과 차이가 크게 나는 결정 변수는 관리자입니다.',
+    items: [{ label: '관리자 행동', value: '7할' }, { label: '제도와 복지', value: '3할' }]
   }
 ];
 
