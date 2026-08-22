@@ -573,6 +573,66 @@ export const INSIGHT_VISUALS = [
     title: 'AI가 반복 업무를 가져가면 주니어 판단력이 자라는 사다리가 사라집니다',
     thesis: '반복 업무는 단순 노동이 아니라 패턴과 판단력이 자라는 토양입니다. 사다리를 의도적으로 다시 설계해야 합니다.',
     items: [{ label: '반복 업무 경험' }, { label: '실수와 수정' }, { label: '패턴 이해' }, { label: '독립 판단력' }]
+  },
+  {
+    slug: 'ace-counteroffer', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '카운터오퍼를 수락한 에이스가 여섯 달 안에 다시 나가는 이유',
+    thesis: '카운터오퍼는 이직 이유가 오로지 보상일 때만 효과가 있습니다.',
+    items: [{ label: '카운터오퍼', detail: '보상이 이유일 때만 효과가 있다' }, { label: '역할과 성장 변화', detail: '인정과 성장이 이유일 때 처방이다' }]
+  },
+  {
+    slug: 'ai-productivity-paradox', category: 'AX', layout: 'flow', composition: 'split',
+    title: 'AI 도구로 직원이 빨라졌는데 회사 실적이 그대로인 이유',
+    thesis: '개인 처리량이 오르면 병목이 다음 단계로 이동합니다. 조직 성과는 흐름 전체가 결정합니다.',
+    items: [{ label: '개인 처리량' }, { label: '인접 업무 대기' }, { label: '의사결정 공백' }, { label: '성과 정체' }]
+  },
+  {
+    slug: 'rules-that-choke', category: 'LEADERSHIP', layout: 'flow', composition: 'split',
+    title: '품질을 지키려 만든 규칙이 조직을 굳히는 세 단계',
+    thesis: '규칙은 불신이 만들고 시간이 굳힙니다. 규칙이 많은 조직은 품질이 높은 조직이 아닙니다.',
+    items: [{ label: '문제 발생' }, { label: '규칙 추가' }, { label: '목표 치환' }, { label: '형식적 준수' }]
+  },
+  {
+    slug: 'kill-fast-asset', category: 'NEW BUSINESS', layout: 'timeline', composition: 'vertical',
+    title: '빨리 접은 프로젝트에서 건진 기준이 다음 신사업을 고칩니다',
+    thesis: '중단 시점에 기록된 구체적인 수치와 조건이 다음 신사업 평가의 진입 필터가 됩니다.',
+    items: [{ label: '중단 기준 도달' }, { label: '빠른 중단' }, { label: '기준 기록' }, { label: '다음 신사업 필터' }]
+  },
+  {
+    slug: 'hq-vs-field', category: 'OPERATIONS', layout: 'compare', composition: 'split',
+    title: '본사가 현장보다 두 달 늦게 아는 구조가 결정 오류를 만듭니다',
+    thesis: '현장 조건 차이에 민감한 결정을 평균 데이터로 내리는 구조가 오류를 만듭니다.',
+    items: [{ label: '본사 평균 데이터', detail: '분산이 사라진 결정' }, { label: '현장 실제 조건', detail: '평균을 벗어난 신호' }]
+  },
+  {
+    slug: 'why-people-stay', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '연봉을 올려줘도 떠나고, 깎여도 남는 이유',
+    thesis: '연봉은 이탈 이유를 제거하고, 성장과 인정은 잔류 이유를 만듭니다. 방향이 다른 처방입니다.',
+    items: [{ label: '연봉 인상', detail: '이탈 이유를 제거한다' }, { label: '성장과 인정', detail: '잔류 이유를 만든다' }]
+  },
+  {
+    slug: 'leader-speaks-last', category: 'LEADERSHIP', layout: 'flow', composition: 'split',
+    title: '내가 먼저 말한 회의에서 팀원들의 의견이 사라졌습니다',
+    thesis: '리더가 마지막에 말하는 것은 예절이 아니라 팀이 독립적으로 판단할 공간을 만드는 구조입니다.',
+    items: [{ label: '리더 선발언' }, { label: '닻내리기 효과' }, { label: '팀 발언 수렴' }, { label: '반론 차단' }]
+  },
+  {
+    slug: 'ideas-die-indifference', category: 'CULTURE', layout: 'signal', composition: 'vertical',
+    title: '아이디어를 죽인 건 반박이 아니라 무반응이었습니다',
+    thesis: '팀이 조용해지는 것은 생각을 멈춘 것이 아니라 꺼내는 것을 멈춘 것입니다.',
+    items: [{ label: '아이디어 제출' }, { label: '무반응' }, { label: '제안 행동 소멸' }, { label: '침묵 학습' }]
+  },
+  {
+    slug: 'consultant-filter', category: 'ADVISORY', layout: 'stack', composition: 'vertical',
+    title: '좋은 컨설팅과 나쁜 컨설팅을 가르는 기준 세 가지, 저희도 예외가 아닙니다',
+    thesis: '안 된다는 말을 먼저 할 수 있는 컨설턴트가 좋은 컨설턴트입니다.',
+    items: [{ label: '실패 경험 공개' }, { label: '불가 사항 먼저' }, { label: '숫자로 기준 합의' }]
+  },
+  {
+    slug: 'new-system-not-faster', category: 'OPERATIONS', layout: 'compare', composition: 'split',
+    title: '새 시스템을 도입했는데 더 느려진 이유는 구 시스템을 끄지 않았기 때문입니다',
+    thesis: '새 시스템 도입 계획에 구 시스템 종료 날짜가 없으면 프로젝트 종료 시 시스템이 두 개가 됩니다.',
+    items: [{ label: '구 시스템 유지', detail: '이중 부담과 혼선이 지속된다' }, { label: '구 시스템 종료', detail: '새 시스템이 기준이 된다' }]
   }
 ];
 
