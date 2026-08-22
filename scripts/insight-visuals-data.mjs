@@ -1053,6 +1053,66 @@ export const INSIGHT_VISUALS = [
     title: '규정을 만드는 절차는 있는데 없애는 절차가 없는 이유',
     thesis: '신설에는 승인 절차가 있고 폐지에는 없습니다. 구조가 비대칭이면 결과도 비대칭입니다.',
     items: [{ label: '규정 신설', detail: '사건, 검토, 승인, 담당 부서가 있다' }, { label: '규정 폐지', detail: '제안 채널, 검토 기준, 담당자가 없다' }]
+  },
+  {
+    slug: 'competency-shift-ai-era', category: 'AX EDUCATION', layout: 'compare', composition: 'split',
+    title: 'AI 활용 역량 교육이 도구 숙달에서 멈추면 AI 결과를 판단하는 역량은 생기지 않습니다',
+    thesis: '도구를 잘 쓰는 역량과 AI 결과를 판단하는 역량은 다른 교육 목표로 키웁니다.',
+    items: [{ label: 'AI 도구 숙달', detail: '프롬프트와 도구 실습이 교육 목표가 된다' }, { label: 'AI 결과 판단', detail: '어떤 결과를 왜 수정할지를 판단하는 역량이 된다' }]
+  },
+  {
+    slug: 'leader-eval-in-ai-era', category: 'AI OPERATING MODEL', layout: 'compare', composition: 'split',
+    title: 'AI가 팀 결과물 품질을 올리면 기존 팀장 평가 기준이 두 팀장을 구분하지 못합니다',
+    thesis: 'AI 위임을 잘한 팀장과 AI 결과 판단을 잘한 팀장은 결과물 품질 기준으로 같은 점수를 받습니다.',
+    items: [{ label: 'AI 위임 잘한 팀장', detail: '팀 결과물 품질이 올라간다' }, { label: 'AI 판단 잘한 팀장', detail: 'AI가 틀렸을 때 조직을 지킨다' }]
+  },
+  {
+    slug: 'judgment-pipeline-break', category: 'ORG AND PEOPLE', layout: 'timeline', composition: 'vertical',
+    title: 'AI가 초급 업무를 처리하면 판단 기준이 다음 세대로 전달되는 경로가 달라집니다',
+    thesis: '5년 뒤 비슷한 상황에 팀마다 다른 판단이 나오는 것이 판단 파이프라인이 끊긴 비용입니다.',
+    items: [{ label: '초급 업무 관찰' }, { label: '반복과 실수 교정' }, { label: '기준 내재화' }, { label: '독립 판단' }]
+  },
+  {
+    slug: 'ai-org-capability-gap', category: 'AI OPERATING MODEL', layout: 'compare', composition: 'reverse',
+    title: '직원들이 각자 AI를 잘 써도 조직이 같은 질문에 다른 답을 내는 이유',
+    thesis: '공통 데이터 기준과 판단 기준이 없으면 개인의 AI 역량을 합쳐도 조직 역량이 되지 않습니다.',
+    items: [{ label: '개인 AI 역량 합산', detail: '교육으로 올라간다' }, { label: '조직 AI 역량', detail: '공통 기준 설계로 만들어진다' }]
+  },
+  {
+    slug: 'ai-execution-accountability', category: 'AI OPERATING MODEL', layout: 'flow', composition: 'split',
+    title: 'AI가 실행한 결과에서 문제가 생겼을 때 책임은 설계 판단을 내린 시점에 있습니다',
+    thesis: 'AI가 실행을 담당해도 판단 책임은 사라지지 않고 결과 단계에서 설계 단계로 이동합니다.',
+    items: [{ label: '설계 판단' }, { label: 'AI 실행' }, { label: '결과 발생' }, { label: '책임 추적' }]
+  },
+  {
+    slug: 'fast-kill-preserves-people', category: 'NEW BUSINESS', layout: 'stack', composition: 'vertical',
+    title: '신사업을 천천히 접으면 사람도 함께 닳습니다',
+    thesis: '빠른 중단이 남기는 자산은 소진되지 않은 사람, 유효한 시장 데이터, 중단 판단 훈련입니다.',
+    items: [{ label: '소진되지 않은 사람' }, { label: '유효한 시장 데이터' }, { label: '중단 판단 훈련' }]
+  },
+  {
+    slug: 'newbiz-endurance-by-design', category: 'NEW BUSINESS', layout: 'stack', composition: 'vertical',
+    title: '신사업팀이 1년을 버티지 못하는 것은 의지 문제가 아니라 구조 문제입니다',
+    thesis: '의사결정 거리, 보고 이중 부담, 이중 KPI 세 가지가 탐색 단계의 지구력을 빼앗습니다.',
+    items: [{ label: '의사결정 거리' }, { label: '보고 이중 부담' }, { label: '이중 KPI' }]
+  },
+  {
+    slug: 'hydrogen-maintenance-blind-spot', category: 'HYDROGEN OPERATIONS', layout: 'compare', composition: 'split',
+    title: '수소충전소 사업 계획서에서 가장 자주 빠지는 비용은 압축기 정비와 부품 조달 대기 시간입니다',
+    thesis: '설비 가용성이 연간 운영 원가를 결정하는데 이 변수가 초기 투자 계획에 없는 경우가 많습니다.',
+    items: [{ label: '수요 예측 중심 계획', detail: '설비 정상 가동을 전제로 원가를 추정한다' }, { label: '가용성 포함 계획', detail: '정비 주기와 부품 조달 리드타임이 원가 시나리오에 들어간다' }]
+  },
+  {
+    slug: 'consulting-exit-design', category: 'ADVISORY', layout: 'flow', composition: 'vertical',
+    title: '컨설팅 계약에 종료 조건을 먼저 쓰지 않으면 보고서가 납품물이 됩니다',
+    thesis: '내부 담당자가 독립 수행 가능한 상태를 종료 조건으로 정해야 역량이 조직에 남습니다.',
+    items: [{ label: '독립 수행 목록 합의' }, { label: '내부 담당자 참여' }, { label: '역량 이전 3단계' }, { label: '독립 수행 검증' }]
+  },
+  {
+    slug: 'stay-interview-org', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '퇴직 면담은 있는데 잔류 면담이 없는 조직은 남아있는 이유를 추측으로 설계합니다',
+    thesis: '이탈 이유를 없애는 처방과 잔류 이유를 만드는 처방은 방향이 다릅니다.',
+    items: [{ label: '퇴직 면담', detail: '나간 사람에게 이탈 원인을 묻는다' }, { label: '잔류 면담', detail: '남아있는 사람에게 잔류 이유를 묻는다' }]
   }
 ];
 
