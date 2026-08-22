@@ -693,6 +693,66 @@ export const INSIGHT_VISUALS = [
     title: '팀 성과 차이의 70%는 복지나 제도가 아니라 관리자에서 납니다',
     thesis: '같은 회사 안에서도 팀마다 성과 차이가 크게 나는 결정 변수는 관리자입니다.',
     items: [{ label: '관리자 행동', value: '7할' }, { label: '제도와 복지', value: '3할' }]
+  },
+  {
+    slug: 'report-execution-loop', category: 'OPERATIONS', layout: 'compare', composition: 'split',
+    title: '보고 주기가 실행 주기보다 짧아지면 팀장은 번역기가 됩니다',
+    thesis: '실행이 끝나기 전에 보고를 요구하면 팀장은 없는 정보를 추정으로 채워 올리게 됩니다.',
+    items: [{ label: '보고 주기 > 실행 주기', detail: '아직 없는 정보를 추정으로 채운다' }, { label: '보고 주기 = 실행 주기', detail: '팀장의 실행 시간과 현장 정보 품질이 돌아온다' }]
+  },
+  {
+    slug: 'newbiz-to-profit-steps', category: 'NEW BUSINESS', layout: 'flow', composition: 'vertical',
+    title: '신사업을 흑자로 돌린 팀이 먼저 한 일은 매출 목표가 아니라 손실 구멍 막기였습니다',
+    thesis: '매출이 늘수록 손실도 커지는 구조를 먼저 멈춰야 흑자 단위를 찾을 수 있습니다.',
+    items: [{ label: '손실 구멍 막기' }, { label: '흑자 단위 하나 찾기' }, { label: '그 단위만 키우기' }]
+  },
+  {
+    slug: 'govfund-direction-trap', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '보조금이 가장 비싼 자본이 되는 순간은 사업 방향이 서류 요건을 따라 움직일 때입니다',
+    thesis: '지원금 요건에 맞춰 방향을 바꾸기 시작하면 기회비용이 지원금 금액을 넘어섭니다.',
+    items: [{ label: '요건과 전략이 일치', detail: '이자 없는 비용 절감이다' }, { label: '요건 때문에 방향 변경', detail: '방향 전환 비용이 지원금을 초과한다' }]
+  },
+  {
+    slug: 'global-negotiation-leverage', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '거인 앞에서 협상 우위를 만드는 것은 규모가 아니라 포기할 수 있는 대안의 수입니다',
+    thesis: '협상에서 힘은 회사 크기가 아니라 이 계약이 없어도 갈 수 있는 대안에서 나옵니다.',
+    items: [{ label: '대안 없는 협상', detail: '상대가 먼저 안다. 가격 압박이 강해진다' }, { label: '대안 있는 협상', detail: '조건을 선택할 여지가 생긴다' }]
+  },
+  {
+    slug: 'fcev-real-bottleneck', category: 'OPERATIONS', layout: 'stack', composition: 'vertical',
+    title: '수소전기차 보급이 느린 진짜 이유는 차가 아니라 충전이 될지 모른다는 불확실성입니다',
+    thesis: '충전소 수가 아니라 가동률, 대기 시간, 충전 완료 예측 가능성이 구매 결정을 막고 있습니다.',
+    items: [{ label: '충전소 실시간 가동 정보' }, { label: '대기 시간 예측' }, { label: '충전 완료 확실성' }]
+  },
+  {
+    slug: 'mgmt-vs-direction', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '관리를 잘해도 방향이 틀리면 조직은 효율적으로 실패합니다',
+    thesis: '효율성은 일을 제대로 하는 것이고 효과성은 제대로 된 일을 하는 것입니다. 두 가지는 다른 능력입니다.',
+    items: [{ label: '관리 개선', detail: '같은 방향을 더 빠르게 간다' }, { label: '방향 판단', detail: '가야 할 곳이 맞는지를 먼저 결정한다' }]
+  },
+  {
+    slug: 'tech-to-management-breaks', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '처음 팀장이 된 개발자가 가장 먼저 잃는 것은 기술이 아닙니다',
+    thesis: '직접 만든 것이 작동할 때 오는 즉각적 성취감이 사라지고 이 공백을 채우지 못하면 팀원 업무에 끼어들게 됩니다.',
+    items: [{ label: '만드는 성취감', detail: '코드가 작동하면 즉각 온다' }, { label: '만들게 하는 성취감', detail: '팀원 판단이 자라는 것을 보며 온다' }]
+  },
+  {
+    slug: 'week-starts-reactive', category: 'LEADERSHIP', layout: 'compare', composition: 'split',
+    title: '월요일 오전을 받은 메일로 시작하면 그 주의 의사결정 순서는 남이 정합니다',
+    thesis: '주의 첫 30분을 내가 내려야 할 결정 목록으로 시작하면 의사결정의 주도권이 달라집니다.',
+    items: [{ label: '받은 메일 먼저', detail: '남의 안건이 하루의 첫 에너지를 채운다' }, { label: '결정 목록 먼저', detail: '내 기준으로 메일을 판단한다' }]
+  },
+  {
+    slug: 'ai-judgment-remains', category: 'AI STRATEGY', layout: 'stack', composition: 'vertical',
+    title: 'AI가 분석을 다 해도 CEO가 직접 해야 하는 판단이 세 가지 남습니다',
+    thesis: 'AI가 분석을 빠르게 만들수록 결정, 책임, 신뢰라는 CEO 고유 역할이 더 선명하게 드러납니다.',
+    items: [{ label: '어떤 질문을 할지' }, { label: '결과의 책임' }, { label: '팀의 신뢰와 의미' }]
+  },
+  {
+    slug: 'engagement-leading-indicators', category: 'TALENT', layout: 'compare', composition: 'split',
+    title: '이직률이 높아졌을 때는 이미 몰입도가 낮아진 지 수개월이 지난 시점입니다',
+    thesis: '만족도와 이직률은 과거를 보여주고 몰입도는 6개월에서 12개월 뒤 성과 방향을 먼저 보여줍니다.',
+    items: [{ label: '만족도와 이직률', detail: '후행 지표, 이미 문제가 생긴 뒤에 나온다' }, { label: '몰입도', detail: '선행 지표, 성과 변화 6-12개월 전 신호다' }]
   }
 ];
 
