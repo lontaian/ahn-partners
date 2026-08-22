@@ -933,6 +933,66 @@ export const INSIGHT_VISUALS = [
     title: '노코드로 만드는 것은 반나절이지만 굴리는 것은 그다음부터입니다',
     thesis: '만들기는 빠르지만 유지보수 비용은 코드와 같습니다. 생애 주기를 만들기에 포함해야 합니다.',
     items: [{ label: 'API 변경 대응' }, { label: '데이터 예외 처리' }, { label: '운영 지식 이전' }]
+  },
+  {
+    slug: 'field-regression-signal', category: 'OPERATIONS', layout: 'stack', composition: 'vertical',
+    title: '도입 완료 보고를 받은 날 현장은 엑셀로 돌아가 있었습니다',
+    thesis: '도입 완료와 현장 안착은 다른 사건입니다. 회귀 신호 세 가지를 측정하지 않으면 시스템이 껍데기가 됩니다.',
+    items: [{ label: '로그인 월말 집중' }, { label: '병렬 엑셀 지속' }, { label: '예외 처리 20% 초과' }]
+  },
+  {
+    slug: 'erp-exception-policy', category: 'SYSTEMS', layout: 'compare', composition: 'split',
+    title: '예외를 담당자가 처리한다는 ERP 정책이 시스템 전체를 개인에게 묶습니다',
+    thesis: '예외 처리 책임이 사람에게 묶이는 순간 그 사람이 시스템의 실질 운영자가 됩니다.',
+    items: [{ label: '담당자 재량 처리', detail: '이력 없고 일관성 없고 그 사람이 없으면 멈춘다' }, { label: '시스템 내재화', detail: '처리 경로가 시스템 안에 있고 이력이 조직에 남는다' }]
+  },
+  {
+    slug: 'legacy-integration-boundary', category: 'SYSTEMS', layout: 'compare', composition: 'split',
+    title: '레거시와 신규 시스템의 경계를 계약서에 쓰지 않으면 프로젝트 범위가 매 회의마다 달라집니다',
+    thesis: '경계를 정한다는 것은 신규 시스템이 무엇을 모른다고 가정할 것인가를 정하는 것입니다.',
+    items: [{ label: '경계 미정의', detail: '연동 가능한 모든 것이 1단계 요청으로 들어온다' }, { label: '경계 문서화', detail: '추가 요청은 변경 프로세스와 비용 산정을 거쳐야 한다' }]
+  },
+  {
+    slug: 'ai-cycle-structural-shift', category: 'AI STRATEGY', layout: 'compare', composition: 'split',
+    title: '인터넷 때도 ERP 때도 이런 말을 들었습니다. 이번 AI에는 한 가지가 구조적으로 다릅니다',
+    thesis: '과거 사이클은 시스템이 사람의 지시를 실행했고, 이번 사이클은 시스템이 결과물의 초안을 만듭니다.',
+    items: [{ label: '과거 세 사이클', detail: '사람이 판단하고 시스템이 실행했다' }, { label: 'AI 사이클', detail: '시스템이 초안을 만들고 사람이 검토한다' }]
+  },
+  {
+    slug: 'exec-tool-bus-factor', category: 'AI STRATEGY', layout: 'stack', composition: 'vertical',
+    title: '경영진이 AI로 만든 도구는 그 경영진이 없으면 멈춥니다',
+    thesis: 'AI 덕분에 도구를 만들기 쉬워진 만큼 버스팩터 1 도구도 쉽게 만들어집니다.',
+    items: [{ label: '사용법을 만든 사람만 안다' }, { label: 'API 키가 개인 계정에 묶인다' }, { label: '작동 로직 문서가 없다' }]
+  },
+  {
+    slug: 'meeting-map-before-minutes', category: 'WORKFLOW', layout: 'flow', composition: 'split',
+    title: '회의를 시작하기 전에 결정 지도부터 그려야 합니다',
+    thesis: '참석자와 결정 권한이 먼저 확정되지 않으면 회의록은 논쟁의 속기록이 됩니다.',
+    items: [{ label: '결정 항목 확정' }, { label: '결정자 지정' }, { label: '의견 제공자 사전 입력' }, { label: '회의에서 결정' }]
+  },
+  {
+    slug: 'control-room-metric-pruning', category: 'OPERATIONS', layout: 'compare', composition: 'split',
+    title: '지표는 늘어나는데 없애는 기준이 없습니다',
+    thesis: '지표를 추가하는 것은 문제에 반응하는 능력이고, 지표를 없애는 것은 무엇이 중요한지 판단하는 능력입니다.',
+    items: [{ label: '지표 추가', detail: '문제마다 쌓이고 비대칭 구조로 사라지지 않는다' }, { label: '지표 폐기 기준', detail: '3개월 결정 무관, 중복, 문제 해결됨이면 비활성화한다' }]
+  },
+  {
+    slug: 'govfund-shadow-work', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '정부지원사업 수주 후에 진짜 일이 시작됩니다',
+    thesis: '지원사업의 실비용은 사업비가 아닙니다. 정산, 감사 대응, 중간 보고가 팀의 실행 자원을 소모합니다.',
+    items: [{ label: '사업비 집행', detail: '계획서에 적힌 연구와 개발' }, { label: '그림자 업무', detail: '정산 증빙, 중간 보고, 현장 감사 대응' }]
+  },
+  {
+    slug: 'gov-rnd-execution-muscle', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '정부 R&D를 끝낸 뒤 조직에 무엇이 남습니까',
+    thesis: '기술 역량 향상이 시장 실행력으로 전환되는 경로가 별도로 설계되지 않으면 그 둘은 분리됩니다.',
+    items: [{ label: 'R&D가 키우는 역량', detail: '마일스톤 관리, 문서화, 감사 대응' }, { label: '상업 실행이 요구하는 역량', detail: '빠른 고객 검증, 출시 일정 단축, 기능 우선순위 결정' }]
+  },
+  {
+    slug: 'app-downloads-are-not-moat', category: 'NEW BUSINESS', layout: 'compare', composition: 'split',
+    title: '앱 다운로드 100만은 경쟁 우위가 아닙니다',
+    thesis: '설치 수는 시작점이지 해자가 아닙니다. 경쟁사가 같은 기능을 만들어도 고객이 남는 이유가 해자입니다.',
+    items: [{ label: '다운로드 수', detail: '마케팅 효과를 보여준다. 6개월 뒤 경쟁사도 만들 수 있다' }, { label: '리텐션과 전환 비용', detail: '고객이 이동하지 않는 이유를 보여주는 지표다' }]
   }
 ];
 
